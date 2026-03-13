@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Animal Rights Entrepreneurs Seattle - A community of innovators working on diverse projects to advance animal welfare through technology and social movements."
+      content="Animal Project Buddies Seattle - A community of innovators working on diverse projects to advance animal welfare through technology and social movements."
     />
-    <title>Animal Rights Entrepreneurs Seattle</title>
+    <title>Animal Project Buddies Seattle</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,7 +22,7 @@
     <section class="hero">
         <div class="hero-background"></div>
         <div class="container">
-            <h1 class="hero-title">Animal Rights Entrepreneurs</h1>
+            <h1 class="hero-title">Animal Project Buddies</h1>
             <p class="hero-subtitle">
                 <span class="location-badge">
                     <span class="globe-icon">🌍</span>
@@ -89,7 +89,7 @@
       <div class="container">
         <h2>Join Our Meetings</h2>
         <div class="meeting-info">
-          <a href="">
+          <a href="https://grassroots.to/events/203c44d3-5580-4f96-9d16-3f899d60f25e" target="_blank" rel="noopener">
             <div class="meeting-detail">
               <span class="meeting-icon">📅</span>
               <div>
@@ -114,10 +114,12 @@
           Join our Discord community to connect with members, stay updated on
           meetings, and collaborate on projects.
         </p>
+        <!-- EXPIRED: Discord invite link expires 2026-03-19, replace with a new one -->
         <a
-          href="#"
+          href="https://discord.gg/TyGseJEb"
           class="cta-button primary"
-          onclick="alert('Please replace this link with your actual Slack invite URL'); return false;"
+          target="_blank"
+          rel="noopener"
           >Join Our Discord</a
         >
       </div>
@@ -127,7 +129,7 @@
     <footer>
       <div class="container">
         <p>
-          &copy; 2025 Animal Rights Entrepreneurs Seattle. Building a better
+          &copy; 2025 Animal Project Buddies Seattle. Building a better
           future for all animals.
         </p>
       </div>
@@ -199,7 +201,7 @@
           carousel.innerHTML = data.projects.map(project => {
             const icon = projectIcons[project.project_handle] || '🌱';
             const name = project.project_name || formatProjectName(project.project_handle);
-            const description = project.project_description || 'An ARE Seattle initiative.';
+            const description = project.project_description || 'An APB Seattle initiative.';
             const website = project.project_website;
 
             const content = `

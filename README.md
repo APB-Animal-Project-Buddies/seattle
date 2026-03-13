@@ -1,6 +1,6 @@
-# ARE Seattle
+# APB Seattle
 
-A mostly static web application for Animal Rights Entrepreneurs Seattle chapter, featuring a landing page, metrics tracking system, and Discord bot integration.
+A mostly static web application for Animal Project Buddies Seattle chapter, featuring a landing page, metrics tracking system, and Discord bot integration.
 
 ## Tech Stack
 
@@ -136,4 +136,4 @@ All landing page content is in `public/index.html`. Edit the text in each sectio
 
 ## License
 
-Private - ARE Seattle
+Private - APB Seattle

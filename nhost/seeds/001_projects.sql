@@ -1,4 +1,4 @@
--- Seed projects from ARE Seattle accounts config
+-- Seed projects from APB Seattle accounts config
 INSERT INTO projects (project_handle, project_website, project_description) VALUES
     ('chicken-nor-egg', 'https://stopfactoryfarms.org/', 'A social-media focused channel focused on fighting factory farming.'),
     ('ahimsa-in-action', 'https://www.instagram.com/ahimsa.in.action', 'Promoting non-violence through animal rights advocacy and compassionate action.'),
