@@ -6,6 +6,7 @@ INSERT INTO projects (project_handle, project_website, project_description) VALU
     ('clean-meat-alliance', 'https://cleanmeatalliance.org/', 'Advancing cellular agriculture and cultivated meat to create a sustainable food system.'),
     ('feeding-progress', 'https://feedingprogress.com/', 'Essays on animal welfare, technology, and progress.'),
     ('vishnus-thoughts', 'https://vishnuamrit.substack.com/', 'Short, readable bites focused on promoting philanthropy, compassion, and animal welfare.'),
-    ('viniths-thoughts', 'https://vinithsthoughts.substack.com/', 'Personal reflections on animal rights advocacy and amplifying compassion.')
+    ('viniths-thoughts', 'https://vinithsthoughts.substack.com/', 'Personal reflections on animal rights advocacy and amplifying compassion.'),
+    ('the-chicken-coup', 'https://thechickencoup.substack.com/', 'A Substack exploring psychology, technology, systems theory, and social change for animal advocacy')
 ON CONFLICT (project_handle) DO NOTHING;
 

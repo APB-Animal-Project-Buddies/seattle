@@ -5,6 +5,8 @@ const region = process.env.NHOST_REGION;
 const adminSecret = process.env.NHOST_GRAPHQL_SECRET;
 const graphqlUrl = `https://${subdomain}.hasura.${region}.nhost.run/v1/graphql`;
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   type ProjectsResponse = {
     projects: Array<{

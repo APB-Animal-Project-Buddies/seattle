@@ -58,7 +58,7 @@
                     <span class="impact-label">Dollars Raised in Funds</span>
                 </div>
                 <div class="impact-metric">
-                    <span class="impact-number" data-target="200000">180000</span>
+                    <span class="impact-number" data-target="233000">233000</span>
                     <span class="impact-label">People Reached</span>
                 </div>
             </div>
@@ -164,6 +164,7 @@
         'viniths-thoughts': '📖',
         'coffee-buddy': '☕',
         'just-another-day-at-work': '🏢',
+        'the-chicken-coup': '🐓',
       };
 
       // Fallback: convert handle to display name (e.g., "chicken-nor-egg" -> "Chicken Nor Egg")
@@ -173,6 +174,16 @@
           .map(word => word.charAt(0).toUpperCase() + word.slice(1))
           .join(' ');
       }
+
+      // Preferred display order — these appear first in the carousel
+      const preferredOrder = [
+        'ahimsa-in-action',
+        'feeding-progress',
+        'clean-meat-alliance',
+        'the-chicken-coup',
+        'chicken-nor-egg',
+        'coffee-buddy',
+      ];
 
       // Fetch and render projects
       async function loadProjects() {
@@ -197,8 +208,18 @@
             return;
           }
 
+          // Sort projects: preferred ones first (in order), then the rest
+          const sorted = [...data.projects].sort((a, b) => {
+            const ai = preferredOrder.indexOf(a.project_handle);
+            const bi = preferredOrder.indexOf(b.project_handle);
+            if (ai !== -1 && bi !== -1) return ai - bi;
+            if (ai !== -1) return -1;
+            if (bi !== -1) return 1;
+            return 0;
+          });
+
           // Render project cards
-          carousel.innerHTML = data.projects.map(project => {
+          carousel.innerHTML = sorted.map(project => {
             const icon = projectIcons[project.project_handle] || '🌱';
             const name = project.project_name || formatProjectName(project.project_handle);
             const description = project.project_description || 'An APB Seattle initiative.';
@@ -239,228 +260,221 @@
       // Load projects on page load
       loadProjects();
 
-      // Project Carousel - Infinite Loop with 3 Cards Visible
+      // Project Carousel - Infinite loop with gentle continuous scroll
       function initCarousel() {
-      const carouselContainer = document.querySelector(".carousel-container");
-      const carousel = document.querySelector(".project-carousel");
-      const originalCards = Array.from(
-        document.querySelectorAll(".project-card")
-      );
+        const carouselContainer = document.querySelector(".carousel-container");
+        const carousel = document.querySelector(".project-carousel");
+        const originalCards = Array.from(document.querySelectorAll(".project-card"));
+        const totalOriginal = originalCards.length;
+        if (totalOriginal === 0) return;
 
-      let currentIndex = 0;
-      let isDragging = false;
-      let startX = 0;
-      let currentTranslate = 0;
-      let prevTranslate = 0;
-      let animationID = 0;
-      let isTransitioning = false;
+        let isDragging = false;
+        let startX = 0;
+        let dragStartTranslate = 0;
+        let animationID = 0;
 
-      // Clone cards for infinite loop (3 sets: before, original, after)
-      const clonedBefore = originalCards.map((card) => card.cloneNode(true));
-      const clonedAfter = originalCards.map((card) => card.cloneNode(true));
+        // Continuous scroll state
+        let scrollOffset = 0;
+        let autoScrolling = true;
+        const SCROLL_SPEED = 0.5;    // pixels per frame (~30px/sec at 60fps)
+        const LERP_FACTOR = 0.08;    // smoothness of slide-to-target (lower = slower ease)
 
-      // Insert clones in reverse order to maintain correct sequence
-      clonedBefore
-        .reverse()
-        .forEach((card) => carousel.insertBefore(card, carousel.firstChild));
-      clonedAfter.forEach((card) => carousel.appendChild(card));
+        // When set, the loop lerps toward this instead of drifting
+        let slideTarget = null;
+        let resumeAfterSlide = false;
 
-      const allCards = carousel.querySelectorAll(".project-card");
-      const totalOriginalCards = originalCards.length;
+        // Clone cards for infinite loop (before + original + after)
+        const clonedBefore = originalCards.map(c => c.cloneNode(true));
+        const clonedAfter = originalCards.map(c => c.cloneNode(true));
+        clonedBefore.reverse().forEach(c => carousel.insertBefore(c, carousel.firstChild));
+        clonedAfter.forEach(c => carousel.appendChild(c));
 
-      // Start at the first original card (after the cloned set)
-      currentIndex = totalOriginalCards;
+        function getStep() {
+          const card = carousel.querySelector(".project-card");
+          return card ? card.offsetWidth + 35 : 400;
+        }
 
-      function getCardWidth() {
-        return allCards[0].offsetWidth;
-      }
+        function getSetWidth() {
+          return totalOriginal * getStep();
+        }
 
-      function getGap() {
-        return 35;
-      }
+        function wrapOffset() {
+          const setWidth = getSetWidth();
+          const minOffset = -(totalOriginal * 2) * getStep();
+          const originOffset = -totalOriginal * getStep();
+          if (scrollOffset < minOffset) scrollOffset += setWidth;
+          else if (scrollOffset > originOffset) scrollOffset -= setWidth;
+        }
 
-      function setPositionByIndex(animated = true) {
-        const cardWidth = getCardWidth();
-        const gap = getGap();
-        currentTranslate = -currentIndex * (cardWidth + gap);
-        carousel.style.transition = animated
-          ? "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-          : "none";
-        carousel.style.transform = `translateX(${currentTranslate}px)`;
-        prevTranslate = currentTranslate;
-      }
-
-      function handleTransitionEnd() {
-        if (!isTransitioning) return;
-
-        // After transition completes, check if we need to loop
-        // We have 3 sets: [clones 0-7][originals 8-15][clones 16-23]
-        // We want to stay in the middle set (8-15)
-
-        if (currentIndex >= totalOriginalCards * 2) {
-          // Scrolled right into clone set (16+), wrap back to middle set
-          // Example: index 16 -> 8, index 17 -> 9, etc.
-          currentIndex = currentIndex - totalOriginalCards;
+        function applyPosition() {
           carousel.style.transition = "none";
-          const cardWidth = getCardWidth();
-          const gap = getGap();
-          currentTranslate = -currentIndex * (cardWidth + gap);
-          carousel.style.transform = `translateX(${currentTranslate}px)`;
-          prevTranslate = currentTranslate;
-          // Force reflow
-          void carousel.offsetHeight;
-        } else if (currentIndex < totalOriginalCards) {
-          // Scrolled left into clone set (0-7), wrap forward to middle set
-          // Example: index 7 -> 15, index 6 -> 14, etc.
-          currentIndex = currentIndex + totalOriginalCards;
-          carousel.style.transition = "none";
-          const cardWidth = getCardWidth();
-          const gap = getGap();
-          currentTranslate = -currentIndex * (cardWidth + gap);
-          carousel.style.transform = `translateX(${currentTranslate}px)`;
-          prevTranslate = currentTranslate;
-          // Force reflow
-          void carousel.offsetHeight;
+          carousel.style.transform = `translateX(${scrollOffset}px)`;
         }
 
-        isTransitioning = false;
-      }
-
-      carousel.addEventListener("transitionend", handleTransitionEnd);
-
-      function setCarouselPosition() {
-        carousel.style.transform = `translateX(${currentTranslate}px)`;
-      }
-
-      function touchStart(event) {
-        isDragging = true;
-        startX = getPositionX(event);
-        animationID = requestAnimationFrame(animation);
-        carouselContainer.style.cursor = "grabbing";
-        carousel.style.transition = "none";
-      }
-
-      function touchMove(event) {
-        if (isDragging) {
-          const currentPosition = getPositionX(event);
-          currentTranslate = prevTranslate + currentPosition - startX;
-        }
-      }
-
-      function touchEnd() {
-        isDragging = false;
-        cancelAnimationFrame(animationID);
-        carouselContainer.style.cursor = "grab";
-
-        const movedBy = currentTranslate - prevTranslate;
-
-        // Swipe threshold - move one card at a time
-        if (movedBy < -100) {
-          currentIndex += 1;
-          isTransitioning = true;
-        } else if (movedBy > 100) {
-          currentIndex -= 1;
-          isTransitioning = true;
-        }
-
-        setPositionByIndex(true);
-      }
-
-      function getPositionX(event) {
-        return event.type.includes("mouse")
-          ? event.pageX
-          : event.touches[0].clientX;
-      }
-
-      function animation() {
-        setCarouselPosition();
-        if (isDragging) requestAnimationFrame(animation);
-      }
-
-      // Initialize position
-      setPositionByIndex(false);
-
-      // Mouse events
-      carouselContainer.addEventListener("mousedown", touchStart);
-      carouselContainer.addEventListener("mousemove", touchMove);
-      carouselContainer.addEventListener("mouseup", touchEnd);
-      carouselContainer.addEventListener("mouseleave", touchEnd);
-
-      // Touch events
-      carouselContainer.addEventListener("touchstart", touchStart);
-      carouselContainer.addEventListener("touchmove", touchMove);
-      carouselContainer.addEventListener("touchend", touchEnd);
-
-      // Prevent context menu on long press
-      carouselContainer.addEventListener("contextmenu", (e) =>
-        e.preventDefault()
-      );
-
-      // Trackpad/Mouse wheel scrolling - only intercept horizontal scrolls
-      let scrollTimeout;
-      let scrollAccumulator = 0;
-
-      carouselContainer.addEventListener(
-        "wheel",
-        (e) => {
-          const isHorizontalScroll = Math.abs(e.deltaX) > Math.abs(e.deltaY);
-
-          // Only prevent default and handle if it's a horizontal scroll
-          if (isHorizontalScroll) {
-            e.preventDefault();
-
-            // Ignore scroll events while transitioning
-            if (isTransitioning) {
-              return;
-            }
-
-            // Accumulate horizontal scroll
-            scrollAccumulator += e.deltaX;
-
-            clearTimeout(scrollTimeout);
-
-            scrollTimeout = setTimeout(() => {
-              // Determine direction based on accumulated scroll
-              if (Math.abs(scrollAccumulator) > 50) {
-                if (scrollAccumulator > 0) {
-                  currentIndex += 1;
-                  isTransitioning = true;
-                } else {
-                  currentIndex -= 1;
-                  isTransitioning = true;
+        // Single RAF loop handles everything: drift, lerp-to-target, drag
+        function loop() {
+          if (!isDragging) {
+            if (slideTarget !== null) {
+              // Lerp toward target
+              const diff = slideTarget - scrollOffset;
+              if (Math.abs(diff) < 0.5) {
+                // Close enough — land exactly and resume
+                scrollOffset = slideTarget;
+                slideTarget = null;
+                intendedCard = null;
+                if (resumeAfterSlide) {
+                  resumeAfterSlide = false;
+                  autoScrolling = true;
                 }
-                setPositionByIndex(true);
+              } else {
+                scrollOffset += diff * LERP_FACTOR;
               }
-              scrollAccumulator = 0;
-            }, 0);
+            } else if (autoScrolling) {
+              // Gentle constant drift
+              scrollOffset -= SCROLL_SPEED;
+            }
+            wrapOffset();
+            applyPosition();
           }
-          // Otherwise let vertical scroll pass through normally
-        },
-        { passive: false }
-      );
+          requestAnimationFrame(loop);
+        }
 
-      // Update on window resize
-      window.addEventListener("resize", () => {
-        setPositionByIndex(false);
-      });
+        // Smoothly glide to a target offset (no CSS transitions)
+        function slideTo(targetOffset, resumeAfter) {
+          slideTarget = targetOffset;
+          resumeAfterSlide = !!resumeAfter;
+          autoScrolling = false;
+        }
 
-      // Navigation Buttons
-      const prevBtn = document.querySelector(".carousel-nav.prev");
-      const nextBtn = document.querySelector(".carousel-nav.next");
+        // Track intended card index so rapid clicks stack correctly
+        let intendedCard = null;
 
-      prevBtn.addEventListener("click", () => {
-        if (isTransitioning) return;
-        currentIndex -= 1;
-        isTransitioning = true;
-        setPositionByIndex(true);
-      });
+        function slideByCards(delta, resumeAfter) {
+          const step = getStep();
+          // If already sliding, advance from the intended target, not current position
+          if (intendedCard === null || slideTarget === null) {
+            intendedCard = Math.round(-scrollOffset / step);
+          }
+          intendedCard += delta;
+          const targetOffset = -intendedCard * step;
+          slideTo(targetOffset, resumeAfter);
+        }
 
-      nextBtn.addEventListener("click", () => {
-        if (isTransitioning) return;
-        currentIndex += 1;
-        isTransitioning = true;
-        setPositionByIndex(true);
-      });
+        // --- Pause / resume ---
+        function pauseDrift() {
+          autoScrolling = false;
+          slideTarget = null;
+        }
+
+        function resumeDrift() {
+          if (slideTarget === null) autoScrolling = true;
+        }
+
+        // Pause on hover
+        carouselContainer.addEventListener("mouseenter", pauseDrift);
+        carouselContainer.addEventListener("mouseleave", () => {
+          if (!isDragging) resumeDrift();
+        });
+
+        // --- Drag / swipe ---
+        function getPositionX(event) {
+          return event.type.includes("mouse") ? event.pageX : event.touches[0].clientX;
+        }
+
+        function onDragFrame() {
+          applyPosition();
+          if (isDragging) requestAnimationFrame(onDragFrame);
+        }
+
+        function touchStart(event) {
+          isDragging = true;
+          slideTarget = null;
+          intendedCard = null;
+          startX = getPositionX(event);
+          dragStartTranslate = scrollOffset;
+          animationID = requestAnimationFrame(onDragFrame);
+          carouselContainer.style.cursor = "grabbing";
+          pauseDrift();
+        }
+
+        function touchMove(event) {
+          if (isDragging) {
+            scrollOffset = dragStartTranslate + getPositionX(event) - startX;
+          }
+        }
+
+        function touchEnd() {
+          if (!isDragging) return;
+          isDragging = false;
+          cancelAnimationFrame(animationID);
+          carouselContainer.style.cursor = "grab";
+
+          const movedBy = scrollOffset - dragStartTranslate;
+          const step = getStep();
+
+          // Determine which card to land on based on swipe direction
+          let targetCard;
+          if (movedBy < -100) {
+            targetCard = Math.ceil(-scrollOffset / step);
+          } else if (movedBy > 100) {
+            targetCard = Math.floor(-scrollOffset / step);
+          } else {
+            targetCard = Math.round(-scrollOffset / step);
+          }
+
+          slideTo(-targetCard * step, true);
+        }
+
+        carouselContainer.addEventListener("mousedown", touchStart);
+        carouselContainer.addEventListener("mousemove", touchMove);
+        carouselContainer.addEventListener("mouseup", touchEnd);
+        carouselContainer.addEventListener("mouseleave", (e) => {
+          if (isDragging) touchEnd();
+        });
+        carouselContainer.addEventListener("touchstart", touchStart);
+        carouselContainer.addEventListener("touchmove", touchMove);
+        carouselContainer.addEventListener("touchend", touchEnd);
+        carouselContainer.addEventListener("contextmenu", e => e.preventDefault());
+
+        // --- Horizontal wheel scrolling ---
+        let scrollTimeout;
+        let scrollAccumulator = 0;
+
+        carouselContainer.addEventListener("wheel", (e) => {
+          const isHorizontal = Math.abs(e.deltaX) > Math.abs(e.deltaY);
+          if (!isHorizontal) return;
+          e.preventDefault();
+
+          scrollAccumulator += e.deltaX;
+          clearTimeout(scrollTimeout);
+
+          scrollTimeout = setTimeout(() => {
+            if (Math.abs(scrollAccumulator) > 50) {
+              slideByCards(scrollAccumulator > 0 ? 1 : -1, true);
+            }
+            scrollAccumulator = 0;
+          }, 0);
+        }, { passive: false });
+
+        // --- Navigation buttons ---
+        document.querySelector(".carousel-nav.prev").addEventListener("click", () => {
+          slideByCards(-1, true);
+        });
+
+        document.querySelector(".carousel-nav.next").addEventListener("click", () => {
+          slideByCards(1, true);
+        });
+
+        // --- Resize handling ---
+        window.addEventListener("resize", () => {
+          wrapOffset();
+          applyPosition();
+        });
+
+        // --- Init ---
+        scrollOffset = -totalOriginal * getStep();
+        applyPosition();
+        requestAnimationFrame(loop);
       } // end initCarousel
     </script>
   </body>
