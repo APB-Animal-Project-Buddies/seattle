@@ -501,26 +501,24 @@ body {
     opacity: 0.7;
 }
 
-/* Ideas Section */
-.ideas {
+/* Ideas Teaser Section (landing page) */
+.ideas-teaser {
     padding: 100px 20px;
     background: var(--bg-cream);
+    text-align: center;
 }
 
-.ideas h2 {
+.ideas-teaser h2 {
     font-size: 3rem;
     margin-bottom: 35px;
-    text-align: center;
     color: var(--primary-color);
     font-weight: 700;
     letter-spacing: -1px;
     position: relative;
     display: inline-block;
-    left: 50%;
-    transform: translateX(-50%);
 }
 
-.ideas h2::after {
+.ideas-teaser h2::after {
     content: '';
     position: absolute;
     bottom: -12px;
@@ -532,14 +530,50 @@ body {
     border-radius: 2px;
 }
 
-.ideas-description {
+.ideas-teaser-text {
     font-size: 1.25rem;
-    max-width: 850px;
-    margin: 30px auto 50px;
+    max-width: 650px;
+    margin: 30px auto 40px;
     line-height: 1.9;
     color: var(--text-dark);
     font-weight: 400;
+}
+
+.ideas-teaser-text em {
+    font-style: italic;
+}
+
+/* Ideas Page (full table) */
+.ideas-page {
+    padding: 60px 20px 100px;
+    background: var(--bg-cream);
+    min-height: 100vh;
+}
+
+.ideas-page h1 {
+    font-size: 3rem;
+    margin-bottom: 15px;
     text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.ideas-page-subtitle {
+    font-size: 1.15rem;
+    text-align: center;
+    color: var(--text-dark);
+    margin-bottom: 50px;
+    font-weight: 400;
+}
+
+.ideas-page-subtitle a {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.ideas-page-subtitle a:hover {
+    text-decoration: underline;
 }
 
 .ideas-table-wrapper {
@@ -872,8 +906,12 @@ footer .contact-email a:hover {
     .about h2,
     .impact h2,
     .projects h2,
-    .ideas h2,
+    .ideas-teaser h2,
     .meetings h2 {
+        font-size: 2.3rem;
+    }
+
+    .ideas-page h1 {
         font-size: 2.3rem;
     }
 
@@ -960,7 +998,7 @@ footer .contact-email a:hover {
 
     .about,
     .projects,
-    .ideas,
+    .ideas-teaser,
     .meetings {
         padding: 70px 20px;
     }
@@ -968,8 +1006,12 @@ footer .contact-email a:hover {
     .about h2,
     .impact h2,
     .projects h2,
-    .ideas h2,
+    .ideas-teaser h2,
     .meetings h2 {
+        font-size: 2rem;
+    }
+
+    .ideas-page h1 {
         font-size: 2rem;
     }
 

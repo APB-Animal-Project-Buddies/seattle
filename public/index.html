@@ -100,28 +100,12 @@
       </div>
     </section>
 
-    <!-- Ideas Section -->
-    <section class="ideas">
+    <!-- Ideas Teaser Section -->
+    <section class="ideas-teaser">
       <div class="container">
-        <h2>Open Project Ideas</h2>
-        <p class="ideas-description">Explore project ideas that need a champion. Find one that excites you and make it happen.</p>
-        <div class="ideas-table-wrapper">
-          <table class="ideas-table" id="ideas-table">
-            <thead>
-              <tr>
-                <th>Idea</th>
-                <th>Sub Ideas</th>
-                <th>Other Notes | Resources</th>
-                <th>Contact</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="4" class="ideas-loading">Loading ideas...</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <h2>Need Inspiration?</h2>
+        <p class="ideas-teaser-text">We have a <em>ton</em> of ideas... see if you like one or want to partner up!</p>
+        <a href="/open-ideas" class="cta-button">Browse Open Ideas</a>
       </div>
     </section>
 
@@ -303,85 +287,6 @@
 
       // Load projects on page load
       loadProjects();
-
-      // Fetch and render ideas
-      async function loadIdeas() {
-        const table = document.getElementById('ideas-table');
-        const tbody = table.querySelector('tbody');
-
-        try {
-          const response = await fetch('/api/ideas');
-          const data = await response.json();
-
-          if (data.error) {
-            throw new Error(data.error);
-          }
-
-          if (!data.ideas || data.ideas.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">No ideas yet. Check back soon!</td></tr>';
-            return;
-          }
-
-          tbody.innerHTML = data.ideas.map(idea => {
-            const tr = document.createElement('tr');
-
-            const tdIdea = document.createElement('td');
-            tdIdea.classList.add('ideas-cell-idea');
-            tdIdea.textContent = idea.idea;
-
-            const tdSub = document.createElement('td');
-            tdSub.classList.add('ideas-cell-sub');
-            tdSub.textContent = idea.sub_ideas || '';
-
-            const tdNotes = document.createElement('td');
-            tdNotes.classList.add('ideas-cell-notes');
-            if (idea.other_notes) {
-              tdNotes.innerHTML = linkifyText(idea.other_notes);
-            }
-
-            const tdEmail = document.createElement('td');
-            tdEmail.classList.add('ideas-cell-email');
-            if (idea.contact_email) {
-              const a = document.createElement('a');
-              a.href = 'mailto:' + idea.contact_email;
-              a.textContent = idea.contact_email;
-              tdEmail.appendChild(a);
-            }
-
-            tr.appendChild(tdIdea);
-            tr.appendChild(tdSub);
-            tr.appendChild(tdNotes);
-            tr.appendChild(tdEmail);
-
-            return tr.outerHTML;
-          }).join('');
-
-        } catch (error) {
-          console.error('Failed to load ideas:', error);
-          tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">Unable to load ideas. Please try refreshing.</td></tr>';
-        }
-      }
-
-      // Linkify URLs in text while keeping everything else HTML-escaped
-      function linkifyText(text) {
-        const urlPattern = /(https?:\/\/[^\s;,]+)/g;
-        return text.split(urlPattern).map((part, i) => {
-          if (i % 2 === 1) {
-            const escaped = escapeHtml(part);
-            return '<a href="' + escaped + '" target="_blank" rel="noopener">' + escaped + '</a>';
-          }
-          return escapeHtml(part);
-        }).join('');
-      }
-
-      // HTML escape utility to prevent XSS
-      function escapeHtml(text) {
-        const div = document.createElement('div');
-        div.textContent = text;
-        return div.innerHTML;
-      }
-
-      loadIdeas();
 
       // Project Carousel - Infinite loop with gentle continuous scroll
       function initCarousel() {

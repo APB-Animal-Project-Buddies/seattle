@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Open project ideas from Animal Project Buddies Seattle. Find an idea that excites you and make it happen."
+    />
+    <title>Open Project Ideas — Animal Project Buddies Seattle</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section class="ideas-page">
+      <div class="container">
+        <h1>Open Project Ideas</h1>
+        <p class="ideas-page-subtitle"><a href="/">← Back to Home</a></p>
+        <div class="ideas-table-wrapper">
+          <table class="ideas-table" id="ideas-table">
+            <thead>
+              <tr>
+                <th>Idea</th>
+                <th>Sub Ideas</th>
+                <th>Other Notes | Resources</th>
+                <th>Contact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="4" class="ideas-loading">Loading ideas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Animal Project Buddies Seattle. Building a better
+          future for all animals.
+        </p>
+        <p class="contact-email">
+          Contact us: <a href="mailto:animalprojectbuddies@gmail.com">animalprojectbuddies@gmail.com</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      async function loadIdeas() {
+        const table = document.getElementById('ideas-table');
+        const tbody = table.querySelector('tbody');
+
+        try {
+          const response = await fetch('/api/ideas');
+          const data = await response.json();
+
+          if (data.error) {
+            throw new Error(data.error);
+          }
+
+          if (!data.ideas || data.ideas.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">No ideas yet. Check back soon!</td></tr>';
+            return;
+          }
+
+          tbody.innerHTML = data.ideas.map(idea => {
+            const tr = document.createElement('tr');
+
+            const tdIdea = document.createElement('td');
+            tdIdea.classList.add('ideas-cell-idea');
+            tdIdea.textContent = idea.idea;
+
+            const tdSub = document.createElement('td');
+            tdSub.classList.add('ideas-cell-sub');
+            tdSub.textContent = idea.sub_ideas || '';
+
+            const tdNotes = document.createElement('td');
+            tdNotes.classList.add('ideas-cell-notes');
+            if (idea.other_notes) {
+              tdNotes.innerHTML = linkifyText(idea.other_notes);
+            }
+
+            const tdEmail = document.createElement('td');
+            tdEmail.classList.add('ideas-cell-email');
+            if (idea.contact_email) {
+              const a = document.createElement('a');
+              a.href = 'mailto:' + idea.contact_email;
+              a.textContent = idea.contact_email;
+              tdEmail.appendChild(a);
+            }
+
+            tr.appendChild(tdIdea);
+            tr.appendChild(tdSub);
+            tr.appendChild(tdNotes);
+            tr.appendChild(tdEmail);
+
+            return tr.outerHTML;
+          }).join('');
+
+        } catch (error) {
+          console.error('Failed to load ideas:', error);
+          tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">Unable to load ideas. Please try refreshing.</td></tr>';
+        }
+      }
+
+      function linkifyText(text) {
+        const urlPattern = /(https?:\/\/[^\s;,]+)/g;
+        return text.split(urlPattern).map((part, i) => {
+          if (i % 2 === 1) {
+            const escaped = escapeHtml(part);
+            return '<a href="' + escaped + '" target="_blank" rel="noopener">' + escaped + '</a>';
+          }
+          return escapeHtml(part);
+        }).join('');
+      }
+
+      function escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+      }
+
+      loadIdeas();
+    </script>
+  </body>
+</html>
