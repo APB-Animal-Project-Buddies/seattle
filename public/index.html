@@ -34,6 +34,23 @@
     <script src="impact-animation.js" defer></script>
   </head>
   <body>
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">APB Seattle</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/open-ideas">Open Ideas</a></li>
+          <li><a href="#join" class="nav-cta">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-background"></div>
@@ -162,6 +179,15 @@
         </p>
       </div>
     </footer>
+
+    <script>
+      // Nav toggle
+      document.querySelector('.nav-toggle').addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        document.querySelector('.nav-links').classList.toggle('open');
+      });
+    </script>
 
     <script>
       // Smooth scrolling for anchor links

@@ -17,6 +17,23 @@
     />
   </head>
   <body>
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">APB Seattle</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/open-ideas">Open Ideas</a></li>
+          <li><a href="/#join" class="nav-cta">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+
     <section class="ideas-page">
       <div class="container">
         <h1>Open Project Ideas</h1>
@@ -54,6 +71,15 @@
     </footer>
 
     <script>
+      // Nav toggle
+      document.querySelector('.nav-toggle').addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        document.querySelector('.nav-links').classList.toggle('open');
+      });
+    </script>
+
+    <script>
       async function loadIdeas() {
         const table = document.getElementById('ideas-table');
         const tbody = table.querySelector('tbody');
@@ -76,20 +102,24 @@
 
             const tdIdea = document.createElement('td');
             tdIdea.classList.add('ideas-cell-idea');
+            tdIdea.setAttribute('data-label', 'Idea');
             tdIdea.textContent = idea.idea;
 
             const tdSub = document.createElement('td');
             tdSub.classList.add('ideas-cell-sub');
+            tdSub.setAttribute('data-label', 'Sub Ideas');
             tdSub.textContent = idea.sub_ideas || '';
 
             const tdNotes = document.createElement('td');
             tdNotes.classList.add('ideas-cell-notes');
+            tdNotes.setAttribute('data-label', 'Notes & Resources');
             if (idea.other_notes) {
               tdNotes.innerHTML = linkifyText(idea.other_notes);
             }
 
             const tdEmail = document.createElement('td');
             tdEmail.classList.add('ideas-cell-email');
+            tdEmail.setAttribute('data-label', 'Contact');
             if (idea.contact_email) {
               const a = document.createElement('a');
               a.href = 'mailto:' + idea.contact_email;
