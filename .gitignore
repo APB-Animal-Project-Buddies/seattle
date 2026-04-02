@@ -36,3 +36,6 @@ Thumbs.db
 
 # Test coverage
 coverage/
+
+# Superpowers docs
+docs/superpowers/
