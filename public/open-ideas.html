@@ -34,26 +34,20 @@
       </div>
     </nav>
 
-    <section class="ideas-page">
+    <section class="ideas-hero">
       <div class="container">
         <h1>Open Project Ideas</h1>
-        <p class="ideas-page-subtitle"><a href="/">← Back to Home</a></p>
-        <div class="ideas-table-wrapper">
-          <table class="ideas-table" id="ideas-table">
-            <thead>
-              <tr>
-                <th>Idea</th>
-                <th>Sub Ideas</th>
-                <th>Other Notes | Resources</th>
-                <th>Contact</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td colspan="4" class="ideas-loading">Loading ideas...</td>
-              </tr>
-            </tbody>
-          </table>
+        <p class="ideas-hero-subtitle">Find an idea that excites you — or bring your own. Every project starts with a spark.</p>
+      </div>
+    </section>
+
+    <section class="ideas-page">
+      <div class="container">
+        <div class="ideas-grid" id="ideas-grid">
+          <div class="ideas-loading-state">
+            <span class="ideas-loading-icon">💡</span>
+            <p>Loading ideas...</p>
+          </div>
         </div>
       </div>
     </section>
@@ -81,63 +75,43 @@
 
     <script>
       async function loadIdeas() {
-        const table = document.getElementById('ideas-table');
-        const tbody = table.querySelector('tbody');
+        const grid = document.getElementById('ideas-grid');
 
         try {
           const response = await fetch('/api/ideas');
           const data = await response.json();
 
-          if (data.error) {
-            throw new Error(data.error);
-          }
+          if (data.error) throw new Error(data.error);
 
           if (!data.ideas || data.ideas.length === 0) {
-            tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">No ideas yet. Check back soon!</td></tr>';
+            grid.innerHTML = '<div class="ideas-empty-state"><span>📭</span><p>No ideas yet. Check back soon!</p></div>';
             return;
           }
 
-          tbody.innerHTML = data.ideas.map(idea => {
-            const tr = document.createElement('tr');
+          grid.innerHTML = data.ideas.map(idea => {
+            const subHtml = idea.sub_ideas
+              ? '<div class="idea-card-section"><span class="idea-card-label">Description</span><p>' + escapeHtml(idea.sub_ideas) + '</p></div>'
+              : '';
 
-            const tdIdea = document.createElement('td');
-            tdIdea.classList.add('ideas-cell-idea');
-            tdIdea.setAttribute('data-label', 'Idea');
-            tdIdea.textContent = idea.idea;
+            const notesHtml = idea.other_notes
+              ? '<div class="idea-card-section"><span class="idea-card-label">Notes & Resources</span><p>' + linkifyText(idea.other_notes) + '</p></div>'
+              : '';
 
-            const tdSub = document.createElement('td');
-            tdSub.classList.add('ideas-cell-sub');
-            tdSub.setAttribute('data-label', 'Sub Ideas');
-            tdSub.textContent = idea.sub_ideas || '';
+            const contactHtml = idea.contact_email
+              ? '<div class="idea-card-contact"><a href="mailto:' + escapeHtml(idea.contact_email) + '">✉ Get in touch</a></div>'
+              : '';
 
-            const tdNotes = document.createElement('td');
-            tdNotes.classList.add('ideas-cell-notes');
-            tdNotes.setAttribute('data-label', 'Notes & Resources');
-            if (idea.other_notes) {
-              tdNotes.innerHTML = linkifyText(idea.other_notes);
-            }
-
-            const tdEmail = document.createElement('td');
-            tdEmail.classList.add('ideas-cell-email');
-            tdEmail.setAttribute('data-label', 'Contact');
-            if (idea.contact_email) {
-              const a = document.createElement('a');
-              a.href = 'mailto:' + idea.contact_email;
-              a.textContent = idea.contact_email;
-              tdEmail.appendChild(a);
-            }
-
-            tr.appendChild(tdIdea);
-            tr.appendChild(tdSub);
-            tr.appendChild(tdNotes);
-            tr.appendChild(tdEmail);
-
-            return tr.outerHTML;
+            return '<div class="idea-card">'
+              + '<h3 class="idea-card-title">' + escapeHtml(idea.idea) + '</h3>'
+              + subHtml
+              + notesHtml
+              + contactHtml
+              + '</div>';
           }).join('');
 
         } catch (error) {
           console.error('Failed to load ideas:', error);
-          tbody.innerHTML = '<tr><td colspan="4" class="ideas-empty">Unable to load ideas. Please try refreshing.</td></tr>';
+          grid.innerHTML = '<div class="ideas-empty-state"><span>⚠️</span><p>Unable to load ideas. Please try refreshing.</p></div>';
         }
       }
 
