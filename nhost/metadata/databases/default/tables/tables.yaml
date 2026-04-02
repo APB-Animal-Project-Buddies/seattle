@@ -8,6 +8,7 @@
 - "!include auth_user_security_keys.yaml"
 - "!include auth_users.yaml"
 - "!include public_account_snapshots.yaml"
+- "!include public_ideas.yaml"
 - "!include public_latest_account_metrics.yaml"
 - "!include public_latest_project_metrics.yaml"
 - "!include public_project_snapshots.yaml"
