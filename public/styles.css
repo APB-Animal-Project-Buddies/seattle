@@ -687,6 +687,26 @@ body {
     color: var(--text-light);
     padding: 80px 20px 60px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.ideas-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('assets/pigs_and_dogs.png');
+    background-size: cover;
+    background-position: center 65%;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+}
+
+.ideas-hero .container {
+    position: relative;
+    z-index: 1;
 }
 
 .ideas-hero h1 {
@@ -1205,5 +1225,569 @@ footer .contact-email a:hover {
 
     .project-card {
         padding: 35px 25px;
+    }
+}
+
+/* ========================================
+   Start a Chapter Page
+   ======================================== */
+
+:root {
+    --purple: #7c3aed;
+    --purple-light: #a78bfa;
+    --purple-dark: #5b21b6;
+    --purple-glow: rgba(124, 58, 237, 0.15);
+}
+
+/* Chapter Hero */
+.chapter-hero {
+    background-color: var(--primary-color);
+    background-image: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+    color: var(--text-light);
+    padding: 100px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('assets/cow_library.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.25;
+}
+
+.chapter-hero .container {
+    position: relative;
+    z-index: 1;
+}
+
+.chapter-hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin-bottom: 20px;
+    animation: fadeInUp 0.8s ease-out;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.chapter-hero-subtitle {
+    font-size: 1.25rem;
+    opacity: 0.9;
+    max-width: 650px;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-weight: 400;
+    animation: fadeInUp 0.8s ease-out 0.2s both;
+}
+
+/* Chapter Intro */
+.chapter-intro {
+    padding: 80px 20px;
+    background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-cream) 100%);
+}
+
+.chapter-intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.chapter-intro-content p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.chapter-intro-content em {
+    color: var(--purple);
+    font-weight: 600;
+    font-style: italic;
+}
+
+/* Chapter Meeting Format */
+.chapter-meeting {
+    padding: 80px 20px 100px;
+    background: var(--bg-cream);
+}
+
+.chapter-meeting h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chapter-meeting h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--purple), var(--purple-light));
+    border-radius: 2px;
+}
+
+/* Steps */
+.chapter-steps {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    position: relative;
+}
+
+/* Vertical connecting line */
+.chapter-steps::before {
+    content: '';
+    position: absolute;
+    top: 40px;
+    bottom: 40px;
+    left: 32px;
+    width: 3px;
+    background: linear-gradient(180deg, var(--purple-light), var(--purple), var(--purple-light));
+    border-radius: 2px;
+    opacity: 0.2;
+}
+
+.chapter-step {
+    display: flex;
+    gap: 28px;
+    align-items: flex-start;
+    position: relative;
+}
+
+.chapter-step-number {
+    flex-shrink: 0;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--purple-light) 100%);
+    color: var(--text-light);
+    font-size: 1.4rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px var(--purple-glow), 0 0 0 6px rgba(124, 58, 237, 0.08);
+    position: relative;
+    z-index: 1;
+    line-height: 1;
+}
+
+.chapter-step-body {
+    flex: 1;
+    background: var(--bg-white);
+    padding: 36px 32px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-step-body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--purple), var(--purple-light));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chapter-step:hover .chapter-step-body {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow), 0 0 0 1px rgba(124, 58, 237, 0.08);
+}
+
+.chapter-step:hover .chapter-step-body::before {
+    transform: scaleY(1);
+}
+
+.chapter-step:hover .chapter-step-number {
+    box-shadow: 0 12px 32px rgba(124, 58, 237, 0.25), 0 0 0 8px rgba(124, 58, 237, 0.12);
+}
+
+.chapter-step-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--purple);
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+.chapter-step-body p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.chapter-step-body p:last-child {
+    margin-bottom: 0;
+}
+
+.chapter-step-note {
+    background: rgba(124, 58, 237, 0.04);
+    border-left: 3px solid var(--purple-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem !important;
+    color: #555 !important;
+    font-style: italic;
+}
+
+.chapter-step-list {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chapter-step-list li {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #444;
+    padding-left: 28px;
+    position: relative;
+}
+
+.chapter-step-list li::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--purple-light));
+}
+
+/* Getting Started Section */
+.chapter-start {
+    padding: 100px 20px;
+    background: linear-gradient(180deg, var(--bg-white) 0%, var(--bg-cream) 100%);
+}
+
+.chapter-start h2 {
+    font-size: 3rem;
+    margin-bottom: 60px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chapter-start h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    border-radius: 2px;
+}
+
+.chapter-start-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.chapter-start-card {
+    background: var(--bg-white);
+    padding: 40px 32px;
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.chapter-start-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    transform: scaleX(0);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chapter-start-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+}
+
+.chapter-start-card:hover::before {
+    transform: scaleX(1);
+}
+
+.chapter-start-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.chapter-start-card h3 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.chapter-start-card p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 12px;
+}
+
+.chapter-start-card p:last-child {
+    margin-bottom: 0;
+}
+
+.chapter-start-card ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chapter-start-card ul li {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #555;
+    padding-left: 24px;
+    position: relative;
+}
+
+.chapter-start-card ul li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 10px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-color);
+}
+
+.chapter-start-tip {
+    background: rgba(30, 77, 43, 0.04);
+    border-left: 3px solid var(--primary-light);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+    font-size: 0.95rem !important;
+    color: #555 !important;
+    font-style: italic;
+}
+
+/* Chapter Projects Section */
+.chapter-projects {
+    padding: 80px 20px 100px;
+    background: var(--bg-cream);
+}
+
+.chapter-projects h2 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+    text-align: center;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: -1px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.chapter-projects h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-color), var(--accent-light));
+    border-radius: 2px;
+}
+
+.chapter-projects-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.chapter-projects-content p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-dark);
+    font-weight: 400;
+}
+
+.chapter-projects-content a {
+    color: var(--accent-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.chapter-projects-content a:hover {
+    color: var(--accent-light);
+    text-decoration: underline;
+}
+
+/* CTA buttons row */
+.chapter-cta-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Chapter page responsive */
+@media (max-width: 768px) {
+    .chapter-hero h1 {
+        font-size: 2.5rem;
+        letter-spacing: -1px;
+    }
+
+    .chapter-hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .chapter-meeting h2,
+    .chapter-start h2,
+    .chapter-projects h2 {
+        font-size: 2.3rem;
+    }
+
+    .chapter-step {
+        gap: 20px;
+    }
+
+    .chapter-step-number {
+        width: 52px;
+        height: 52px;
+        font-size: 1.2rem;
+    }
+
+    .chapter-steps::before {
+        left: 26px;
+    }
+
+    .chapter-step-body {
+        padding: 28px 24px;
+    }
+
+    .chapter-step-title {
+        font-size: 1.3rem;
+    }
+
+    .chapter-start-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .chapter-hero {
+        padding: 80px 20px 60px;
+    }
+
+    .chapter-hero h1 {
+        font-size: 2rem;
+    }
+
+    .chapter-hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .chapter-intro {
+        padding: 60px 20px;
+    }
+
+    .chapter-meeting,
+    .chapter-start,
+    .chapter-projects {
+        padding: 60px 20px;
+    }
+
+    .chapter-meeting h2,
+    .chapter-start h2,
+    .chapter-projects h2 {
+        font-size: 2rem;
+    }
+
+    .chapter-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 16px;
+    }
+
+    .chapter-steps::before {
+        display: none;
+    }
+
+    .chapter-step-list li {
+        text-align: left;
+    }
+
+    .chapter-step-note {
+        text-align: left;
+    }
+
+    .chapter-step-body {
+        padding: 24px 20px;
+    }
+
+    .chapter-start-card {
+        padding: 32px 24px;
+    }
+
+    .chapter-cta-buttons {
+        flex-direction: column;
+        align-items: center;
     }
 }
