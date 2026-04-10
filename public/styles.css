@@ -201,7 +201,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('assets/happy_animals.png');
+    background-image: url('assets/happy_animals.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -697,7 +697,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('assets/pigs_and_dogs.png');
+    background-image: url('assets/pigs_and_dogs.webp');
     background-size: cover;
     background-position: center 65%;
     background-repeat: no-repeat;
@@ -1256,7 +1256,7 @@ footer .contact-email a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('assets/cow_library.png');
+    background-image: url('assets/cow_library.webp');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
