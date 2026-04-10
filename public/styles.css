@@ -1309,7 +1309,7 @@ footer .contact-email a:hover {
 }
 
 .chapter-intro-content em {
-    color: var(--purple);
+    color: var(--primary-color);
     font-weight: 600;
     font-style: italic;
 }
