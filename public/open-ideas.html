@@ -118,7 +118,7 @@
       }
 
       function linkifyText(text) {
-        const urlPattern = /(https?:\/\/[^\s;,]+)/g;
+        const urlPattern = /(https?:\/\/[^\s;,)]+)/g;
         return text.split(urlPattern).map((part, i) => {
           if (i % 2 === 1) {
             const escaped = escapeHtml(part);
