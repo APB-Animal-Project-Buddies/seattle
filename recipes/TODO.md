@@ -23,6 +23,8 @@
 - [ ] **Export PDF** — currently `window.print()` with default print stylesheet. Build a proper print template (logo, dish photos, ingredient pull-list, prep timeline).
 - [ ] **Search box ranking** — pure substring match today. Could add fuzzy/typo tolerance (Fuse.js) so "boergignon" still finds "Bourguignon".
 - [ ] **Per-dish reviews / chef notes** — let logged-in chefs leave private notes on dishes they've service-tested (works in their kitchen / doesn't / what they tweaked).
+- [ ] **Adaptive recipe counts under filters** — cuisine-chip and course-chip counts are static today (e.g. `Italian 8` always shows 8). When other filters narrow the result set, the chip counts should reflect the *intersection* — `Italian 3` if only 3 Italian dishes survive the active sourcing + tag + search filters. Helps chefs see which combinations have stock.
+- [ ] **Make active filters more obvious** — today the only signals are the dark "on" chip and the toolbar count. Add an explicit "filters: course=main · sourcing=in-house · 🥘 bulk-prep × Clear all" summary bar above the grid so it's clear what's narrowing the results, with a one-tap reset.
 
 ## Top Alternatives (Nectar)
 - [ ] **Cycle in eggs / meat / seafood** when Nectar publishes — `_dairy.json` schema is already keyed by category, easy to expand.
