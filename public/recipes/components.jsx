@@ -12,7 +12,7 @@ function Hero({ featured, stats }) {
       <div>
         <div className="eyebrow"><span className="dot"/>Recipes · Curated for restaurant kitchens</div>
         <h1>
-          Make your food <em>fresh</em>, <em>tasty</em>,<br />
+          Make your food <em className="fresh-accent">fresh</em>, <em>tasty</em>,<br />
           <span className="leaf"></span>and <em>compassionate</em>.
         </h1>
         <p className="lede">
