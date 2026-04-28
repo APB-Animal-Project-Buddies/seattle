@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "moussaka",
     "badge": "Strong Earner"
@@ -72,6 +73,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "spanakopita",
     "badge": "Strong Earner"
@@ -110,6 +112,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "stuffed · grape · leaves",
     "badge": "Strong Earner"
@@ -149,6 +152,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "greek · salad",
     "badge": "Strong Earner"
@@ -188,6 +192,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "briam",
     "badge": "Margin King"
@@ -227,6 +232,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "gigantes · plaki",
     "badge": "Strong Earner"
@@ -282,6 +288,7 @@
         "delta": "+$0.80 → menu $10–13"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "loukoumades",
     "badge": "Strong Earner"

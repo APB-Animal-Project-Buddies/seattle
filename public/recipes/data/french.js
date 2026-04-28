@@ -57,6 +57,7 @@
         "delta": "flat"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "faux · gras · terrine",
     "badge": "Showpiece"
@@ -116,6 +117,7 @@
         "delta": "+$2.00 → menu $52–65"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "soupe · vge",
     "badge": "Showpiece"
@@ -181,6 +183,7 @@
         "delta": "+$0.60 → menu $17–22"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "soupe · poisson · rouille",
     "badge": "Strong Earner"
@@ -251,6 +254,7 @@
         "delta": "+$0.30 → menu $25–30"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "bourguignon",
     "badge": "Strong Earner"
@@ -287,6 +291,7 @@
     "tags": [],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "ratatouille",
     "badge": "Strong Earner"
@@ -357,6 +362,7 @@
         "delta": "beverage margin"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "barbajuans",
     "badge": "Margin King"
@@ -393,6 +399,7 @@
     "tags": [],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "french · toast",
     "badge": "Strong Earner"
@@ -432,6 +439,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "french · onion · soup",
     "badge": "Strong Earner"
@@ -468,6 +476,7 @@
     "tags": [],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "lentil · salad",
     "badge": "Margin King"
@@ -523,6 +532,7 @@
         "delta": "+$1.10"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "coq · vin",
     "badge": "Strong Earner"
@@ -561,6 +571,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "tomato · tarte · tatin",
     "badge": "Strong Earner"
@@ -626,6 +637,7 @@
         "delta": "+$0.40 → menu $13–17"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "crème brûlée (sans cruauté)",
     "badge": "Strong Earner"
@@ -691,6 +703,7 @@
         "delta": "flat → menu $10–13"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "iles · flottantes",
     "badge": "Strong Earner"
@@ -761,6 +774,7 @@
         "delta": "combined cost $2.40 → menu $16–20"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "caramel",
     "badge": "Margin King"

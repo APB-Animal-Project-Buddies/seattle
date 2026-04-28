@@ -1499,16 +1499,41 @@ body.no-why .card .why { display: none; }
 .recipes-nav-inner > .recipes-nav-links { justify-self: center; }
 .recipes-nav-inner > #nav-menu-pill-slot { justify-self: end; }
 .recipes-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  line-height: 1.1;
+  color: var(--moss-ink);
+}
+.recipes-brand .brand-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  text-decoration: none;
+  color: inherit;
   font-family: var(--serif);
   font-weight: 700;
   font-size: 17px;
   letter-spacing: -0.01em;
-  text-decoration: none;
-  color: var(--moss-ink);
 }
+.recipes-brand .powered-by {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--plum);
+  padding-left: 32px;
+  margin-top: 1px;
+  opacity: 0.85;
+}
+.recipes-brand .powered-by a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+.recipes-brand .powered-by a:hover { opacity: 0.8; }
 .recipes-brand .leaf-mark {
   display: inline-block;
   width: 22px;
@@ -1787,3 +1812,93 @@ body.no-why .card .why { display: none; }
 .recipes-page .modal .value-tier-tag.tier-strong-earner { background: oklch(0.78 0.13 85 / 0.25); color: oklch(0.45 0.10 85); }
 .recipes-page .modal .value-tier-tag.tier-solid { background: oklch(0.32 0.06 145 / 0.08); color: var(--moss-ink); }
 .recipes-page .modal .value-tier-tag.tier-showpiece { background: oklch(0.62 0.14 45 / 0.18); color: var(--terracotta); }
+
+/* Brand wordmark stack: title + tiny "powered by APB" attribution */
+.recipes-page .recipes-brand .wordmark-stack {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  line-height: 1;
+}
+.recipes-page .recipes-brand .powered-by {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: oklch(0.18 0.04 145 / 0.55);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.recipes-page .recipes-brand .powered-by:hover {
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Tips: dish-link styling — subtle underline on hover, terracotta accent */
+.tips-page .dish-link,
+.tips-page a.dish-name {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  border-bottom: 1px dotted oklch(0.62 0.14 45 / 0.45);
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.tips-page .dish-link:hover,
+.tips-page a.dish-name:hover {
+  color: var(--terracotta);
+  border-bottom-color: var(--terracotta);
+}
+.tips-page .archetype-strip .examples a {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+.tips-page .archetype-strip .examples a:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: var(--terracotta);
+}
+
+/* Modal: alternative recipes block (under URL block) */
+.recipes-page .modal .alternatives {
+  margin: 4px 0 12px;
+  padding: 12px 14px;
+  background: oklch(0.78 0.13 85 / 0.10);
+  border-left: 3px solid var(--mustard);
+  border-radius: 8px;
+}
+.recipes-page .modal .alternatives h4 {
+  margin: 0 0 8px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: oklch(0.45 0.10 85);
+  font-weight: 600;
+}
+.recipes-page .modal .alternatives ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.recipes-page .modal .alternatives li {
+  display: grid;
+  gap: 2px;
+}
+.recipes-page .modal .alternatives li a {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--moss-ink);
+  text-decoration: none;
+}
+.recipes-page .modal .alternatives li a:hover { color: var(--terracotta); text-decoration: underline; text-underline-offset: 3px; }
+.recipes-page .modal .alternatives .alt-note {
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: oklch(0.18 0.04 145 / 0.7);
+}

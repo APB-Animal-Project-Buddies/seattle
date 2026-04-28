@@ -51,6 +51,7 @@
         "delta": "+$1.40"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mac · cheese",
     "badge": "Strong Earner"
@@ -58,7 +59,7 @@
   {
     "id": "american-impossible-meatloaf",
     "title": "Impossible Meatloaf",
-    "source": "Nora Cooks",
+    "source": "Karissa's Vegan Kitchen",
     "rawTitle": "### Impossible Meatloaf",
     "rawBody": "- **URL:** https://www.noracooks.com/vegan-meatloaf/ ✓ VERIFIED *(Nora Cooks's chickpea-based loaf is the verified base. Recommended: swap in Impossible Beef or Beyond Beef for tighter slice integrity; calibrate binder + cook time during a service test since plant-meat renders fat differently than chickpeas.)*\n- **Description:** Built directly on **Impossible Beef** for tight, sliceable texture; ketchup-glazed loaf, par-baked in batches and finished à la minute.\n- **Wholesale food cost:** $3.65 / serving · **Menu price:** $18–22\n- **Weight:** 285 g · **Calories:** 510 · **Protein:** 28 g · **Time:** 65 min · **Servings:** 6\n- **Restaurant difficulty:** **Easy** — bake whole loaves, slice, finish with glaze under salamander.\n- **Tags:** 🥘 Bulk-Prep · ⚡ Fast-Service\n\n| Sub | Effect | Cost delta |\n|---|---|---|\n| **Lead protein:** Impossible Beef (default) | Best slice integrity | baseline |\n| Beyond Beef | Slightly looser; saucier glaze recommended | −$0.05 |\n| Lentil-walnut | Budget alt | −$1.80 |",
     "valueRatio": 5.47945205479452,
@@ -68,9 +69,9 @@
     "courses": [
       "main"
     ],
-    "url": "https://www.noracooks.com/vegan-meatloaf/",
+    "url": "https://www.karissasvegankitchen.com/impossible-burger-meatloaf/",
     "urlStatus": "verified",
-    "urlNote": "Nora Cooks's chickpea-based loaf is the verified base. Recommended: swap in Impossible Beef or Beyond Beef for tighter slice integrity; calibrate binder + cook time during a service test since plant-meat renders fat differently than chickpeas.",
+    "urlNote": "Nora Cooks's chickpea-based loaf is the verified base. Recommended: swap in Impossible Beef or Beyond Beef for tighter slice integrity; calibrate binder + cook time during a service test since plant-meat renders fat differently than chickpeas. · URL replaced via url_overrides.json",
     "description": "Built directly on **Impossible Beef** for tight, sliceable texture; ketchup-glazed loaf, par-baked in batches and finished à la minute.",
     "cost": 3.65,
     "menuPrice": "$18–22",
@@ -104,6 +105,13 @@
         "from": "Lentil-walnut",
         "effect": "Budget alt",
         "delta": "−$1.80"
+      }
+    ],
+    "alternatives": [
+      {
+        "url": "https://www.noracooks.com/vegan-meatloaf/",
+        "source": "Nora Cooks",
+        "note": "Cheaper, lentil-and-chickpea-based alternative — drop the Impossible Beef and use the same ketchup-glaze finish."
       }
     ],
     "photo": "plate",
@@ -161,6 +169,7 @@
         "delta": "+$0.30"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "ultimate · chili",
     "badge": "Strong Earner"
@@ -211,6 +220,7 @@
         "delta": "+$1.00"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "bbq · pulled · jackfruit",
     "badge": "Strong Earner"
@@ -255,6 +265,7 @@
         "delta": "+$2.40"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "buffalo · cauliflower · wings",
     "badge": "Strong Earner"
@@ -305,6 +316,7 @@
         "delta": "+$1.30"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "biscuits · gravy",
     "badge": "Strong Earner"
@@ -364,6 +376,7 @@
         "delta": "−$9.00 → menu $24–29"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "beef · wellington",
     "badge": "Showpiece"
@@ -419,6 +432,7 @@
         "delta": "+$0.30 → menu $11–14"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "new · york · cheesecake",
     "badge": "Strong Earner"

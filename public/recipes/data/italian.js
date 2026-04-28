@@ -46,6 +46,7 @@
         "delta": "+$1.30"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "best · lasagna",
     "badge": "Strong Earner"
@@ -82,6 +83,7 @@
     "tags": [],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "fettuccine · alfredo",
     "badge": "Strong Earner"
@@ -120,6 +122,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "eggplant · parmesan",
     "badge": "Strong Earner"
@@ -156,6 +159,7 @@
     "tags": [],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "mushroom · risotto",
     "badge": "Strong Earner"
@@ -208,6 +212,7 @@
         "delta": "−$1.25"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "lentil · bolognese",
     "badge": "Strong Earner"
@@ -247,6 +252,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "tuscan · gnocchi",
     "badge": "Strong Earner"
@@ -299,6 +305,7 @@
         "delta": "−$11.50 → menu $19–24"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "bistecca · alla · fiorentina",
     "badge": "Showpiece"
@@ -354,6 +361,7 @@
         "delta": "+$0.50 → menu $12–15"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "tiramisu",
     "badge": "Strong Earner"

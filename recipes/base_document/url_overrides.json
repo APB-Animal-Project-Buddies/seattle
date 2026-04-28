@@ -1,6 +1,7 @@
 {
   "_comment": "Manual URL overrides for recipes whose catalog URL is dead. Keyed by recipe id. All replacements verified live and chosen from highly-rated, well-known recipe sources (Nora Cooks, Holy Cow Vegan, Vegan Richa, Rainbow Plant Life, Minimalist Baker, Cookie and Kate, The Mediterranean Dish, RecipeTin Eats, Hot Thai Kitchen, etc.). Re-runs of parse-catalog.ts merge this in.",
 
+  "american-impossible-meatloaf":                                  "https://www.karissasvegankitchen.com/impossible-burger-meatloaf/",
   "ethiopian-misir-wot":                                           "https://holycowvegan.net/misir-wot-ethiopian-red-lentils/",
   "ethiopian-shiro-wot":                                           "https://holycowvegan.net/ethiopian-shiro-wot-ground-chickpea-stew/",
   "ethiopian-atakilt-wat":                                         "https://www.veganricha.com/atakilt-wat-ethiopian-cabbage-potato/",

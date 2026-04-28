@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "pad · mee · korat",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "thai · green · curry",
     "badge": "Strong Earner"
@@ -112,6 +114,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "tom · kha",
     "badge": "Strong Earner"
@@ -151,6 +154,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "red · curry · tofu",
     "badge": "Strong Earner"
@@ -189,6 +193,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "easy · tofu · pad",
     "badge": "Strong Earner"
@@ -228,6 +233,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "massaman · yellow · curry",
     "badge": "Strong Earner"
@@ -293,6 +299,7 @@
         "delta": "+$1.20 → menu $28–32"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "crying · tiger · suea",
     "badge": "Showpiece"
@@ -348,6 +355,7 @@
         "delta": "+$0.80 → menu $10–13"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mango · sticky · rice",
     "badge": "Solid"

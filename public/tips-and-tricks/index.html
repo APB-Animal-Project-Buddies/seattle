@@ -29,10 +29,13 @@
   <body class="recipes-page tips-page">
     <nav class="recipes-nav">
       <div class="recipes-nav-inner">
-        <a href="/recipes" class="recipes-brand">
-          <span class="leaf-mark" aria-hidden="true"></span>
-          <span class="wordmark">Plant-Based Recipes</span>
-        </a>
+        <div class="recipes-brand">
+          <a href="/recipes" class="brand-link">
+            <span class="leaf-mark" aria-hidden="true"></span>
+            <span class="wordmark">Kinder World Guide</span>
+          </a>
+          <div class="powered-by">powered by <a href="/" title="Animal Project Buddies">Animal Project Buddies</a></div>
+        </div>
         <ul class="recipes-nav-links">
           <li><a href="/recipes">Recipes</a></li>
           <li><a href="/top-dairy-products">Top Alternatives</a></li>
@@ -46,6 +49,7 @@
     <div id="menu-chrome-root"></div>
 
     <script src="/recipes/data/_tips.js"></script>
+    <script src="/recipes/data/_lookup.js"></script>
     <script type="text/babel" src="/tips-and-tricks/app.jsx"></script>
     <script type="text/babel" src="/recipes/helpers.jsx"></script>
     <script type="text/babel" src="/recipes/icons.jsx"></script>

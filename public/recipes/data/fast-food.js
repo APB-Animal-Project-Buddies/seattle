@@ -48,6 +48,7 @@
         "delta": "+$1.10 → $2.05 / menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "kfc",
     "badge": "Margin king"
@@ -103,6 +104,7 @@
         "delta": "+$1.00 → $1.55 / menu $8–11"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "mcnuggets",
     "badge": "Service-friendly"
@@ -160,6 +162,7 @@
         "delta": "+$1.40 → $2.25 / menu $7–10"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "big · mac",
     "badge": "Margin king"
@@ -217,6 +220,7 @@
         "delta": "−$0.20 → $1.00 / menu $4–7"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "crunchwrap · supreme",
     "badge": "Margin king"
@@ -267,6 +271,7 @@
         "delta": "+$1.20 → $2.40 / menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "chick · fil · sandwich",
     "badge": "Service-friendly"
@@ -322,6 +327,7 @@
         "delta": "+$2.00 → $5.20 / menu $14–17"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "chipotle · burrito · bowl",
     "badge": "Service-friendly"
@@ -377,6 +383,7 @@
         "delta": "+$0.60 → menu $7–9"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "apple · hand · pie",
     "badge": "Strong Earner"

@@ -340,6 +340,20 @@ function RecipeModal({ recipe, open, onClose, onAddToMenu, inMenu }) {
 
           {recipe.urlNote && <div className="url-note">"{recipe.urlNote}"</div>}
 
+          {recipe.alternatives && recipe.alternatives.length > 0 && (
+            <div className="alternatives">
+              <h4>Alternative recipes</h4>
+              <ul>
+                {recipe.alternatives.map((alt, i) => (
+                  <li key={i}>
+                    <a href={alt.url} target="_blank" rel="noopener noreferrer">{alt.source} ↗</a>
+                    <span className="alt-note">{alt.note}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
           {isTechnique && (
             <div style={{
               padding: '10px 14px', borderRadius: 12,

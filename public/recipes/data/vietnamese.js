@@ -35,6 +35,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "chay",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "bánh mì (không tàn nhẫn)",
     "badge": "Strong Earner"
@@ -111,6 +113,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "spring · rolls",
     "badge": "Strong Earner"
@@ -150,6 +153,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "bun · bowls",
     "badge": "Strong Earner"
@@ -188,6 +192,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "lemongrass · tofu",
     "badge": "Strong Earner"
@@ -227,6 +232,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "chay",
     "badge": "Strong Earner"
@@ -287,6 +293,7 @@
         "delta": "−$3.20 → menu $14–17"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "kho",
     "badge": "Showpiece"
@@ -342,6 +349,7 @@
         "delta": "+$1.20 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "chu",
     "badge": "Strong Earner"

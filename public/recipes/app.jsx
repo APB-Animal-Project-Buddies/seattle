@@ -25,6 +25,14 @@ function App() {
 
   // ---------- UI state ----------
   // Recipes-only page now — dairy lives at /top-dairy-products.
+
+  // Open recipe modal directly when URL hash is `#r=<recipe-id>` (deep-link from tips page).
+  useEffect(() => {
+    const m = window.location.hash.match(/^#r=(.+)$/);
+    if (!m || !recipes || recipes.length === 0) return;
+    const target = recipes.find(r => r.id === m[1]);
+    if (target) openRecipe(target);
+  }, [recipes]);
   const [activeCuisine, setActiveCuisine] = useState('all');
   const [sortBy, setSortBy] = useState('curated');
   const [search, setSearch] = useState('');

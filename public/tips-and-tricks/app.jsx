@@ -2,21 +2,58 @@
 // Reads window.APB_TIPS (from /recipes/data/_tips.js).
 
 const tips = window.APB_TIPS || [];
+const lookup = window.APB_LOOKUP || {};
 
-// Inline markdown → safe HTML
-function inline(s) {
+// Normalize a candidate dish name and return /recipes#r=<id> URL if it resolves.
+const QUALIFIERS = ['classic','authentic','best','easy','simple','ultimate','quick','the','vegan','house','homemade','real','traditional'];
+function stripQual(s) {
+  for (const q of QUALIFIERS) if (s.startsWith(q + ' ')) return stripQual(s.slice(q.length + 1));
+  return s;
+}
+function normDish(s) {
   return String(s)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/(^|[^*])\*([^*]+)\*([^*]|$)/g, '$1<em>$2</em>$3')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    // Highlight a $X–Y price range with a span we can style
-    .replace(/\$(\d+(?:\.\d+)?)(?:[–\-—]\$?(\d+(?:\.\d+)?))?/g,
-      (_, a, b) => b
-        ? `<span class="price">$${a}–${b}</span>`
-        : `<span class="price">$${a}</span>`);
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+    .replace(/œ/g,'oe').replace(/æ/g,'ae')
+    .replace(/\(([^)]+)\)/g, '')
+    .replace(/[''"`]/g, '')
+    .replace(/[^a-z0-9\s\-\/&]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+function dishHref(text) {
+  const n = normDish(text);
+  const id = lookup[n]
+    || lookup[stripQual(n)]
+    || lookup[n.split('/')[0].trim()]
+    || lookup[stripQual(n.split('/')[0].trim())];
+  return id ? `/recipes#r=${id}` : null;
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// Inline markdown → safe HTML.
+// Order: escape special chars first, then apply markdown patterns (which all
+// use plain ASCII tokens that survive escaping). Bolded dish names that
+// resolve in the lookup become anchors; other bolds stay as <strong>.
+function inline(s) {
+  if (!s) return '';
+  let out = escHtml(String(s));
+  out = out.replace(/\*\*([^*]+)\*\*/g, (_, inner) => {
+    const href = dishHref(inner);
+    return href
+      ? `<a class="dish-link" href="${href}"><strong>${inner}</strong></a>`
+      : `<strong>${inner}</strong>`;
+  });
+  out = out.replace(/(^|[^*])\*([^*]+)\*([^*]|$)/g, '$1<em>$2</em>$3');
+  out = out.replace(/`([^`]+)`/g, '<code>$1</code>');
+  out = out.replace(/\$(\d+(?:\.\d+)?)(?:[–\-—]\$?(\d+(?:\.\d+)?))?/g,
+    (_, a, b) => b
+      ? `<span class="price">$${a}–${b}</span>`
+      : `<span class="price">$${a}</span>`);
+  return out;
 }
 
 // Split a tip-section body into themed clusters keyed by their bold header.
@@ -99,13 +136,18 @@ function renderClusterBody(body) {
     return (
       <div className="dish-grid">
         {items.map((it, i) => {
-          // Try splitting on " — " to separate dish + price/note
           const parts = it.text.split(/\s+—\s+/);
           const head = parts[0];
           const rest = parts.slice(1).join(' — ');
+          // Strip markdown bold from head for lookup
+          const headPlain = head.replace(/\*\*/g, '');
+          const href = dishHref(headPlain);
+          const headHtml = inline(head);
           return (
             <article key={i} className="dish-pill">
-              <div className="dish-name" dangerouslySetInnerHTML={{ __html: inline(head) }} />
+              {href
+                ? <a className="dish-name dish-link" href={href} dangerouslySetInnerHTML={{ __html: headHtml }} />
+                : <div className="dish-name" dangerouslySetInnerHTML={{ __html: headHtml }} />}
               {rest && <div className="dish-meta" dangerouslySetInnerHTML={{ __html: inline(rest) }} />}
             </article>
           );
@@ -177,7 +219,14 @@ function ArchetypeStrip() {
           <h3>{c.title}</h3>
           <p className="blurb">{c.blurb}</p>
           <ul className="examples">
-            {c.examples.map(e => <li key={e}>{e}</li>)}
+            {c.examples.map(e => {
+              const href = dishHref(e);
+              return (
+                <li key={e}>
+                  {href ? <a href={href}>{e}</a> : e}
+                </li>
+              );
+            })}
           </ul>
         </article>
       ))}

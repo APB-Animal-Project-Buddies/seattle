@@ -15,6 +15,8 @@ const SRC = join(ROOT, "recipes", "base_document", "vegan-restaurant-catalog-v5.
 const OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "url_overrides.json");
 const DESC_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "description_overrides.json");
 const TIP_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "tip_overrides.json");
+const ALT_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "alternatives_overrides.json");
+const RECIPE_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "recipe_overrides.json");
 const OUT_DIR = join(ROOT, "public", "recipes", "data");
 
 type UrlStatus = "verified" | "reference-vegan" | "reference-technique" | "unknown";
@@ -23,6 +25,7 @@ type Course = "starter" | "main" | "showstopper" | "dessert";
 type Photo = "bowl" | "plate" | "flat" | "layered";
 
 interface Sub { from: string; effect: string; delta: string; }
+interface Alternative { url: string; source: string; note: string; }
 
 interface Recipe {
   id: string;
@@ -54,6 +57,7 @@ interface Recipe {
   tags: ("bulk-prep" | "fast-service")[];
   sourcingTier: Tier;
   subs: Sub[];
+  alternatives: Alternative[];
   photo: Photo;
   photoLabel: string;
   badge: string | null;     // derived: "Showpiece" | "Bistro classic" | etc. for visual variety
@@ -164,6 +168,7 @@ const HOST_TO_SOURCE: Record<string, string> = {
   "dianekochilas.com": "Diane Kochilas",
   "barbecuebible.com": "Barbecue Bible",
   "braziliankitchenabroad.com": "Brazilian Kitchen Abroad",
+  "karissasvegankitchen.com": "Karissa's Vegan Kitchen",
   "cookingwithjade.com": "Cooking with Jade",
   "piesandtacos.com": "Pies and Tacos",
   "cookwithmanali.com": "Cook With Manali",
@@ -529,6 +534,23 @@ function main() {
     delete (descOverrides as any)._comment;
   } catch { /* no overrides file — fine */ }
 
+  // Alternative-recipe links per recipe id.
+  let altOverrides: Record<string, Alternative[]> = {};
+  try {
+    const raw = readFileSync(ALT_OVERRIDES_PATH, "utf8");
+    altOverrides = JSON.parse(raw);
+    delete (altOverrides as any)._comment;
+  } catch { /* no overrides file — fine */ }
+
+  // Generic per-recipe field patches (cost, time, servings, etc.).
+  // Used when the catalog's compact format doesn't parse cleanly.
+  let recipeOverrides: Record<string, Partial<Recipe>> = {};
+  try {
+    const raw = readFileSync(RECIPE_OVERRIDES_PATH, "utf8");
+    recipeOverrides = JSON.parse(raw);
+    delete (recipeOverrides as any)._comment;
+  } catch { /* no overrides file — fine */ }
+
   const recipes: Recipe[] = [];
   const tipSections: { id: string; title: string; bodyLines: string[] }[] = [];
   let currentCuisine: { slug: string; name: string } | null = null;
@@ -620,6 +642,7 @@ function main() {
         tags: [],
         sourcingTier: classifyTier(title),
         subs: [],
+        alternatives: [],
         photo: "plate",
         photoLabel: "",
         badge: null,
@@ -681,6 +704,16 @@ function main() {
         recipe.url = overrides[recipe.id];
         recipe.urlStatus = "verified";
         recipe.urlNote = (recipe.urlNote ? recipe.urlNote + " · " : "") + "URL replaced via url_overrides.json";
+      }
+
+      // Attach hand-curated alternative recipes for this id (if any).
+      if (altOverrides[recipe.id]) {
+        recipe.alternatives = altOverrides[recipe.id];
+      }
+
+      // Apply generic field patches LAST so they win over parsed values.
+      if (recipeOverrides[recipe.id]) {
+        Object.assign(recipe, recipeOverrides[recipe.id]);
       }
 
       // Fallback source: derive from URL hostname (e.g. noracooks.com → Nora Cooks).
@@ -776,6 +809,71 @@ function main() {
     join(OUT_DIR, "_index.js"),
     `// Auto-generated from vegan-restaurant-catalog-v5.md — do not edit by hand.\n` +
     `window.APB_INDEX = ${JSON.stringify(indexPayload, null, 2)};\n`
+  );
+
+  // ---------- Lookup map: normalized dish name → recipe id ----------
+  // Used by the Tips & Tricks page to linkify dish mentions back to /recipes#r=<id>.
+  const lookup: Record<string, string> = {};
+  // Common leading qualifiers that operators / catalog entries add but tip
+  // sections drop (e.g. "Classic Hummus" → tip says just "Hummus").
+  const QUALIFIERS = [
+    "classic", "authentic", "best", "easy", "simple", "ultimate", "quick",
+    "the", "vegan", "house", "homemade", "real", "traditional",
+  ];
+  function norm(s: string): string {
+    return s
+      .normalize("NFD").replace(/[̀-ͯ]/g, "")  // strip diacritics
+      .toLowerCase()
+      .replace(/œ/g, "oe").replace(/æ/g, "ae")
+      .replace(/\(([^)]+)\)/g, "")
+      .replace(/[''"`]/g, "")
+      .replace(/[^a-z0-9\s\-\/&]/g, " ")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+  function stripQualifier(s: string): string {
+    for (const q of QUALIFIERS) {
+      const pre = q + " ";
+      if (s.startsWith(pre)) return stripQualifier(s.slice(pre.length));
+    }
+    return s;
+  }
+  for (const r of recipes) {
+    const variants = new Set<string>();
+    const baseRaw = r.rawTitle
+      .replace(/^#+\s*/, "")
+      .replace(/\s*\(\*\*[^)]*\*\*[^)]*\)/g, "")
+      .replace(/\s+—\s+.+$/, "");
+    const candidates = [
+      r.title,
+      r.title.split("/")[0],
+      baseRaw,
+      baseRaw.replace(/^Vegan\s+/i, ""),
+    ];
+    for (const c of candidates) {
+      const n = norm(c);
+      if (n) {
+        variants.add(n);
+        variants.add(stripQualifier(n));
+        // Also emit 2- and 3-word tails (last-N words). Lets short tip mentions
+        // like "pad thai" / "bourguignon" resolve to "Easy Tofu Pad Thai" /
+        // "Bouf Bourguignon Maitake".
+        const words = stripQualifier(n).split(/\s+/).filter(Boolean);
+        for (let take = 1; take <= 3 && take <= words.length; take++) {
+          const tail = words.slice(words.length - take).join(" ");
+          if (tail.length >= 5) variants.add(tail);
+        }
+      }
+    }
+    for (const v of variants) {
+      if (v && v.length >= 3 && !lookup[v]) lookup[v] = r.id;
+    }
+  }
+  writeFileSync(join(OUT_DIR, "_lookup.json"), JSON.stringify(lookup, null, 2));
+  writeFileSync(
+    join(OUT_DIR, "_lookup.js"),
+    `// Auto-generated dish-name → recipe-id lookup. Used by tips & tricks to linkify dish mentions.\n` +
+    `window.APB_LOOKUP = ${JSON.stringify(lookup, null, 2)};\n`
   );
 
   // ---------- Tips & Tricks (Final Notes H3 sections) ----------

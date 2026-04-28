@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "authentic · vegetable · paella",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "spanish · gazpacho",
     "badge": "Strong Earner"
@@ -111,6 +113,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "patatas · bravas",
     "badge": "Strong Earner"
@@ -150,6 +153,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "spanish · tortilla · espa",
     "badge": "Strong Earner"
@@ -189,6 +193,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "romesco",
     "badge": "Strong Earner"
@@ -227,6 +232,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "pan · con · tomate",
     "badge": "Strong Earner"
@@ -287,6 +293,7 @@
         "delta": "+$1.40 → menu $11–14"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "crema · catalana",
     "badge": "Margin King"

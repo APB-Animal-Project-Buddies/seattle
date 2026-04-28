@@ -35,6 +35,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "misir · wot",
     "badge": "Service-friendly"
@@ -74,6 +75,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "shiro · wot",
     "badge": "Service-friendly"
@@ -113,6 +115,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "atakilt · wat",
     "badge": "Service-friendly"
@@ -152,6 +155,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "kik · alicha",
     "badge": "Service-friendly"
@@ -191,6 +195,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "gomen · wat",
     "badge": "Service-friendly"
@@ -201,8 +206,8 @@
     "source": "Vegan Richa",
     "rawTitle": "### Authentic Vegan Injera",
     "rawBody": "- **URL:** https://www.daringgourmet.com/injera/ ✓ VERIFIED\n- $0.55/piece · **Menu price** $1.50–2.50/piece, included in combo · 110 g · 180 cal · 6 g · 3-day ferment · ~12 pieces/batch · **Medium** (ferment timing) · 🥘",
-    "valueRatio": null,
-    "valueTier": null,
+    "valueRatio": 3.6363636363636362,
+    "valueTier": "Solid",
     "cuisine": "ethiopian",
     "cuisineName": "Ethiopian",
     "courses": [
@@ -212,24 +217,27 @@
     "urlStatus": "verified",
     "urlNote": "URL replaced via url_overrides.json",
     "description": "Fermented teff sourdough flatbread — spongy, sour, naturally gluten-free. The base of every Ethiopian platter; tear, scoop, repeat.",
-    "cost": null,
-    "menuPrice": null,
-    "weight": null,
-    "calories": null,
-    "protein": null,
-    "time": null,
-    "prep": null,
-    "servings": null,
-    "serves": null,
-    "difficulty": null,
-    "difficultyLabel": null,
-    "difficultyNote": null,
-    "tags": [],
+    "cost": 0.55,
+    "menuPrice": "$1.50–2.50/piece (included in combo)",
+    "weight": "110 g",
+    "calories": 180,
+    "protein": "6 g",
+    "time": "3d",
+    "prep": "3d",
+    "servings": 12,
+    "serves": 12,
+    "difficulty": 2,
+    "difficultyLabel": "Medium",
+    "difficultyNote": "ferment timing",
+    "tags": [
+      "bulk-prep"
+    ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "authentic · injera",
-    "badge": null
+    "badge": "Solid"
   },
   {
     "id": "ethiopian-vegan-doro-wat",
@@ -287,6 +295,7 @@
         "delta": "−$2.80 → menu $12–15"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "doro · wat",
     "badge": "Showpiece"
@@ -342,6 +351,7 @@
         "delta": "+$0.40 → menu $11–14"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "dabo · kolo · cardamom",
     "badge": "Strong Earner"

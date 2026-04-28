@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "bibimbap",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "japchae",
     "badge": "Strong Earner"
@@ -111,6 +113,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "tteokbokki",
     "badge": "Strong Earner"
@@ -150,6 +153,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "kimchi · jjigae",
     "badge": "Strong Earner"
@@ -205,6 +209,7 @@
         "delta": "+$1.40"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "korean · bbq · tofu",
     "badge": "Strong Earner"
@@ -244,6 +249,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "sundubu · jjigae",
     "badge": "Strong Earner"
@@ -304,6 +310,7 @@
         "delta": "+$0.80 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "hotteok",
     "badge": "Strong Earner"

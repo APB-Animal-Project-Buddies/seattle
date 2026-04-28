@@ -53,6 +53,7 @@
         "delta": "−$7.50 (menu repositions to $19–22)"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "picanha",
     "badge": "Plate-forward"
@@ -108,6 +109,7 @@
         "delta": "+$1.20"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "feijoada",
     "badge": "Strong Earner"
@@ -160,6 +162,7 @@
         "delta": "−$0.10/pc"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "queijo",
     "badge": "Margin King"
@@ -215,6 +218,7 @@
         "delta": "+$4.50 → menu $22–26"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "moqueca",
     "badge": "Strong Earner"
@@ -270,6 +274,7 @@
         "delta": "+$0.85/piece"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "coxinha",
     "badge": "Margin King"
@@ -324,6 +329,7 @@
         "delta": "−$0.40"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "churrasco · lingui · platter",
     "badge": "Batch-cook"
@@ -389,6 +395,7 @@
         "delta": "+$1.20 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "brigadeiro",
     "badge": "Dessert"

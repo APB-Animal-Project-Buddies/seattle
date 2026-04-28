@@ -35,6 +35,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "classic · falafel",
     "badge": "Margin King"
@@ -74,6 +75,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "classic · hummus",
     "badge": "Margin King"
@@ -119,6 +121,7 @@
         "delta": ""
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "shawarma",
     "badge": "Strong Earner"
@@ -158,6 +161,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mujadara",
     "badge": "Margin King"
@@ -197,6 +201,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "tabbouleh",
     "badge": "Strong Earner"
@@ -236,6 +241,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "baba · ganoush",
     "badge": "Margin King"
@@ -291,6 +297,7 @@
         "delta": "+$1.00 → menu $11–14"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "baklava",
     "badge": "Solid"

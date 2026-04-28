@@ -35,6 +35,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "authentic · jamaican · jerk",
     "badge": "Strong Earner"
@@ -74,6 +75,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "jamaican · rice · peas",
     "badge": "Strong Earner"
@@ -113,6 +115,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "jamaican · chickpea · curry",
     "badge": "Margin King"
@@ -152,6 +155,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "cuban · black · beans",
     "badge": "Strong Earner"
@@ -191,6 +195,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "caribbean · pelau",
     "badge": "Strong Earner"
@@ -229,6 +234,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "jamaican · patties",
     "badge": "Solid"
@@ -283,6 +289,7 @@
         "delta": "−$5.90 → existing $13–16 listing"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "jerk · chunk · steak",
     "badge": "Showpiece"
@@ -348,6 +355,7 @@
         "delta": "+$0.80 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "caribbean · sweet · potato",
     "badge": "Strong Earner"

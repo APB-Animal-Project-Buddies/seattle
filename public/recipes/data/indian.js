@@ -46,6 +46,7 @@
         "delta": "+$2.20"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "tofu · tikka · masala",
     "badge": "Strong Earner"
@@ -85,6 +86,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "dal · makhani",
     "badge": "Margin King"
@@ -124,6 +126,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "chana · masala",
     "badge": "Margin King"
@@ -169,6 +172,7 @@
         "delta": "+$2.00"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "palak · tofu",
     "badge": "Strong Earner"
@@ -208,6 +212,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "aloo · gobi",
     "badge": "Margin King"
@@ -246,6 +251,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "vegetable · biryani",
     "badge": "Strong Earner"
@@ -306,6 +312,7 @@
         "delta": "−$3.40 → menu $13–16"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "rogan · josh",
     "badge": "Showpiece"
@@ -356,6 +363,7 @@
         "delta": "+$1.20 → menu $11–14"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "gulab · jamun",
     "badge": "Margin King"

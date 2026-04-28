@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mapo · tofu",
     "badge": "Strong Earner"
@@ -72,6 +73,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "kung · pao · tofu",
     "badge": "Strong Earner"
@@ -110,6 +112,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "general · tso · tofu",
     "badge": "Strong Earner"
@@ -149,6 +152,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "chinese · fried · rice",
     "badge": "Strong Earner"
@@ -187,6 +191,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "dan · dan · noodles",
     "badge": "Strong Earner"
@@ -242,6 +247,7 @@
         "delta": "+$2.00"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "vegetable · mein",
     "badge": "Strong Earner"
@@ -296,6 +302,7 @@
         "delta": "−$3.20 → menu $16–20"
       }
     ],
+    "alternatives": [],
     "photo": "layered",
     "photoLabel": "peking · duck",
     "badge": "Showpiece"
@@ -366,6 +373,7 @@
         "delta": "+$1.00 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mango · pudding",
     "badge": "Strong Earner"

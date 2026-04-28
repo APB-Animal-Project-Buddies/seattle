@@ -4,6 +4,8 @@
 - [ ] **Backup pricing estimates** — for the 15 recipes whose `menuPrice` doesn't parse cleanly, derive a best-effort midpoint from cuisine + course + cost (e.g. cost ÷ 0.30 for a casual main). Today they show no value tier on the card.
 - [ ] **Regional menu-price points** — store low/mid/high menu prices per market (US Tier 1 / Tier 2 / Europe / etc.) and let the chef pick a region in the UI. Today the catalog assumes 2025–26 US foodservice, which over-prices for non-US operators and under-prices for NYC/SF.
 - [ ] **Quarterly pricing refresh** — schedule the URL liveness checker AND a re-pull of foodservice pricing so the value-tier badges stay accurate as Beyond/Impossible drop wholesale floors.
+- [ ] **Authoritative source on regional prices of goods** — wire in (or build) a kept-up-to-date feed of wholesale ingredient and faux-meat prices by region, so the catalog's $X/lb numbers don't go stale. Candidates: USDA AMS reports, Webstaurant Store API, Sysco Connect, Restaurant Depot index, or a partnership with a foodservice analytics firm.
+- [ ] **Authoritative source on regional menu pricing** — pair the cost feed with similarly-priced dish benchmarks across markets (NYC vs Chicago vs Seattle vs LA vs London vs Mumbai). Lets the value-tier badge adjust to local context — a $14 hummus in Manhattan and a $9 hummus in Cleveland are both market-correct.
 
 ## Recipe data quality
 - [ ] **Hand-review the 30 description fallbacks** — `description_overrides.json` covers them today; tighten language with a chef-editor pass.
@@ -28,6 +30,9 @@
 
 ## Tips & Tricks
 - [ ] **Author voice pass** — `Foodservice sourcing summary` and `Menu-engineering tips` are still verbose; run them through the same simplification treatment as `Operational deployment by archetype`.
+
+## Mobile
+- [ ] **Full mobile pass** — every page (Recipes, Top Alternatives, Tips & Tricks) needs a careful 375px / 390px / 430px walkthrough. Known suspects: Kinder World Guide brand stack vs nav links (likely needs hamburger), the menu pill (currently absolute-right), the recipe modal (image-on-top + scrollable body), the menu drawer (full-screen on mobile), the sub-section grid in tips, and the dairy leaderboard. Plus tap targets, font sizes, and safe-area insets.
 
 ## Infra
 - [ ] **Lift the Babel-standalone tax** — every page compiles JSX in the browser (~200ms FOUC). Move to a real bundler when the page count grows or perf regresses.

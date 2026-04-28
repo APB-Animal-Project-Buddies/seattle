@@ -35,6 +35,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "vegetarian · ramen",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "teriyaki · tofu",
     "badge": "Strong Earner"
@@ -112,6 +114,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "tofu · katsu · curry",
     "badge": "Strong Earner"
@@ -151,6 +154,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "onigiri · ways",
     "badge": "Strong Earner"
@@ -190,6 +194,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "easy · ramen",
     "badge": "Strong Earner"
@@ -228,6 +233,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "crispy · tofu · katsu",
     "badge": "Strong Earner"
@@ -285,6 +291,7 @@
         "delta": "+$5.50 → menu $32–38"
       }
     ],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "sukiyaki · hot · pot",
     "badge": "Showpiece"
@@ -355,6 +362,7 @@
         "delta": "flat"
       }
     ],
+    "alternatives": [],
     "photo": "flat",
     "photoLabel": "matcha · cheesecake",
     "badge": "Strong Earner"

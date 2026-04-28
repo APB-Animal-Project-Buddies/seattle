@@ -34,6 +34,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "best · enchiladas",
     "badge": "Strong Earner"
@@ -73,6 +74,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "birria · tacos",
     "badge": "Strong Earner"
@@ -112,6 +114,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "chilaquiles · rojos",
     "badge": "Strong Earner"
@@ -151,6 +154,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "pozole · rojo",
     "badge": "Strong Earner"
@@ -190,6 +194,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "bowl",
     "photoLabel": "tortilla · soup",
     "badge": "Strong Earner"
@@ -229,6 +234,7 @@
     ],
     "sourcingTier": "in-house",
     "subs": [],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "mole · poblano",
     "badge": "Strong Earner"
@@ -284,6 +290,7 @@
         "delta": "+$0.80 → menu $9–12"
       }
     ],
+    "alternatives": [],
     "photo": "plate",
     "photoLabel": "churros · con · chocolate",
     "badge": "Strong Earner"
