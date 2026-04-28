@@ -1,0 +1,5 @@
+{
+  "_comment": "Hand-curated overrides for tip sections — used when the catalog body is too dense to render cleanly. Keyed by tip id. Re-runs of parse-catalog.ts merge these in.",
+
+  "operational-deployment-by-archetype": "**Anchor dishes** — fund the operation.\n- Dal makhani, mole poblano, mujadara, hummus, gigantes plaki. Under $1.50 cost, hold 3+ days, plate in <5 min.\n\n**Showcase plates** — drive press and check average.\n- Beef Wellington ($45–52), Bistecca Fiorentina ($48–58), Picanha ($32–38), Soupe VGE ($42–55). Built around branded faux-meat.\n\n**Faux-meat rule** — lead with the brand when the dish *is* the meat (picanha, Big Mac). Keep tofu/legume primary when the dish *is* the legume (mapo tofu, falafel); offer the faux-meat as an upcharge."
+}

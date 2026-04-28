@@ -1,0 +1,18 @@
+// Auto-generated from vegan-restaurant-catalog-v5.md — do not edit by hand.
+window.APB_TIPS = [
+  {
+    "id": "operational-deployment-by-archetype",
+    "title": "Operational deployment by archetype",
+    "body": "**Anchor dishes** — fund the operation.\n- Dal makhani, mole poblano, mujadara, hummus, gigantes plaki. Under $1.50 cost, hold 3+ days, plate in <5 min.\n\n**Showcase plates** — drive press and check average.\n- Beef Wellington ($45–52), Bistecca Fiorentina ($48–58), Picanha ($32–38), Soupe VGE ($42–55). Built around branded faux-meat.\n\n**Faux-meat rule** — lead with the brand when the dish *is* the meat (picanha, Big Mac). Keep tofu/legume primary when the dish *is* the legume (mapo tofu, falafel); offer the faux-meat as an upcharge."
+  },
+  {
+    "id": "foodservice-sourcing-summary",
+    "title": "Foodservice sourcing summary",
+    "body": "- **Chunk Foods** — order through **Sysco**, **Chefs' Warehouse**, or **Webstaurant Store** (founder-confirmed nationwide US foodservice distribution). 18-month frozen shelf life is a major operational advantage.\n- **Juicy Marbles** — direct foodservice via the **juicymarbles.com Food Service portal**; also stocked on **Webstaurant Store** (4 oz × 20/case Thick-Cut Filet). DTC retail also available at $14.99/2-pack as a comp benchmark.\n- **Beyond Meat & Impossible Foods** — broad US foodservice availability through Sysco, US Foods, GFS, Restaurant Depot, Webstaurant. Both have a wholesale floor near $7/lb on ground beef SKUs (Impossible cited $6.80/lb minimum in foodservice; Beyond comparable). Use these as the backbone of any ground-protein rebuild."
+  },
+  {
+    "id": "menu-engineering-tips-for-vegan-restaurant-operators",
+    "title": "Menu-engineering tips for vegan-restaurant operators",
+    "body": "1. **Price the Picanha proudly.** A vegan steakhouse picanha at $32–38 with Juicy Marbles Loin will *always* read as \"premium\" because the cut size and presentation are real. Offer alongside a $19–22 Beyond Steak Tips espetinho version so guests have an entry point.\n2. **Bundle bulk-prep dishes into combo platters.** Ethiopian, Indian, and Brazilian combos let you sell three $0.95–$1.40 batch items together at $18–22 — this is where your 25% food-cost dishes live.\n3. **Fast-service dishes drive lunch volume.** Pad thai, banh mi, gazpacho, hummus, falafel, bibimbap, mac & cheese should be reachable in under 8 minutes from prepped components — this is your $13–17 lunch tier.\n4. **Use the 🥘 tag to plan your prep list.** Anything tagged 🥘 should be on a Mon/Wed/Fri rotating bulk-prep schedule with HACCP-compliant cool-down and 3–5 day use-by labels.\n5. **Two-tier the menu where the faux-meat alternate is meaningful.** \"Vegan Bibimbap $15 / with Chunk Steak $22\" lets guests self-select into upsells of $5–9 incremental check size with minimal extra labor.\n6. **Watch your faux-meat foodservice contracts.** Both Impossible and Beyond have lowered foodservice prices ~15–20% twice between 2021–2024; prices in 2025–26 land around $6.80–8.50/lb ground beef equivalents. Your costing should be revisited quarterly because the category is still volatile.\n\n---\n\n*Pricing reflects 2025–2026 US foodservice rates from Sysco, US Foods, Restaurant Depot, Webstaurant Store, Gordon Food Service, Cheetah, vegconomist, AgFunderNews, and Reuters/CNBC-cited foodservice data; verify quarterly with your distributor as the category is still volatile.*"
+  }
+];
