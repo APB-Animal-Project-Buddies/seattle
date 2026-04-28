@@ -478,7 +478,7 @@ function deriveBadge(r: Pick<Recipe, "courses" | "tags" | "sourcingTier" | "diff
   if (r.tags.includes("bulk-prep") && r.tags.includes("fast-service")) return "Service-friendly";
   if (r.tags.includes("fast-service")) return "Quick-fire";
   if (r.tags.includes("bulk-prep")) return "Batch-cook";
-  if (r.cost !== null && r.cost <= 2.0) return "Margin king";
+  if (r.cost !== null && r.cost <= 2.0) return "Margin King";
   if (r.difficulty === 3) return "Plate-forward";
   return null;
 }

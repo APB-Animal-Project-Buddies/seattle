@@ -4,12 +4,8 @@
 const tips = window.APB_TIPS || [];
 const lookup = window.APB_LOOKUP || {};
 
-// Normalize a candidate dish name and return /recipes#r=<id> URL if it resolves.
-const QUALIFIERS = ['classic','authentic','best','easy','simple','ultimate','quick','the','vegan','house','homemade','real','traditional'];
-function stripQual(s) {
-  for (const q of QUALIFIERS) if (s.startsWith(q + ' ')) return stripQual(s.slice(q.length + 1));
-  return s;
-}
+// The parser pre-bakes qualifier-stripped + tail variants into _lookup.json,
+// so we only need to normalize the input here and check the map directly.
 function normDish(s) {
   return String(s)
     .normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -23,10 +19,7 @@ function normDish(s) {
 }
 function dishHref(text) {
   const n = normDish(text);
-  const id = lookup[n]
-    || lookup[stripQual(n)]
-    || lookup[n.split('/')[0].trim()]
-    || lookup[stripQual(n.split('/')[0].trim())];
+  const id = lookup[n] || lookup[n.split('/')[0].trim()];
   return id ? `/recipes#r=${id}` : null;
 }
 
@@ -235,6 +228,11 @@ function ArchetypeStrip() {
 }
 
 function App() {
+  const { useMemo } = React;
+  const renderedTips = useMemo(
+    () => tips.map(t => ({ ...t, clusters: splitClusters(t.body) })),
+    []
+  );
   return (
     <>
       <section className="tips-hero">
@@ -259,8 +257,8 @@ function App() {
               bun recipes/base_document/scripts/parse-catalog.ts
             </p>
           </div>
-        ) : tips.map((t, idx) => {
-          const clusters = splitClusters(t.body);
+        ) : renderedTips.map((t, idx) => {
+          const clusters = t.clusters;
           return (
             <article key={t.id} className="tip-section">
               <div className="tip-num">{String(idx + 1).padStart(2, '0')}</div>

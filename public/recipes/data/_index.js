@@ -1,6 +1,6 @@
 // Auto-generated from vegan-restaurant-catalog-v5.md — do not edit by hand.
 window.APB_INDEX = {
-  "generatedAt": "2026-04-28T09:42:23.317Z",
+  "generatedAt": "2026-04-28T09:51:18.071Z",
   "source": "vegan-restaurant-catalog-v5.md",
   "totalRecipes": 135,
   "avgCostPerPlate": 2.52,

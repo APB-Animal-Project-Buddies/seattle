@@ -51,7 +51,7 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "kfc",
-    "badge": "Margin king"
+    "badge": "Margin King"
   },
   {
     "id": "fast-food-vegan-mcnuggets",
@@ -165,7 +165,7 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "big · mac",
-    "badge": "Margin king"
+    "badge": "Margin King"
   },
   {
     "id": "fast-food-vegan-crunchwrap-supreme-two-tier",
@@ -223,7 +223,7 @@
     "alternatives": [],
     "photo": "layered",
     "photoLabel": "crunchwrap · supreme",
-    "badge": "Margin king"
+    "badge": "Margin King"
   },
   {
     "id": "fast-food-vegan-chick-fil-a-sandwich",
