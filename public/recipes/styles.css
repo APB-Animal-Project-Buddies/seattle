@@ -1860,6 +1860,20 @@ body.no-why .card .why { display: none; }
   text-underline-offset: 2px;
   text-decoration-color: var(--terracotta);
 }
+.tips-page .ext-link {
+  color: var(--terracotta);
+  text-decoration: none;
+  border-bottom: 1px dotted oklch(0.62 0.14 45 / 0.55);
+  transition: border-color 140ms ease, color 140ms ease;
+}
+.tips-page .ext-link:hover {
+  color: oklch(0.55 0.16 45);
+  border-bottom-color: oklch(0.55 0.16 45);
+}
+.tips-page .accent-green {
+  color: oklch(0.50 0.14 145);
+  font-weight: 600;
+}
 
 /* Modal: alternative recipes block (under URL block) */
 .recipes-page .modal .alternatives {

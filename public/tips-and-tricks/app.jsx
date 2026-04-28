@@ -34,6 +34,9 @@ function escHtml(s) {
 function inline(s) {
   if (!s) return '';
   let out = escHtml(String(s));
+  out = out.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
+    (_, text, url) => `<a class="ext-link" href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`);
+  out = out.replace(/==([^=]+)==/g, '<span class="accent-green">$1</span>');
   out = out.replace(/\*\*([^*]+)\*\*/g, (_, inner) => {
     const href = dishHref(inner);
     return href
@@ -76,7 +79,8 @@ function splitClusters(body) {
     const line = raw.trim();
     // A header line is **Header text** optionally followed by ":" or " (subtitle)"
     const headerMatch = line.match(/^\*\*([^*]+)\*\*\s*(?:\(([^)]+)\))?\s*[:.]?\s*$/);
-    if (headerMatch && !line.startsWith('-') && !line.startsWith('*')) {
+    // Guard against bullet rows ("- foo" / "* foo") but allow standalone **bold** headers.
+    if (headerMatch && !/^[-*]\s/.test(line)) {
       flush();
       current = { title: headerMatch[1].trim(), subtitle: headerMatch[2]?.trim() || null, body: '' };
       continue;

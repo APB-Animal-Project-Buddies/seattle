@@ -15,6 +15,7 @@ const SRC = join(ROOT, "recipes", "base_document", "vegan-restaurant-catalog-v5.
 const OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "url_overrides.json");
 const DESC_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "description_overrides.json");
 const TIP_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "tip_overrides.json");
+const TIP_ADDITIONS_PATH = join(ROOT, "recipes", "base_document", "tip_additions.json");
 const ALT_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "alternatives_overrides.json");
 const RECIPE_OVERRIDES_PATH = join(ROOT, "recipes", "base_document", "recipe_overrides.json");
 const OUT_DIR = join(ROOT, "public", "recipes", "data");
@@ -877,18 +878,40 @@ function main() {
   );
 
   // ---------- Tips & Tricks (Final Notes H3 sections) ----------
-  let tipOverrides: Record<string, string> = {};
+  type TipOverride = string | { title?: string; body?: string };
+  let tipOverrides: Record<string, TipOverride> = {};
   try {
     const raw = readFileSync(TIP_OVERRIDES_PATH, "utf8");
     tipOverrides = JSON.parse(raw);
     delete (tipOverrides as any)._comment;
   } catch { /* no tip overrides — fine */ }
 
-  const tips = tipSections.map(t => ({
-    id: t.id,
-    title: t.title,
-    body: tipOverrides[t.id] || t.bodyLines.join("\n").trim(),
-  })).filter(t => t.body.length > 0);
+  const tips = tipSections.map(t => {
+    const o = tipOverrides[t.id];
+    const overrideBody = typeof o === "string" ? o : o?.body;
+    const overrideTitle = typeof o === "object" && o !== null ? o.title : undefined;
+    return {
+      id: t.id,
+      title: overrideTitle || t.title,
+      body: overrideBody || t.bodyLines.join("\n").trim(),
+    };
+  }).filter(t => t.body.length > 0);
+
+  // Hand-authored tip sections, kept separate from the catalog so the
+  // markdown stays the imported source of truth. Each entry can set
+  // `position: "prepend" | "append"` (default "prepend"); order within each
+  // bucket follows the file order.
+  try {
+    const raw = readFileSync(TIP_ADDITIONS_PATH, "utf8");
+    const additions: { id: string; title: string; body: string; position?: "prepend" | "append" }[] = JSON.parse(raw);
+    const fresh = additions.filter(a =>
+      a && a.id && a.title && a.body && !tips.find(t => t.id === a.id)
+    );
+    const head = fresh.filter(a => a.position !== "append").map(a => ({ id: a.id, title: a.title, body: a.body }));
+    const tail = fresh.filter(a => a.position === "append").map(a => ({ id: a.id, title: a.title, body: a.body }));
+    tips.unshift(...head);
+    tips.push(...tail);
+  } catch { /* no additions file — fine */ }
 
   writeFileSync(join(OUT_DIR, "_tips.json"), JSON.stringify(tips, null, 2));
   writeFileSync(
