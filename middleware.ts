@@ -10,4 +10,13 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/start-a-chapter") {
     return NextResponse.rewrite(new URL("/start-a-chapter.html", request.url));
   }
+  if (request.nextUrl.pathname === "/recipes") {
+    return NextResponse.rewrite(new URL("/recipes/index.html", request.url));
+  }
+  if (request.nextUrl.pathname === "/tips-and-tricks") {
+    return NextResponse.rewrite(new URL("/tips-and-tricks/index.html", request.url));
+  }
+  if (request.nextUrl.pathname === "/top-dairy-products") {
+    return NextResponse.rewrite(new URL("/top-dairy-products/index.html", request.url));
+  }
 }
