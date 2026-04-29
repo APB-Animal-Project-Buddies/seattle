@@ -39,3 +39,7 @@ coverage/
 
 # Superpowers docs
 docs/superpowers/
+
+# Claude Code / OMC local config
+.claude/
+.omc/
