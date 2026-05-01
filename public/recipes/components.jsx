@@ -618,14 +618,16 @@ function CategoryCard({ cat, parityText, index }) {
       {/* 3. Description */}
       <p className="blurb">{cat.blurb}</p>
 
-      {/* 4. See all alternatives → modal */}
-      {altCount > 0 && (
+      {/* 4. Open modal — even for single-pick categories */}
+      {picks.length > 0 && (
         <button
           type="button"
           className="see-all-btn"
           onClick={() => setModalOpen(true)}
         >
-          See all alternatives ({picks.length}) &rarr;
+          {picks.length === 1
+            ? <>See details &rarr;</>
+            : <>See all alternatives ({picks.length}) &rarr;</>}
         </button>
       )}
 

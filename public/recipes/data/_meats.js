@@ -176,13 +176,12 @@ window.APB_MEATS = {
         },
         {
           "brand": "Boca Chik'n Strips",
-          "note": "Budget-friendly; works well in heavy-sauce formats like kung pao or tikka masala.",
-          "url": "https://www.boca.com/"
+          "note": "Budget-friendly; works well in heavy-sauce formats like kung pao or tikka masala."
         },
         {
           "brand": "Daring Plant Chicken",
           "note": "Newer soy-based strips with improved fiber structure; holds up in stir-fry applications.",
-          "url": "https://www.daring.com/collections/all"
+          "url": "https://daring.com/products/"
         }
       ]
     },
@@ -469,12 +468,12 @@ window.APB_MEATS = {
           {
             "brand": "Juicy Marbles Thick-Cut Filet",
             "note": "Premium positioning · 4 oz × 20/case · marbled with channel structure for medium-rare · 18-month frozen shelf.",
-            "url": "https://juicymarbles.com/products/thick-cut-filet"
+            "url": "https://juicymarbles.com/collections/marbles-signatures/products/thick-cut-filet"
           },
           {
             "brand": "Chunk Steakhouse Cut",
             "note": "Whole-muscle texture · sears in 90 seconds · foodservice via Sysco / Chefs Warehouse · APB favourite for steakhouse plates.",
-            "url": "https://chunkfoods.com/products/steakhouse-cut"
+            "url": "https://www.chunkfoods.com/products/steakhouse-cut"
           },
           {
             "brand": "Beyond Filet",
@@ -484,7 +483,7 @@ window.APB_MEATS = {
           {
             "brand": "Chunk Steak",
             "note": "Ready-in-5-min retail format · perfect for fast-casual menus and sandwich programs.",
-            "url": "https://chunkfoods.com/products/chunk-steak"
+            "url": "https://www.chunkfoods.com/products/chunk-steak"
           },
           {
             "brand": "Meati Steak",
@@ -517,7 +516,7 @@ window.APB_MEATS = {
           {
             "brand": "Chunk Pulled (Original, Barbacoa, Teriyaki, Korean BBQ, Texas BBQ)",
             "note": "Our favorite — not tested by NECTAR · pre-cooked shredded with pulled-pork texture · sauce-and-serve OR pick a pre-sauced regional flavor for one-step service.",
-            "url": "https://chunkfoods.com/products/chunk-pulled"
+            "url": "https://www.chunkfoods.com/products/chunk-pulled"
           },
           {
             "brand": "Upton's Naturals Bar-B-Que Jackfruit",
@@ -554,9 +553,9 @@ window.APB_MEATS = {
             "url": "https://juicymarbles.com/products/baby-ribs"
           },
           {
-            "brand": "Chunk Slab",
-            "note": "Short-rib style · ready in 5 min · for high-volume rib programs.",
-            "url": "https://chunkfoods.com/products/chunk-slab"
+            "brand": "MorningStar Farms Meal Solutions Korean BBQ Riblets",
+            "note": "Pre-sauced Korean BBQ riblets · sweet-savory glaze · oven-ready · untested by Nectar but a fan favorite for fast-casual rib programs.",
+            "url": "https://www.morningstarfarms.com/en_US/products/meal-starters/msf-meal-solutions-korean-bbq-riblets.html"
           }
         ]
       },
@@ -610,7 +609,7 @@ window.APB_MEATS = {
           {
             "brand": "Juicy Marbles Meaty Meat Lamb-Ish",
             "note": "Tender plant-based lamb-style cut · for gyros, shawarma, or roast plates.",
-            "url": "https://juicymarbles.com/products/meaty-meat-lamb-ish"
+            "url": "https://juicymarbles.com/collections/marbles-signatures/products/meaty-meat-lamb-ish"
           }
         ]
       }

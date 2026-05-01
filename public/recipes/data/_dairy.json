@@ -126,7 +126,7 @@
         {
           "brand": "Miyoko's Pourable Pizza Mozzarella",
           "note": "Ladle-and-bake; best stretch in the category to date.",
-          "url": "https://miyokos.com/products/pourable-pizza-mozzarella"
+          "url": "https://www.miyokos.com/products/nut-free-pourable-pizza-mozzarella"
         },
         {
           "brand": "Violife Just Like Mozzarella Shreds",
@@ -136,7 +136,7 @@
         {
           "brand": "Numu Pizza Mozzarella",
           "note": "Newer entrant focused on pizzeria performance.",
-          "url": "https://numu.foods/products/pizza-mozzarella"
+          "url": "https://numucheese.com/"
         }
       ]
     },
@@ -153,17 +153,17 @@
         {
           "brand": "Kite Hill Plain Cream Cheese",
           "note": "Almond milk base; most natural tang.",
-          "url": "https://www.kite-hill.com/products/plain-cream-cheese-spread"
+          "url": "https://kite-hill.com/products/plain-cream-cheese"
         },
         {
           "brand": "Tofutti Better Than Cream Cheese",
           "note": "Long-standing foodservice option; soy-based.",
-          "url": "https://www.tofutti.com/our-products/cream-cheese/"
+          "url": "https://www.tofutti.com/better-than-cream-cheese-plain"
         },
         {
           "brand": "Miyoko's Classic Plain Cream Cheese",
           "note": "Cultured cashew base; spreads cold.",
-          "url": "https://miyokos.com/products/classic-plain-cream-cheese"
+          "url": "https://www.miyokos.com/products/plant-milk-cream-cheese-classic-plain"
         }
       ]
     },
@@ -180,17 +180,17 @@
         {
           "brand": "Califia Farms Better Half Original",
           "note": "Half-and-half body; the category's headline.",
-          "url": "https://www.califiafarms.com/products/better-half-original"
+          "url": "https://www.califiafarms.com/products/half-and-half-2/"
         },
         {
           "brand": "Silk Original Creamer",
           "note": "Workhorse foodservice creamer.",
-          "url": "https://silk.com/plant-based-products/creamer/original-dairy-free-creamer/"
+          "url": "https://silk.com/plant-based-products/creamer/original-soy-creamer/"
         },
         {
           "brand": "Nutpods Original Unsweetened",
           "note": "Unsweetened option for chefs cutting added sugar.",
-          "url": "https://www.nutpods.com/products/original-unsweetened-creamer-355ml"
+          "url": "https://www.nutpods.com/products/original-11-2oz"
         }
       ]
     },
@@ -207,17 +207,17 @@
         {
           "brand": "Forager Project Cashewmilk Sour Cream",
           "note": "Cleanest tang; line-ready out of the tub.",
-          "url": "https://www.foragerproject.com/products/dairy-free-sour-cream"
+          "url": "https://foragerproject.com/products/organic-dairy-free-cultured-sour-cream"
         },
         {
           "brand": "Tofutti Better Than Sour Cream",
           "note": "Classic foodservice option; wide distribution.",
-          "url": "https://www.tofutti.com/our-products/sour-cream/"
+          "url": "https://www.tofutti.com/dairy-free-better-than-sour-cream"
         },
         {
           "brand": "Kite Hill Sour Cream",
           "note": "Almond base; thicker body for dolloping.",
-          "url": "https://www.kite-hill.com/products/sour-cream-dairy-free-alternative"
+          "url": "https://kite-hill.com/products/sour-cream-alternative"
         }
       ]
     },
@@ -261,17 +261,17 @@
         {
           "brand": "Van Leeuwen Vegan Pints",
           "note": "Premium dessert tier; oat or cashew base depending on flavor.",
-          "url": "https://vanleeuwenicecream.com/collections/vegan"
+          "url": "https://vanleeuwenicecream.com/product/vanilla-bean-ice-cream/"
         },
         {
           "brand": "Oatly Frozen Dessert",
           "note": "Mid-priced; consistent across the menu.",
-          "url": "https://us.oatly.com/products/oatmilk-ice-cream"
+          "url": "https://www.oatly.com/en-us/products/frozen-dessert/frozen-dessert-vanilla-16-oz"
         },
         {
           "brand": "So Delicious Cashewmilk Ice Cream",
           "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel.",
-          "url": "https://sodeliciousdairyfree.com/products/cashewmilk-frozen-desserts/"
+          "url": "https://sodeliciousdairyfree.com/dairy-free-foods/dairy-free-frozen-desserts/cashewmilk/very-vanilla/"
         }
       ]
     }
