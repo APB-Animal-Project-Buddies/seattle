@@ -19,8 +19,14 @@ window.APB_MEATS = {
       "promoterPctAnimal": 62,
       "sameOrBetterPct": 47,
       "blurb": "The most competitive category in the study. Impossible Burger reached full taste parity — no statistically significant difference from a beef patty in blind testing. Five brands earned TASTY Awards, giving operators real choice.",
-      "leader": "Impossible Burger",
+      "leader": "Beyond Meat Burger",
       "picks": [
+        {
+          "brand": "Beyond Meat Burger",
+          "note": "Plant-Based Leader — highest overall liking among plant-based burgers in Nectar's blind test; beefy char and juicy bite, strong on the flat-top.",
+          "tastyAward": true,
+          "url": "https://www.beyondmeat.com/en-US/products/the-beyond-burger"
+        },
         {
           "brand": "Impossible Burger",
           "note": "Sole parity winner — indistinguishable from beef in blind test. Drop-in for any burger program.",
@@ -29,22 +35,21 @@ window.APB_MEATS = {
           "url": "https://impossiblefoods.com/products/burger"
         },
         {
-          "brand": "Beyond Meat Burger",
-          "note": "TASTY Award winner; beefy char and juicy bite, strong performance on the flat-top.",
+          "brand": "MorningStar Farms Burger",
+          "note": "TASTY Award winner; accessible price point for high-volume operations.",
           "tastyAward": true,
-          "url": "https://www.beyondmeat.com/en-US/products/the-beyond-burger"
+          "url": "https://www.morningstarfarms.com/en_US/products/veggie-burgers.html"
+        },
+        {
+          "brand": "Redefine Meat New Meat Burger",
+          "note": "TASTY Award winner; Israeli-Dutch 3D-printed whole-cut technology with restaurant-grade beef structure.",
+          "tastyAward": true
         },
         {
           "brand": "Heura Burger",
           "note": "TASTY Award winner; Mediterranean-sourced; cleaner label for upscale menus.",
           "tastyAward": true,
           "url": "https://heurafoods.com/products/burger-with-fine-herbs"
-        },
-        {
-          "brand": "MorningStar Farms Burger",
-          "note": "TASTY Award winner; accessible price point for high-volume operations.",
-          "tastyAward": true,
-          "url": "https://www.morningstarfarms.com/en_US/products/veggie-burgers.html"
         }
       ]
     },
@@ -92,29 +97,34 @@ window.APB_MEATS = {
       "promoterPctAnimal": 54,
       "sameOrBetterPct": 48,
       "blurb": "The category with the highest same-or-better rating in the study at 48% — more than 5 brands earned TASTY Awards. Texture is still the frontier, but leading mycoprotein and soy-based fillets are closing the gap fast.",
-      "leader": "Impossible Unbreaded Chicken Breast",
+      "leader": "Impossible Chicken Fillet",
       "picks": [
         {
-          "brand": "Impossible Unbreaded Chicken Breast",
-          "note": "TASTY Award winner; fibrous pull and clean finish closest to Perdue in the field.",
+          "brand": "Impossible Chicken Fillet",
+          "note": "TASTY Award winner with full taste parity — fibrous pull and clean finish closest to Perdue in the field.",
           "tastyAward": true,
           "tasteParity": true,
           "url": "https://impossiblefoods.com/sell-chicken"
         },
         {
-          "brand": "Eat Meati Classic Cutlet",
+          "brand": "Meati Chicken Fillet",
           "note": "TASTY Award winner; whole-cut mycoprotein structure that grills and slices cleanly.",
           "tastyAward": true,
           "url": "https://meati.com/products/classic-cutlet"
         },
         {
-          "brand": "Swap Foods Chicken Fillet",
+          "brand": "Swap Chicken Fillet",
           "note": "TASTY Award winner; newer brand with high marks from consumers on texture.",
           "tastyAward": true,
           "url": "https://swapfood.com/our-vegan-chicken/"
         },
         {
-          "brand": "The Vegetarian Butcher ChiKin",
+          "brand": "Vivera Chicken Fillet",
+          "note": "TASTY Award winner; European brand with a smooth pan-sear; widely distributed across EU foodservice.",
+          "tastyAward": true
+        },
+        {
+          "brand": "The Vegetarian Butcher Chicken Fillet",
           "note": "TASTY Award winner; Unilever-backed; widely available in international markets.",
           "tastyAward": true,
           "url": "https://www.thevegetarianbutcher.co.uk/p/nochicken-chunks.html/08718692786561"
@@ -134,10 +144,10 @@ window.APB_MEATS = {
       "promoterPctAnimal": 57,
       "sameOrBetterPct": 42,
       "blurb": "42% of consumers rated plant-based breaded fillets same or better than Tyson — driven by The Vegetarian Butcher's TASTY Award win. The breading masks texture differences better than unbreaded formats.",
-      "leader": "The Vegetarian Butcher ChiKin Schnitzel",
+      "leader": "The Vegetarian Butcher Breaded Chicken",
       "picks": [
         {
-          "brand": "The Vegetarian Butcher ChiKin Schnitzel",
+          "brand": "The Vegetarian Butcher Breaded Chicken",
           "note": "Sole TASTY Award winner in category; crispy crumb shell, holds up to transport on a sandwich line.",
           "tastyAward": true,
           "url": "https://www.thevegetarianbutcher.co.uk/p/hentastic.html/08720182622785"
@@ -543,7 +553,7 @@ window.APB_MEATS = {
         "use": "BBQ centerpiece · slab plate",
         "benchmark": "Pork baby-back rack",
         "apbCurated": true,
-        "tastyAward": true,
+        "tastyAward": false,
         "blurb": "Full vegan rib racks that smoke, glaze, and pull clean off the bone-equivalent.",
         "leader": "Juicy Marbles Baby Ribs",
         "picks": [
@@ -566,7 +576,7 @@ window.APB_MEATS = {
         "use": "Carving station · holiday plate",
         "benchmark": "Beef roast / large whole cut",
         "apbCurated": true,
-        "tastyAward": true,
+        "tastyAward": false,
         "blurb": "A large whole-cut for carving stations and family-style service. Slice 1/4-inch for sandwiches or thick for plates.",
         "leader": "Juicy Marbles Whole-Cut Loin",
         "picks": [
@@ -584,7 +594,7 @@ window.APB_MEATS = {
         "use": "Stir-fry · ramen topping · daily staple",
         "benchmark": "Pork shoulder / belly",
         "apbCurated": true,
-        "tastyAward": true,
+        "tastyAward": false,
         "blurb": "A tender, versatile pork-style protein that holds in bowls, wraps, salads, and stir-fries.",
         "leader": "Juicy Marbles Meaty Meat Pork-Ish",
         "picks": [
@@ -602,7 +612,7 @@ window.APB_MEATS = {
         "use": "Roast plate · gyro · shawarma · stew",
         "benchmark": "Lamb leg / shoulder",
         "apbCurated": true,
-        "tastyAward": true,
+        "tastyAward": false,
         "blurb": "A lamb-style centerpiece that takes rosemary-garlic, harissa, or shawarma seasoning beautifully.",
         "leader": "Juicy Marbles Meaty Meat Lamb-Ish",
         "picks": [

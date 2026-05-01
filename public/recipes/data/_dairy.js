@@ -18,8 +18,9 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Califia Farms Oat Barista Blend",
-          "note": "Reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test.",
-          "url": "https://www.califiafarms.com/products/oat-barista-blend"
+          "note": "TASTY Awards 2026 Barista Milk winner — reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test.",
+          "url": "https://www.califiafarms.com/products/oat-barista-blend",
+          "tastyAward": true
         },
         {
           "brand": "Oatly Barista Edition",
@@ -45,18 +46,21 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Silk Original Soy",
-          "note": "Closest macros to whole milk; 8g protein per cup.",
-          "url": "https://silk.com/plant-based-products/soymilk/original-soymilk/"
+          "note": "TASTY Awards 2026 Milk winner — closest macros to whole milk; 8g protein per cup.",
+          "url": "https://silk.com/plant-based-products/soymilk/original-soymilk/",
+          "tastyAward": true
         },
         {
-          "brand": "Oatly Original",
-          "note": "Best body for cold cereal and baking.",
-          "url": "https://us.oatly.com/products/oatmilk-original"
+          "brand": "Blue Diamond Almond Breeze Original",
+          "note": "TASTY Awards 2026 Milk winner — lowest cost per gallon at scale.",
+          "url": "https://www.bluediamond.com/brand/almond-breeze/ab-almondmilk/refrigerated-almondmilk/original/",
+          "tastyAward": true
         },
         {
-          "brand": "Almond Breeze Original",
-          "note": "Lowest cost per gallon at scale.",
-          "url": "https://almondbreeze.com/products/original"
+          "brand": "Maizly Original",
+          "note": "TASTY Awards 2026 Milk winner — corn-milk newcomer with a clean cereal-grain finish.",
+          "url": "https://www.maizly.com/products/maizly-original-1l-x-2",
+          "tastyAward": true
         }
       ]
     },
@@ -68,22 +72,28 @@ window.APB_DAIRY = {
       "benchmark": "Land O'Lakes Salted Butter",
       "tastyAward": true,
       "blurb": "Cultured plant butters now hit dairy notes for the table — sauté and laminating still need a recipe-side calibration.",
-      "leader": "Miyoko's European-Style Cultured",
+      "leader": "Country Crock Plant Butter",
       "picks": [
+        {
+          "brand": "Country Crock Plant Butter",
+          "note": "TASTY Awards 2026 Butter winner — workhorse foodservice block; ~$3.50/lb wholesale.",
+          "url": "https://www.countrycrock.com/products/plant-butter/olive-oil-plant-butter",
+          "tastyAward": true
+        },
+        {
+          "brand": "Melt Organic Plant-Based Butter",
+          "note": "TASTY Awards 2026 Butter winner — cultured organic blend with a clean, slightly sweet finish.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Violife Plant Butter",
+          "note": "TASTY Awards 2026 Butter winner — coconut-oil base; spreads cool and tastes closest to dairy at the table.",
+          "tastyAward": true
+        },
         {
           "brand": "Miyoko's European-Style Cultured Vegan Butter",
           "note": "Cultured cashew base; closest to high-end European.",
           "url": "https://miyokos.com/products/cultured-vegan-butter-european-style"
-        },
-        {
-          "brand": "Country Crock Plant Butter (Olive Oil)",
-          "note": "Workhorse foodservice block; ~$3.50/lb wholesale.",
-          "url": "https://www.countrycrock.com/products/plant-butter/olive-oil-plant-butter"
-        },
-        {
-          "brand": "Earth Balance Buttery Sticks",
-          "note": "Pastry-friendly water content for laminating.",
-          "url": "https://earthbalancenatural.com/products/buttery-sticks/"
         }
       ]
     },
@@ -95,22 +105,39 @@ window.APB_DAIRY = {
       "benchmark": "Sargento Cheddar Cheese",
       "tastyAward": true,
       "blurb": "Sliced cheddar has caught up enough that grilled-cheese melts and burger toppers work without apology.",
-      "leader": "Violife Just Like Mature Cheddar",
+      "leader": "Daiya Cheddar",
       "picks": [
         {
-          "brand": "Violife Just Like Mature Cheddar Block",
-          "note": "Best slice for melts; coconut oil base.",
+          "brand": "Daiya Cheddar",
+          "note": "TASTY Awards 2026 Cheddar winner — foodservice mainstay; melts predictably on the line.",
+          "url": "https://daiyafoods.com/products/cheddar-style-slices/",
+          "tastyAward": true
+        },
+        {
+          "brand": "Field Roast Chao Creamery Cheddar",
+          "note": "TASTY Awards 2026 Cheddar winner — coconut-and-fermented-tofu base with a clean, sharp finish.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Follow Your Heart Cheddar",
+          "note": "TASTY Awards 2026 Cheddar winner — sharper finish for cold sandwiches.",
+          "url": "https://followyourheart.com/products/sharp-cheddar-style-slices",
+          "tastyAward": true
+        },
+        {
+          "brand": "Miyoko's Creamery Cheddar",
+          "note": "TASTY Awards 2026 Cheddar winner — cashew-cultured wheel for a charcuterie-board cheddar profile.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Plant Ahead Cheddar",
+          "note": "TASTY Awards 2026 Cheddar winner — newer foodservice entrant focused on melt and sliceability.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Violife Cheddar",
+          "note": "Workhorse melt block; coconut oil base.",
           "url": "https://violifefoods.com/us/product/just-like-mature-cheddar-block/"
-        },
-        {
-          "brand": "Daiya Cheddar Style Slices",
-          "note": "Foodservice mainstay; melts predictably on the line.",
-          "url": "https://daiyafoods.com/products/cheddar-style-slices/"
-        },
-        {
-          "brand": "Follow Your Heart Sharp Cheddar Slices",
-          "note": "Sharper finish for cold sandwiches.",
-          "url": "https://followyourheart.com/products/sharp-cheddar-style-slices"
         }
       ]
     },
@@ -149,8 +176,13 @@ window.APB_DAIRY = {
       "benchmark": "Philadelphia Cream Cheese",
       "tastyAward": true,
       "blurb": "Bagel-shop ready. Cashew and almond bases hold their shape and tang within striking distance of dairy.",
-      "leader": "Kite Hill Plain",
+      "leader": "Violife Just Like Cream Cheese Original",
       "picks": [
+        {
+          "brand": "Violife Just Like Cream Cheese Original",
+          "note": "TASTY Awards 2026 Cream Cheese winner — coconut-oil base spreads at fridge temp with a clean tangy finish for bagel programs.",
+          "tastyAward": true
+        },
         {
           "brand": "Kite Hill Plain Cream Cheese",
           "note": "Almond milk base; most natural tang.",
@@ -176,17 +208,43 @@ window.APB_DAIRY = {
       "benchmark": "Coffee-mate Original",
       "tastyAward": true,
       "blurb": "One of the most competitive categories — leaders within 0.2pts of dairy.",
-      "leader": "Califia Farms Original Better Half",
+      "leader": "Coffee mate Creamer",
       "picks": [
+        {
+          "brand": "Coffee mate Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — the category benchmark; widely available across foodservice and retail.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Oatly Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — full-fat oat base for body without dairy notes.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Planet Oat Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — clean oat profile; consistent splash for cold-brew and hot programs.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Silk Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — workhorse foodservice creamer; soy base holds in hot coffee without splitting.",
+          "url": "https://silk.com/plant-based-products/creamer/original-soy-creamer/",
+          "tastyAward": true
+        },
+        {
+          "brand": "SOWN Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — organic oat base; chef-driven brand for upscale café programs.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Violife Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — coconut-oil base, soy- and nut-free for allergen-restricted accounts.",
+          "tastyAward": true
+        },
         {
           "brand": "Califia Farms Better Half Original",
           "note": "Half-and-half body; the category's headline.",
           "url": "https://www.califiafarms.com/products/half-and-half-2/"
-        },
-        {
-          "brand": "Silk Original Creamer",
-          "note": "Workhorse foodservice creamer.",
-          "url": "https://silk.com/plant-based-products/creamer/original-soy-creamer/"
         },
         {
           "brand": "Nutpods Original Unsweetened",
@@ -203,8 +261,14 @@ window.APB_DAIRY = {
       "benchmark": "Daisy Sour Cream",
       "tastyAward": true,
       "blurb": "Drop-in for taco bars and bake stations. Cashew bases give you the cleanest tang.",
-      "leader": "Forager Project Cashewmilk Sour Cream",
+      "leader": "Violife Just Like Sour Cream",
       "picks": [
+        {
+          "brand": "Violife Just Like Sour Cream",
+          "note": "TASTY Awards 2026 Sour Cream winner — coconut-oil base with the tightest tang and the cleanest finish for tacos and dips.",
+          "url": "https://www.violife.com/en-us/products/dairy-free-dips/just-like-sour-cream",
+          "tastyAward": true
+        },
         {
           "brand": "Forager Project Cashewmilk Sour Cream",
           "note": "Cleanest tang; line-ready out of the tub.",
@@ -230,22 +294,28 @@ window.APB_DAIRY = {
       "benchmark": "Chobani Nonfat Plain Yogurt",
       "tastyAward": true,
       "blurb": "Plain yogurts have arrived. Greek-style cashew and coconut bases pull through tang and thickness for parfaits and sauces.",
-      "leader": "Chobani Plant-Based",
+      "leader": "Cocojune Plain Unsweetened",
       "picks": [
+        {
+          "brand": "Cocojune Plain Unsweetened",
+          "note": "TASTY Awards 2026 Yogurt winner — coconut-cream base with clean lactic tang; spoonable on its own or as a sauce builder.",
+          "url": "https://www.cocojune.co/products/plain-unsweetened/",
+          "tastyAward": true
+        },
         {
           "brand": "Chobani Plant-Based Yogurt",
           "note": "Brand parity is the kicker — same name, same shelf, same expectations.",
-          "url": "https://www.chobani.com/products/plant-based"
+          "url": "https://www.chobani.com/products/yogurt"
         },
         {
           "brand": "Forager Project Cashewmilk Yogurt",
           "note": "Plain unsweetened tang; sauces and dips.",
-          "url": "https://www.foragerproject.com/our-foods/yogurt-alternatives"
+          "url": "https://foragerproject.com/collections/organic-dairy-free-yogurt"
         },
         {
           "brand": "Kite Hill Greek-Style Plain",
           "note": "Thickest body for parfaits and savory swaps.",
-          "url": "https://www.kite-hill.com/products/greek-style-plain"
+          "url": "https://kite-hill.com/products/plain-unsweetened-greek-yogurt"
         }
       ]
     },
@@ -257,8 +327,14 @@ window.APB_DAIRY = {
       "benchmark": "Häagen-Dazs Vanilla Ice Cream",
       "tastyAward": true,
       "blurb": "Premium oat and cashew pints now scoop and finish like dairy — the dessert tier is no longer a compromise.",
-      "leader": "Van Leeuwen Vegan Pints",
+      "leader": "So Delicious Cashewmilk Very Vanilla",
       "picks": [
+        {
+          "brand": "So Delicious Cashewmilk Very Vanilla",
+          "note": "TASTY Awards 2026 Ice Cream (Hard Serve) winner — wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel.",
+          "url": "https://sodeliciousdairyfree.com/dairy-free-foods/dairy-free-frozen-desserts/cashewmilk/very-vanilla/",
+          "tastyAward": true
+        },
         {
           "brand": "Van Leeuwen Vegan Pints",
           "note": "Premium dessert tier; oat or cashew base depending on flavor.",
@@ -268,11 +344,6 @@ window.APB_DAIRY = {
           "brand": "Oatly Frozen Dessert",
           "note": "Mid-priced; consistent across the menu.",
           "url": "https://www.oatly.com/en-us/products/frozen-dessert/frozen-dessert-vanilla-16-oz"
-        },
-        {
-          "brand": "So Delicious Cashewmilk Ice Cream",
-          "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel.",
-          "url": "https://sodeliciousdairyfree.com/dairy-free-foods/dairy-free-frozen-desserts/cashewmilk/very-vanilla/"
         }
       ]
     }
