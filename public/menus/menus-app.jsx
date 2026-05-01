@@ -5,6 +5,20 @@
 
 const { useState, useEffect, useMemo, useRef } = React;
 
+// Tiny inline-markdown renderer — converts **bold** to <strong> so recipe
+// descriptions like "**Lead protein:** Chunk Foods Steakhouse Cut…" render
+// cleanly instead of showing literal asterisks.
+function renderInlineMd(text) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*[^*]+\*\*)/g);
+  return parts.map((p, i) => {
+    if (p.startsWith('**') && p.endsWith('**')) {
+      return <strong key={i}>{p.slice(2, -2)}</strong>;
+    }
+    return <React.Fragment key={i}>{p}</React.Fragment>;
+  });
+}
+
 // Each course slot now declares which recipe `courses` tags are eligible.
 // The generator uses this to ensure desserts go in dessert slots, mains in
 // main slots, etc. — instead of picking purely on difficulty/cost.
@@ -426,7 +440,7 @@ function MenuCard({ menu, servings, onSwap, fading }) {
                 </div>
                 <h4>{c.recipe.title}</h4>
                 {c.recipe.source && <div className="src">— {c.recipe.source}</div>}
-                <div className="why">{c.recipe.description || c.recipe.why || ''}</div>
+                <div className="why">{renderInlineMd(c.recipe.description || c.recipe.why || '')}</div>
                 <div className="pairing">Pair with {c.pairing}</div>
               </div>
               <div className="price">${(c.recipe.cost || 0).toFixed(2)}</div>

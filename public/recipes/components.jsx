@@ -577,9 +577,11 @@ function CategoryCard({ cat, parityText, index }) {
   const winner = picks[0];
   const winnerParity = winner && winner.tasteParity;
   const isApb = !!cat.apbCurated;
-  // "Still developing" if same-or-better < 40 (or no data + no tasty award) —
-  // unless the category is APB-curated (those bypass the threshold check).
-  const isWeak = !isApb && ((cat.sameOrBetterPct != null && cat.sameOrBetterPct < 40) || (!cat.tastyAward && !cat.tasteParity && !winnerParity));
+  // "Developing but still tasty" if same-or-better < 40 (or no data + no
+  // tasty award). APB-curated cards CAN also be weak — they stack the
+  // Kinder World Loves badge with the Developing one (e.g. Best Steaks).
+  const isWeak = (cat.sameOrBetterPct != null && cat.sameOrBetterPct < 40)
+    || (cat.sameOrBetterPct == null && !cat.tastyAward && !cat.tasteParity && !winnerParity);
   const winnerTasty = !isWeak && winner && (winner.tastyAward || cat.tastyAward);
   const altCount = Math.max(0, picks.length - 1);
 
@@ -594,10 +596,7 @@ function CategoryCard({ cat, parityText, index }) {
           <window.DairyIcon name={cat.icon} />
         </div>
         <div className="cat-block">
-          <div className="cat-name">
-            {isApb && <span className="apb-crown" title="Kinder World Loves">&#128081;</span>}
-            {displayName}
-          </div>
+          <div className="cat-name">{displayName}</div>
           <div className="cat-use">{cat.use}</div>
         </div>
       </div>
@@ -609,9 +608,9 @@ function CategoryCard({ cat, parityText, index }) {
           <div className="winner-brand">{winner.brand}</div>
           <div className="winner-badges">
             {isApb && <span className="badge apb">&#129505; Kinder World Loves</span>}
-            {!isApb && winnerParity && <span className="badge loved">&#129505; {parityText}</span>}
+            {winnerParity && <span className="badge loved">&#129505; {parityText}</span>}
             {!isApb && winnerTasty && !winnerParity && <span className="badge tasty">&#9733; Top performer</span>}
-            {!isApb && isWeak && !winnerParity && <span className="badge developing">Still developing</span>}
+            {isWeak && !winnerParity && <span className="badge developing">Developing but still tasty</span>}
           </div>
         </div>
       )}

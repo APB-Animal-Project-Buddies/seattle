@@ -39,6 +39,86 @@ function App() {
 
   return (
     <main style={{ paddingBottom: 96 }}>
+      <section style={{
+        maxWidth: 1280,
+        margin: '0 auto',
+        padding: '40px 32px 16px',
+      }}>
+        <h1 style={{
+          fontFamily: 'var(--serif)',
+          fontWeight: 600,
+          fontSize: 'clamp(38px, 5vw, 56px)',
+          letterSpacing: '-0.02em',
+          lineHeight: 1.05,
+          color: 'var(--moss-ink)',
+          margin: 0,
+        }}>Top Alternatives</h1>
+        <p style={{
+          maxWidth: 760,
+          marginTop: 16,
+          fontSize: 16,
+          lineHeight: 1.6,
+          color: 'oklch(0.18 0.04 145 / 0.72)',
+        }}>
+          Inspired by the{' '}
+          <a
+            href="https://www.nectar.org/sensory-research/2025-taste-of-the-industry"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--terracotta)', textDecoration: 'underline', textUnderlineOffset: 3 }}
+          >TASTY Awards from Nectar</a>
+          {' '}— independent blind sensory testing of plant-based meat (2025)
+          and dairy (2026) that involved over <strong>2,000+ tasters</strong>!
+          Psst… we've layered in our own Kinder World picks for premium cuts
+          the study didn't cover.
+        </p>
+
+        <details style={{
+          maxWidth: 760,
+          marginTop: 14,
+          padding: '12px 16px',
+          borderRadius: 14,
+          border: '1px solid var(--line-soft)',
+          background: 'var(--paper)',
+          fontSize: 14,
+          lineHeight: 1.55,
+          color: 'oklch(0.18 0.04 145 / 0.72)',
+        }}>
+          <summary style={{ cursor: 'pointer', fontWeight: 600, color: 'var(--moss-ink)' }}>
+            How the test works
+          </summary>
+          <div style={{ marginTop: 10, display: 'grid', gap: 8 }}>
+            <p style={{ margin: 0 }}>
+              Each plant-based product is tasted <strong>blind</strong> against its
+              animal counterpart by a panel of ~100 omnivore and flexitarian
+              consumers. Tasters rate overall liking on a 7-point scale; Nectar
+              scores the difference using a Wilcoxon Signed-Rank test.
+            </p>
+            <ul style={{ margin: 0, paddingLeft: 20 }}>
+              <li>
+                <strong>Meat 2025:</strong> 14 plant-based meat categories ·{' '}
+                <strong>2,600+ tasters total</strong> · ~100 per category test.
+              </li>
+              <li>
+                <strong>Dairy 2026:</strong> 10 plant-based dairy categories ·{' '}
+                <strong>2,183 tasters total</strong> (with Palate Insights).
+              </li>
+            </ul>
+            <p style={{ margin: 0 }}>
+              A product earns a <strong>TASTY Award</strong> when at least
+              <strong> 50%</strong> of tasters rate it "same or better" than the
+              animal benchmark on overall liking. <strong>Taste parity</strong>{' '}
+              (our orange "As good as ..." chip) means there was no statistically
+              significant difference vs. the animal — only four meat products hit
+              that bar in 2025.
+            </p>
+            <p style={{ margin: 0, fontSize: 13, opacity: 0.8 }}>
+              Juicy Marbles and Chunk Foods products in this list are{' '}
+              <strong>APB Test Kitchen recommendations</strong> — not Nectar-tested.
+            </p>
+          </div>
+        </details>
+      </section>
       {meatSplit.strong && (
         <window.AlternativesTab
           data={meatSplit.strong}

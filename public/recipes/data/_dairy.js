@@ -1,7 +1,7 @@
 // Auto-generated from Nectar Plant-Based Dairy Study 2026 — do not edit by hand.
 window.APB_DAIRY = {
   "source": "Nectar Plant-Based Dairy Study 2026",
-  "sourceUrl": "https://www.mynectar.org/",
+  "sourceUrl": "https://www.nectar.org/",
   "studyDescription": "Blind taste tests across 10 dairy categories with 2,183 omnivore and flexitarian consumers, conducted with Palate Insights.",
   "headline": "Taste parity is becoming a reality across multiple dairy categories — Califia Farms Oat Barista Blend reached parity with Horizon Whole Milk in hot latte.",
   "asOf": "2026",

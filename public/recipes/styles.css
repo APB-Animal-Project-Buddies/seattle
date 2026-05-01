@@ -2336,11 +2336,22 @@ body.no-why .card .why { display: none; }
 }
 .alt-modal-list .alt-pick.parity-pick .alt-pick-rank { color: var(--terracotta); }
 
-/* APB crown next to displayName */
-.alt-card .cat-name .apb-crown {
-  font-size: 0.85em;
-  margin-right: 6px;
-  filter: drop-shadow(0 1px 0 oklch(0.18 0.04 145 / 0.10));
+/* Corner crown — leaks slightly over the top-left of the card at a tilt.
+   Rendered as a sibling of the card head; the card's `.alt-card` rule has
+   `position: relative` set further up. Both APB-curated and parity/tasty
+   winners get the crown. */
+.alt-card .apb-crown {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  font-size: 30px;
+  line-height: 1;
+  transform: rotate(-30deg);
+  transform-origin: bottom right;
+  filter: drop-shadow(0 2px 4px oklch(0.18 0.04 145 / 0.30));
+  pointer-events: none;
+  z-index: 5;
+  user-select: none;
 }
 
 /* Buy-now link inside the alternatives modal */
