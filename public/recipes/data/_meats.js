@@ -38,13 +38,13 @@ window.APB_MEATS = {
           "brand": "Heura Burger",
           "note": "TASTY Award winner; Mediterranean-sourced; cleaner label for upscale menus.",
           "tastyAward": true,
-          "url": "https://heurafoods.com/en/products"
+          "url": "https://heurafoods.com/products/burger-with-fine-herbs"
         },
         {
           "brand": "MorningStar Farms Burger",
           "note": "TASTY Award winner; accessible price point for high-volume operations.",
           "tastyAward": true,
-          "url": "https://www.morningstarfarms.com/"
+          "url": "https://www.morningstarfarms.com/en_US/products/veggie-burgers.html"
         }
       ]
     },
@@ -75,7 +75,7 @@ window.APB_MEATS = {
           "note": "Taste parity achieved; value-priced TASTY winner ideal for school lunch programs and QSR.",
           "tastyAward": true,
           "tasteParity": true,
-          "url": "https://www.morningstarfarms.com/"
+          "url": "https://www.morningstarfarms.com/en_US/products/chikn/morningstar-farms-chik-n-nuggets-product.html"
         }
       ]
     },
@@ -99,7 +99,7 @@ window.APB_MEATS = {
           "note": "TASTY Award winner; fibrous pull and clean finish closest to Perdue in the field.",
           "tastyAward": true,
           "tasteParity": true,
-          "url": "https://impossiblefoods.com/"
+          "url": "https://impossiblefoods.com/sell-chicken"
         },
         {
           "brand": "Eat Meati Classic Cutlet",
@@ -111,13 +111,13 @@ window.APB_MEATS = {
           "brand": "Swap Foods Chicken Fillet",
           "note": "TASTY Award winner; newer brand with high marks from consumers on texture.",
           "tastyAward": true,
-          "url": "https://swapfood.co/products"
+          "url": "https://swapfood.com/our-vegan-chicken/"
         },
         {
           "brand": "The Vegetarian Butcher ChiKin",
           "note": "TASTY Award winner; Unilever-backed; widely available in international markets.",
           "tastyAward": true,
-          "url": "https://www.unilever.com/brands/foods/the-vegetarian-butcher/"
+          "url": "https://www.thevegetarianbutcher.co.uk/p/nochicken-chunks.html/08718692786561"
         }
       ]
     },
@@ -140,17 +140,17 @@ window.APB_MEATS = {
           "brand": "The Vegetarian Butcher ChiKin Schnitzel",
           "note": "Sole TASTY Award winner in category; crispy crumb shell, holds up to transport on a sandwich line.",
           "tastyAward": true,
-          "url": "https://www.unilever.com/brands/foods/the-vegetarian-butcher/"
+          "url": "https://www.thevegetarianbutcher.co.uk/p/hentastic.html/08720182622785"
         },
         {
           "brand": "Impossible Breaded Chicken",
           "note": "Strong second; similar crunch profile, widely distributed in US foodservice channels.",
-          "url": "https://impossiblefoods.com/"
+          "url": "https://impossiblefoods.com/gb-en/chicken/impossible-chicken-fillets"
         },
         {
           "brand": "Gardein Crispy Tenders",
           "note": "Established foodservice SKU; consistent batch fry performance for high-volume sandwich programs.",
-          "url": "https://gardein.com/products/"
+          "url": "https://www.gardein.com/chickn-and-turky/classics/plant-based-seven-grain-crispy-tenders"
         }
       ]
     },
@@ -172,7 +172,7 @@ window.APB_MEATS = {
         {
           "brand": "Gardein Seven Grain Crispy Tenders",
           "note": "Category incumbent; consistent strip shape for salad bars and wraps.",
-          "url": "https://gardein.com/products/"
+          "url": "https://www.gardein.com/chickn-and-turky/classics/plant-based-seven-grain-crispy-tenders"
         },
         {
           "brand": "Boca Chik'n Strips",
@@ -216,7 +216,7 @@ window.APB_MEATS = {
         {
           "brand": "MorningStar Farms Original Sausage Patties",
           "note": "Long-tenured SKU; consistent cook and familiar flavor profile for cross-over guests.",
-          "url": "https://www.morningstarfarms.com/"
+          "url": "https://www.morningstarfarms.com/en_US/products/vegetarian-breakfast-foods/morningstar-farms-original-sausage-patties-product.html"
         }
       ]
     },
@@ -244,7 +244,7 @@ window.APB_MEATS = {
         {
           "brand": "Gardein Classic Meatless Meatballs",
           "note": "Foodservice mainstay; available in 1 lb. bags, consistent shape and weight.",
-          "url": "https://gardein.com/products/"
+          "url": "https://www.gardein.com/beefless-and-porkless/classics/meatballs"
         },
         {
           "brand": "Beyond Meat Beyond Meatballs",
@@ -272,7 +272,7 @@ window.APB_MEATS = {
           "brand": "Impossible Hot Dog",
           "note": "TASTY Award winner; best snap and mouthfeel in the category; grills and steams well.",
           "tastyAward": true,
-          "url": "https://impossiblefoods.com/"
+          "url": "https://impossiblefoods.com/beef/plant-based-impossible-beef-hot-dog"
         },
         {
           "brand": "Field Roast Frankfurter",
@@ -309,7 +309,7 @@ window.APB_MEATS = {
         {
           "brand": "MorningStar Farms Veggie Bacon Strips",
           "note": "Widest foodservice distribution; consistent strip width for line prep.",
-          "url": "https://www.morningstarfarms.com/"
+          "url": "https://www.morningstarfarms.com/en_US/products/vegetarian-breakfast-foods/morningstar-farms-veggie-bacon-strips-product.html"
         },
         {
           "brand": "Upton's Naturals Bacon Seitan",
@@ -336,7 +336,7 @@ window.APB_MEATS = {
         {
           "brand": "Field Roast Smoked Apple Bratwurst",
           "note": "Category leader; apple and sage spicing compensates for missing fat — best on a char-grill.",
-          "url": "https://fieldroast.com/products/"
+          "url": "https://fieldroast.com/product/smoked-apple-sage-sausage/"
         },
         {
           "brand": "Beyond Meat Beyond Sausage (Brat Style)",
@@ -369,7 +369,7 @@ window.APB_MEATS = {
           "brand": "Prime Roots Koji Turkey",
           "note": "TASTY Award winner; koji-grown protein with a clean, savory umami flavor closest to Boar's Head.",
           "tastyAward": true,
-          "url": "https://www.primeroots.com/en-us"
+          "url": "https://www.primeroots.com/en-us/collections/prime-roots-deli-meats/products/smoked-turkey-log"
         },
         {
           "brand": "Tofurky Oven Roasted Deli Slices",
@@ -479,7 +479,7 @@ window.APB_MEATS = {
           {
             "brand": "Beyond Filet",
             "note": "Premium whole-cut filet from Beyond Meat · sears medium-rare · positioned as their steakhouse-tier upgrade to Beyond Steak.",
-            "url": "https://www.beyondmeat.com/en-US/products"
+            "url": "https://beyondtestkitchen.com/products/beyond-steak-filet-10-pack?srsltid=AfmBOoos1Df6A4ZZqcg_U3sJF8BEQQs18eBOMPoX9VyZ5eiiWz-3LIBE"
           },
           {
             "brand": "Chunk Steak",
