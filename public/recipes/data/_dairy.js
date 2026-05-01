@@ -208,11 +208,12 @@ window.APB_DAIRY = {
       "benchmark": "Coffee-mate Original",
       "tastyAward": true,
       "blurb": "One of the most competitive categories — leaders within 0.2pts of dairy.",
-      "leader": "Coffee mate Creamer",
+      "leader": "Silk Creamer",
       "picks": [
         {
-          "brand": "Coffee mate Creamer",
-          "note": "TASTY Awards 2026 Creamer winner — the category benchmark; widely available across foodservice and retail.",
+          "brand": "Silk Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — most accessible TASTY pick; soy base holds in hot coffee without splitting and ships to virtually every grocer.",
+          "url": "https://silk.com/plant-based-products/creamer/original-soy-creamer/",
           "tastyAward": true
         },
         {
@@ -226,12 +227,6 @@ window.APB_DAIRY = {
           "tastyAward": true
         },
         {
-          "brand": "Silk Creamer",
-          "note": "TASTY Awards 2026 Creamer winner — workhorse foodservice creamer; soy base holds in hot coffee without splitting.",
-          "url": "https://silk.com/plant-based-products/creamer/original-soy-creamer/",
-          "tastyAward": true
-        },
-        {
           "brand": "SOWN Creamer",
           "note": "TASTY Awards 2026 Creamer winner — organic oat base; chef-driven brand for upscale café programs.",
           "tastyAward": true
@@ -239,6 +234,12 @@ window.APB_DAIRY = {
         {
           "brand": "Violife Creamer",
           "note": "TASTY Awards 2026 Creamer winner — coconut-oil base, soy- and nut-free for allergen-restricted accounts.",
+          "tastyAward": true
+        },
+        {
+          "brand": "Coffee Mate Non-Dairy Creamer",
+          "note": "TASTY Awards 2026 Creamer winner — the category benchmark; widely available across foodservice and retail.",
+          "url": "https://www.nestle.com/brands/dairy/coffee-mate",
           "tastyAward": true
         },
         {
