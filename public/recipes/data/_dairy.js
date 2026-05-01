@@ -18,15 +18,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Califia Farms Oat Barista Blend",
-          "note": "Reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test."
+          "note": "Reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test.",
+          "url": "https://www.califiafarms.com/products/oat-barista-blend"
         },
         {
           "brand": "Oatly Barista Edition",
-          "note": "Industry standard in third-wave cafés; steams to silk."
+          "note": "Industry standard in third-wave cafés; steams to silk.",
+          "url": "https://us.oatly.com/products/barista-edition"
         },
         {
           "brand": "Pacific Barista Series Soy",
-          "note": "Higher protein for protein-forward menus."
+          "note": "Higher protein for protein-forward menus.",
+          "url": "https://www.pacificfoods.com/our-foods/plant-based-beverages/barista-series-soy/"
         }
       ]
     },
@@ -42,15 +45,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Silk Original Soy",
-          "note": "Closest macros to whole milk; 8g protein per cup."
+          "note": "Closest macros to whole milk; 8g protein per cup.",
+          "url": "https://silk.com/plant-based-products/soymilk/original-soymilk/"
         },
         {
           "brand": "Oatly Original",
-          "note": "Best body for cold cereal and baking."
+          "note": "Best body for cold cereal and baking.",
+          "url": "https://us.oatly.com/products/oatmilk-original"
         },
         {
           "brand": "Almond Breeze Original",
-          "note": "Lowest cost per gallon at scale."
+          "note": "Lowest cost per gallon at scale.",
+          "url": "https://almondbreeze.com/products/original"
         }
       ]
     },
@@ -66,15 +72,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Miyoko's European-Style Cultured Vegan Butter",
-          "note": "Cultured cashew base; closest to high-end European."
+          "note": "Cultured cashew base; closest to high-end European.",
+          "url": "https://miyokos.com/products/cultured-vegan-butter-european-style"
         },
         {
           "brand": "Country Crock Plant Butter (Olive Oil)",
-          "note": "Workhorse foodservice block; ~$3.50/lb wholesale."
+          "note": "Workhorse foodservice block; ~$3.50/lb wholesale.",
+          "url": "https://www.countrycrock.com/products/plant-butter/olive-oil-plant-butter"
         },
         {
           "brand": "Earth Balance Buttery Sticks",
-          "note": "Pastry-friendly water content for laminating."
+          "note": "Pastry-friendly water content for laminating.",
+          "url": "https://earthbalancenatural.com/products/buttery-sticks/"
         }
       ]
     },
@@ -90,15 +99,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Violife Just Like Mature Cheddar Block",
-          "note": "Best slice for melts; coconut oil base."
+          "note": "Best slice for melts; coconut oil base.",
+          "url": "https://violifefoods.com/us/product/just-like-mature-cheddar-block/"
         },
         {
           "brand": "Daiya Cheddar Style Slices",
-          "note": "Foodservice mainstay; melts predictably on the line."
+          "note": "Foodservice mainstay; melts predictably on the line.",
+          "url": "https://daiyafoods.com/products/cheddar-style-slices/"
         },
         {
           "brand": "Follow Your Heart Sharp Cheddar Slices",
-          "note": "Sharper finish for cold sandwiches."
+          "note": "Sharper finish for cold sandwiches.",
+          "url": "https://followyourheart.com/products/sharp-cheddar-style-slices"
         }
       ]
     },
@@ -114,15 +126,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Miyoko's Pourable Pizza Mozzarella",
-          "note": "Ladle-and-bake; best stretch in the category to date."
+          "note": "Ladle-and-bake; best stretch in the category to date.",
+          "url": "https://miyokos.com/products/pourable-pizza-mozzarella"
         },
         {
           "brand": "Violife Just Like Mozzarella Shreds",
-          "note": "Workhorse shred for back-of-house pizza programs."
+          "note": "Workhorse shred for back-of-house pizza programs.",
+          "url": "https://violifefoods.com/us/product/just-like-mozzarella-shreds/"
         },
         {
           "brand": "Numu Pizza Mozzarella",
-          "note": "Newer entrant focused on pizzeria performance."
+          "note": "Newer entrant focused on pizzeria performance.",
+          "url": "https://numu.foods/products/pizza-mozzarella"
         }
       ]
     },
@@ -138,15 +153,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Kite Hill Plain Cream Cheese",
-          "note": "Almond milk base; most natural tang."
+          "note": "Almond milk base; most natural tang.",
+          "url": "https://www.kite-hill.com/products/plain-cream-cheese-spread"
         },
         {
           "brand": "Tofutti Better Than Cream Cheese",
-          "note": "Long-standing foodservice option; soy-based."
+          "note": "Long-standing foodservice option; soy-based.",
+          "url": "https://www.tofutti.com/our-products/cream-cheese/"
         },
         {
           "brand": "Miyoko's Classic Plain Cream Cheese",
-          "note": "Cultured cashew base; spreads cold."
+          "note": "Cultured cashew base; spreads cold.",
+          "url": "https://miyokos.com/products/classic-plain-cream-cheese"
         }
       ]
     },
@@ -162,15 +180,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Califia Farms Better Half Original",
-          "note": "Half-and-half body; the category's headline."
+          "note": "Half-and-half body; the category's headline.",
+          "url": "https://www.califiafarms.com/products/better-half-original"
         },
         {
           "brand": "Silk Original Creamer",
-          "note": "Workhorse foodservice creamer."
+          "note": "Workhorse foodservice creamer.",
+          "url": "https://silk.com/plant-based-products/creamer/original-dairy-free-creamer/"
         },
         {
           "brand": "Nutpods Original Unsweetened",
-          "note": "Unsweetened option for chefs cutting added sugar."
+          "note": "Unsweetened option for chefs cutting added sugar.",
+          "url": "https://www.nutpods.com/products/original-unsweetened-creamer-355ml"
         }
       ]
     },
@@ -186,15 +207,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Forager Project Cashewmilk Sour Cream",
-          "note": "Cleanest tang; line-ready out of the tub."
+          "note": "Cleanest tang; line-ready out of the tub.",
+          "url": "https://www.foragerproject.com/products/dairy-free-sour-cream"
         },
         {
           "brand": "Tofutti Better Than Sour Cream",
-          "note": "Classic foodservice option; wide distribution."
+          "note": "Classic foodservice option; wide distribution.",
+          "url": "https://www.tofutti.com/our-products/sour-cream/"
         },
         {
           "brand": "Kite Hill Sour Cream",
-          "note": "Almond base; thicker body for dolloping."
+          "note": "Almond base; thicker body for dolloping.",
+          "url": "https://www.kite-hill.com/products/sour-cream-dairy-free-alternative"
         }
       ]
     },
@@ -210,15 +234,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Chobani Plant-Based Yogurt",
-          "note": "Brand parity is the kicker — same name, same shelf, same expectations."
+          "note": "Brand parity is the kicker — same name, same shelf, same expectations.",
+          "url": "https://www.chobani.com/products/plant-based"
         },
         {
           "brand": "Forager Project Cashewmilk Yogurt",
-          "note": "Plain unsweetened tang; sauces and dips."
+          "note": "Plain unsweetened tang; sauces and dips.",
+          "url": "https://www.foragerproject.com/our-foods/yogurt-alternatives"
         },
         {
           "brand": "Kite Hill Greek-Style Plain",
-          "note": "Thickest body for parfaits and savory swaps."
+          "note": "Thickest body for parfaits and savory swaps.",
+          "url": "https://www.kite-hill.com/products/greek-style-plain"
         }
       ]
     },
@@ -234,15 +261,18 @@ window.APB_DAIRY = {
       "picks": [
         {
           "brand": "Van Leeuwen Vegan Pints",
-          "note": "Premium dessert tier; oat or cashew base depending on flavor."
+          "note": "Premium dessert tier; oat or cashew base depending on flavor.",
+          "url": "https://vanleeuwenicecream.com/collections/vegan"
         },
         {
           "brand": "Oatly Frozen Dessert",
-          "note": "Mid-priced; consistent across the menu."
+          "note": "Mid-priced; consistent across the menu.",
+          "url": "https://us.oatly.com/products/oatmilk-ice-cream"
         },
         {
           "brand": "So Delicious Cashewmilk Ice Cream",
-          "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel."
+          "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel.",
+          "url": "https://sodeliciousdairyfree.com/products/cashewmilk-frozen-desserts/"
         }
       ]
     }
