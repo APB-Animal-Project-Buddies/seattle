@@ -1,7 +1,6 @@
 [
   {
     "_comment": "Hand-authored tip sections, prepended to the catalog's Final Notes in the order listed here. id must be unique across the merged tip list.",
-
     "id": "make-sure-you-love-every-dish",
     "title": "Make sure you love every dish",
     "position": "append",
@@ -10,7 +9,7 @@
   {
     "id": "marketing-plant-based-dishes",
     "title": "Marketing plant-based dishes successfully",
-    "body": "**Lead with the food, not the label.**\n*Slow-braised maitake bourguignon* (no cruelty) beats *vegan stew* or *vegan bourguignon*. Consider dropping \"vegan\" from dish names — unless you're in a vegan-friendly market like Portland, New York City, Los Angeles, or London — and use *no cruelty* or *kill-free* as the values tag instead.\n\nAvoid lazy substitution words too. Naming everything *mushroom X*, *vegetable Y*, or *lentil Z* gets boring fast. Keep names fresh and curious: *seared maitake*, *charred celery hearts*, *koji-cured root*, *fermented chickpea curd*. Each dish name should make a guest want to taste.\n\n**Frame impact in concrete numbers.**\nWhere you call out the values, swap \"vegan\" for the actual impact:\n- Cruelty-free — no animals or furry friends harmed for this treat\n- ~1,500 gallons of water saved per pound (vs. beef)\n- 20× less land per calorie\n\nA menu footer like *\"every 10 plates here saves ~1,500 gallons of water and harms no animals\"* lands harder than a 100% vegan sticker.\n\n**Build the brand around craft.**\nPress and word-of-mouth follow chefs who lead with technique. *\"The maitake bourguignon at Gauthier\"* travels further than \"the vegan place on 5th.\""
+    "body": "**Lead with the food, not the label.**\n*Slow-braised maitake bourguignon* (no cruelty) beats *vegan stew* or *vegan bourguignon*. Consider dropping \"vegan\" from dish names — unless you're in a vegan-friendly market like Portland, New York City, Los Angeles, or London — and use *no cruelty* or *kill-free* as the values tag instead.\n\nAvoid lazy substitution words too. Naming everything *mushroom X*, *vegetable Y*, or *lentil Z* gets boring fast. Keep names fresh and curious: *seared maitake*, *charred celery hearts*, *koji-cured root*, *fermented chickpea curd*. Each dish name should make a guest want to taste.\n\n**Frame impact in concrete numbers.**\nWhere you call out the values, swap \"vegan\" for the actual impact:\n- Cruelty-free — no animals or furry friends harmed for this treat\n- ~1,500 gallons of water saved per pound (vs. beef)\n- 20× less land per calorie\n\nA menu footer like *\"every 10 plates here saves ~1,500 gallons of water and harms no animals\"* lands harder than a 100% vegan sticker.\n\n**Build the brand around craft.**\nPress and word-of-mouth follow chefs who lead with technique. *\"The maitake bourguignon at Gauthier\"* travels further than \"the vegan place on 5th.\"\n\n**List on HappyCow.**\nHappyCow is where most vegans and vegetarians look before picking a restaurant.\n\n- Claim your listing at [happycow.net](https://www.happycow.net).\n- Pick the right tag: *Vegan*, *Vegetarian*, *Vegan options*, or *Vegetarian options*.\n- Add 2–3 sharp photos of your plant plates.\n\nDone."
   },
   {
     "id": "adding-plant-based-options-to-an-existing-menu",

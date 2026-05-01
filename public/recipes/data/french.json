@@ -59,7 +59,41 @@
     "alternatives": [],
     "photo": "layered",
     "photoLabel": "faux · gras · terrine",
-    "badge": "Showpiece"
+    "badge": "Showpiece",
+    "ingredients": [
+      "1 lb (450 g) cremini or chestnut mushrooms, roughly chopped",
+      "1 cup (200 g) green or brown lentils, rinsed",
+      "1 medium onion, diced",
+      "3 cloves garlic, minced",
+      "2 tablespoons olive oil",
+      "2 tablespoons cognac or brandy",
+      "1 tablespoon white miso paste",
+      "1 tablespoon soy sauce",
+      "1 tablespoon fresh thyme leaves",
+      "½ teaspoon ground allspice",
+      "¼ teaspoon ground nutmeg",
+      "salt and black pepper to taste",
+      "2 tablespoons vegan butter (for lining)",
+      "fresh bay leaves and black peppercorns for garnish",
+      "toasted baguette slices for serving"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "baguette",
+        "to": "gluten-free baguette (Canyon Bakehouse)",
+        "removes": "gluten"
+      },
+      {
+        "from": "miso paste",
+        "to": "chickpea miso (South River brand)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "french-vegan-soupe-vge-bocuse-tribute-gauthier",
@@ -72,6 +106,7 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
+      "starter",
       "showstopper"
     ],
     "url": "https://chefalexisgauthier.substack.com/p/soupe-vge",
@@ -119,7 +154,25 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "soupe · vge",
-    "badge": "Showpiece"
+    "badge": "Showpiece",
+    "ingredients": [
+      "3 medium carrots, peeled and diced",
+      "3 stalks celery, diced",
+      "2 medium leeks (white and light green), sliced",
+      "2 medium turnips, peeled and diced",
+      "1 medium fennel bulb, sliced thin",
+      "1 small head cauliflower, cut into small florets",
+      "6 cups (1.4 L) rich vegetable consommé (or crystal-clear vegetable broth)",
+      "2 tablespoons olive oil",
+      "3 cloves garlic, minced",
+      "1 bouquet garni (bay leaf, thyme, parsley stems)",
+      "1 teaspoon black truffle oil (for finishing)",
+      "flaky sea salt and white pepper to taste",
+      "fresh chervil or chive sprigs (for garnish)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "french-vegan-soupe-de-poisson-with-rouille-gauthier",
@@ -185,7 +238,37 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "soupe · poisson · rouille",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 oz (30 g) dried dulse flakes",
+      "½ oz (15 g) dried laver seaweed",
+      "1 medium onion, diced",
+      "3 stalks celery, diced",
+      "2 medium carrots, diced",
+      "1 fennel bulb, sliced",
+      "4 cloves garlic, minced",
+      "3 tablespoons olive oil",
+      "1 cup (240 ml) dry white wine",
+      "1 can (14 oz) crushed tomatoes",
+      "4 cups (960 ml) vegetable broth",
+      "1 teaspoon smoked paprika",
+      "pinch saffron threads",
+      "½ cup vegan mayonnaise",
+      "2 cloves garlic (for rouille)",
+      "1 teaspoon smoked paprika (for rouille)",
+      "toasted baguette slices and vegan gruyère (for serving)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "baguette",
+        "to": "gluten-free baguette (Canyon Bakehouse)",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "french-vegan-b-uf-bourguignon-maitake-gauthier",
@@ -198,7 +281,8 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
-      "main"
+      "main",
+      "showstopper"
     ],
     "url": "https://chefalexisgauthier.substack.com/p/bourguignon",
     "urlStatus": "verified",
@@ -256,7 +340,34 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "bourguignon",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 lb (450 g) maitake mushrooms, torn into large pieces",
+      "8 oz (225 g) pearl onions, peeled",
+      "3 medium carrots, cut into 1-inch pieces",
+      "3 stalks celery, sliced",
+      "4 cloves garlic, minced",
+      "2 tablespoons olive oil",
+      "2 tablespoons all-purpose flour",
+      "1 ½ cups (360 ml) dry red wine (Burgundy or Pinot Noir)",
+      "1 cup (240 ml) vegetable broth",
+      "2 tablespoons tomato paste",
+      "1 bouquet garni (bay leaf, thyme, parsley)",
+      "1 tablespoon vegan butter",
+      "salt and black pepper to taste",
+      "fresh flat-leaf parsley, chopped (for garnish)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "all-purpose flour",
+        "to": "gluten-free all-purpose flour (Bob's Red Mill 1-to-1)",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "french-ratatouille",
@@ -293,7 +404,37 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "ratatouille",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 eggplant (aubergine) (, cut into 2cm / ¾\" cubes (leave skin on) (~450g / 16oz))",
+      "1/2 tsp salt (, cooking / kosher salt)",
+      "3 tomatoes (, chopped (~150g / 5oz each), Note 1 canned subs)",
+      "6 tbsp extra virgin olive oil",
+      "2 brown onion (, chopped 1cm / ⅖\" cubes (~150g / 5oz each))",
+      "2 capsicum (1 red, 1 yellow), ( cut into 2cm / ⅘\" cubes (~200g / 7oz each))",
+      "2 zucchinis (courgettes), ( diced into 1.5cm / ½\" pieces (~200g / 7oz each))",
+      "2 garlic cloves (, finely chopped (~3 tsp))",
+      "1 tsp fresh thyme leaves (, chopped (Note 2 for subs))",
+      "3/4 tsp salt (, cooking/kosher salt)",
+      "1/4 tsp black pepper",
+      "20 black olives (, pitted, halved)",
+      "1 tbsp fresh basil (, finely chopped, plus more for garnish (Note 2 subs))",
+      "Extra virgin olive oil (, for drizzling)"
+    ],
+    "steps": [
+      "Sweat eggplant: Place eggplant in a colander set over a bowl. Sprinkle with salt, toss with hands. Leave for 30 minutes to sweat (no need to wipe off water that beads on surface).",
+      "Make tomato puree: Place tomato in a blender, food processor or other appliance of choice. Blitz until smooth. (No need to do this if using passata or crushed tomato.)",
+      "Cook eggplant: Heat 2 tbsp oil in a large skillet over medium high heat. Add eggplant and cook for 4 to 5 minutes, stirring regularly, until it's golden on the surface but still somewhat firm and raw inside. Transfer to a large pot.",
+      "Cook onion and garlic: In the same skillet, add another 1 tbsp olive oil. Add onion and garlic with a pinch of the salt. Cook for 3 minutes until onion is soft with a hint of golden on the edges. Add to pot holding eggplant.",
+      "Cook capsicum: Add another 1 tbsp of olive oil and cook the capsicum with a pinch of salt for 3 minutes. It should still be firm inside. You won't get much colour on the capsicum, this is OK. Add to pot.",
+      "Cook zucchini: Add another 1 tbsp olive oil and cook the zucchini with a pinch of salt for 3 minutes. Make sure it stays firm (ie. raw inside). Like the capsicum, it won't go golden. Add to pot.",
+      "Add remaining ingredients to pot: Turn the stove under the pot to medium-high. Add tomato, thyme, olives, remaining salt and all the pepper, and mix. Once the mixture is hot, reduce heat to a low simmer.",
+      "Braise: Cook for 20 - 25 minutes with the pot lid off, stirring every now and then, until all the vegetables are cooked through and the liquid has reduced. The mixture should be thick enough so you can pile it on a plate (ie. not watery), but still very moist and juicy.",
+      "Basil and salt: Taste and add more salt if needed; vegetables can taste bland if not enough salt is added. Stir through basil then serve immediately, drizzled with extra virgin olive oil and a sprinkle of extra basil on top, if desired. Serve as a main with crusty bread, or as a side dish. See above recipe card for more ideas!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "french-vegan-barbajuans-ni-oise-swiss-chard-turnovers-gauthier",
@@ -364,7 +505,42 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "barbajuans",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "250 g (2 cups) all-purpose flour (00 flour preferred)",
+      "90 g (6 tablespoons) water",
+      "30 g (2 tablespoons) extra virgin olive oil",
+      "1 pinch fine salt",
+      "150 g (5 oz) fresh spinach",
+      "100 g (3.5 oz) Swiss chard (leaves and finely chopped stems)",
+      "1 small leek (white part only), finely diced",
+      "1 small onion, finely diced",
+      "2 cloves garlic, minced",
+      "120 g (4 oz) vegan ricotta (Kite Hill or homemade cashew ricotta)",
+      "1 tablespoon fresh flat-leaf parsley, chopped",
+      "1 teaspoon fresh thyme leaves",
+      "generous freshly ground black pepper",
+      "fine salt to taste",
+      "neutral oil for deep-frying",
+      "fleur de sel for serving"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten",
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "all-purpose flour",
+        "to": "gluten-free all-purpose flour (Bob's Red Mill 1-to-1)",
+        "removes": "gluten"
+      },
+      {
+        "from": "cashew ricotta",
+        "to": "tofu ricotta (blended silken tofu + lemon + nutritional yeast)",
+        "removes": "nuts"
+      }
+    ]
   },
   {
     "id": "french-vegan-french-toast",
@@ -401,7 +577,42 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "french · toast",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 cup Soy Milk ((240ml) or other non-dairy milk)",
+      "4 Tablespoons Chickpea Flour",
+      "2 Tablespoons Nutritional Yeast Flakes",
+      "1 Tablespoon Maple Syrup",
+      "1 teaspoon Vanilla Extract",
+      "1/2 teaspoon Cinnamon",
+      "1/2 teaspoon Salt (or 1/4 tsp black salt / kala namak and 1/4 tsp regular salt*)",
+      "6 Slices Bread (Thick sliced)",
+      "Coconut Oil (For frying)"
+    ],
+    "steps": [
+      "Add the chickpea flour (or all purpose flour if you're using) to a shallow bowl and add just a dash of soy milk and mix in until smooth. Then add the rest of the soy milk.",
+      "Add the nutritional yeast, maple syrup, vanilla extract, cinnamon and salt and whisk together.",
+      "Heat up a frying pan with some coconut oil.",
+      "Soak a slice of bread in the batter for a few seconds on each side, and then place onto the frying pan to cook until browned on each side.",
+      "Serve as is or drizzled with syrup or jam and topped with vegan whipped cream."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy",
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "soy milk",
+        "to": "oat milk",
+        "removes": "soy"
+      },
+      {
+        "from": "coconut oil",
+        "to": "refined avocado oil or vegan butter",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "french-french-onion-soup",
@@ -414,7 +625,7 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
-      "main"
+      "starter"
     ],
     "url": "https://www.noracooks.com/vegan-french-onion-soup/",
     "urlStatus": "verified",
@@ -441,7 +652,51 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "french · onion · soup",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "6 large yellow onions",
+      "4 tablespoons olive oil",
+      "1 teaspoon granulated sugar",
+      "1 teaspoon salt",
+      "5 cloves garlic (minced)",
+      "3 tablespoons all purpose flour",
+      "1/2 cup dry white wine (or broth)",
+      "6 cups vegetable broth",
+      "1 tablespoon fresh thyme leaves (or 1 tsp dried)",
+      "1 bay leaf",
+      "1/2 teaspoon ground black pepper",
+      "additional salt, to taste",
+      "1 baguette (sliced)",
+      "1/2 cup raw cashews",
+      "1 1/2 cups water",
+      "2 tablespoons lemon juice",
+      "1 teaspoon salt",
+      "4 tablespoons tapioca starch"
+    ],
+    "steps": [
+      "Caramelize the onions. Peel and thinly slice the onions. In a large pot, heat 4 tablespoons of olive oil over medium heat. Add the onions and toss to coat in the oil. Cook, stirring often, for 15 minutes until they have softened. Increase the heat to medium-high and cook, stirring every few minutes, until the onions start to brown, about 30 minutes. Sprinkle with sugar and salt and cook for another 10-15 minutes until caramelized.",
+      "Make the rest of the soup. Add the garlic and sauté for 1-2 more minutes, then stir in the flour. Pour in the wine to deglaze the pan. Use a wooden spoon or spatula to scrape any browned bits off the bottom of the pan. Add the broth, thyme leaves, bay leaf and black pepper. Stir well and bring to a boil, then reduce the heat and simmer for 15 minutes. Discard the bay leaf and add salt, to taste.",
+      "Toast the bread. Preheat the oven to 400 degrees F and slice the baguette. Line a large baking sheet with parchment paper and add the baguette. Place in the oven to toast for about 5-7 minutes, until the bread is a bit golden. Remove and set aside.",
+      "Prepare stretchy cheese topping. Soak the cashews in about 1 cup of boiling hot water for at least 5 minutes. Drain the cashews and add to a blender along with the fresh 1 1/2 cups water, lemon juice, salt and tapioca starch. Blend well. Pour into a small pot/pan and bring the heat to medium-high. Stir constantly until it thickens and then becomes a stretchy, gooey mass of cheese. Remove from heat immediately.",
+      "Finish the soup. Spoon a big scoop of cheese on each toasted baguette, on the parchment lined pan. Place the pan in the oven and broil for just a few minutes. To serve, ladle soup into bowls and transfer 1 or 2 cheesy toasts on top of each bowl. Alternatively, use oven-safe bowls and ladle the soup into the bowls, add a toast and a scoop of cheese, then place in the oven on a baking sheet and broil for a few minutes."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten",
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "baguette",
+        "to": "gluten-free baguette (Canyon Bakehouse)",
+        "removes": "gluten"
+      },
+      {
+        "from": "cashews",
+        "to": "soaked sunflower seeds",
+        "removes": "nuts"
+      }
+    ]
   },
   {
     "id": "french-lentil-salad",
@@ -454,7 +709,7 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
-      "main"
+      "starter"
     ],
     "url": "https://cooking.nytimes.com/recipes/1019042-french-lentil-salad",
     "urlStatus": "verified",
@@ -478,7 +733,36 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "lentil · salad",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "1 ½ cups (300 g) French du Puy lentils (or green lentils), rinsed",
+      "2 medium carrots, finely diced",
+      "2 stalks celery, finely diced",
+      "2 medium shallots, finely minced",
+      "2 cloves garlic, minced",
+      "1 bouquet garni (bay leaf, thyme, parsley stems)",
+      "3 tablespoons extra virgin olive oil",
+      "2 tablespoons Dijon mustard",
+      "2 tablespoons red wine vinegar",
+      "1 teaspoon fresh thyme leaves",
+      "3 tablespoons flat-leaf parsley, finely chopped",
+      "salt and freshly ground black pepper to taste"
+    ],
+    "steps": [
+      "Make the sauce: Heat oil in a large, heavy bottomed pot over medium heat. Add sausage, if using, and cook, stirring occasionally, until it’s starting to brown but not yet crisp, about 5 minutes.",
+      "Add onion and garlic and season with salt and pepper. Cook, stirring occasionally, until the onion is totally softened and translucent (without letting it brown), 8 to 10 minutes. Add tomato paste and continue to cook, stirring until the tomato paste has turned a deeper brick red color, tinting the oil and onions a fiery orange color, about 2 minutes.",
+      "Using your hands, crush the whole tomatoes into smaller, bite-size pieces and add them and the crushed tomatoes, stirring to scrape up any bits from the bottom of the pot. Fill one of the tomato cans halfway with water and add it to the pot. Season with salt and pepper. Bring to a simmer and cook, stirring occasionally, until the tomato sauce has thickened and flavors have come together, 20 to 30 minutes.",
+      "Make the lasagna: Heat oven to 375 degrees and set a large pot of salted water to boil.",
+      "Set aside 1 cup mozzarella. In a medium bowl, combine remaining mozzarella, ricotta, 1 cup Parmesan and cream; season with salt and pepper and set aside.",
+      "Cook lasagna noodles in the large pot of salted boiling water until just softened (before they are even al dente), about 4 minutes. Drain and separate any noodles that are trying to stick together, slicking them with a bit of olive oil to prevent them from sticking further.",
+      "Spoon a bit of sauce on the bottom of a 3-quart baking dish and top with a layer of noodles, avoiding any heavy overlap.",
+      "Top with about 1 ¼ cups of sauce, and dollop ¼ of the cheese mixture over. Top with another layer of noodles and repeat three more times, ending with the last of the noodles (depending on size of the noodle/shape of the baking dish, you may have a few extra noodles) and the last of the sauce. Top with reserved 1 cup mozzarella and more Parmesan, if you like.",
+      "Cover loosely with aluminum foil and place baking dish on a foil-lined rimmed baking sheet (to prevent any overflow from burning on the bottom of your oven).",
+      "Bake until pasta is completely tender and cooked through and sauce is bubbling up around the edges, 30 to 40 minutes. Remove foil and increase temperature to 450 degrees. Continue to bake until lasagna is golden brown on top with frilly, crispy edges and corners, another 15 to 20 minutes. Let cool slightly before eating."
+    ],
+    "ingredientSource": "authored",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "french-vegan-coq-au-vin",
@@ -491,7 +775,8 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
-      "main"
+      "main",
+      "showstopper"
     ],
     "url": "https://www.connoisseurusveg.com/vegan-coq-au-vin/",
     "urlStatus": "verified",
@@ -534,7 +819,50 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "coq · vin",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "3 tablespoons olive oil, (divided)",
+      "8 ounces cremini mushrooms, (cleaned and sliced)",
+      "16 ounces seitan ((cut into large chunks))",
+      "1 small onion, (sliced)",
+      "1 cup fresh pearl onions, (peeled)",
+      "2 cups sliced carrots ((about 3 medium carrots))",
+      "3 garlic cloves, (minced)",
+      "2 tablespoons all-purpose flour",
+      "1 1/2 cups dry red wine",
+      "1/4 cup brandy",
+      "1 cup vegetable broth",
+      "2 tablespoons tomato paste",
+      "1 tablespoon balsamic vinegar",
+      "1 teaspoon poultry seasoning",
+      "1/2 teaspoon liquid smoke",
+      "Salt & pepper, (to taste)",
+      "Mashed potatoes, pasta or polenta, (for serving)"
+    ],
+    "steps": [
+      "Coat the bottom of a large nonstick skillet with 2 tablespoons of olive oil and place it over medium heat.",
+      "Once the oil is hot, add the mushrooms in an even layer. Cook them for about 10 minutes, flipping once, until browned and tender.",
+      "Remove the mushrooms from the skillet and transfer them to a plate.",
+      "Add another dash of oil to the skillet if it seems dry, then add the seitan pieces. Cook them for about 6 minutes, flipping occasionally, until lightly browned.",
+      "While the seitan and/or mushrooms cook, coat the bottom of a large pot with the remaining oil and place it over medium heat.",
+      "Add the onion, pearl onions, and carrots. Sweat the veggies for about 10 minutes, stirring occasionally, until the onions soften up a bit.",
+      "Stir in the garlic and flour. Continue stirring and cooking everything for about 1 minute, until the flour evenly coats the veggies and the garlic is very fragrant.",
+      "Stir in the cooked mushrooms and seitan, along with the wine, brandy, broth, tomato paste, balsamic vinegar, poultry seasoning, and liquid smoke.",
+      "Bring the stew to a boil, lower the heat and let the stew simmer for about 30 minutes, until the sauce is thick and the veggies are tender.",
+      "Remove the pot from heat and season the stew with salt and pepper to taste.",
+      "Serve over mashed potatoes, pasta, or polenta."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "seitan",
+        "to": "king trumpet mushrooms, scored and seared",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "french-tomato-tarte-tatin",
@@ -547,6 +875,7 @@
     "cuisine": "french",
     "cuisineName": "French",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://thegreedyvegan.com/tomato-tarte-tatin/",
@@ -573,7 +902,39 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "tomato · tarte · tatin",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "500 g tomatoes (heirloom and cherry tomato mix)",
+      "300 g puff pastry (in a block or already rolled out)",
+      "1 red onion (finely sliced)",
+      "2 tbsp olive oil",
+      "1/2 tsp pepper (ground)",
+      "1 pinch salt",
+      "1 tbsp vegan butter (or coconut oil)",
+      "3 cloves garlic (crushed and peeled)",
+      "2 tsp muscovado sugar",
+      "2 tsp balsamic vinegar",
+      "1 tsp thyme",
+      "basil leaves as garnish (optional)"
+    ],
+    "steps": [
+      "Preheat the oven to 200˚C (390˚F). Half the tomatoes and scoop out the seeds into a bowl. You'll be surprised how much water there actually is in them. Mix the halved and deseeded tomatoes with the thinly sliced onion, olive oil, salt and pepper.",
+      "Spread the mix onto a baking tray lined with baking paper. Roast for about 20 minutes until the tomatoes have dried out slightly and the onions are cooked through.",
+      "Add the vegan butter or coconut oil to an ovenproof pan of about 20-25cm (8-10inch). I love to use cast iron pans, so it's a natural choice. It gives the tarte-tatin and nice structure, and you do not have to worry about putting it into the oven. Melt the butter, add the crushed garlic to it and fry at medium heat for about 2 minutes. Make sure the heat is not too high, you want the garlic to soften, not burn. Add the sugar and balsamic vinegar and stir. Let the mixture lightly caramelise for another minute.",
+      "Pour the roasted onion and tomatoes into the pan and push them down while leaving a little bit of space to the rim of the pan. Roll out the puff pastry sheet on a floured surface if you bought it in a block - I buy mine already rolled out. Cut out a circle slightly larger than the pan. Cover the tomatoes and tuck the corners carefully under. Pierce the puff pastry with a fork and place the pan into the oven. Increase the heat to 200˚C (440˚F) and bake for 20-25 minutes until golden brown.",
+      "Take it out of the oven once it is golden. Let the tomato tarte-tatin rest for about 10-15 minutes. Run a knife around the edge of the puff pastry, cover it with a plate and flip it over. Remove the pan and serve immediately warm or as a delightful snack when it cooled down."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut oil",
+        "to": "refined avocado oil or vegan butter",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "french-vegan-cr-me-br-l-e-gauthier",
@@ -639,7 +1000,30 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "crème brûlée (sans cruauté)",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "500 g (2 cups + 2 tbsp) soya milk",
+      "500 g (2 cups + 2 tbsp) plant cream (Flora or Oatly single)",
+      "140 g (¾ cup) caster sugar",
+      "40 g (3 tablespoons) cornflour (cornstarch)",
+      "40 g (3 tablespoons) vegan custard powder",
+      "1 vanilla pod, split and scraped",
+      "1 pinch fine salt",
+      "2 tablespoons vegan butter",
+      "60 g (¼ cup) demerara sugar (for brûlée topping)",
+      "20 g (1½ tablespoons) caster sugar (for brûlée topping)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "soy milk",
+        "to": "oat milk",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "french-vegan-iles-flottantes-floating-islands-gauthier",
@@ -705,7 +1089,34 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "iles · flottantes",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "300 g (1¼ cups) aquafaba (liquid from canned chickpeas), reduced to 100 g",
+      "100 g (½ cup) caster sugar",
+      "70 g (½ cup + 2 tbsp) icing sugar",
+      "15 g (1 tablespoon) cornflour (cornstarch)",
+      "1 teaspoon white wine vinegar",
+      "1 pinch fine salt",
+      "200 g (¾ cup) Flora plant cream",
+      "200 g (¾ cup) oat milk",
+      "100 g (⅓ cup + 1 tbsp) soya milk",
+      "70 g (⅓ cup) caster sugar (for crème anglaise)",
+      "20 g (1½ tablespoons) cornflour (for crème anglaise)",
+      "30 g (2 tablespoons) vegan custard powder",
+      "1 vanilla pod, split and scraped",
+      "100 g (½ cup) caster sugar (for caramel domes)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "soy milk",
+        "to": "oat milk",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "french-vegan-cr-me-caramel-gauthier",
@@ -776,6 +1187,34 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "caramel",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "120 g (⅔ cup) caster sugar (for caramel)",
+      "3 tablespoons water",
+      "415 ml (1¾ cups) soya milk",
+      "400 ml (1¾ cups) oat milk",
+      "110 g (½ cup + 1 tbsp) caster sugar (for custard)",
+      "57 g (4 tablespoons) cornflour (cornstarch)",
+      "23 g (2 tablespoons) vegan custard powder",
+      "70 g (5 tablespoons) refined coconut oil (neutral)",
+      "1 tablespoon vanilla extract"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "soy",
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "soy milk",
+        "to": "oat milk",
+        "removes": "soy"
+      },
+      {
+        "from": "coconut oil",
+        "to": "refined avocado oil or vegan butter",
+        "removes": "coconut"
+      }
+    ]
   }
 ]

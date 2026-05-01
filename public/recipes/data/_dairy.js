@@ -1,10 +1,10 @@
-// Auto-generated wrapper around _dairy.json
+// Auto-generated from Nectar Plant-Based Dairy Study 2026 — do not edit by hand.
 window.APB_DAIRY = {
-  "source": "Nectar Plant-Based Dairy Study 2024",
+  "source": "Nectar Plant-Based Dairy Study 2026",
   "sourceUrl": "https://www.mynectar.org/",
   "studyDescription": "Blind taste tests across 10 dairy categories with 2,183 omnivore and flexitarian consumers, conducted with Palate Insights.",
   "headline": "Taste parity is becoming a reality across multiple dairy categories — Califia Farms Oat Barista Blend reached parity with Horizon Whole Milk in hot latte.",
-  "asOf": "2024",
+  "asOf": "2026",
   "categories": [
     {
       "id": "barista-milk",
@@ -16,9 +16,18 @@ window.APB_DAIRY = {
       "blurb": "The category that broke through. Oat baristas hold foam, sweeten lattes, and now match dairy in blind tests.",
       "leader": "Califia Farms Oat Barista Blend",
       "picks": [
-        { "brand": "Califia Farms Oat Barista Blend", "note": "Reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test." },
-        { "brand": "Oatly Barista Edition", "note": "Industry standard in third-wave cafés; steams to silk." },
-        { "brand": "Pacific Barista Series Soy", "note": "Higher protein for protein-forward menus." }
+        {
+          "brand": "Califia Farms Oat Barista Blend",
+          "note": "Reached taste parity with Horizon Whole Milk in Nectar's blind hot-latte test."
+        },
+        {
+          "brand": "Oatly Barista Edition",
+          "note": "Industry standard in third-wave cafés; steams to silk."
+        },
+        {
+          "brand": "Pacific Barista Series Soy",
+          "note": "Higher protein for protein-forward menus."
+        }
       ]
     },
     {
@@ -31,9 +40,18 @@ window.APB_DAIRY = {
       "blurb": "The best-tasting category overall — and 15× more market share than cheese, the worst.",
       "leader": "Top performers cluster within 0.4pts of dairy",
       "picks": [
-        { "brand": "Silk Original Soy", "note": "Closest macros to whole milk; 8g protein per cup." },
-        { "brand": "Oatly Original", "note": "Best body for cold cereal and baking." },
-        { "brand": "Almond Breeze Original", "note": "Lowest cost per gallon at scale." }
+        {
+          "brand": "Silk Original Soy",
+          "note": "Closest macros to whole milk; 8g protein per cup."
+        },
+        {
+          "brand": "Oatly Original",
+          "note": "Best body for cold cereal and baking."
+        },
+        {
+          "brand": "Almond Breeze Original",
+          "note": "Lowest cost per gallon at scale."
+        }
       ]
     },
     {
@@ -46,9 +64,18 @@ window.APB_DAIRY = {
       "blurb": "Cultured plant butters now hit dairy notes for the table — sauté and laminating still need a recipe-side calibration.",
       "leader": "Miyoko's European-Style Cultured",
       "picks": [
-        { "brand": "Miyoko's European-Style Cultured Vegan Butter", "note": "Cultured cashew base; closest to high-end European." },
-        { "brand": "Country Crock Plant Butter (Olive Oil)", "note": "Workhorse foodservice block; ~$3.50/lb wholesale." },
-        { "brand": "Earth Balance Buttery Sticks", "note": "Pastry-friendly water content for laminating." }
+        {
+          "brand": "Miyoko's European-Style Cultured Vegan Butter",
+          "note": "Cultured cashew base; closest to high-end European."
+        },
+        {
+          "brand": "Country Crock Plant Butter (Olive Oil)",
+          "note": "Workhorse foodservice block; ~$3.50/lb wholesale."
+        },
+        {
+          "brand": "Earth Balance Buttery Sticks",
+          "note": "Pastry-friendly water content for laminating."
+        }
       ]
     },
     {
@@ -61,9 +88,18 @@ window.APB_DAIRY = {
       "blurb": "Sliced cheddar has caught up enough that grilled-cheese melts and burger toppers work without apology.",
       "leader": "Violife Just Like Mature Cheddar",
       "picks": [
-        { "brand": "Violife Just Like Mature Cheddar Block", "note": "Best slice for melts; coconut oil base." },
-        { "brand": "Daiya Cheddar Style Slices", "note": "Foodservice mainstay; melts predictably on the line." },
-        { "brand": "Follow Your Heart Sharp Cheddar Slices", "note": "Sharper finish for cold sandwiches." }
+        {
+          "brand": "Violife Just Like Mature Cheddar Block",
+          "note": "Best slice for melts; coconut oil base."
+        },
+        {
+          "brand": "Daiya Cheddar Style Slices",
+          "note": "Foodservice mainstay; melts predictably on the line."
+        },
+        {
+          "brand": "Follow Your Heart Sharp Cheddar Slices",
+          "note": "Sharper finish for cold sandwiches."
+        }
       ]
     },
     {
@@ -76,9 +112,18 @@ window.APB_DAIRY = {
       "blurb": "The toughest category — no TASTY winners. Pizzas need a binder + char strategy to hide the gap.",
       "leader": "Still developing",
       "picks": [
-        { "brand": "Miyoko's Pourable Pizza Mozzarella", "note": "Ladle-and-bake; best stretch in the category to date." },
-        { "brand": "Violife Just Like Mozzarella Shreds", "note": "Workhorse shred for back-of-house pizza programs." },
-        { "brand": "Numu Pizza Mozzarella", "note": "Newer entrant focused on pizzeria performance." }
+        {
+          "brand": "Miyoko's Pourable Pizza Mozzarella",
+          "note": "Ladle-and-bake; best stretch in the category to date."
+        },
+        {
+          "brand": "Violife Just Like Mozzarella Shreds",
+          "note": "Workhorse shred for back-of-house pizza programs."
+        },
+        {
+          "brand": "Numu Pizza Mozzarella",
+          "note": "Newer entrant focused on pizzeria performance."
+        }
       ]
     },
     {
@@ -91,9 +136,18 @@ window.APB_DAIRY = {
       "blurb": "Bagel-shop ready. Cashew and almond bases hold their shape and tang within striking distance of dairy.",
       "leader": "Kite Hill Plain",
       "picks": [
-        { "brand": "Kite Hill Plain Cream Cheese", "note": "Almond milk base; most natural tang." },
-        { "brand": "Tofutti Better Than Cream Cheese", "note": "Long-standing foodservice option; soy-based." },
-        { "brand": "Miyoko's Classic Plain Cream Cheese", "note": "Cultured cashew base; spreads cold." }
+        {
+          "brand": "Kite Hill Plain Cream Cheese",
+          "note": "Almond milk base; most natural tang."
+        },
+        {
+          "brand": "Tofutti Better Than Cream Cheese",
+          "note": "Long-standing foodservice option; soy-based."
+        },
+        {
+          "brand": "Miyoko's Classic Plain Cream Cheese",
+          "note": "Cultured cashew base; spreads cold."
+        }
       ]
     },
     {
@@ -106,9 +160,18 @@ window.APB_DAIRY = {
       "blurb": "One of the most competitive categories — leaders within 0.2pts of dairy.",
       "leader": "Califia Farms Original Better Half",
       "picks": [
-        { "brand": "Califia Farms Better Half Original", "note": "Half-and-half body; the category's headline." },
-        { "brand": "Silk Original Creamer", "note": "Workhorse foodservice creamer." },
-        { "brand": "Nutpods Original Unsweetened", "note": "Unsweetened option for chefs cutting added sugar." }
+        {
+          "brand": "Califia Farms Better Half Original",
+          "note": "Half-and-half body; the category's headline."
+        },
+        {
+          "brand": "Silk Original Creamer",
+          "note": "Workhorse foodservice creamer."
+        },
+        {
+          "brand": "Nutpods Original Unsweetened",
+          "note": "Unsweetened option for chefs cutting added sugar."
+        }
       ]
     },
     {
@@ -121,9 +184,18 @@ window.APB_DAIRY = {
       "blurb": "Drop-in for taco bars and bake stations. Cashew bases give you the cleanest tang.",
       "leader": "Forager Project Cashewmilk Sour Cream",
       "picks": [
-        { "brand": "Forager Project Cashewmilk Sour Cream", "note": "Cleanest tang; line-ready out of the tub." },
-        { "brand": "Tofutti Better Than Sour Cream", "note": "Classic foodservice option; wide distribution." },
-        { "brand": "Kite Hill Sour Cream", "note": "Almond base; thicker body for dolloping." }
+        {
+          "brand": "Forager Project Cashewmilk Sour Cream",
+          "note": "Cleanest tang; line-ready out of the tub."
+        },
+        {
+          "brand": "Tofutti Better Than Sour Cream",
+          "note": "Classic foodservice option; wide distribution."
+        },
+        {
+          "brand": "Kite Hill Sour Cream",
+          "note": "Almond base; thicker body for dolloping."
+        }
       ]
     },
     {
@@ -136,9 +208,18 @@ window.APB_DAIRY = {
       "blurb": "Plain yogurts have arrived. Greek-style cashew and coconut bases pull through tang and thickness for parfaits and sauces.",
       "leader": "Chobani Plant-Based",
       "picks": [
-        { "brand": "Chobani Plant-Based Yogurt", "note": "Brand parity is the kicker — same name, same shelf, same expectations." },
-        { "brand": "Forager Project Cashewmilk Yogurt", "note": "Plain unsweetened tang; sauces and dips." },
-        { "brand": "Kite Hill Greek-Style Plain", "note": "Thickest body for parfaits and savory swaps." }
+        {
+          "brand": "Chobani Plant-Based Yogurt",
+          "note": "Brand parity is the kicker — same name, same shelf, same expectations."
+        },
+        {
+          "brand": "Forager Project Cashewmilk Yogurt",
+          "note": "Plain unsweetened tang; sauces and dips."
+        },
+        {
+          "brand": "Kite Hill Greek-Style Plain",
+          "note": "Thickest body for parfaits and savory swaps."
+        }
       ]
     },
     {
@@ -151,21 +232,31 @@ window.APB_DAIRY = {
       "blurb": "Premium oat and cashew pints now scoop and finish like dairy — the dessert tier is no longer a compromise.",
       "leader": "Van Leeuwen Vegan Pints",
       "picks": [
-        { "brand": "Van Leeuwen Vegan Pints", "note": "Premium dessert tier; oat or cashew base depending on flavor." },
-        { "brand": "Oatly Frozen Dessert", "note": "Mid-priced; consistent across the menu." },
-        { "brand": "So Delicious Cashewmilk Ice Cream", "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel." }
+        {
+          "brand": "Van Leeuwen Vegan Pints",
+          "note": "Premium dessert tier; oat or cashew base depending on flavor."
+        },
+        {
+          "brand": "Oatly Frozen Dessert",
+          "note": "Mid-priced; consistent across the menu."
+        },
+        {
+          "brand": "So Delicious Cashewmilk Ice Cream",
+          "note": "Wide foodservice availability; cashewmilk gives the cleanest dairy mouthfeel."
+        }
       ]
     }
   ],
   "summary": {
     "totalCategories": 10,
     "tastyAwardCategories": 9,
-    "noTastyAward": ["mozzarella"],
+    "noTastyAward": [
+      "mozzarella"
+    ],
     "headlineWinner": {
       "category": "Barista milk",
       "brand": "Califia Farms Oat Barista Blend",
       "claim": "Reached taste parity with Horizon Whole Milk in blind hot-latte testing."
     }
   }
-}
-;
+};

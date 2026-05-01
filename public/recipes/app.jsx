@@ -39,6 +39,9 @@ function App() {
   const [courseFilter, setCourseFilter] = useState('all');
   const [sourcingFilter, setSourcingFilter] = useState('all');
   const [tagFilters, setTagFilters] = useState([]);
+  // Dietary filters — each entry is an allergen id (gluten/nuts/soy/coconut).
+  // A recipe is hidden if any of its r.allergens matches a selected diet filter.
+  const [dietFilters, setDietFilters] = useState([]);
 
   // ---------- Saved + menu state (persisted) ----------
   const stored = loadStoredMenu();
@@ -80,6 +83,7 @@ function App() {
       if (sourcingFilter === 'in-house' && r.sourcingTier !== 'in-house') return false;
       if (sourcingFilter === 'branded' && r.sourcingTier === 'in-house') return false;
       if (tagFilters.length > 0 && !tagFilters.every(t => (r.tags || []).includes(t))) return false;
+      if (dietFilters.length > 0 && dietFilters.some(d => (r.allergens || []).includes(d))) return false;
       if (q) {
         const hay = `${r.title} ${r.cuisineName} ${r.description || ''}`.toLowerCase();
         if (!hay.includes(q)) return false;
@@ -102,7 +106,7 @@ function App() {
       });
     }
     return list;
-  }, [recipes, activeCuisine, sortBy, search, courseFilter, sourcingFilter, tagFilters]);
+  }, [recipes, activeCuisine, sortBy, search, courseFilter, sourcingFilter, tagFilters, dietFilters]);
 
   // ---------- Featured (Pick of the week) — first showstopper, deterministic ----------
   const featured = useMemo(() => {
@@ -159,6 +163,10 @@ function App() {
     setTagFilters(prev => prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]);
   }
 
+  function toggleDiet(d) {
+    setDietFilters(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
+  }
+
   // ---------- Render gating ----------
   if (!index || recipes.length === 0) {
     return (
@@ -210,6 +218,8 @@ function App() {
               onSourcingChange={setSourcingFilter}
               activeTags={tagFilters}
               onTagToggle={toggleTag}
+              activeDiets={dietFilters}
+              onDietToggle={toggleDiet}
             />
           </div>
           <window.CuisineBar active={activeCuisine} onChange={setActiveCuisine} counts={counts} />

@@ -36,7 +36,78 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "bibimbap",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "½ lbs daikon (250g)",
+      "2.5 tbsp cane sugar (33g)",
+      "2.5 tbsp rice vinegar (37ml)",
+      "2.5 tbsp water (37ml)",
+      "½ tsp salt",
+      "½ tbsp gochugaru (7g)",
+      "1 medium zucchini (approx. 200g)",
+      "1 garlic clove, minced (3g)",
+      "½ tsp toasted sesame oil (3ml)",
+      "salt and pepper to taste",
+      "1 medium carrot (120g)",
+      "salt and pepper to taste",
+      "1 bunch of spinach (approx. 225g)",
+      "1 garlic clove, minced (3g)",
+      "½ tsp toasted sesame oil (3ml)",
+      "1 tsp toasted sesame seeds (3g)",
+      "salt and pepper to taste",
+      "4 dried shiitake mushrooms, rehydrated (32g)",
+      "Salt and pepper to taste",
+      "1/2 english cucumber (150g)",
+      "½ tsp salt",
+      "1 garlic clove, minced (3g)",
+      "1 tsp toasted sesame oil (5ml)",
+      "½ tsp toasted sesame seeds (2g)",
+      "1/2 lbs soy bean sprouts (225g // or mung bean sprouts)",
+      "½ scallion, chopped (6g)",
+      "1 garlic clove, minced (3g)",
+      "½ tsp toasted sesame oil (3ml)",
+      "salt and pepper to taste",
+      "2 tbsp gochujang (40g)",
+      "1 garlic clove, minced (3g)",
+      "¼ apple or pear, grated or pureed (45g, optional)",
+      "2-3 tsp toasted sesame oil, to taste (10g)",
+      "1 1/2 tsp soy sauce (22g // tamari for gluten free)",
+      "2-3 tsp cane sugar, to taste (10-14g)",
+      "2 tsp rice vinegar (10ml)",
+      "1 tbsp water (15ml)",
+      "1/4 cup soy sauce (60ml // tamari for gluten free)",
+      "2 tsp toasted sesame oil (10ml)",
+      "1-2 tbsp oligo syrup (30g // or sugar)",
+      "1 garlic clove, minced (5g)",
+      "1/2 scallion, sliced (6g)",
+      "1/2 tbsp toasted sesame seeds (5g)",
+      "2 cups cooked short grain rice (500g)",
+      "2 tsp toasted sesame seeds (10g)",
+      "2 servings fresh soft, traditional or medium firm tofu, sliced* (250g, or protein of choice)",
+      "½ cup vegan kimchi (100g, optional)"
+    ],
+    "steps": [
+      "Slice daikon into matchsticks. Add all the ingredients to a bowl and let it rest while cooking remaining vegetables to allow them to pickle.",
+      "Slice zucchini into matchsticks or into semi-circles. Sprinkle some salt over and rest for 10 minutes. Squeeze excess liquid and pat dry. Over medium high heat, sautee the zucchini with garlic for 1-2 minutes (do not overcook or it will be soggy). Remove from heat, add to a bowl and toss in sesame oil. Add salt to taste.",
+      "Slice carrots into matchsticks or semi-circles. Over medium high heat, sautee for 1-2 minute or until softened but still have a snappy texture. Remove from heat, add to a bowl and toss with salt and pepper to taste.",
+      "If using dried shiitake mushrooms, soak in hot water for 15 minutes or until softened. Over medium high heat, sautee for 1-2 minutes. Season with salt and pepper to taste.",
+      "Thinly slice cucumber into rounds or semi-circles and place into a bowl. Massage some salt into the cucumbers and rest for 10-15 minutes (until they release water). Drain the water and pat them dry. Toss with garlic, sesame seeds and sesame oil. Add salt to taste.",
+      "Bring a pot of water to a boil and then cook the bean sprouts for 1-2 minutes, or until lightly softened (but still remains some texture). Drain under cold water and then strain. Toss in garlic, scallion, sesame seeds, sesame oil and season with salt and pepper to taste.",
+      "Add all the ingredients to a bowl and whisk to combine. Taste and adjust to your liking.",
+      "Add 1 cup of rice to a bowl. Arrange all the vegetable side dishes on top. Add the tofu, kimchi and bibimbap sauce. Finish with sesame seeds and a drizzle of sesame oil, if desired. Serve and enjoy!",
+      "Brush some sesame oil inside the dolsot. Add rice to the bowl and then arrange all the vegetables on top along with the tofu and kimchi. Set the gas stove over medium high heat and let it cook until you begin to hear cracking sounds. Remove from heat, add sauce on top and garnish with sesame seeds. Serve and enjoy!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-japchae-okonomi-kitchen",
@@ -76,7 +147,41 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "japchae",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 package sweet potato noodles (250g)",
+      "1 package smoked firm tofu (300g)",
+      "1 medium zucchini (200g)",
+      "1 small carrot (130g)",
+      "1 medium onion (150g)",
+      "3 scallion stalks",
+      "3 garlic cloves",
+      "6 shiitake mushrooms, rehydrated",
+      "large handful of spinach",
+      "sesame seeds",
+      "5 tbsp soy sauce",
+      "2 tbsp sugar",
+      "1 tbsp sesame oil"
+    ],
+    "steps": [
+      "Bring a large pot of water to a boil and cook sweet potato noodles following the directions on the package. Once cooked, drain and rinse with cold water to stop the cooking process. Add 1 tsp of sesame oil to coat the noodles, and then use scissors to cut the noodles (around 3-4 times). In the same pot, add in the spinach and blanch for 30 seconds. Rinse with cold water and squeeze the excess liquid out using a towel. Chop the bundled up spinach in half.",
+      "Slice all the vegetables into match stick sized pieces. They should all be relatively the same size. Cut the tofu into thin rectangles.",
+      "Put all the sauce ingredients into a small bowl and stir.",
+      "In a large wok, over medium high heat fry the smoked tofu with a little bit of sesame oil just until lightly browned on each side. Transfer into another bowl and set aside.",
+      "In the same wok, fry onions and garlic for 1 minute. Then add in the shiitake mushrooms and carrot and fry for another minute. Add in the zucchini and scallions and fry for one more minute. Slightly turn down the heat and add in the noodles, spinach tofu and sauce. Toss and cook until all the sauce is all soaked up.",
+      "Serve and garnish with toasted sesame seeds."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-tteokbokki-the-korean-vegan",
@@ -89,6 +194,7 @@
     "cuisine": "korean",
     "cuisineName": "Korean",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://thekoreanvegan.com/korean-fire-cakes-ddukbokee/",
@@ -115,7 +221,35 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "tteokbokki",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "4 2 x 2-inch pieces dashima",
+      "2 scallions, whites and greens separated and chopped",
+      "1 tbsp toasted sesame oil, plus more for garnish",
+      "16 ounces Korean rice cakes (cylindrical)",
+      "1 tsp cracked black pepper, plus more for garnish",
+      "2 tbsp gochugaru",
+      "1/4 cup gochujang",
+      "2 tbsp brown rice syrup",
+      "2 tbsp toasted sesame seeds"
+    ],
+    "steps": [
+      "Add dashima and scallion whites to 2 1/2 cups of water in a deep pan or pot and bring to a boil.",
+      "While water is coming to a boil, add sesame oil, black pepper, gochugaru, and 2 tablespoons of gochujang to the rice cakes (they should be thawed if you're using frozen). Stir until the rice cakes are evenly coated and set aside.",
+      "When the water has come to a boil, add your rice cakes to the water, along with remaining gochujang. Cook for about 5 minutes, until the rice cakes are tender and the sauce has reduced to a thick stew consistency. Add your maple syrup and continue stirring until incorporated.",
+      "Garnish with scallion greens, sesame seeds, black pepper, and a drizzle of sesame oil."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "gochujang",
+        "to": "soy-free gochujang (Mother-in-Law's soy-free variety)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-kimchi-jjigae-the-korean-vegan",
@@ -155,7 +289,44 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "kimchi · jjigae",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 tbsp sesame oil ((plus more for garnish))",
+      "3 large shiitake mushrooms, sliced",
+      "1/4 cup diced onion",
+      "3 scallion whites, chopped",
+      "2 cloves garlic, minced",
+      "1/2 cup diced potato",
+      "2 cups aged kimchi, cut into bite-sized pieces ((not diced))",
+      "2 tbsp gochugaru",
+      "2 tbsp gochujang",
+      "2 tbsp soup soy sauce",
+      "1/2 cup kimchi liquid",
+      "1/2 tsp cracked black pepper",
+      "2 cups vegetable broth",
+      "15 grams dashima",
+      "16 ounces medium firm tofu, sliced intro 1/2-inch thick slabs",
+      "1 3/4 cup cooked black beans",
+      "3 scallion greens, chopped ((for garnish))",
+      "1 ounce enoki mushroom"
+    ],
+    "steps": [
+      "To a large ddukbaeggi (clay Korean pot) or medium Dutch oven over medium heat, add sesame oil (or vegetable broth) and gochugaru. Cook for about 1 minute until gochugaru starts to froth. Add shiitake mushrooms and stir until they are coated with oil and gochugaru. Cook for about 2 minutes, until mushrooms start to brown.",
+      "Add diced onion, scallion whites, and garlic until garlic softens and onions begin to throw translucent (about 2 minutes). Make sure to stir regularly, so that the gochugaru doesn't burn.",
+      "Next, add your potatoes, kimchi, and gochujang. Stir all the contents of the pot together until they are all evenly coated. Deglaze your pot with kimchi liquid and soy sauce, stirring so that everything is well-incorporated. Add cracked black pepper. Then, add your vegetable broth (or water). Drop in the dashima and increase the heat to a medium-high until the pot comes to a boil. Then reduce heat to low and allow the pot to simmer for about 10 minutes, until potatoes are almost cooked.",
+      "Add your sliced tofu, black beans, and enoki mushrooms. Cook for an additional 3 minutes, until potatoes are fully cooked. Garnish with scallion greens, an extra drizzle of sesame oil (optional), and remove from heat. Serve with bowl of rice."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-korean-bbq-tofu-the-korean-vegan",
@@ -211,7 +382,32 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "korean · bbq · tofu",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "14 oz (400 g) extra-firm tofu, pressed and sliced into planks",
+      "3 tablespoons soy sauce",
+      "2 tablespoons gochujang",
+      "2 tablespoons sesame oil",
+      "2 tablespoons maple syrup or brown sugar",
+      "4 cloves garlic, minced",
+      "1 teaspoon grated fresh ginger",
+      "1 tablespoon rice vinegar",
+      "1 tablespoon neutral oil (for grilling/pan-frying)",
+      "2 teaspoons sesame seeds (for garnish)",
+      "2 green onions, thinly sliced (for garnish)",
+      "steamed white rice (for serving)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-sundubu-jjigae-the-korean-vegan",
@@ -251,7 +447,32 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "sundubu · jjigae",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 lb (450 g) soft silken tofu (sundubu), broken into large pieces",
+      "4 oz (115 g) shiitake or oyster mushrooms, sliced",
+      "1 small zucchini, diced",
+      "3 cloves garlic, minced",
+      "1 tablespoon gochugaru (Korean red chili flakes)",
+      "1 tablespoon gochujang",
+      "1 tablespoon soy sauce",
+      "1 tablespoon sesame oil",
+      "4 cups (960 ml) dashima (kombu) or vegetable broth",
+      "1 teaspoon salt (or to taste)",
+      "2 green onions, sliced (for garnish)",
+      "steamed white rice (for serving)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "silken tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "korean-vegan-hotteok",
@@ -312,6 +533,35 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "hotteok",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 cups (250 g) all-purpose flour",
+      "1 packet (7 g) instant yeast",
+      "1 tablespoon sugar",
+      "½ teaspoon salt",
+      "¾ cup (180 ml) warm water",
+      "1 tablespoon neutral oil (for dough)",
+      "½ cup (80 g) brown sugar",
+      "1 teaspoon ground cinnamon",
+      "½ cup (60 g) walnuts or pecans, roughly chopped",
+      "neutral oil for pan-frying"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten",
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "all-purpose flour",
+        "to": "gluten-free all-purpose flour (Bob's Red Mill 1-to-1)",
+        "removes": "gluten"
+      },
+      {
+        "from": "walnuts",
+        "to": "sunflower seeds",
+        "removes": "nuts"
+      }
+    ]
   }
 ]

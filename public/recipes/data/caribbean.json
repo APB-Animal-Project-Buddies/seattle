@@ -37,7 +37,54 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "authentic · jamaican · jerk",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "14 oz block extra firm tofu, (frozen, then thawed and pressed)",
+      "1 tbsp pimenta berries ((allspice berries))",
+      "1/4-1/2 cup packed brown sugar ((sub coconut sugar for low carb))",
+      "1 large yellow onion",
+      "4 cloves garlic, (minced)",
+      "2 scotch bonnet peppers, (seeds removed)",
+      "1 1/2 tbsp ground thyme ((or 2 tbsp fresh thyme leaves))",
+      "2-3 scallions ((just the green part))",
+      "1 juice of lime",
+      "1 inch ginger",
+      "1/2 tsp ground cinnamon",
+      "1 tsp nutmeg",
+      "1 tsp salt",
+      "1/2 tsp black pepper",
+      "2 tbsp molasses ((sub with browning) )",
+      "1 tbsp apple cider vinegar",
+      "1/4 cup soy sauce",
+      "1 tbsp garam masala ((sub with five spice powder))",
+      "1-2 tbsp olive oil, (see notes if grilling )",
+      "Jamaican Rice and Peas"
+    ],
+    "steps": [
+      "Freeze and thaw tofu and use a tofu press to get the water out. *See Notes in post for why and how to do this if needed.",
+      "Add all the ingredients except the tofu into a blender or food processor and blend until very well combined. Put into a jar.",
+      "Once pressed, slice tofu in half and then half again for 4 equal size pieces (or cube if desired).",
+      "Place tofu into a shallow container that has a lid. Spread 1/4-1/3 cup jerk sauce across and over all sides. Rub into the tofu. Place lid on top and into fridge to marinate overnight or at least 4-6 hours.",
+      "To Grill: Preheat grill to medium (about 400 degrees). Add tofu directly to greased grill grates or to a grill mat. Cook for 8-10 minutes, flipping halfway. To Pan Fry: add 1 tbsp oil to a large skillet and heat over medium low heat. Once hot, add tofu and cook for 8-10 minutes, flipping occasionally to get all the sides.",
+      "Remove and serve with Jamaican rice and peas or desired side dishes."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy",
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      },
+      {
+        "from": "coconut sugar",
+        "to": "brown sugar",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-vegan-jamaican-rice-and-peas-make-it-dairy-free",
@@ -77,7 +124,41 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "jamaican · rice · peas",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 tbsp olive oil",
+      "1 white onion, (chopped)",
+      "3 cloves garlic, (minced)",
+      "3 scallions, (chopped)",
+      "4-5 sprigs thyme, (stems included)",
+      "1 scotch bonnet pepper, (uncut)",
+      "1/2 tsp vegan cane sugar, (more or less to taste (optional))",
+      "1/2 tsp fresh black pepper",
+      "6-8 allspice berries ((pimento berries))",
+      "3/4 cup dried kidney beans, (soaked overnight, then drained (or 1 15oz can drained and rinsed) (133g))",
+      "13.5 oz full fat coconut milk ((383g))",
+      "2 tsp salt",
+      "1 1/2 cups white rice, (rinsed well (or brown basmati rice) (300g))",
+      "1 1/4 cups water ((can sub with low-sodium vegetable stock) (284g))"
+    ],
+    "steps": [
+      "In a large sauce pan over medium heat, add oil and heat until ready. Then add onions, garlic, scallions, thyme, scotch bonnet pepper, sugar (if using), black pepper, and allspice berries. Saute.",
+      "Once onions are soft (about 2-3 minutes), turn heat up to medium-high. Add in the kidney beans and coconut milk and stir together. Once mixture starts to boil, add the salt, stir, and reduce heat to low/simmer. Cover the pot and cook until beans are tender, about 30 minutes to an hour, stirring occasionally. - Note: If there is not enough liquid while simmering add an additional 1/2 of water to keep beans covered",
+      "Add in the rice and the 1 1/4 cup water and stir well. Bring to a boil, cover, then continue to simmer until rice is fluffy and liquid is soaked up(about 25-30 minutes). Remove from heat. Carefully discard the thyme stems, allspice berries and scotch bonnet pepper.",
+      "In a large sauce pan over medium heat, add oil and heat until ready. Then add onions, garlic, scallions, thyme, scotch bonnet pepper, sugar (if using), black pepper, and allspice berries. Saute.",
+      "Once onions are soft (about 2-3 minutes), turn heat up to medium-high. Add in the kidney beans, rice, coconut milk and water then stir together. Bring to a boil, cover, then continue to simmer until rice is fluffy and liquid is soaked up(about 25-30 minutes). Remove from heat. Carefully discard the thyme stems, allspice berries and scotch bonnet pepper."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut milk",
+        "to": "oat cream + 1 tsp olive oil (per 1 cup)",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-jamaican-chickpea-curry-sweet-potato-soul",
@@ -117,7 +198,44 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "jamaican · chickpea · curry",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "2 tablespoons avocado oil (or. extra virgin olive oil or coconut oil)",
+      "2 tablespoons Jamaican curry powder (or regular curry powder)",
+      "1 medium yellow onion (diced)",
+      "4 cloves garlic (minced)",
+      "1 Scotch bonnet pepper (diced, optional)",
+      "2 tablespoons fresh ginger (minced)",
+      "1 ½ teaspoons sea salt or kosher salt",
+      "3 cups cooked chickpeas (or two 14-oz cans, drained and rinsed)",
+      "4 small gold potatoes (about ¾ lb) (cubed (peeling optional))",
+      "2 small carrots (about ¼ lb) (chopped)",
+      "1 15-oz can full-fat coconut milk",
+      "1 ½ cups water",
+      "2 teaspoons vegetable Better Than Bouillon paste (or, swap 1 1/2 cups vegetable broth for the water and bouillon paste)",
+      "1 pinch dried thyme",
+      "1 green onion (green parts only, sliced for garnish)",
+      "chopped fresh cilantro (for garnish)"
+    ],
+    "steps": [
+      "Warm the oil in a large, deep skillet over medium heat. Add the curry powder and toast (bloom) for about 20 seconds.",
+      "Add the onion, garlic, Scotch bonnet pepper (if using), ginger, and ½ teaspoon of the salt. Stir well and sauté for 3–5 minutes, until the onion is tender.",
+      "Add the chickpeas, potatoes, carrots, coconut milk, water, bouillon paste, thyme, and the remaining 1 teaspoon salt. Stir to combine.",
+      "Bring the curry to a simmer, then cover and cook for about 20 minutes, or until the potatoes and carrots are tender.",
+      "Season to taste with additional salt and pepper.",
+      "Serve over brown rice or with vegan naan. Garnish with sliced green onion and cilantro."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut milk",
+        "to": "oat cream + 1 tsp olive oil (per 1 cup)",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-cuban-black-beans-loving-it-vegan",
@@ -130,6 +248,7 @@
     "cuisine": "caribbean",
     "cuisineName": "Caribbean",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://thatgirlcookshealthy.com/cuban-black-beans/",
@@ -157,7 +276,49 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "cuban · black · beans",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1½ cup of dried black beans ((260g))",
+      "6 cups of water ((1.42 litres))",
+      "2 bay leaves",
+      "3 tbsp coconut oil ((44ml) can use olive oil)",
+      "1 medium onion (chopped)",
+      "1 large green bell pepper (chopped)",
+      "6 garlic cloves (minced)",
+      "1 tsp black pepper ((5g))",
+      "2 tsp cumin ((10g))",
+      "2 tsp oregano ((10g))",
+      "1 tsp pink salt ((5g))",
+      "1 tbsp of apple cider vinegar ((15g))",
+      "1 tbsp raw cane sugar ((15g) optional, can use coconut sugar )",
+      "additional pink salt and black pepper to taste, if needed"
+    ],
+    "steps": [
+      "Start by rinsing the beans several times before leaving them to soak overnight in a large pot or bowl of water (not the 6 cups of water).",
+      "The next day drain off the dark coloured water and replenish with the 6 cups of water (add the beans to a large pot if you have used a bowl during the soaking process).",
+      "Add the bay leaves and a tablespoon of coconut oil to the pot.",
+      "Bring the water to the boil then reduce the heat to medium and simmer with the lid on until they soften (this may take up to 1-1 ½ hours).",
+      "Once the beans have cooked, they should be soft to the touch (use the back of a spoon, to determine tenderness) if ready, it will mash with ease.",
+      "Prepare the sofrito by sautéing the garlic, onions and bell peppers in a skillet with 2 tablespoons of coconut oil on medium heat until soft and translucent.",
+      "Season the sofrito mix with the black pepper, oregano, cumin and pink salt then stir.",
+      "Once the onions have turned translucent, transfer the contents into the large saucepan with the black beans and stir.",
+      "Use a ladle to extract some of the beans (about ¾ cups worth) and mash them before returning them to the pot. This will help to create a thick bean sauce.",
+      "Stir in the cider vinegar (and sugar if you are using) before reducing to low-medium heat.",
+      "Put the lid on the pot and allow to simmer until the beans start to thicken up (anything from 45 minutes- 1hour). Feel free to mash some more beans during the time of simmering for further thickening or add a splash of water if required.",
+      "Do a taste test and adjust for additional seasoning if required",
+      "Discard the bay leaves and serve accordingly"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut oil",
+        "to": "refined avocado oil or vegan butter",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-caribbean-pelau-healthier-steps",
@@ -197,7 +358,42 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "caribbean · pelau",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 tbsp brown sugar",
+      "2 tbsp ketchup",
+      "8 oz king oyster mushrooms (chopped (about 2 cups))",
+      "1 can dried. pigeon peas (2 cups dried pigeon peas, rinsed and drained)",
+      "2 cups parboiled rice (rinsed)",
+      "1 carrot (cubed)",
+      "1 red bell pepper (cubed)",
+      "1 cup cubed pumpkin",
+      "½ cup chopped celery",
+      "½ cup chopped onion",
+      "½ cup green seasoning (blend of fresh herbs like thyme, cilantro, scallions, garlic)",
+      "1 tbsp salt",
+      "1 can coconut milk",
+      "2 ½ cups water",
+      "Black pepper to taste"
+    ],
+    "steps": [
+      "Caramelize the Sugar: In a heavy-bottomed 5-quart pot, heat the brown sugar over high heat until it froths, bubbles, and darkens. This step creates the characteristic smoky sweetness of pelau.",
+      "Cook the Mushrooms, Peas, and Rice: Add the chopped king oyster mushrooms, pigeon peas, and rinsed rice to the pot. Stir well, allowing the mixture to cook for 3 minutes, absorbing the caramelized sugar flavor.",
+      "Add Vegetables and Seasonings: Mix in the cubed carrot, red bell pepper, pumpkin, celery, onion, and green seasoning. Season with salt and black pepper.",
+      "Simmer with Coconut Milk: Pour in the coconut milk and water, ensuring the mixture is covered by at least an inch of liquid. Bring to a boil, then reduce heat to low and cover the pot. Let it simmer for 30 minutes or until the rice is fully cooked and the liquid has evaporated.",
+      "Final Taste and Serve: Once cooked, fluff the rice with a fork and adjust seasoning if necessary. Serve hot with fried plantains, coleslaw, or a green salad for a complete meal."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut milk",
+        "to": "oat cream + 1 tsp olive oil (per 1 cup)",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-vegan-jamaican-patties-make-it-dairy-free",
@@ -210,6 +406,7 @@
     "cuisine": "caribbean",
     "cuisineName": "Caribbean",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://makeitdairyfree.com/authentic-vegan-jamaican-beef-patty/",
@@ -236,7 +433,56 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "jamaican · patties",
-    "badge": "Solid"
+    "badge": "Solid",
+    "ingredients": [
+      "3 1/2 cups all purpose flour",
+      "1 tablespoon vegan sugar",
+      "1 tablespoon turmeric powder",
+      "1 tablespoon Jamaican curry powder",
+      "1 teaspoon salt",
+      "1 cup unsalted vegan butter, (cut into 1 tbsp sizes)",
+      "3/4-1 cup water",
+      "1 tablespoon olive oil, (divided)",
+      "1 large sweet onion, (finely diced)",
+      "2 cloves garlic, (minced)",
+      "3 stalks scallions, (finely cut (just green part))",
+      "1 pound vegan beef ((frozen crumbles or vegan ground beef))",
+      "1 scotch bonnet pepper, (carefully remove seeds and ribs, very finely diced (sub habanero if needed))",
+      "2 teaspoon garam masala ((or sub curry seasoning))",
+      "1 teaspoon brown sugar, (optional)",
+      "1 teaspoon dried thyme",
+      "1 teaspoon all purpose seasoning",
+      "3/4 teaspoon salt",
+      "1/2 teaspoon ground ginger",
+      "1/2 teaspoon black pepper",
+      "1/2 teaspoon allspice",
+      "1/4 teaspoon onion powder",
+      "1 cup vegetable stock",
+      "1/4 cup vegan unsalted butter",
+      "1/2 cup Panko breadcrumbs, (divided)"
+    ],
+    "steps": [
+      "In a large bowl, whisk together 3 1/2 cups flour, 1 tbsp each: sugar, turmeric, and Jamaican curry powder, and 1 tsp salt. Then, add 1 cup unsalted vegan butter in tablespoon size cubes. Combine by using a fork or pastry cutter until crumbly, sand like texture forms.",
+      "Add in 3/4 cup of water and mix with a spatula to form a dough. A 1 tbsp more at a time with remaining water if needed to form dough, do not over add water. Only mix until combined. Place in fridge to set up for 30 minutes.",
+      "In a large skillet over medium low heat, add 1 tbsp oil and saute 1 large diced onion until translucent (about 3-5 mins). Add 2 cloves minced garlic and cook 1 more minute until fragrant.",
+      "Add 3 stalks cut green onions and 1 lb frozen meatless crumbles. Stir together and cook for 2-3 minutes. Do not overcook. Add in 1 scotch bonnet pepper, tsp garam masala, 1 tsp each brown sugar, dried thyme, and all purpose seasoning, 3/4 tsp salt, 1/2 tsp each ground ginger, black pepper, and allspice, and 1/4 tsp onion powder. Stir well.",
+      "Add 1 cup stock and let cook for 15-20 minutes on simmer (medium low heat) until liquid has reduced and mostly gone. Add in 1/4 cup vegan butter in and stir until melted. Pour in 1/4 cup panko and stir. If still juicy, add 1 tbsp more at a time. *May not need all of the Panko. Don’t want it to be dry. Let meat mixture cool to warm. Do not add hot mixture to pastry dough.",
+      "Preheat oven to 400˚F. Get a small bowl of water. Set aside.",
+      "Evenly split dough into 12 equal pieces. Lightly flour surface. Roll a piece into a ball, then roll into a circle with a rolling pin to 6 inches in diameter. Lightly brush the edges with water (very light).*We prefer to use a scale for accuracy.",
+      "Add 3-4 tbsp of meat mixture to bottom half of the dough circle. Fold until edges line up and use a fork to seal the edges. Place on baking tray. Repeat with remaining dough and meat mixture.",
+      "Bake for 25-28 minutes on until golden and crispy. Remove and let cool for at least 5 minutes. Serve warm."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "panko breadcrumbs",
+        "to": "gluten-free breadcrumbs (Ian's brand)",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "caribbean-vegan-jerk-chunk-steak-platter-with-rum-glaze",
@@ -249,6 +495,7 @@
     "cuisine": "caribbean",
     "cuisineName": "Caribbean",
     "courses": [
+      "main",
       "showstopper"
     ],
     "url": "https://makeitdairyfree.com/authentic-jamaican-jerk-tofu-recipe/",
@@ -291,7 +538,54 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "jerk · chunk · steak",
-    "badge": "Showpiece"
+    "badge": "Showpiece",
+    "ingredients": [
+      "14 oz block extra firm tofu, (frozen, then thawed and pressed)",
+      "1 tbsp pimenta berries ((allspice berries))",
+      "1/4-1/2 cup packed brown sugar ((sub coconut sugar for low carb))",
+      "1 large yellow onion",
+      "4 cloves garlic, (minced)",
+      "2 scotch bonnet peppers, (seeds removed)",
+      "1 1/2 tbsp ground thyme ((or 2 tbsp fresh thyme leaves))",
+      "2-3 scallions ((just the green part))",
+      "1 juice of lime",
+      "1 inch ginger",
+      "1/2 tsp ground cinnamon",
+      "1 tsp nutmeg",
+      "1 tsp salt",
+      "1/2 tsp black pepper",
+      "2 tbsp molasses ((sub with browning) )",
+      "1 tbsp apple cider vinegar",
+      "1/4 cup soy sauce",
+      "1 tbsp garam masala ((sub with five spice powder))",
+      "1-2 tbsp olive oil, (see notes if grilling )",
+      "Jamaican Rice and Peas"
+    ],
+    "steps": [
+      "Freeze and thaw tofu and use a tofu press to get the water out. *See Notes in post for why and how to do this if needed.",
+      "Add all the ingredients except the tofu into a blender or food processor and blend until very well combined. Put into a jar.",
+      "Once pressed, slice tofu in half and then half again for 4 equal size pieces (or cube if desired).",
+      "Place tofu into a shallow container that has a lid. Spread 1/4-1/3 cup jerk sauce across and over all sides. Rub into the tofu. Place lid on top and into fridge to marinate overnight or at least 4-6 hours.",
+      "To Grill: Preheat grill to medium (about 400 degrees). Add tofu directly to greased grill grates or to a grill mat. Cook for 8-10 minutes, flipping halfway. To Pan Fry: add 1 tbsp oil to a large skillet and heat over medium low heat. Once hot, add tofu and cook for 8-10 minutes, flipping occasionally to get all the sides.",
+      "Remove and serve with Jamaican rice and peas or desired side dishes."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy",
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      },
+      {
+        "from": "coconut sugar",
+        "to": "brown sugar",
+        "removes": "coconut"
+      }
+    ]
   },
   {
     "id": "caribbean-vegan-caribbean-sweet-potato-pudding",
@@ -357,6 +651,43 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "caribbean · sweet · potato",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 pounds sweet potato ((aka batata) *See Notes)",
+      "1 14-ounce can coconut milk",
+      "1 cup coconut palm sugar",
+      "1 teaspoon ginger (freshly grated)",
+      "1 teaspoon vanilla",
+      "1 cup gluten-free all purpose flour (or brown rice flour)",
+      "1/2 teaspoon cinnamon (optional)",
+      "1/2 teaspoon nutmeg (optional)",
+      "1/4 teaspoon sea salt",
+      "1/2 cup coconut milk",
+      "1 tablespoon coconut sugar",
+      "1/4 teaspoon vanilla",
+      "1 pinch cinnamon (optional)"
+    ],
+    "steps": [
+      "Preheat oven 375℉. Grease a 9-inch round baking pan. Set aside.",
+      "Peel sweet potatoes and roughly chop. Grate using the grater or a food processor in batches. If using a food processor or blender, add some coconut milk to help process.",
+      "Transfer grated sweet potatoes to a large bowl, add coconut milk, coconut palm sugar, spices and salt.",
+      "Stir in flour to form a mostly smooth batter.",
+      "Pour batter into cake pan and bake for 45 minutes.",
+      "Combine all topping ingredients in a small bowl and pour evenly on the top of the pudding.",
+      "Return pudding to oven and bake for another 45 minutes or until top is golden brown.",
+      "Delicious served alone or with coconut whipped cream.",
+      "Please double the flour if using the regular American sweet potato variety."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut milk",
+        "to": "oat cream + 1 tsp olive oil (per 1 cup)",
+        "removes": "coconut"
+      }
+    ]
   }
 ]

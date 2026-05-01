@@ -53,7 +53,47 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "mac · cheese",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 1/2 cups raw cashews",
+      "2 cups water (or less if not using vegan cheese, see Notes)",
+      "3 tablespoons fresh lemon juice",
+      "1/2 cup nutritional yeast",
+      "1/4 teaspoon turmeric",
+      "1/2 teaspoon garlic powder",
+      "1 1/2 teaspoons salt",
+      "1 (7-oz) bag shredded vegan cheddar cheese, optional",
+      "12 ounces elbow pasta",
+      "1 1/2 cups panko breadcrumbs",
+      "4 tablespoons vegan butter, melted",
+      "1/4 teaspoon smoked paprika"
+    ],
+    "steps": [
+      "Preheat oven and prep - If planning on baking it with the breadcrumb topping, preheat the oven to 350 degrees F and lightly grease a casserole dish (I used a 9x13 inch dish). Skip this step for stovetop mac and cheese.",
+      "Soak the cashews - Soften your cashews by covering them in boiling water for 5 minutes. I do this by heating up water in my tea kettle, and then pouring the boiling water over the cashews in a large glass measuring cup.",
+      "Cook pasta - Cook the pasta according to package instructions, but do not overcook. Drain and set aside.",
+      "Blend cheese sauce - Drain the soaked cashews and discard the soaking water. Add the cashews, fresh water, lemon juice, nutritional yeast, turmeric, garlic powder, salt and bag of shredded cheese (if using) to a high powered blender and blend until very smooth.",
+      "Simply return the pasta to the pot and pour in the cheese sauce. Stir until the sauce thickens and serve immediately.",
+      "Make the breadcrumb topping by mixing the breadcrumbs, melted vegan butter and smoked paprika in a small bowl until crumbly and moist.",
+      "Add the drained pasta to the prepared casserole dish, and pour in the cheese sauce. Stir to coat the noodles. Sprinkle the breadcrumb mixture on the pasta and bake, uncovered for 15 minutes. I also broiled it for a few minutes until golden brown. Serve immediately and enjoy!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten",
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "panko breadcrumbs",
+        "to": "gluten-free breadcrumbs (Ian's brand)",
+        "removes": "gluten"
+      },
+      {
+        "from": "cashews",
+        "to": "soaked sunflower seeds",
+        "removes": "nuts"
+      }
+    ]
   },
   {
     "id": "american-impossible-meatloaf",
@@ -115,7 +155,36 @@
     ],
     "photo": "plate",
     "photoLabel": "impossible · meatloaf",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 package Impossible burger (3/4 pound)",
+      "1/4 cup breadcrumbs",
+      "2 tablespoons ketchup (or tomato sauce)",
+      "1 teaspoon garlic powder",
+      "1 teaspoon vegan Worcestershire sauce",
+      "1 teaspoon onion powder",
+      "1/2 teaspoon parsley",
+      "1/4 teaspoon salt",
+      "1/4 teaspoon pepper"
+    ],
+    "steps": [
+      "Preheat oven to 400°F. Line a baking sheet with parchment paper or a silicone baking mat.",
+      "In a bowl, mix all ingredients together (Impossible burger, breadcrumbs, ketchup, garlic powder, Worcestershire sauce, onion powder, parsley, salt, and pepper.",
+      "Form into a loaf shape on the baking sheet.",
+      "Bake for 25-30 minutes, or until browned.",
+      "Brush some ketchup or BBQ on top if desired, or serve with gravy."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "breadcrumbs",
+        "to": "gluten-free breadcrumbs",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "american-ultimate-vegan-chili",
@@ -130,7 +199,7 @@
     "courses": [
       "main"
     ],
-    "url": "https://www.noracooks.com/vegan-chili/",
+    "url": "https://www.noracooks.com/ultimate-vegan-chili/",
     "urlStatus": "verified",
     "urlNote": null,
     "description": "Three-bean chili with smoked paprika, cumin, cocoa. Holds 3 days; better next-day. The classic restaurant batch item.",
@@ -171,7 +240,32 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "ultimate · chili",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 cans (15 oz each) kidney beans, drained and rinsed",
+      "1 can (15 oz) black beans, drained and rinsed",
+      "1 can (15 oz) pinto beans, drained and rinsed",
+      "1 can (28 oz) crushed tomatoes",
+      "1 can (14 oz) diced tomatoes",
+      "1 medium onion, diced",
+      "1 green bell pepper, diced",
+      "1 red bell pepper, diced",
+      "4 cloves garlic, minced",
+      "2 jalapeños, seeded and diced",
+      "2 tablespoons olive oil",
+      "2 tablespoons chili powder",
+      "1 tablespoon ground cumin",
+      "1 teaspoon smoked paprika",
+      "1 teaspoon dried oregano",
+      "1 cup (240 ml) vegetable broth",
+      "salt and black pepper to taste",
+      "fresh cilantro, sliced green onion, vegan sour cream (for serving)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [],
+    "allergenSubs": [],
+    "urlFixedAt": "2026-05-01T02:12:45.906Z",
+    "urlFixReason": "old slug Yoast-redirected to a JPG; new slug serves the actual recipe page"
   },
   {
     "id": "american-bbq-pulled-jackfruit-sandwiches",
@@ -222,7 +316,33 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "bbq · pulled · jackfruit",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 20 oz cans young green unripe jackfruit",
+      "1/2 medium red onion (thinly sliced)",
+      "1 tsp minced garlic",
+      "1 tsp minced ginger",
+      "1/4 tsp salt (or more, depending on taste)",
+      "2 to 3 tbsp bbq seasoning",
+      "3/4 cup bbq sauce (, plus more for dressing)",
+      "3 cups slaw mix ((I use shredded cabbage, carrot, brussel sprouts, baby kale mix))",
+      "1/4 cup vegan mayo",
+      "1 tbsp apple cider vinegar (or lemon juice)",
+      "1/2 tbsp maple syrup (or sugar to taste)",
+      "dashes of salt and freshly ground black pepper"
+    ],
+    "steps": [
+      "Drain the jackfruit. Place in a thick kitchen towel, fold and squeeze out as much liquid as possible. This will shred some of the jackfruit. Slice the rest using a knife or separate using hands until somewhat shredded. Remove any hard seeds if any (There are rarely hard seeds in the canned version. The tender seedbox and stem area are all edible).",
+      "Add the jackfruit to a large bowl with sliced onion, garlic and ginger. Add bbq seasoning and sugar mixture, and salt and mix well.",
+      "Add 1/2 to 2/3 cup bbq sauce and mix. Add 2 tbsp veggie broth if the bbq sauce is too thick and mix in (I use 2 tbsp of broth to clean out the mixing bowl after transferring to the baking dish). Spread the mixture in a large baking dish (parchment lined).",
+      "Bake at 400 deg F For 30 minutes. Shred some of the larger pieces by pressing with a spatula. Taste and adjust salt, sweet, heat at this point. Add some salt, sugar/maple syrup and cayenne for heat if needed and mix in and move the jackfruit around.",
+      "Spread well again and continue to bake for another 15 to 25 mins (depends on moisture content, pan/oven and preferred texture.) I like some edges caramelized and crispy)",
+      "Prepare your buns tacos and slaw. Mix everything under slaw. Taste and adjust flavor. Chill for 15 mins and use. ",
+      "Mix in 2 to 4 tbsp bbq sauce into the baked jackfruit and assemble the sandwiches with generous layers of jackfruit, more bbq sauce, slaw. You can also fill this in wraps or tacos. "
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "american-buffalo-cauliflower-wings",
@@ -235,7 +355,7 @@
     "cuisine": "american",
     "cuisineName": "American",
     "courses": [
-      "main"
+      "starter"
     ],
     "url": "https://www.noracooks.com/vegan-cauliflower-buffalo-wings/",
     "urlStatus": "verified",
@@ -267,7 +387,50 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "buffalo · cauliflower · wings",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 large head cauliflower (about 5 cups)",
+      "1 cup water",
+      "3/4 cup all purpose flour",
+      "1 tablespoon garlic powder",
+      "1 tablespoon onion powder",
+      "1/4 teaspoon salt",
+      "1 cup Frank's Red Hot Sauce",
+      "1 tablespoon vegan butter, melted",
+      "1 tablespoon pure maple syrup or agave",
+      "1 cup vegan mayo",
+      "1 teaspoon apple cider vinegar",
+      "1 teaspoon dried dill",
+      "1 teaspoon onion powder",
+      "1/2 teaspoon garlic powder",
+      "tiny pinch of paprika",
+      "tiny pinch of black pepper",
+      "salt, to taste",
+      "2 tablespoons unsweetened soy milk, or even water, to thin as needed"
+    ],
+    "steps": [
+      "Preheat the oven to 425 degrees F. Line a large baking sheet with parchment paper. Spray generously with oil.",
+      "Wash and cut cauliflower into bite sized pieces.",
+      "In a large bowl, add water, flour, garlic and onion powder, and salt. Whisk until well combined.",
+      "Add the cauliflower to the batter in the bowl, and toss to combine and really coat the cauliflower. Remove the pieces of cauliflower, one by one, and tap off the excess batter a few times on the side of the bowl.",
+      "Place on the prepared baking sheet and make sure they are not touching each other, or they will all get stuck together as they bake. Spray the tops with oil, this will help them get super crispy.",
+      "Bake for 20 minutes. Flip them over and bake for 15 more minutes, until golden and crispy.",
+      "While the cauliflower are baking, prepare the hot sauce/butter mixture. Melt the butter in a saucepan on the stove over medium heat. Once melted, add the hot sauce, maple syrup or agave and stir. Set aside.",
+      "Once the cauliflower have cooked and are crispy, toss the florets with the sauce in a large bowl, then return to the pan. You can serve them immediately, or to make them crispier, put them back in the oven for 15-20 minutes. If you want them super crispy, leave the buffalo sauce on the side for dipping as you go.",
+      "Serve with easy vegan ranch (recipe included), my cashew based vegan ranch or vegan blue cheese.",
+      "Add all the ranch ingredients to a medium bowl and whisk until combined. Taste and add salt, if desired, or more herbs. That's it! Enjoy."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "soy milk",
+        "to": "oat milk",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "american-biscuits-gravy",
@@ -318,7 +481,36 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "biscuits · gravy",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 Recipe Southern-Style Vegan Buttermilk Biscuits",
+      "14 ounces vegan sausage crumbles, or chopped pieces (*I used Impossible brand, see Notes)",
+      "1/3 cup all purpose flour",
+      "3 cups unsweetened, unflavored cashew milk",
+      "1 tablespoon vegan butter",
+      "1/8 teaspoon dried thyme",
+      "1/8 teaspoon dried crushed rosemary",
+      "1/8 teaspoon crushed red pepper flakes",
+      "1 teaspoon salt, or more to taste",
+      "1/2 teaspoon ground black pepper"
+    ],
+    "steps": [
+      "In a large pan over medium-high heat, cook the vegan sausage.",
+      "Now add the flour, cashew milk and vegan butter. Cook on medium heat for 5-10 minutes, stirring constantly, until the gravy thickens.",
+      "Add the thyme, rosemary, red pepper flakes, salt and pepper. Taste the gravy and add any additional seasonings, salt or pepper, as desired.",
+      "Serve immediately over warm biscuits and enjoy!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "cashews",
+        "to": "soaked sunflower seeds",
+        "removes": "nuts"
+      }
+    ]
   },
   {
     "id": "american-vegan-beef-wellington",
@@ -331,6 +523,7 @@
     "cuisine": "american",
     "cuisineName": "American",
     "courses": [
+      "main",
       "showstopper"
     ],
     "url": "https://juicymarbles.com/blogs/recipes/vegan-wellington-mushroom-duxelle",
@@ -378,7 +571,38 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "beef · wellington",
-    "badge": "Showpiece"
+    "badge": "Showpiece",
+    "ingredients": [
+      "1 lb (450 g) seitan, shaped into a log",
+      "8 oz (225 g) cremini mushrooms, finely chopped (duxelles)",
+      "1 small shallot, finely diced",
+      "3 cloves garlic, minced",
+      "2 tablespoons olive oil",
+      "2 tablespoons soy sauce",
+      "1 teaspoon fresh thyme leaves",
+      "2 tablespoons Dijon mustard",
+      "1 sheet (14 oz) vegan puff pastry, thawed",
+      "2 tablespoons plant milk (for brushing)",
+      "1 teaspoon paprika",
+      "salt and black pepper to taste"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "seitan",
+        "to": "king trumpet mushrooms, scored and seared",
+        "removes": "gluten"
+      },
+      {
+        "from": "soy sauce",
+        "to": "coconut aminos",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "american-vegan-new-york-cheesecake",
@@ -434,6 +658,42 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "new · york · cheesecake",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 1/2 cups vegan graham cracker crumbs*",
+      "5 tablespoons melted vegan butter (or coconut oil)",
+      "1/4 cup granulated sugar",
+      "32 ounces (4 8-ounce packages) Tofutti vegan cream cheese (See notes, do NOT use Trader Joe's!)",
+      "(1) 13.5 ounce can coconut cream",
+      "1 1/4 cups granulated sugar",
+      "4 tablespoons cornstarch",
+      "2 teaspoons pure vanilla extract",
+      "3 tablespoons lemon juice, from about 2 small lemons",
+      "1 1/2 cups fresh strawberries, hulled and sliced",
+      "1/4 cup granulated sugar",
+      "1 teaspoon lemon zest, from 1 small lemon"
+    ],
+    "steps": [
+      "Preheat the oven to 350 degrees F. Wrap a 9 inch springform pan with 1-2 layers of aluminum foil, covering the bottom and the sides. Cut a circle of parchment paper for the bottom of the pan, and spray lightly with oil.",
+      "In a medium bowl, add the cookie crumbs, melted vegan butter and sugar. Stir well to combine, then press down into the bottom of the prepared pan. Press down firmly and evenly, going up the sides a little. Set aside.",
+      "In the bowl of an electric mixer with the whisk attachment, or using a handheld mixer, beat the vegan cream cheese until smooth, about 1 minute.",
+      "Now add the rest of the filling ingredients and beat until smooth, scraping down the sides and bottom of the bowl as needed.",
+      "Once it's completely smooth, pour into prepared pan over the crust and spread evenly.",
+      "Place in the oven and bake for 50 minutes. Do not open the oven door during this time. Turn off the heat, and let it sit in the oven for 10 more minutes. The cheesecake will be slightly jiggly, and not look very done in the middle. That is correct, it will firm up when it cools.",
+      "Remove from the oven, and let it cool for about 15 minutes at room temperature before moving to the refrigerator to cool for at least 4 hours, preferably overnight, before slicing and serving. When ready to serve, slice and serve with any optional toppings.",
+      "In a food processor, add 1 1/4 cups of the sliced strawberries (reserving 1/4 cup), sugar and lemon zest. Process until smooth. Toss with the sliced strawberries in a small bowl and chill for at least an hour before serving.",
+      "Storing: Leftover cheesecake will keep for up to 7 days in the refrigerator. It can also be frozen."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "coconut"
+    ],
+    "allergenSubs": [
+      {
+        "from": "coconut oil",
+        "to": "refined avocado oil or vegan butter",
+        "removes": "coconut"
+      }
+    ]
   }
 ]
