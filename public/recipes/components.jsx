@@ -49,44 +49,20 @@ function Hero({ featured, stats }) {
 }
 
 // ---------- SubTabs ----------
-function SubTabs({ active, onChange, recipeCount, onOpenMenu, menuCount }) {
+// Top sub-navigation between the Menus generator and the Recipes catalog.
+// Tabs are real anchor links (separate Next.js routes) so back/forward
+// works and each page can deep-link cleanly.
+function SubTabs({ active, recipeCount }) {
   return (
     <div className="sub-tabs">
-      <button
+      <a
+        href="/menus"
+        className={"sub-tab" + (active === 'menus' ? ' on' : '')}
+      >Menus <span className="ct">generator</span></a>
+      <a
+        href="/recipes"
         className={"sub-tab" + (active === 'recipes' ? ' on' : '')}
-        onClick={() => onChange('recipes')}
-      >Recipes <span className="ct">{recipeCount}</span></button>
-      <button
-        className={"sub-tab" + (active === 'dairy' ? ' on' : '')}
-        onClick={() => onChange('dairy')}
-      >Top dairy products <span className="ct">10</span></button>
-      <div style={{ marginLeft: 'auto' }} />
-      {active === 'recipes' && (
-        <button className="menu-btn" onClick={onOpenMenu} style={{
-          alignSelf: 'center',
-          marginBottom: 8,
-          padding: '8px 14px',
-          borderRadius: 999,
-          background: 'var(--moss)',
-          color: 'var(--cream)',
-          fontWeight: 600,
-          fontSize: 13,
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: 8,
-        }}>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 6h16M4 12h10M4 18h16"/></svg>
-          Your menu
-          <span style={{
-            display: 'inline-grid', placeItems: 'center',
-            minWidth: 20, height: 20, padding: '0 6px',
-            borderRadius: 999,
-            background: 'var(--mustard)',
-            color: 'var(--moss-ink)',
-            fontFamily: 'var(--mono)', fontSize: 11, fontWeight: 600,
-          }}>{menuCount}</span>
-        </button>
-      )}
+      >Recipes <span className="ct">{recipeCount ?? 135}</span></a>
     </div>
   );
 }
@@ -111,7 +87,7 @@ function SearchBox({ value, onChange, placeholder }) {
 }
 
 // ---------- FilterChips ----------
-function FilterChips({ activeCourse, onCourseChange, activeSourcing, onSourcingChange, activeTags, onTagToggle }) {
+function FilterChips({ activeCourse, onCourseChange, activeSourcing, onSourcingChange, activeTags, onTagToggle, activeDiets, onDietToggle }) {
   return (
     <>
       <div className="group">
@@ -146,6 +122,25 @@ function FilterChips({ activeCourse, onCourseChange, activeSourcing, onSourcingC
               className={"fchip" + (activeSourcing === s.id ? ' on' : '')}
               onClick={() => onSourcingChange(s.id)}
             >{s.name}</button>
+          ))}
+        </div>
+      </div>
+
+      <div className="group">
+        <span className="group-label">Dietary</span>
+        <div className="fchip-group">
+          {[
+            { id: 'gluten',  label: 'Gluten-free'  },
+            { id: 'nuts',    label: 'Nut-free'     },
+            { id: 'soy',     label: 'Soy-free'     },
+            { id: 'coconut', label: 'Coconut-free' },
+          ].map(d => (
+            <button
+              key={d.id}
+              className={"fchip" + ((activeDiets || []).includes(d.id) ? ' on' : '')}
+              onClick={() => onDietToggle(d.id)}
+              title={`Hide recipes containing ${d.id}`}
+            >{d.label}</button>
           ))}
         </div>
       </div>
@@ -547,84 +542,220 @@ function MenuDrawer({ open, items, onClose, onChangeQty, onRemove, menuName, set
   );
 }
 
-// ---------- DairyTab ----------
-function DairyTab({ data }) {
-  if (!data) {
-    return <div className="loading-state"><div className="spinner" />Loading dairy picks…</div>;
-  }
-  const winners = data.categories.filter(c => c.tastyAward);
+// ---------- Category tint mapping ----------
+// Rotates through all 8 tints by index so no two adjacent cards share a tint.
+// The order is intentionally interleaved (warm/cool/warm/cool…) so the page
+// reads playful rather than monochrome. Mod-cycles for any number of cards.
+const TINT_CYCLE = [
+  'var(--tint-rose)',
+  'var(--tint-sky)',
+  'var(--tint-amber)',
+  'var(--tint-leaf)',
+  'var(--tint-cream)',
+  'var(--tint-lavender)',
+  'var(--tint-sand)',
+  'var(--tint-butter)',
+];
+function tintForCategory(cat, index) {
+  if (typeof index === 'number') return TINT_CYCLE[index % TINT_CYCLE.length];
+  return TINT_CYCLE[0];
+}
+
+// ---------- CategoryCard — compact card for a single category ----------
+// Layout (top → bottom):
+//   1. Title row: displayName + use
+//   2. Winner section (large, joyful): leader brand + parity/TASTY badge
+//   3. Description (blurb)
+//   4. Stat strip (consumer rating)
+//   5. "See all alternatives" button → opens modal listing every pick
+function CategoryCard({ cat, parityText, index }) {
+  const [modalOpen, setModalOpen] = useState(false);
+  const catHasParity = cat.tasteParity || (cat.picks || []).some(p => p.tasteParity);
+  const tint = tintForCategory(cat, index);
+  const displayName = cat.displayName || cat.name;
+  const picks = cat.picks || [];
+  const winner = picks[0];
+  const winnerParity = winner && winner.tasteParity;
+  const isApb = !!cat.apbCurated;
+  // "Developing but still tasty" if same-or-better < 40 (or no data + no
+  // tasty award). APB-curated cards CAN also be weak — they stack the
+  // Kinder World Loves badge with the Developing one (e.g. Best Steaks).
+  const isWeak = (cat.sameOrBetterPct != null && cat.sameOrBetterPct < 40)
+    || (cat.sameOrBetterPct == null && !cat.tastyAward && !cat.tasteParity && !winnerParity);
+  const winnerTasty = !isWeak && winner && (winner.tastyAward || cat.tastyAward);
+  const altCount = Math.max(0, picks.length - 1);
+
   return (
-    <main className="dairy">
-      <div className="dairy-head">
-        <div className="eyebrow"><span className="dot"/>Top products · Nectar plant-based dairy study {data.asOf}</div>
-        <h2>
-          Dairy you can <em>swap</em> today.
-        </h2>
-        <p className="lede">
-          Chef-tested, taste-tested, and operator-priced. The picks below replace dairy on the line without retraining the kitchen — drawn from {data.studyDescription.toLowerCase()}
-        </p>
-        {data.summary && data.summary.headlineWinner && (
-          <div className="dairy-headline">
-            <span className="star">★</span>
-            {data.summary.headlineWinner.brand} reached taste parity in {data.summary.headlineWinner.category.toLowerCase()}.
+    <article
+      className={'alt-card' + (catHasParity ? ' parity' : '')}
+      style={{ background: tint }}
+    >
+      {/* 1. Header */}
+      <div className="alt-card-head">
+        <div className="icon-frame">
+          <window.DairyIcon name={cat.icon} />
+        </div>
+        <div className="cat-block">
+          <div className="cat-name">{displayName}</div>
+          <div className="cat-use">{cat.use}</div>
+        </div>
+      </div>
+
+      {/* 2. WINNER — large + joyful */}
+      {winner && (
+        <div className="winner-block">
+          <div className="winner-label">&#127942; 1st place</div>
+          <div className="winner-brand">{winner.brand}</div>
+          <div className="winner-badges">
+            {isApb && <span className="badge apb">&#129505; Kinder World Loves</span>}
+            {winnerParity && <span className="badge loved">&#129505; {parityText}</span>}
+            {!isApb && winnerTasty && !winnerParity && <span className="badge tasty">&#9733; Top performer</span>}
+            {isWeak && !winnerParity && <span className="badge developing">Developing but still tasty</span>}
+          </div>
+        </div>
+      )}
+
+      {/* 3. Description */}
+      <p className="blurb">{cat.blurb}</p>
+
+      {/* 4. Open modal — even for single-pick categories */}
+      {picks.length > 0 && (
+        <button
+          type="button"
+          className="see-all-btn"
+          onClick={() => setModalOpen(true)}
+        >
+          {picks.length === 1
+            ? <>See details &rarr;</>
+            : <>See all alternatives ({picks.length}) &rarr;</>}
+        </button>
+      )}
+
+      {/* Modal — portal to <body> so it escapes any card stacking context */}
+      {modalOpen && ReactDOM.createPortal((
+        <div
+          className="alt-modal-backdrop"
+          onClick={() => setModalOpen(false)}
+        >
+          <div
+            className="alt-modal"
+            onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-label={`All alternatives for ${displayName}`}
+          >
+            <button
+              className="alt-modal-close"
+              onClick={() => setModalOpen(false)}
+              aria-label="Close"
+            >&times;</button>
+            <div className="alt-modal-head">
+              <div className="cat-name">{displayName}</div>
+              <div className="cat-use">{cat.use} · benchmark: {cat.benchmark}</div>
+            </div>
+            <div className="alt-modal-list">
+              {picks.map((pk, i) => {
+                const pickParity = pk.tasteParity;
+                const pickTasty = pk.tastyAward;
+                return (
+                  <div
+                    key={pk.brand}
+                    className={'alt-pick alt-pick-row' + (pickParity ? ' parity-pick' : '')}
+                  >
+                    <div className="alt-pick-rank">{i === 0 ? ' 1st' : ` ${i + 1}`}</div>
+                    <div className="alt-pick-body">
+                      <div className="alt-pick-head">
+                        <span className="pick-brand">{pk.brand}</span>
+                        {pickParity && <span className="pick-badge loved">&#129505; {parityText}</span>}
+                        {pickTasty && !pickParity && <span className="pick-badge tasty">&#9733; Top performer</span>}
+                      </div>
+                      <div className="pick-note">{pk.note}</div>
+                      {pk.url && (
+                        <a
+                          className="pick-buy"
+                          href={pk.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >Buy now &rarr;</a>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      ), document.body)}
+    </article>
+  );
+}
+
+// ---------- AlternativesTab — unified card component for dairy + meat ----------
+function AlternativesTab({ data, sectionLabel, parityLabel }) {
+  if (!data) {
+    return <div className="loading-state"><div className="spinner" />Loading…</div>;
+  }
+
+  const hasParity = data.categories.some(c => c.tasteParity || (c.picks || []).some(p => p.tasteParity));
+  const parityText = parityLabel || 'Reached taste parity';
+  const recommends = data.chefRecommends || [];
+
+  return (
+    <section style={{ maxWidth: 1280, margin: '0 auto', padding: '0 32px' }}>
+      {/* Section header */}
+      <div className="alt-section-header">
+        <h2>{sectionLabel}</h2>
+        <p className="alt-section-sub">{data.headline}</p>
+      </div>
+
+      {/* Section-level callouts */}
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 24 }}>
+        {hasParity && (
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+            padding: '8px 14px', borderRadius: 999,
+            background: 'oklch(0.62 0.14 45 / 0.12)',
+            border: '1.5px solid var(--terracotta)',
+            fontSize: 13,
+            color: 'oklch(0.45 0.10 35)', fontWeight: 600,
+          }}>
+            <span>&#129505;</span>
+            {parityText} — matched the animal benchmark in blind testing
+          </div>
+        )}
+        {recommends.length > 0 && (
+          <div style={{
+            display: 'inline-flex', alignItems: 'center', gap: 10,
+            padding: '8px 14px', borderRadius: 999,
+            background: 'oklch(0.78 0.13 85 / 0.18)',
+            border: '1.5px solid oklch(0.78 0.13 85)',
+            fontSize: 13,
+            color: 'oklch(0.32 0.06 145)', fontWeight: 600,
+          }}>
+            <span>&#128081;</span>
+            We recommend: {recommends.join(' · ')}
+            <span style={{ fontWeight: 500, opacity: 0.75 }}>(for those willing to spend a bit more)</span>
           </div>
         )}
       </div>
 
-      {winners.length > 0 && (
-        <section className="tasty-board">
-          <div className="tasty-board-head">
-            <span className="tasty-tag">★ TASTY Award Winners</span>
-            <h3>Best plant-based product, by category.</h3>
-            <p>Top picks across the {winners.length} categories with TASTY-award-eligible products in Nectar's blind taste test.</p>
-          </div>
-          <ol className="tasty-list">
-            {winners.map((c, i) => (
-              <li key={c.id}>
-                <span className="rank">{String(i + 1).padStart(2, '0')}</span>
-                <span className="cat-icon"><window.DairyIcon name={c.icon} /></span>
-                <div className="winner-info">
-                  <div className="cat-name">{c.name}</div>
-                  <div className="brand">{c.leader}</div>
-                  <div className="use">{c.use}</div>
-                </div>
-              </li>
-            ))}
-          </ol>
-        </section>
-      )}
-
-      <div className="dairy-grid">
-        {data.categories.map(cat => (
-          <article key={cat.id} className="dairy-card">
-            <div className="icon-frame"><window.DairyIcon name={cat.icon} /></div>
-            <div className="cat-block">
-              <div className="cat">{cat.name}</div>
-              <div className="use">{cat.use}</div>
-            </div>
-            {cat.tastyAward
-              ? <span className="tasty-tag">★ TASTY award winners</span>
-              : <span className="tasty-tag warning">Still developing</span>
-            }
-            <p className="blurb">{cat.blurb}</p>
-            <ul className="picks">
-              {cat.picks.map(pk => (
-                <li key={pk.brand}>
-                  <span className="brand">{pk.brand}</span>
-                  <span className="note">{pk.note}</span>
-                </li>
-              ))}
-            </ul>
-          </article>
+      <div className="alt-grid">
+        {data.categories.map((cat, i) => (
+          <CategoryCard key={cat.id} cat={cat} parityText={parityText} index={i} />
         ))}
       </div>
 
-      <div className="dairy-foot">
+      {/* Footer attribution */}
+      <div className="alt-foot">
         Top products distilled from <a href={data.sourceUrl} target="_blank" rel="noopener noreferrer">{data.source}</a>.
         We will return to highlight more findings from the study soon.
       </div>
-    </main>
+    </section>
   );
+}
+
+// ---------- DairyTab — kept for backwards compatibility; wraps AlternativesTab ----------
+function DairyTab({ data }) {
+  return <AlternativesTab data={data} sectionLabel="Plant-Based Dairy" />;
 }
 
 // ---------- Toast ----------
@@ -639,5 +770,5 @@ function Toast({ message, show }) {
 
 Object.assign(window, {
   Hero, SubTabs, SearchBox, FilterChips, CuisineBar, Toolbar,
-  RecipeCard, RecipeModal, MenuDrawer, DairyTab, Toast,
+  RecipeCard, RecipeModal, MenuDrawer, DairyTab, AlternativesTab, Toast,
 });

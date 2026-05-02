@@ -37,7 +37,28 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "classic · falafel",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "&frac14; cup + 1 tablespoon extra-virgin olive oil",
+      "1 cup dried (uncooked/raw) chickpeas, rinsed, picked over and soaked for at least 4 hours and up to 24 hours in the refrigerator",
+      "&frac12; cup roughly chopped red onion (about &frac12; small red onion)",
+      "&frac12; cup packed fresh parsley (mostly leaves but small stems are ok)",
+      "&frac12; cup packed fresh cilantro (mostly leaves but small stems are ok)",
+      "4 cloves garlic, quartered",
+      "1 teaspoon fine sea salt",
+      "&frac12; teaspoon (about 25 twists) freshly ground black pepper",
+      "&frac12; teaspoon ground cumin",
+      "&frac14; teaspoon ground cinnamon"
+    ],
+    "steps": [
+      "With an oven rack in the middle position, preheat oven to 375 degrees Fahrenheit. Pour &frac14; cup of the olive oil into a large, rimmed baking sheet and turn until the pan is evenly coated.",
+      "In a food processor, combine the soaked and drained chickpeas, onion, parsley, cilantro, garlic, salt, pepper, cumin, cinnamon, and the remaining 1 tablespoon of olive oil. Process until smooth, about 1 minute.",
+      "Using your hands, scoop out about 2 tablespoons of the mixture at a time. Shape the falafel into small patties, about 2 inches wide and &frac12; inch thick. Place each falafel on your oiled pan.",
+      "Bake for 25 to 30 minutes, carefully flipping the falafels halfway through baking, until the falafels are deeply golden on both sides. These falafels keep well in the refrigerator for up to 4 days, or in the freezer for several months."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "middle-eastern-classic-hummus-the-mediterranean-dish",
@@ -50,6 +71,7 @@
     "cuisine": "middle-eastern",
     "cuisineName": "Middle Eastern",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://www.themediterraneandish.com/how-to-make-hummus/",
@@ -77,7 +99,34 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "classic · hummus",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "3 cups cooked chickpeas,",
+      "1 1/2 teaspoons baking soda, ((optional) use if peeling chickpeas)",
+      "1 to 2 garlic cloves (minced)",
+      "2 ice cubes",
+      "1/3 cup tahini",
+      "1/2 tsp kosher salt",
+      "Juice of 1 lemon",
+      "Arbequina extra virgin olive oil,",
+      "Sumac, (to serve)"
+    ],
+    "steps": [
+      "Drain and simmer: Drain two cans of chickpeas, and place them in a medium-sized pot over medium heat. Cover with water and simmer for 20-minutes.",
+      "Remove the skins: Remove the beans from the heat, and stir in the baking soda. Let it sit for a few minutes. This makes it easier to remove the skins. Drain the chickpeas into a colander. While rinsing the chickpeas under running water, take a handful of chickpeas and rub them to remove the skins. They come off easily. Place peeled chickpeas in the bowl of your food processor.",
+      "Puree the chickpeas: Add the minced garlic to the bowl of a food processor fitted with the S-blade. Puree until a smooth, powder-like mixture forms.",
+      "Finish the hummus: While the food processor is running, feed 2 ice cubes, tahini, salt, and lemon juice through the tube, and process for about 4 to 5 minutes. Check, and if the consistency is too thick, run the processor and slowly add a little water, 1 tablespoon at a time, until you reach the desired silky smooth consistency.",
+      "Serve: Spoon your hummus on a serving platter, drizzle a generous amount of olive oil over the top, a few reserved chickpeas, and a sprinkle of sumac if using.",
+      "Soak the chickpeas: Place dried chickpeas in a large bowl, cover with water, and soak overnight.",
+      "Cook the chickpeas: The next day, drain the chickpeas cover with 2 inches of water. Bring to boil over high heat, then reduce the heat so the chickpeas are at a simmer. Simmer for 1 1/2 to 2 hours.",
+      "Remove the skins: Add 1 1/2 teaspoons baking soda to the water with the chickpeas. Leave for a few minutes. Turn off the heat. Drain the chickpeas into a colander. While rinsing the chickpeas under running water, take a handful of chickpeas and rub them to remove the skins. Place peeled chickpeas in a bowl.",
+      "Puree the chickpeas: Add cooked chickpeas and minced garlic to the bowl of a food processor fitted with the S-blade. Puree until a smooth, powder-like mixture forms.",
+      "Finish the hummus: While the food processor is running, feed 2 ice cubes, tahini, salt, and lemon juice through the tube, and process for about 4 to 5 minutes. Check, and if the consistency is too thick, run the processor and slowly add a little water, 1 tablespoon at a time, until you reach the desired silky smooth consistency.",
+      "Garnish and serve: Spread in a serving bowl and add a generous drizzle of extra virgin olive oil. Top with a few chickpeas, if you like. Sprinkle with sumac. Enjoy with warm pita wedges and your favorite veggies."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "middle-eastern-vegan-shawarma",
@@ -123,7 +172,50 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "shawarma",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 14 oz blocks extra firm tofu, (drained and pressed)",
+      "6 tablespoon olive oil",
+      "4 tablespoons lemon juice",
+      "4 cloves garlic, (minced)",
+      "4 teaspoons ground cumin",
+      "4 teaspoons ground coriander",
+      "4 teaspoons ground cardamom",
+      "2 teaspoons smoked paprika",
+      "1 1/2 teaspoons salt",
+      "1 teaspoon cinnamon",
+      "1 teaspoon black pepper",
+      "1 teaspoon turmeric",
+      "1/2 teaspoon chilli flakes (more or less to taste)",
+      "pita bread",
+      "cherry tomatoes, (halved)",
+      "mini cucumbers, (thinly sliced)",
+      "sumac onions, (recipe below)",
+      "tahini sauce, (recipe below)"
+    ],
+    "steps": [
+      "Preheat oven to 450˚F. Prep baking sheet with parchment paper.",
+      "Shred your block of tofu into pieces. Place in a large bowl. Add in the oil, lemon juice, minced garlic, and all the spices. Toss together until well combined.",
+      "Spread out into a single layer. Bake for 25-30 minutes.",
+      "Add to pita with toppings or use as desired."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "pita",
+        "to": "gluten-free flatbread",
+        "removes": "gluten"
+      },
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "middle-eastern-mujadara-cookie-and-kate",
@@ -138,7 +230,7 @@
     "courses": [
       "main"
     ],
-    "url": "https://cookieandkate.com/mujadara-recipe/",
+    "url": "https://cookieandkate.com/mujaddara-recipe/",
     "urlStatus": "verified",
     "urlNote": null,
     "description": "Lentils and rice cooked together, crowned with deeply caramelized onions and cumin. Levantine pantry classic — dirt-cheap, naturally vegan, freezer-friendly.",
@@ -163,7 +255,25 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "mujadara",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "1 cup (200 g) green or brown lentils, rinsed",
+      "¾ cup (150 g) long-grain white or basmati rice, rinsed",
+      "3 large yellow onions, thinly sliced",
+      "4 tablespoons olive oil",
+      "½ teaspoon ground cumin",
+      "½ teaspoon ground allspice",
+      "¼ teaspoon ground cinnamon",
+      "¼ teaspoon ground black pepper",
+      "3 cups (720 ml) vegetable broth or water",
+      "1 teaspoon salt",
+      "plain vegan yogurt and lemon wedges (for serving)"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [],
+    "allergenSubs": [],
+    "urlFixedAt": "2026-05-01T02:12:45.907Z",
+    "urlFixReason": "spelling correction (double-d) — old slug redirects to videos page"
   },
   {
     "id": "middle-eastern-vegan-tabbouleh-cookie-and-kate",
@@ -176,9 +286,9 @@
     "cuisine": "middle-eastern",
     "cuisineName": "Middle Eastern",
     "courses": [
-      "main"
+      "starter"
     ],
-    "url": "https://cookieandkate.com/tabbouleh-recipe/",
+    "url": "https://cookieandkate.com/best-tabbouleh-recipe/",
     "urlStatus": "verified",
     "urlNote": null,
     "description": "Easy — cold-hold · bulk-prep, fast-service.",
@@ -203,7 +313,33 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "tabbouleh",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "1 cup (180 g) medium-grain bulgur wheat",
+      "1 cup (240 ml) boiling water",
+      "2 cups (100 g) flat-leaf parsley, finely chopped",
+      "½ cup (25 g) fresh mint, finely chopped",
+      "4 medium tomatoes, seeded and finely diced",
+      "1 English cucumber, finely diced",
+      "4 green onions, thinly sliced",
+      "¼ cup (60 ml) extra virgin olive oil",
+      "3 tablespoons fresh lemon juice (about 1 large lemon)",
+      "½ teaspoon salt",
+      "¼ teaspoon black pepper"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "bulgur wheat",
+        "to": "quinoa (1:1 swap, reduce water by ¼ cup)",
+        "removes": "gluten"
+      }
+    ],
+    "urlFixedAt": "2026-05-01T02:12:45.907Z",
+    "urlFixReason": "old slug redirects to videos; new slug serves recipe"
   },
   {
     "id": "middle-eastern-vegan-baba-ganoush-loving-it-vegan",
@@ -216,7 +352,7 @@
     "cuisine": "middle-eastern",
     "cuisineName": "Middle Eastern",
     "courses": [
-      "main"
+      "starter"
     ],
     "url": "https://cookieandkate.com/epic-baba-ganoush-recipe/",
     "urlStatus": "verified",
@@ -243,7 +379,38 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "baba · ganoush",
-    "badge": "Margin King"
+    "badge": "Margin King",
+    "ingredients": [
+      "2 pounds Italian eggplants (about 2 small-to-medium eggplants*)",
+      "2 medium cloves of garlic, pressed or minced",
+      "2 tablespoons lemon juice, more if necessary",
+      "&frac14; cup tahini",
+      "⅓ cup extra-virgin olive oil, plus more for brushing the eggplant and garnish",
+      "2 tablespoons chopped fresh flat-leaf parsley, plus extra for garnish",
+      "&frac34; teaspoon salt, to taste",
+      "&frac14; teaspoon ground cumin",
+      "Pinch of smoked paprika, for garnish",
+      "Serving suggestions: warmed or toasted pita wedges, carrot sticks, bell pepper strips, cucumber slices, etc."
+    ],
+    "steps": [
+      "Preheat the oven to 450 degrees Fahrenheit with a rack in the upper third of the oven. Line a large, rimmed baking sheet with parchment paper to prevent the eggplant from sticking to the pan. Halve the eggplants lengthwise and brush the cut sides lightly with olive oil. Place them in the prepared pan with the halved sides down.",
+      "Roast the eggplant until the interior is very tender throughout and the skin is collapsing, about 35 to 40 minutes (this might take longer if you are using 1 large eggplant). Set the eggplant aside to cool for a few minutes. Flip the eggplants over and scoop out the flesh with a large spoon, leaving the skin behind.",
+      "Place a mesh strainer over a mixing bowl, then transfer the flesh to the strainer and discard the skins. Pick out any stray bits of eggplant skin and discard. You want to remove as much moisture from the eggplant here as possible, so let the eggplant rest for a few minutes and shake/stir the eggplant to release some more moisture.",
+      "Discard all of the eggplant drippings, drain and wipe out the bowl, and dump the eggplant into the bowl. Add the garlic and lemon juice to the eggplant and stir vigorously with a fork until eggplant breaks down. Add the tahini to the bowl and stir until it’s incorporated. While stirring, slowly drizzle in the olive oil. Continue stirring until the mixture is pale and creamy, and use your fork to break up any particularly long strings of eggplant.",
+      "Stir in the parsley, salt and cumin. Season to taste with more salt (I usually add another &frac14; teaspoon) and more lemon juice, if you’d like a more tart flavor.",
+      "Transfer the baba ganoush to a serving bowl and lightly drizzle olive oil on top. Lastly, sprinkle parsley and smoked paprika on top. Serve with accompaniments of your choice. It’s also great on sandwiches!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "gluten"
+    ],
+    "allergenSubs": [
+      {
+        "from": "pita",
+        "to": "gluten-free flatbread",
+        "removes": "gluten"
+      }
+    ]
   },
   {
     "id": "middle-eastern-vegan-baklava",
@@ -299,6 +466,31 @@
     "alternatives": [],
     "photo": "layered",
     "photoLabel": "baklava",
-    "badge": "Solid"
+    "badge": "Solid",
+    "ingredients": [
+      "80 ml / 1/3 cup water",
+      "120 ml / ½ cup date syrup, shop-bought or homemade",
+      "2 tbsp lemon juice, adjust to taste",
+      "350 g / approx. 2 cups dates",
+      "1½ cups / approx. 185 g almonds",
+      "1½ cup / approx. 150 g walnuts",
+      "zest of 1 orange",
+      "1½ tsp ground cinnamon",
+      "¼ tsp fine sea salt",
+      "vegan filo pastry sheets (mine had 7 sheets, 48 cm / 19″ x 25 cm / 10″ each), thawed",
+      "3 tbsp mild tasting oil (I used mild olive oil)",
+      "2 tbsp shelled pistachios, very finely chopped"
+    ],
+    "ingredientSource": "manual",
+    "allergens": [
+      "nuts"
+    ],
+    "allergenSubs": [
+      {
+        "from": "almonds",
+        "to": "pumpkin seeds (pepitas)",
+        "removes": "nuts"
+      }
+    ]
   }
 ]

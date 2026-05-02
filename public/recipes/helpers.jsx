@@ -99,6 +99,7 @@ function UrlStatusBadge({ status }) {
     'verified': 'Verified',
     'reference-vegan': 'Vegan technique',
     'reference-technique': 'Vegan rebuild',
+    'in-house': 'APB recipe',
   };
   return (
     <span className={`url-status ${status}`}>

@@ -10,6 +10,7 @@
     "cuisine": "ethiopian",
     "cuisineName": "Ethiopian",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://holycowvegan.net/misir-wot-ethiopian-red-lentils/",
@@ -37,7 +38,40 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "misir · wot",
-    "badge": "Service-friendly"
+    "badge": "Service-friendly",
+    "ingredients": [
+      "1 tbsp cinnamon sticks",
+      "1 tbsp cumin seeds",
+      "1 tbsp cloves",
+      "1 tbsp black peppercorns",
+      "2 whole nutmeg kernels ((coarsely crushed))",
+      "1 tbsp green cardamom pods ((seeds removed, discard skins))",
+      "2 black cardamom pods ((seeds removed, discard skins))",
+      "1 tbsp berbere",
+      "2 tablespoons extra virgin olive oil",
+      "1 large onion ((finely chopped))",
+      "1 inch knob ginger ((grated))",
+      "4 cloves garlic ((crushed with a garlic press or minced))",
+      "1 tsp nigella seeds ((kalonji. Coarsely crushed in a mortar and pestle))",
+      "1½ cups red lentils",
+      "1 tbsp paprika ((optional, only for color))",
+      "Salt to taste",
+      "2 tbsp cilantro ((for garnish))"
+    ],
+    "steps": [
+      "Peel the green and brown cardamom pods--I put them in a mortar and smack them with the pestle. The skins pop off easily. Collect the seeds and discard the skins.",
+      "Place the cardamom seeds and all other mekelesha spices in a dry skillet over medium heat. Toast for 3-5 minutes, stirring constantly, until the spices are very fragrant and the cumin is a couple of shades darker.",
+      "Remove to a plate, cool, and transfer to a blender or spice grinder. Blend into a powder. Set aside. After using the mekelesha in this recipe store the leftover spice in an airtight jar in a cool spot.",
+      "Place the lentils in a bowl and wash them in several changes of water until the water is not as cloudy. I did this about five times. Drain the water and set the lentils aside.",
+      "Heat the olive oil in a large pot or Dutch oven over medium low heat. Add the onions and a pinch of salt. Saute, stirring frequently, for about 10 minutes or until the onions are soft and translucent.",
+      "Add the ginger and garlic to the pot and mix. Saute for a minute, then stir in a heaping tablespoon of berbere and coarsely powdered nigella seeds. Add ¼ cup water, mix well, cover the pot and let the onions cook 20 more minutes or until they are really brown and reduced almost to a paste. Stir several times during cooking and if the onions are sticking to the pot add a tablespoon or two of water.",
+      "Add the washed lentils to the pot along with 2 ½ cups water. Add the paprika, if using, at this time. Mix well and bring it to a boil. Cover and cook over medium heat another 10 minutes. If you want a soupy misir wat you can retain some of the liquid in the pot, but if you want it fairly dry, let most of the liquid evaporate. Stir frequently. This should take another 10 minutes or so.",
+      "Season with salt to taste and add a teaspoon or two of the mekelesha spice blend. Taste and add more if needed. Turn off heat.",
+      "Garnish with cilantro before serving."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-shiro-wot",
@@ -77,7 +111,31 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "shiro · wot",
-    "badge": "Service-friendly"
+    "badge": "Service-friendly",
+    "ingredients": [
+      "1 medium red onion ((finely diced))",
+      "4 tablespoons niter kibbeh ((divided))",
+      "6 cloves garlic ((crushed into a paste or minced. If you don't like garlic you can use less.))",
+      "2 medium tomatoes ((finely diced))",
+      "½ cup chickpea flour",
+      "2 tablespoons berbere",
+      "1 tsp paprika ((optional))",
+      "2 cups water ((very hot))",
+      "Salt to taste",
+      "2 green chili peppers ((sliced, optional. Skip if you are sensitive to heat).)"
+    ],
+    "steps": [
+      "Place the onions in a dry saucepan (no oil). Add a generous pinch of salt and saute over medium heat until they start to brown. Add water, a tablespoon at a time, if needed to keep them from sticking to the pan.",
+      "Add 2 tablespoons of niter kibbeh and continue cooking the onions until they are very soft and brown. Stir frequently.",
+      "Add garlic and mix it in. Saute a couple of minutes.",
+      "Stir in the tomatoes and mix. Let the tomatoes cook, stirring frequently, until they are very soft and pulpy.",
+      "Stir in the chickpea flour and mix well until no dry flour remains in the pan.",
+      "Add the berbere and paprika. Mix well and then slowly trickle in 2 cups hot water, whisking as you go. You can add a couple more tablespoons of niter kibbeh at this point for even better flavor.",
+      "Bring the shiro to a boil, then reduce heat to medium-low, cover, and let it cook 10-15 minutes until the chickpea flour has lost its raw flavor, the shiro has thickened, and little droplets of oil can be seen on top. Shiro should be thick, but if it is too thick for your liking, you can whisk in up to 1/2 cup more of hot water. Garnish, if you like, with sliced, fresh, green chili peppers."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-atakilt-wat",
@@ -117,7 +175,35 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "atakilt · wat",
-    "badge": "Service-friendly"
+    "badge": "Service-friendly",
+    "ingredients": [
+      "2 tsp olive oil or vegan butter (divided)",
+      "2 cloves garlic (minced)",
+      "1 tsp minced ginger",
+      "1 green chili (chopped (optional))",
+      "1/2 cup chopped onion",
+      "1/4 tsp cumin powder",
+      "1/2 to 3/4 tsp turmeric powder",
+      "1/4 tsp fenugreek seeds or powder",
+      "1/4 tsp cardamom powder",
+      "1/4 tsp cinnamon powder",
+      "1/8 tsp cloves powder",
+      "a generous dash of black pepper",
+      "3/4 cup sliced carrots",
+      "2 medium potatoes (chopped, 1.5 loaded cups)",
+      "1/2 head of cabbage (finely chopped)",
+      "1/2 tsp salt"
+    ],
+    "steps": [
+      "In a large skillet, add 1 tsp oil and heat at medium-low. Once hot, Add garlic, ginger, chili, and onion. Mix, cook for 4 minutes.",
+      "Add the cumin, turmeric, fenugreek seeds, cardamom, cinnamon, cloves and black pepper. Mix and cook for 3 minutes to infuse the oil and to continue cooking the onion to golden.",
+      "Add the carrots, potato and mix well. Add cabbage and 1/4 tsp salt. Mix well, cover and cook for 15 minutes. Stir once in between.",
+      "Add 1/4 tsp or more salt, and 1 tsp olive oil. Mix in. Deglaze at this time with water if needed Cover and Cook for another 15 minutes or until the potatoes are tender. *",
+      "Serve hot with Ethiopian flat bread Injera and lentil wat, ethiopian greens(gomen wat)"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-kik-alicha",
@@ -157,7 +243,30 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "kik · alicha",
-    "badge": "Service-friendly"
+    "badge": "Service-friendly",
+    "ingredients": [
+      "1/2 cup dry split peas (soak overnight or 2 hours. Use yellow, green, or a mix!)",
+      "2 teaspoons oil",
+      "1 cup chopped red onion",
+      "4-5 garlic cloves (minced)",
+      "2 teaspoons minced ginger",
+      "1 serrano pepper (or jalapeño, chopped, optional)",
+      "1/3 teaspoon turmeric powder",
+      "1 teaspoon berbere spice blend (optional, for a spicier wat version)",
+      "1/2 teaspoon salt ( or to taste)",
+      "black pepper (to taste)",
+      "2 cups water"
+    ],
+    "steps": [
+      "Soak the split peas overnight or at least 2 hours in warm water, drain and rinse. See notes below for pressure cooker directions.",
+      "In a deep pan, add the oil or non dairy nitter kibbeh(Ethiopian spiced oil). Once the oil is hot, add onions, ginger, garlic, and chopped Serrano or jalapeño, if using. Cook stirring occasionally, until translucent. Add splashes of water if needed to help cook the onion evenly. Add the turmeric and berbere, if using, and mix well.",
+      "Add rinsed split peas, salt, pepper and water. Mix, cover and bring to a boil on medium heat.",
+      "Reduce heat to low and simmer, partially covered for 45 minutes to 1 hour, or until peas have softened to your desired consistency. Taste and adjust salt and spice if needed.",
+      "Mash the peas if desired. Add some lemon juice, if desired, and serve. Tastes best with a sour flat bread, like Injera, but you can also serve it with rice or flatbread of choice."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-gomen-wat",
@@ -170,6 +279,7 @@
     "cuisine": "ethiopian",
     "cuisineName": "Ethiopian",
     "courses": [
+      "starter",
       "main"
     ],
     "url": "https://urbanfarmie.com/gomen-wat-spicy-ethiopian-greens/",
@@ -197,7 +307,32 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "gomen · wat",
-    "badge": "Service-friendly"
+    "badge": "Service-friendly",
+    "ingredients": [
+      "4 tablespoons avocado oil (divided, see notes)",
+      "1 red onion (diced)",
+      "2 tomatoes (diced finely, substitute tomato paste or sauce)",
+      "6 cloves garlic (minced, measure this with your heart! )",
+      "1 teaspoon salt",
+      "1 teaspoon ginger paste",
+      "1 teaspoon cumin powder (see notes for spice blend)",
+      "½ teaspoon cardamom powder (see notes for spice blend)",
+      "½ teaspoon red chili powder (see notes for spice blend)",
+      "2 lbs collard greens or kale (see notes)",
+      "1 jalapeno (julienned or sliced into thin strips, adjust to spice level)",
+      "1 tablespoon chopped basil (optional, for garnish)"
+    ],
+    "steps": [
+      "Wash the greens thoroughly. Then, chop them as small as you can. You can either do this by hand, or you can just add them to a food processor and blitz them.",
+      "Add one tablespoon of avocado oil to a large skillet and heat on medium-heat. Then add the chopped onions, tomatoes, minced garlic and a pinch of salt to the skillet and sauté until soft (about 5 to 7 minutes).",
+      "Once the mixture is cooked, add the ginger paste to the skillet and toss to coat. Turn down the heat at this stage so that the mixture doesn't burn.",
+      "Now, add cumin, cardamom and red chili powder to the skillet along with ¼ cup of water. Allow it to simmer a bit to indicate it's well combined. Note: If using just mitmita, add a teaspoon of the spice along with the water. Don't allow this to cook for too long since it can form a bitter taste.",
+      "Now, add the chopped collard greens or kale to the skillet in small increments. Stir so the greens the spice mixture mix quite well together, and increase the heat to medium-high. Cover, and allow it to cook for 15 to 20 minutes, checking on it every 5 minutes to make sure it doesn't burn.",
+      "Season the dish with salt to taste, and then add the sliced jalapeños. Cover and allow this to cook for another 5 minutes, until the raw taste is gone from the jalapeños. Garnish with basil (optional) and serve hot!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-authentic-vegan-injera",
@@ -236,7 +371,16 @@
     "alternatives": [],
     "photo": "flat",
     "photoLabel": "authentic · injera",
-    "badge": "Solid"
+    "badge": "Solid",
+    "ingredients": [
+      "2 cups (280 g) 100% teff flour (whole grain)",
+      "2 ½ cups (600 ml) water (for fermentation)",
+      "½ teaspoon salt",
+      "neutral oil for greasing the pan"
+    ],
+    "ingredientSource": "authored",
+    "allergens": [],
+    "allergenSubs": []
   },
   {
     "id": "ethiopian-vegan-doro-wat",
@@ -249,6 +393,7 @@
     "cuisine": "ethiopian",
     "cuisineName": "Ethiopian",
     "courses": [
+      "main",
       "showstopper"
     ],
     "url": "https://holycowvegan.net/vegan-doro-wat/",
@@ -297,7 +442,49 @@
     "alternatives": [],
     "photo": "bowl",
     "photoLabel": "doro · wat",
-    "badge": "Showpiece"
+    "badge": "Showpiece",
+    "ingredients": [
+      "16 oz extra firm tofu ((no need to press. Cut into ½-inch chunks))",
+      "Juice of 1 lemon",
+      "3 medium onions ((cut into large chunks))",
+      "1 tsp ginger ((grated))",
+      "6 cloves garlic",
+      "¼ cup vegan niter kibbeh",
+      "2-3 tablespoons berbere",
+      "1 tsp sweet paprika",
+      "½ tsp turmeric",
+      "1 tsp ground coriander",
+      "1 tsp ground allspice",
+      "½ tsp ground ginger",
+      "2 cups mushroom stock (or vegetable stock)",
+      "8 oz cremini mushrooms or button mushrooms ((sliced))",
+      "Salt to taste",
+      "2 tablespoons cilantro ((chopped, for garnish))"
+    ],
+    "steps": [
+      "Bring a saucepan of water to boil. Add tofu cubes to it, return the water to a simmer, and let the tofu cubes simmer for 3-4 minutes. Strain them in a colander.",
+      "Place the tofu cubes back in the dry saucepan or in a bowl and sprinkle the lemon juice over them. Mix and set aside.",
+      "Place the onions, ginger and garlic in a food processor. Pulse 10-15 times to finely chop the onions. Do not process into a paste.",
+      "Heat a Dutch oven over medium heat. Add the onions to the pot with ¼ tsp salt. Saute the onions until they begin to brown. If they stick, add a tablespoon of water or so and scrape up any browned bits with the spatula.",
+      "About halfway through, add the niter kibbeh to the pot and continue sauteing the onions until they are well-browned.",
+      "Add the dry spices to the pot - berbere, sweet paprika, turmeric, ground cardamom, ground allspice and ground ginger.",
+      "Stir the spices into the onions.",
+      "Add two cups mushroom stock or vegetable stock to the pot. Mix thoroughly and bring to a boil. Cover and cook 10 minutes. Season with more salt as needed.",
+      "Stir in the mushrooms and let them simmer in the sauce for a couple of minutes.",
+      "Add the boiled tofu cubes to the pot. Mix well and bring back to a boil. Let the stew simmer another five minutes.",
+      "Garnish with cilantro and serve."
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "tofu",
+        "to": "chickpea tofu (Burmese tofu)",
+        "removes": "soy"
+      }
+    ]
   },
   {
     "id": "ethiopian-vegan-dabo-kolo-with-cardamom-coffee-affogato",
@@ -353,6 +540,25 @@
     "alternatives": [],
     "photo": "plate",
     "photoLabel": "dabo · kolo · cardamom",
-    "badge": "Strong Earner"
+    "badge": "Strong Earner",
+    "ingredients": [
+      "2 cups flour",
+      "½ tsp salt",
+      "2 tbsp sugar",
+      "1 tbsp cayenne (or more to taste)",
+      "1/4 cup vegetable oil",
+      "2/3 cup water"
+    ],
+    "steps": [
+      "In a medium bowl, mix together the dry ingredients.",
+      "Pour the vegetable oil into the bowl and use your hands to mix it in. The mixture will still seem dry.",
+      "Pour the water into the dough, little by little, kneading in between. The dough should not be sticky or crumbly. Once all the water has been added, use your hands to knead for 5 minutes.",
+      "Flour a dry, flat surface and use a rolling pin to roll the dough out until it’s about ¼ inch thick. Then, cut the dough into strips lengthwise and horizontally. The pieces should be about ½ inch on all sides (except for thickness).",
+      "Heat a cast iron skillet over medium heat with no oil or grease. Add the pieces (gently) to the skillet and mix occasionally for about 20 minutes until they’re toasted on all sides.",
+      "Enjoy!"
+    ],
+    "ingredientSource": "json-ld",
+    "allergens": [],
+    "allergenSubs": []
   }
 ]

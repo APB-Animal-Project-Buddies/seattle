@@ -14,9 +14,9 @@ function SiteNav({ menuCount, onOpenMenu }) {
       <nav>
         <a href="#">Mission</a>
         <a href="#">Sanctuaries</a>
-        <a href="#" className="active">Recipes</a>
+        <a href="menus.html">Menus</a>
+        <a href="recipes.html" className="active">Recipes</a>
         <a href="#">Stories</a>
-        <a href="#">Donate</a>
       </nav>
       <div className="right">
         <button className="menu-btn" onClick={onOpenMenu}>
