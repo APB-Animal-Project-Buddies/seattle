@@ -22,6 +22,9 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/top-alternatives") {
     return NextResponse.rewrite(new URL("/top-alternatives/index.html", request.url));
   }
+  if (request.nextUrl.pathname === "/reverse-lookup") {
+    return NextResponse.rewrite(new URL("/reverse-lookup/index.html", request.url));
+  }
   // Backward-compat: old slug → new slug
   if (request.nextUrl.pathname === "/top-dairy-products") {
     return NextResponse.redirect(new URL("/top-alternatives", request.url), 308);
