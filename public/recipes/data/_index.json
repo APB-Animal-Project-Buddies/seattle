@@ -1,13 +1,13 @@
 {
   "generatedAt": "2026-04-28T22:42:34.060Z",
   "source": "vegan-restaurant-catalog-v5.md",
-  "totalRecipes": 135,
+  "totalRecipes": 136,
   "avgCostPerPlate": 2.52,
   "cuisines": [
     {
       "slug": "american",
       "name": "American",
-      "count": 8,
+      "count": 9,
       "file": "american.json"
     },
     {

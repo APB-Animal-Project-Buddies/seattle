@@ -513,6 +513,103 @@
     ]
   },
   {
+    "id": "american-vegan-eggs-benedict",
+    "title": "Eggs Benedict (No Cruelty)",
+    "source": "School Night Vegan",
+    "rawTitle": "### Vegan Eggs Benedict — School Night Vegan",
+    "rawBody": "- **URL:** https://schoolnightvegan.com/home/vegan-eggs-benedict/ ✓ VERIFIED *(Restaurant-ops fields below — wholesale cost, menu price, weight, calories, protein, difficulty, tags, and subs — are first-pass estimates extrapolated from comparable brunch plates; not yet calibrated by a service test. The recipe / ingredients / steps come directly from School Night Vegan.)*\n- **Description:** Toasted English muffin layered with kala-namak-seared tofu rounds, vegan smoked \"ham,\" and a creamy vegan hollandaise. Brunch hero — hollandaise + ham hold cold, tofu sears à la minute.\n- **Wholesale food cost:** $2.40 / serving *(est.)* · **Menu price:** $13–16 (brunch entrée) *(est.)*\n- **Weight:** 280 g *(est.)* · **Calories:** 480 *(est.)* · **Protein:** 22 g *(est.)* · **Time:** 20 min · **Servings:** 2\n- **Restaurant difficulty:** **Easy** *(est.)* — components prep cold, plate hot to order.\n- **Tags:** 🥘 Bulk-Prep · ⚡ Fast-Service *(est.)*\n\n| Sub | Effect | Cost delta |\n|---|---|---|\n| Vegan smoked \"ham\" (default) | Closest to canonical Benedict | baseline *(est.)* |\n| Marinated smoked tofu in place of vegan ham | Budget; relies on smoke flavor | −$0.80 *(est.)* |\n| Sub Just Egg \"frittata\" round for the tofu | Brand-recognizable yolk colour | +$1.10 *(est.)* |\n| Add capers + dill + lemon zest crown | Premium brunch listing | +$0.20 → menu $15–18 *(est.)* |",
+    "valueRatio": 6.041666666666667,
+    "valueTier": "Strong Earner",
+    "cuisine": "american",
+    "cuisineName": "American",
+    "courses": [
+      "main"
+    ],
+    "url": "https://schoolnightvegan.com/home/vegan-eggs-benedict/",
+    "urlStatus": "verified",
+    "urlNote": "Restaurant-ops fields (cost, menu price, weight, calories, protein, difficulty, tags, subs, allergen subs, value tier) are first-pass estimates extrapolated from comparable brunch plates; not yet calibrated by a service test. The recipe — ingredients, steps, time, servings — comes directly from School Night Vegan.",
+    "description": "Toasted English muffin layered with kala-namak-seared tofu rounds, vegan smoked \"ham,\" and a creamy vegan hollandaise. Brunch hero — hollandaise + ham hold cold, tofu sears à la minute.",
+    "cost": 2.4,
+    "menuPrice": "$13–16 (brunch entrée)",
+    "weight": "280 g",
+    "calories": 480,
+    "protein": "22 g",
+    "time": "20m",
+    "prep": "20m",
+    "servings": 2,
+    "serves": 2,
+    "difficulty": 1,
+    "difficultyLabel": "Easy",
+    "difficultyNote": "components prep cold, plate hot to order.",
+    "tags": [
+      "bulk-prep",
+      "fast-service"
+    ],
+    "sourcingTier": "in-house",
+    "subs": [
+      {
+        "from": "Vegan smoked \"ham\" (default)",
+        "effect": "Closest to canonical Benedict",
+        "delta": "baseline (est.)"
+      },
+      {
+        "from": "Marinated smoked tofu in place of vegan ham",
+        "effect": "Budget; relies on smoke flavor",
+        "delta": "−$0.80 (est.)"
+      },
+      {
+        "from": "Sub Just Egg \"frittata\" round for the tofu",
+        "effect": "Brand-recognizable yolk colour",
+        "delta": "+$1.10 (est.)"
+      },
+      {
+        "from": "Add capers + dill + lemon zest crown",
+        "effect": "Premium brunch listing",
+        "delta": "+$0.20 → menu $15–18 (est.)"
+      }
+    ],
+    "alternatives": [],
+    "photo": "layered",
+    "photoLabel": "eggs · benedict",
+    "badge": "Strong Earner",
+    "estimatesPending": true,
+    "ingredients": [
+      "1 batch vegan hollandaise sauce",
+      "1 English muffin, halved",
+      "200 g firm or medium-firm tofu",
+      "2 teaspoons olive oil",
+      "Pinch kala namak (or fine sea salt)",
+      "Pinch black pepper",
+      "4 pieces vegan smoked ham",
+      "Fresh chives, finely chopped"
+    ],
+    "steps": [
+      "Prepare the vegan hollandaise sauce beforehand.",
+      "Toast both halves of the English muffin.",
+      "Slice the tofu horizontally into two 1.5–2 cm thick pieces; use a cookie cutter to cut circles slightly smaller than the muffin halves.",
+      "Heat the olive oil in a frying pan over medium heat and fry the tofu rounds about 5 minutes per side until browned; season with kala namak and black pepper.",
+      "Spread hollandaise on each toasted muffin half, then layer with the vegan smoked ham followed by the seared tofu round.",
+      "Top with the remaining hollandaise and garnish with fresh chives before serving."
+    ],
+    "ingredientSource": "source-page",
+    "allergens": [
+      "gluten",
+      "soy"
+    ],
+    "allergenSubs": [
+      {
+        "from": "English muffin",
+        "to": "gluten-free English muffin (est.)",
+        "removes": "gluten"
+      },
+      {
+        "from": "tofu",
+        "to": "chickpea-flour 'tofu' rounds (est.)",
+        "removes": "soy"
+      }
+    ]
+  },
+  {
     "id": "american-vegan-beef-wellington",
     "title": "Beef Wellington (No Cruelty)",
     "source": "Juicy Marbles",

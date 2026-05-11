@@ -267,6 +267,22 @@ All "Suggested menu price" ranges below use the food cost % method:
 |---|---|---|
 | **Premium faux-meat:** Impossible Sausage in gravy | Brand-recognizable; tighter crumble | +$1.40 |
 | Beyond Sausage | Slightly fattier mouthfeel | +$1.30 |
+
+### Vegan Eggs Benedict — School Night Vegan
+- **URL:** https://schoolnightvegan.com/home/vegan-eggs-benedict/ ✓ VERIFIED *(Restaurant-ops fields below — wholesale cost, menu price, weight, calories, protein, difficulty, tags, and subs — are first-pass estimates extrapolated from comparable brunch plates; not yet calibrated by a service test. The recipe / ingredients / steps come directly from School Night Vegan.)*
+- **Description:** Toasted English muffin layered with kala-namak-seared tofu rounds, vegan smoked "ham," and a creamy vegan hollandaise. Brunch hero — hollandaise + ham hold cold, tofu sears à la minute.
+- **Wholesale food cost:** $2.40 / serving *(est.)* · **Menu price:** $13–16 (brunch entrée) *(est.)*
+- **Weight:** 280 g *(est.)* · **Calories:** 480 *(est.)* · **Protein:** 22 g *(est.)* · **Time:** 20 min · **Servings:** 2
+- **Restaurant difficulty:** **Easy** *(est.)* — components prep cold, plate hot to order.
+- **Tags:** 🥘 Bulk-Prep · ⚡ Fast-Service *(est.)*
+
+| Sub | Effect | Cost delta |
+|---|---|---|
+| Vegan smoked "ham" (default) | Closest to canonical Benedict | baseline *(est.)* |
+| Marinated smoked tofu in place of vegan ham | Budget; relies on smoke flavor | −$0.80 *(est.)* |
+| Sub Just Egg "frittata" round for the tofu | Brand-recognizable yolk colour | +$1.10 *(est.)* |
+| Add capers + dill + lemon zest crown | Premium brunch listing | +$0.20 → menu $15–18 *(est.)* |
+
 ### Vegan Beef Wellington (**SHOWSTOPPER** — Juicy Marbles Loin)
 - **URL:** https://juicymarbles.com/blogs/recipes/vegan-wellington-mushroom-duxelle ✓ VERIFIED *(Juicy Marbles' own official Wellington recipe — uses their whole-cut loin as our spec calls for, includes mushroom duxelles, eggplant layer, blueberry-wine chutney)*
 - **Description:** **Lead protein:** Juicy Marbles Whole-Cut Loin (6 oz portion, seared hard) wrapped in mushroom-shallot-thyme duxelles, vegan prosciutto-style crepe layer, and all-butter vegan puff pastry. Egg-washed with maple-soy, scored, and roasted to a deep mahogany. Sliced tableside or à la minute, served with red-wine demi, pommes purée, and roasted hen-of-the-woods. The American steakhouse's plant-based holiday/anniversary plate.
