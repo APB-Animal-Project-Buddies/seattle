@@ -60,6 +60,41 @@
       ]
     },
     {
+      "id": "vegan-miso-macadamia-chocolate-chip-cookie",
+      "name": "Vegan Miso Macadamia Chocolate Chip Cookie",
+      "description": "Vegan chocolate chip cookie with macadamia nuts and a savoury-sweet miso twist. Locally made.",
+      "ingredients": [
+        "flour",
+        "miso",
+        "macadamia nuts",
+        "chocolate chips",
+        "sugar",
+        "vegan butter"
+      ],
+      "tags": [
+        "dessert",
+        "sweet",
+        "cookie",
+        "baked goods"
+      ],
+      "allergens": [
+        { "name": "nuts", "optional": false },
+        { "name": "gluten", "optional": false },
+        { "name": "soy", "optional": false }
+      ],
+      "locallyMade": true,
+      "restaurants": [
+        {
+          "name": "Treat Cookies",
+          "city": "Burien",
+          "url": null,
+          "address": "825 SW 152nd St, Burien, WA 98166",
+          "notes": null,
+          "ratings": []
+        }
+      ]
+    },
+    {
       "id": "milkshake",
       "name": "Milkshake",
       "description": "Thick dairy-free milkshakes with a rotating flavor selection. Pick your base milk at order time.",
