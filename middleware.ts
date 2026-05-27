@@ -10,6 +10,9 @@ export function middleware(request: NextRequest) {
   if (request.nextUrl.pathname === "/start-a-chapter") {
     return NextResponse.rewrite(new URL("/start-a-chapter.html", request.url));
   }
+  if (request.nextUrl.pathname === "/job-boards") {
+    return NextResponse.rewrite(new URL("/job-boards.html", request.url));
+  }
   if (request.nextUrl.pathname === "/recipes") {
     return NextResponse.rewrite(new URL("/recipes/index.html", request.url));
   }
