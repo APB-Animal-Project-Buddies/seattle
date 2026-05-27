@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Related job boards for animal advocacy and alternative protein careers, curated by Animal Project Buddies Seattle."
+    />
+    <title>Job Boards — Animal Project Buddies Seattle</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">APB Seattle</a>
+        <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+          <span class="nav-toggle-bar"></span>
+        </button>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/open-ideas">Open Ideas</a></li>
+          <li><a href="/start-a-chapter">Start a Chapter</a></li>
+          <li><a href="/job-boards" class="active">Job Boards</a></li>
+          <li><a href="/reverse-lookup">Reverse Lookup</a></li>
+          <li><a href="/#join" class="nav-cta">Join Us</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="ideas-hero">
+      <div class="ideas-hero-bg"></div>
+      <div class="container">
+        <h1>Related Job Boards</h1>
+        <p class="ideas-hero-subtitle">Looking for paid work in animal advocacy or alternative proteins? Start with these.</p>
+      </div>
+    </section>
+
+    <section class="ideas-page">
+      <div class="container">
+        <div class="ideas-grid">
+
+          <div class="idea-card">
+            <h3 class="idea-card-title">Alt Proteins Jobs</h3>
+            <div class="idea-card-section">
+              <span class="idea-card-label">Focus</span>
+              <p>Roles in plant-based, cultivated, and fermentation-derived proteins.</p>
+            </div>
+            <div class="idea-card-contact"><a href="https://altproteins.jobs" target="_blank" rel="noopener noreferrer">altproteins.jobs →</a></div>
+          </div>
+
+          <div class="idea-card">
+            <h3 class="idea-card-title">Effective Altruism Opportunities</h3>
+            <div class="idea-card-section">
+              <span class="idea-card-label">Focus</span>
+              <p>Curated openings across EA-aligned organizations, including animal welfare.</p>
+            </div>
+            <div class="idea-card-contact"><a href="https://www.effectivealtruism.org/opportunities" target="_blank" rel="noopener noreferrer">effectivealtruism.org/opportunities →</a></div>
+          </div>
+
+          <div class="idea-card">
+            <h3 class="idea-card-title">Animal Advocacy Careers</h3>
+            <div class="idea-card-section">
+              <span class="idea-card-label">Focus</span>
+              <p>Job board, coaching, and career advising for animal advocates.</p>
+            </div>
+            <div class="idea-card-contact"><a href="https://animaladvocacycareers.org/" target="_blank" rel="noopener noreferrer">animaladvocacycareers.org →</a></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>
+          &copy; 2025 Animal Project Buddies Seattle. Building a better
+          future for all animals.
+        </p>
+        <p class="contact-email">
+          Contact us: <a href="mailto:animalprojectbuddies@gmail.com">animalprojectbuddies@gmail.com</a>
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelector('.nav-toggle').addEventListener('click', function() {
+        const expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        document.querySelector('.nav-links').classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>
