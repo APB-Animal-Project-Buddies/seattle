@@ -13,6 +13,7 @@
 - "!include public_latest_project_metrics.yaml"
 - "!include public_project_snapshots.yaml"
 - "!include public_projects.yaml"
+- "!include public_recipes.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"
 - "!include storage_virus.yaml"
