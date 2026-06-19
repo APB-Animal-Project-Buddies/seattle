@@ -177,9 +177,9 @@ export function ReviewForm({ shortCode }: { shortCode: string }) {
         <p className="mt-1 rounded-lg bg-apb-cream px-3 py-2 text-xs text-neutral-600">
           {(liked.length > 0 || disliked.length > 0) && (
             <>
-              {liked.length > 0 && <>You liked <span className="font-bold">{liked.join(", ")}</span></>}
+              {liked.length > 0 && <>You mentioned you liked <span className="font-bold">{liked.join(", ")}</span></>}
               {liked.length > 0 && disliked.length > 0 && " and "}
-              {disliked.length > 0 && <>{liked.length === 0 ? "You " : ""}disliked <span className="font-bold">{disliked.join(", ")}</span></>}
+              {disliked.length > 0 && <>{liked.length === 0 ? "You mentioned you " : ""}disliked <span className="font-bold">{disliked.join(", ")}</span></>}
               {". "}
             </>
           )}
