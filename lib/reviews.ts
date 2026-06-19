@@ -1,5 +1,28 @@
-export const LIKED_OPTIONS = ["taste", "texture", "seasoning"] as const;
+export const LIKED_OPTIONS = ["taste", "texture", "seasoning", "appearance", "aroma"] as const;
 export type LikedOption = (typeof LIKED_OPTIONS)[number];
+
+// Ordinal scale for how a plant-based substitution compares to the non-plant original.
+// Centered on "equal" = 0 so the score reads as better(+)/worse(-) than the original.
+// "Not applicable" is represented by the ABSENCE of a substitution value (no score).
+export const SUBSTITUTION_OPTIONS = [
+  { key: "much_worse", label: "Much worse", score: -2 },
+  { key: "slightly_worse", label: "Slightly worse", score: -1 },
+  { key: "equal", label: "Equal", score: 0 },
+  { key: "slightly_better", label: "Slightly better", score: 1 },
+  { key: "much_better", label: "Much better", score: 2 },
+] as const;
+export type SubstitutionKey = (typeof SUBSTITUTION_OPTIONS)[number]["key"];
+export const SUBSTITUTION_NA = "na";
+
+// Reviewer's diet — context for weighting reviews later. "other" carries free text.
+export const DIET_OPTIONS = [
+  { key: "omnivore", label: "Omnivore (plant & animal-based foods)" },
+  { key: "vegan", label: "Vegan (plant-based only, no animal products)" },
+  { key: "vegetarian", label: "Vegetarian (plant-based except dairy and/or eggs)" },
+  { key: "pescetarian", label: "Pescetarian (plants & fish only)" },
+] as const;
+export type DietKey = (typeof DIET_OPTIONS)[number]["key"];
+export const DIET_OTHER = "other";
 
 const MAX_COMMENT = 2000, MAX_NAME = 120, MAX_EMAIL = 254;
 const RATING_MIN = 1, RATING_MAX = 10;
@@ -7,12 +30,14 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export type ReviewInput = {
   rating: number; expectations: number;
-  liked?: unknown; comments?: unknown;
-  reviewer?: { name?: unknown; email?: unknown } | null;
+  liked?: unknown; disliked?: unknown; substitution?: unknown; comments?: unknown;
+  reviewer?: { name?: unknown; email?: unknown; diet?: unknown; dietOther?: unknown } | null;
 };
 export type ReviewData = {
-  rating: number; expectations: number; liked: LikedOption[];
-  comments?: string; reviewer?: { name?: string; email?: string };
+  rating: number; expectations: number; liked: LikedOption[]; disliked: LikedOption[];
+  substitution?: { key: SubstitutionKey; score: number };
+  comments?: string;
+  reviewer?: { name?: string; email?: string; diet?: string; dietOther?: string };
 };
 
 export function isCommentRequired(rating: number): boolean {
@@ -35,17 +60,28 @@ export function buildReviewData(input: ReviewInput): ReviewData {
   const expectations = int1to10(input.expectations, "expectations");
   const likedRaw = Array.isArray(input.liked) ? input.liked : [];
   const liked = LIKED_OPTIONS.filter((o) => (likedRaw as unknown[]).includes(o));
+  const dislikedRaw = Array.isArray(input.disliked) ? input.disliked : [];
+  const disliked = LIKED_OPTIONS.filter((o) => (dislikedRaw as unknown[]).includes(o));
   const comments = str(input.comments, MAX_COMMENT);
   if (isCommentRequired(rating) && !comments) throw new Error("A comment is required for this rating");
   const name = str(input.reviewer?.name, MAX_NAME);
   const email = str(input.reviewer?.email, MAX_EMAIL);
   if (email && !EMAIL_RE.test(email)) throw new Error("Invalid email");
-  const data: ReviewData = { rating, expectations, liked };
+  const dietRaw = input.reviewer?.diet;
+  const dietKeys = DIET_OPTIONS.map((d) => d.key) as readonly string[];
+  const diet =
+    typeof dietRaw === "string" && (dietKeys.includes(dietRaw) || dietRaw === DIET_OTHER) ? dietRaw : undefined;
+  const dietOther = diet === DIET_OTHER ? str(input.reviewer?.dietOther, MAX_NAME) : undefined;
+  const data: ReviewData = { rating, expectations, liked, disliked };
+  const sub = SUBSTITUTION_OPTIONS.find((s) => s.key === input.substitution);
+  if (sub) data.substitution = { key: sub.key, score: sub.score };
   if (comments) data.comments = comments;
-  if (name || email) {
+  if (name || email || diet) {
     data.reviewer = {};
     if (name) data.reviewer.name = name;
     if (email) data.reviewer.email = email;
+    if (diet) data.reviewer.diet = diet;
+    if (dietOther) data.reviewer.dietOther = dietOther;
   }
   return data;
 }

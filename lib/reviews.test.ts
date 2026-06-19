@@ -9,6 +9,36 @@ import {
   parseDishTarget,
 } from "./reviews";
 
+test("buildReviewData maps a substitution choice to {key, score}", () => {
+  expect(buildReviewData({ rating: 6, expectations: 6, substitution: "much_better" } as any).substitution)
+    .toEqual({ key: "much_better", score: 2 });
+  expect(buildReviewData({ rating: 6, expectations: 6, substitution: "equal" } as any).substitution)
+    .toEqual({ key: "equal", score: 0 });
+  expect(buildReviewData({ rating: 6, expectations: 6, substitution: "much_worse" } as any).substitution)
+    .toEqual({ key: "much_worse", score: -2 });
+});
+
+test("buildReviewData captures a known diet and ignores unknown ones", () => {
+  expect(buildReviewData({ rating: 6, expectations: 6, reviewer: { diet: "vegan" } } as any).reviewer)
+    .toEqual({ diet: "vegan" });
+  expect(buildReviewData({ rating: 6, expectations: 6, reviewer: { diet: "bogus" } } as any).reviewer)
+    .toBeUndefined();
+});
+
+test("buildReviewData carries free-text dietOther only when diet is other", () => {
+  expect(buildReviewData({ rating: 6, expectations: 6, reviewer: { diet: "other", dietOther: "Raw vegan" } } as any).reviewer)
+    .toEqual({ diet: "other", dietOther: "Raw vegan" });
+  // dietOther ignored unless diet === "other"
+  expect(buildReviewData({ rating: 6, expectations: 6, reviewer: { diet: "omnivore", dietOther: "ignored" } } as any).reviewer)
+    .toEqual({ diet: "omnivore" });
+});
+
+test("buildReviewData omits substitution for N/A or unknown values", () => {
+  expect("substitution" in buildReviewData({ rating: 6, expectations: 6, substitution: "na" } as any)).toBe(false);
+  expect("substitution" in buildReviewData({ rating: 6, expectations: 6 } as any)).toBe(false);
+  expect("substitution" in buildReviewData({ rating: 6, expectations: 6, substitution: "bogus" } as any)).toBe(false);
+});
+
 test("comment required only for extreme overall ratings", () => {
   expect(isCommentRequired(1)).toBe(true);
   expect(isCommentRequired(2)).toBe(true);
@@ -21,6 +51,7 @@ test("buildReviewData reconstructs only allowed fields", () => {
   const result = buildReviewData({
     rating: 8, expectations: 7,
     liked: ["taste", "texture", "bogus"],
+    disliked: ["seasoning", "bogus"],
     comments: "Great",
     reviewer: { name: "VA", email: "va@example.com", evil: "x" },
     injected: "drop tables",
@@ -28,6 +59,7 @@ test("buildReviewData reconstructs only allowed fields", () => {
   expect(result).toEqual({
     rating: 8, expectations: 7,
     liked: ["taste", "texture"],
+    disliked: ["seasoning"],
     comments: "Great",
     reviewer: { name: "VA", email: "va@example.com" },
   });
@@ -76,5 +108,5 @@ test("parseDishTarget only accepts dish_review with int target_id", () => {
 });
 
 test("LIKED_OPTIONS is the fixed allowlist", () => {
-  expect(LIKED_OPTIONS).toEqual(["taste", "texture", "seasoning"]);
+  expect(LIKED_OPTIONS).toEqual(["taste", "texture", "seasoning", "appearance", "aroma"]);
 });
