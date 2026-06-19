@@ -69,6 +69,7 @@ export function ReviewForm({ shortCode }: { shortCode: string }) {
         <Controller control={control} name="rating" render={({ field }) => (
           <div>
             <Label>How would you rate this dish? (1–10)</Label>
+            <p className="mt-1 text-xs italic text-neutral-500">Please be honest — your feedback will be used to curate our data.</p>
             <div className="mt-3">
               <div className="mb-1 text-sm font-medium">Rating: {field.value}</div>
               <Slider min={1} max={10} step={1} value={[field.value]}
