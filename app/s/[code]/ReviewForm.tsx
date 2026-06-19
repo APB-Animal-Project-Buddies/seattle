@@ -16,7 +16,7 @@ type FormValues = {
 
 export function ReviewForm({ shortCode }: { shortCode: string }) {
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
-  const { control, register, handleSubmit, watch, formState: { errors } } = useForm<FormValues>({
+  const { control, register, handleSubmit, watch, trigger, formState: { errors } } = useForm<FormValues>({
     defaultValues: { rating: 5, expectations: 5, liked: [], comments: "", name: "", email: "" },
   });
   const rating = watch("rating");
@@ -57,7 +57,8 @@ export function ReviewForm({ shortCode }: { shortCode: string }) {
         <Controller control={control} name="rating" render={({ field }) => (
           <div className="mt-3">
             <div className="mb-1 text-sm font-medium">Rating: {field.value}</div>
-            <Slider min={1} max={10} step={1} value={[field.value]} onValueChange={(v) => field.onChange(v[0])} />
+            <Slider min={1} max={10} step={1} value={[field.value]}
+              onValueChange={(v) => { field.onChange(v[0]); void trigger("comments"); }} />
             <div className="mt-1 flex justify-between text-xs text-neutral-500">
               <span>1 · unpalatable</span><span>5</span><span>10 · restaurant-worthy</span>
             </div>
