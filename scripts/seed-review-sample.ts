@@ -2,8 +2,8 @@ import { graphql } from "../lib/nhost";
 import { randomShortCode } from "../lib/reviews";
 
 async function codeExists(code: string): Promise<boolean> {
-  const res = await graphql<{ short_urls: Array<{ id: number }> }>(
-    `query($c: String!) { short_urls(where: { short_code: { _eq: $c } }, limit: 1) { id } }`,
+  const res = await graphql<{ short_urls: Array<{ short_code: string }> }>(
+    `query($c: String!) { short_urls(where: { short_code: { _eq: $c } }, limit: 1) { short_code } }`,
     { useAdminSecret: true, variables: { c: code } }
   );
   return (res.data?.short_urls?.length ?? 0) > 0;
