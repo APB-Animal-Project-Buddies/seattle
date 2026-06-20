@@ -3,6 +3,10 @@ export const DISH_TYPES = ["main","side","appetizer","breakfast","soup","salad",
 export const ALLERGENS = ["gluten","nuts","peanuts","soy","dairy","eggs","sesame","shellfish","fish"] as const;
 export const UNITS = ["g","kg","ml","l","tsp","tbsp","cup","oz","lb","piece","clove","can","pinch","dash","handful","bunch","sprig","to_taste","other"] as const;
 export const TRIED_BY = ["just_me","friends","family","strangers","a_lot"] as const;
+export const TRIED_BY_LABELS: Record<(typeof TRIED_BY)[number], string> = {
+  just_me: "Just me", friends: "Friends", family: "Family", strangers: "Strangers", a_lot: "A lot of people",
+};
+export const TAGS = ["fast","easy","cheap","expensive","fancy","healthy","high-protein","comfort-food","spicy","kid-friendly","bulk-prep","low-effort"] as const;
 
 const MAX_SHORT = 200, MAX_LONG = 4000, MAX_NAME = 120, MAX_EMAIL = 254, MAX_TAGS = 25, MAX_INGREDIENTS = 100, MAX_STEPS = 60;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -33,7 +37,7 @@ export function buildDishData(input: any): DishData {
   // sets: the UI offers those lists plus an "Other → free text" escape, so any capped
   // string is accepted here. Moderators can normalize on promotion to `recipes`.
   const cuisine = str(input?.cuisine, MAX_SHORT); if (cuisine) d.cuisine = cuisine;
-  const dishType = str(input?.dishType, MAX_SHORT); if (dishType) d.dishType = dishType;
+  const dishType = strArray(input?.dishType, DISH_TYPES.length, MAX_SHORT); if (dishType.length) d.dishType = dishType;
 
   const tags = strArray(input?.tags, MAX_TAGS, MAX_SHORT); if (tags.length) d.tags = tags;
 
@@ -74,8 +78,9 @@ export function buildDishData(input: any): DishData {
   if (sbName || sbEmail) { d.submittedBy = {}; if (sbName) (d.submittedBy as any).name = sbName; if (sbEmail) (d.submittedBy as any).email = sbEmail; }
 
   const v: any = {};
-  const triedBy = str(input?.validation?.triedBy, 40);
-  if (triedBy && (TRIED_BY as readonly string[]).includes(triedBy)) v.triedBy = triedBy;
+  const triedBy = strArray(input?.validation?.triedBy, TRIED_BY.length, 40)
+    .filter((t) => (TRIED_BY as readonly string[]).includes(t));
+  if (triedBy.length) v.triedBy = triedBy;
   const sourceUrl = str(input?.validation?.sourceUrl, MAX_SHORT);
   if (sourceUrl) { if (!URL_RE.test(sourceUrl)) throw new Error("Validation link must be a valid URL"); v.sourceUrl = sourceUrl; }
   if (input?.validation?.reviewCount != null && input.validation.reviewCount !== "") {

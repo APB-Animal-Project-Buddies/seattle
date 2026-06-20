@@ -7,8 +7,8 @@ export type RecipeFormValues = {
   title: string;
   description: string;
   cuisine: string;
-  dishType: string;
-  tags: string;
+  dishType: string[];
+  tags: string[];
   ingredients: Ingredient[];
   steps: Step[];
   specialProducts: string;
@@ -20,17 +20,17 @@ export type RecipeFormValues = {
   notes: string;
   name: string;
   email: string;
-  triedBy: string;
+  triedBy: string[];
   sourceUrl: string;
   reviewCount: string;
   stars: string;
 };
 
 export const RECIPE_FORM_DEFAULTS: RecipeFormValues = {
-  title: "", description: "", cuisine: "", dishType: "", tags: "",
+  title: "", description: "", cuisine: "", dishType: [], tags: [],
   ingredients: [{ name: "", quantity: "", unit: "" }],
   steps: [{ text: "" }],
   specialProducts: "", specialEquipment: "", cost: "", allergens: [],
   resourceLink: "", originalCreator: "", notes: "",
-  name: "", email: "", triedBy: "", sourceUrl: "", reviewCount: "", stars: "",
+  name: "", email: "", triedBy: [], sourceUrl: "", reviewCount: "", stars: "",
 };

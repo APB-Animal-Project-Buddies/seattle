@@ -16,7 +16,7 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
     title: "  Vegan Mac  ",
     description: "Cheesy",
     cuisine: "american",
-    dishType: "main",
+    dishType: ["main"],
     tags: ["bulk-prep", "  "],
     ingredients: [
       { name: " Cashews ", quantity: 1.5, unit: "cup", id: "en:cashew" },
@@ -28,18 +28,19 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
     resourceLink: "https://example.com/r",
     notes: "verify",
     submittedBy: { name: "VA", email: "va@example.com" },
-    validation: { triedBy: "friends", sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 },
+    validation: { triedBy: ["friends", "bogus"], sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 },
     injected: "drop",
   } as any);
 
   expect(d.title).toBe("Vegan Mac");
   expect(d.tags).toEqual(["bulk-prep"]);
+  expect(d.dishType).toEqual(["main"]);
   expect(d.ingredients).toEqual([
     { name: "Cashews", quantity: 1.5, unit: "cup", id: "en:cashew" },
     { name: "Salt", quantity: null, unit: "bogus" },
   ]);
   expect(d.cost).toBe(1.85);
-  expect(d.validation).toEqual({ triedBy: "friends", sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 });
+  expect(d.validation).toEqual({ triedBy: ["friends"], sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 });
   expect((d as any).injected).toBeUndefined();
 });
 
@@ -51,7 +52,7 @@ test("buildDishData validates email, url, number ranges", () => {
 });
 
 test("buildDishData drops invalid triedBy but keeps the rest", () => {
-  const d = buildDishData({ title: "x", validation: { triedBy: "bogus", reviewCount: 5 } } as any);
+  const d = buildDishData({ title: "x", validation: { triedBy: ["bogus"], reviewCount: 5 } } as any);
   expect(d.validation).toEqual({ reviewCount: 5 });
 });
 

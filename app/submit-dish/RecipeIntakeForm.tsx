@@ -4,10 +4,10 @@ import { useForm, FormProvider, Controller } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Select, Options } from "@/components/ui/select";
 import { Field } from "@/components/form/Field";
-import { CUISINES, DISH_TYPES, ALLERGENS, TRIED_BY } from "@/lib/dishes";
+import { ChipGroup } from "@/components/form/ChipGroup";
+import { CUISINES, DISH_TYPES, ALLERGENS, TRIED_BY, TRIED_BY_LABELS, TAGS } from "@/lib/dishes";
 import { IngredientsSection } from "./sections/IngredientsSection";
 import { StepsSection } from "./sections/StepsSection";
 import { RECIPE_FORM_DEFAULTS, type RecipeFormValues } from "./types";
@@ -28,7 +28,7 @@ export function RecipeIntakeForm() {
       description: v.description,
       cuisine: v.cuisine,
       dishType: v.dishType,
-      tags: v.tags.split(",").map((t) => t.trim()).filter(Boolean),
+      tags: v.tags,
       ingredients: v.ingredients
         .filter((r) => r.name.trim())
         .map((r) => ({ id: r.id, name: r.name, quantity: numOrNull(r.quantity), unit: r.unit })),
@@ -85,16 +85,18 @@ export function RecipeIntakeForm() {
         <Field label="Description">
           <Textarea className="mt-2" {...register("description")} />
         </Field>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Field label="Cuisine">
-            <Select className="mt-2" {...register("cuisine")}><Options values={CUISINES} placeholder="—" /></Select>
-          </Field>
-          <Field label="Dish type">
-            <Select className="mt-2" {...register("dishType")}><Options values={DISH_TYPES} placeholder="—" /></Select>
-          </Field>
-        </div>
-        <Field label="Tags" hint="comma-separated">
-          <Input className="mt-2" placeholder="bulk-prep, fast-service" {...register("tags")} />
+        <Field label="Cuisine">
+          <Select className="mt-2" {...register("cuisine")}><Options values={CUISINES} placeholder="—" /></Select>
+        </Field>
+        <Field label="Dish type" hint="pick any that apply">
+          <Controller control={control} name="dishType" render={({ field }) => (
+            <ChipGroup value={field.value} onChange={field.onChange} options={DISH_TYPES} />
+          )} />
+        </Field>
+        <Field label="Tags">
+          <Controller control={control} name="tags" render={({ field }) => (
+            <ChipGroup value={field.value} onChange={field.onChange} options={TAGS} />
+          )} />
         </Field>
 
         <IngredientsSection />
@@ -119,34 +121,18 @@ export function RecipeIntakeForm() {
           <Input className="mt-2" type="url" {...register("resourceLink")} />
         </Field>
         <Field label="Allergens">
-          <Controller
-            control={control}
-            name="allergens"
-            render={({ field }) => (
-              <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3">
-                {ALLERGENS.map((a) => (
-                  <label key={a} className="flex items-center gap-2 capitalize">
-                    <Checkbox
-                      checked={field.value.includes(a)}
-                      onCheckedChange={(c) =>
-                        field.onChange(c ? [...field.value, a] : field.value.filter((x) => x !== a))
-                      }
-                    />
-                    {a}
-                  </label>
-                ))}
-              </div>
-            )}
-          />
+          <Controller control={control} name="allergens" render={({ field }) => (
+            <ChipGroup value={field.value} onChange={field.onChange} options={ALLERGENS} />
+          )} />
         </Field>
 
         {/* Validation */}
         <div className="rounded-[16px] border border-neutral-200 bg-white/60 p-5">
-          <Field label="How is this validated?">
-            <div className="mt-2">
-              <span className="text-sm">Who has tried this?</span>
-              <Select className="mt-1" {...register("triedBy")}><Options values={TRIED_BY} placeholder="—" /></Select>
-            </div>
+          <p className="text-sm font-semibold text-apb">How is this validated?</p>
+          <Field className="mt-3" label="Who has tried this?">
+            <Controller control={control} name="triedBy" render={({ field }) => (
+              <ChipGroup value={field.value} onChange={field.onChange} options={TRIED_BY} labels={TRIED_BY_LABELS} />
+            )} />
           </Field>
           <Field className="mt-3" label="Original recipe reviews link">
             <Input className="mt-2" type="url" {...register("sourceUrl")} />
