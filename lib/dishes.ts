@@ -36,7 +36,7 @@ export function buildDishData(input: any): DishData {
   // cuisine / dishType / unit / allergens are intentionally NOT clamped to the allowed
   // sets: the UI offers those lists plus an "Other → free text" escape, so any capped
   // string is accepted here. Moderators can normalize on promotion to `recipes`.
-  const cuisine = str(input?.cuisine, MAX_SHORT); if (cuisine) d.cuisine = cuisine;
+  const cuisines = strArray(input?.cuisines, CUISINES.length, MAX_SHORT); if (cuisines.length) d.cuisines = cuisines;
   const dishType = strArray(input?.dishType, DISH_TYPES.length, MAX_SHORT); if (dishType.length) d.dishType = dishType;
 
   const tags = strArray(input?.tags, MAX_TAGS, MAX_SHORT); if (tags.length) d.tags = tags;

@@ -6,7 +6,7 @@ export type Step = { text: string };
 export type RecipeFormValues = {
   title: string;
   description: string;
-  cuisine: string;
+  cuisines: string[];
   dishType: string[];
   tags: string[];
   ingredients: Ingredient[];
@@ -27,7 +27,7 @@ export type RecipeFormValues = {
 };
 
 export const RECIPE_FORM_DEFAULTS: RecipeFormValues = {
-  title: "", description: "", cuisine: "", dishType: [], tags: [],
+  title: "", description: "", cuisines: [], dishType: [], tags: [],
   ingredients: [{ name: "", quantity: "", unit: "" }],
   steps: [{ text: "" }],
   specialProducts: "", specialEquipment: "", cost: "", allergens: [],

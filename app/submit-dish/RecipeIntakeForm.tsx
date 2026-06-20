@@ -4,9 +4,9 @@ import { useForm, FormProvider, Controller } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Select, Options } from "@/components/ui/select";
 import { Field } from "@/components/form/Field";
 import { ChipGroup } from "@/components/form/ChipGroup";
+import { MultiSelect } from "@/components/form/MultiSelect";
 import { CUISINES, DISH_TYPES, ALLERGENS, TRIED_BY, TRIED_BY_LABELS, TAGS } from "@/lib/dishes";
 import { IngredientsSection } from "./sections/IngredientsSection";
 import { StepsSection } from "./sections/StepsSection";
@@ -26,7 +26,7 @@ export function RecipeIntakeForm() {
     const body = {
       title: v.title,
       description: v.description,
-      cuisine: v.cuisine,
+      cuisines: v.cuisines,
       dishType: v.dishType,
       tags: v.tags,
       ingredients: v.ingredients
@@ -85,8 +85,10 @@ export function RecipeIntakeForm() {
         <Field label="Description">
           <Textarea className="mt-2" {...register("description")} />
         </Field>
-        <Field label="Cuisine">
-          <Select className="mt-2" {...register("cuisine")}><Options values={CUISINES} placeholder="—" /></Select>
+        <Field label="Cuisine" hint="pick any that apply">
+          <Controller control={control} name="cuisines" render={({ field }) => (
+            <MultiSelect className="mt-2" value={field.value} onChange={field.onChange} options={CUISINES} />
+          )} />
         </Field>
         <Field label="Dish type" hint="pick any that apply">
           <Controller control={control} name="dishType" render={({ field }) => (

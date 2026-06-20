@@ -15,7 +15,7 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
   const d = buildDishData({
     title: "  Vegan Mac  ",
     description: "Cheesy",
-    cuisine: "american",
+    cuisines: ["american", "italian"],
     dishType: ["main"],
     tags: ["bulk-prep", "  "],
     ingredients: [
@@ -33,6 +33,7 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
   } as any);
 
   expect(d.title).toBe("Vegan Mac");
+  expect(d.cuisines).toEqual(["american", "italian"]);
   expect(d.tags).toEqual(["bulk-prep"]);
   expect(d.dishType).toEqual(["main"]);
   expect(d.ingredients).toEqual([
