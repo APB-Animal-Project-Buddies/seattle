@@ -10,6 +10,7 @@
 - "!include public_account_snapshots.yaml"
 - "!include public_dishes.yaml"
 - "!include public_ideas.yaml"
+- "!include public_ingredients.yaml"
 - "!include public_latest_account_metrics.yaml"
 - "!include public_latest_project_metrics.yaml"
 - "!include public_project_snapshots.yaml"
