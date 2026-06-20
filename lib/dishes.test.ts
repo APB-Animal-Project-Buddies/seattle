@@ -54,3 +54,9 @@ test("buildDishData drops invalid triedBy but keeps the rest", () => {
   const d = buildDishData({ title: "x", validation: { triedBy: "bogus", reviewCount: 5 } } as any);
   expect(d.validation).toEqual({ reviewCount: 5 });
 });
+
+test("buildDishData keeps non-empty steps as a string array", () => {
+  expect(buildDishData({ title: "x", steps: ["Boil water", "  ", "Add pasta"] } as any).steps)
+    .toEqual(["Boil water", "Add pasta"]);
+  expect("steps" in buildDishData({ title: "x", steps: ["", "   "] } as any)).toBe(false);
+});

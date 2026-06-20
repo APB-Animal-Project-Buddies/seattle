@@ -22,7 +22,10 @@ export async function POST(request: Request) {
        }`,
       { useAdminSecret: true, variables: { name: dishData.title as string, data: dishData } }
     );
-    if (res.errors?.length) return NextResponse.json({ error: res.errors[0]?.message }, { status: 500 });
+    if (res.errors?.length) {
+      console.error("insert dish failed:", res.errors);
+      return NextResponse.json({ error: "Could not save recipe" }, { status: 500 });
+    }
     return NextResponse.json({ ok: true, id: res.data?.insert_dishes_one?.id });
   } catch {
     return NextResponse.json({ error: "Temporarily unavailable" }, { status: 502 });

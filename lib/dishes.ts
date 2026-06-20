@@ -1,10 +1,10 @@
 export const CUISINES = ["american","italian","mexican","indian","chinese","thai","japanese","korean","vietnamese","mediterranean","middle-eastern","french","ethiopian","other"] as const;
 export const DISH_TYPES = ["main","side","appetizer","breakfast","soup","salad","dessert","snack","drink","sauce","other"] as const;
 export const ALLERGENS = ["gluten","nuts","peanuts","soy","dairy","eggs","sesame","shellfish","fish"] as const;
-export const UNITS = ["g","kg","ml","l","tsp","tbsp","cup","oz","lb","piece","pinch","clove","can","other"] as const;
+export const UNITS = ["g","kg","ml","l","tsp","tbsp","cup","oz","lb","piece","clove","can","pinch","dash","handful","bunch","sprig","to_taste","other"] as const;
 export const TRIED_BY = ["just_me","friends","family","strangers","a_lot"] as const;
 
-const MAX_SHORT = 200, MAX_LONG = 4000, MAX_NAME = 120, MAX_EMAIL = 254, MAX_TAGS = 25, MAX_INGREDIENTS = 100;
+const MAX_SHORT = 200, MAX_LONG = 4000, MAX_NAME = 120, MAX_EMAIL = 254, MAX_TAGS = 25, MAX_INGREDIENTS = 100, MAX_STEPS = 60;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const URL_RE = /^https?:\/\/[^\s]+$/i;
 
@@ -29,6 +29,9 @@ export function buildDishData(input: any): DishData {
 
   const d: DishData = { title };
   const desc = str(input?.description, MAX_LONG); if (desc) d.description = desc;
+  // cuisine / dishType / unit / allergens are intentionally NOT clamped to the allowed
+  // sets: the UI offers those lists plus an "Other → free text" escape, so any capped
+  // string is accepted here. Moderators can normalize on promotion to `recipes`.
   const cuisine = str(input?.cuisine, MAX_SHORT); if (cuisine) d.cuisine = cuisine;
   const dishType = str(input?.dishType, MAX_SHORT); if (dishType) d.dishType = dishType;
 
@@ -46,6 +49,8 @@ export function buildDishData(input: any): DishData {
     .filter(Boolean)
     .slice(0, MAX_INGREDIENTS);
   if (ingredients.length) d.ingredients = ingredients;
+
+  const steps = strArray(input?.steps, MAX_STEPS, MAX_LONG); if (steps.length) d.steps = steps;
 
   const specialProducts = str(input?.specialProducts, MAX_LONG); if (specialProducts) d.specialProducts = specialProducts;
   const specialEquipment = str(input?.specialEquipment, MAX_LONG); if (specialEquipment) d.specialEquipment = specialEquipment;
