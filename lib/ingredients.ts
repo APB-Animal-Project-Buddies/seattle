@@ -11,7 +11,11 @@ export function slug(name: string): string {
 }
 
 export function buildSearchText(name: string, synonyms: string[]): string {
-  return [name, ...synonyms].join(" ").toLowerCase().replace(/\s+/g, " ").trim();
+  // Index both spaced ("soy milk") and spaceless ("soymilk") forms of every token
+  // so substring search matches spacing/hyphen variants. Deduped.
+  const spaced = [name, ...synonyms].map((t) => t.toLowerCase().replace(/\s+/g, " ").trim()).filter(Boolean);
+  const spaceless = spaced.map((t) => t.replace(/[\s-]/g, ""));
+  return Array.from(new Set([...spaced, ...spaceless])).join(" ");
 }
 
 export type AddDecision = { action: "reuse"; id: string } | { action: "create"; id: string };

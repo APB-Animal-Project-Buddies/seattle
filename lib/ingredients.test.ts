@@ -17,8 +17,9 @@ test("slug is url/id-safe", () => {
   expect(slug("  Olive   Oil ")).toBe("olive-oil");
 });
 
-test("buildSearchText lowercases name + synonyms", () => {
-  expect(buildSearchText("Tofu", ["Bean Curd", "Tofus"])).toBe("tofu bean curd tofus");
+test("buildSearchText includes spaced + spaceless tokens, deduped", () => {
+  expect(buildSearchText("Soy Milk", ["Soy Drink"])).toBe("soy milk soy drink soymilk soydrink");
+  expect(buildSearchText("Tofu", ["Tofu"])).toBe("tofu"); // dedup
 });
 
 test("decideAdd reuses an existing entry with the same norm_key", () => {
