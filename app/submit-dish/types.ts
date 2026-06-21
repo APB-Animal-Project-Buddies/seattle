@@ -11,7 +11,7 @@ export type RecipeFormValues = {
   tags: string[];
   ingredients: Ingredient[];
   steps: Step[];
-  specialProducts: string;
+  specialProducts: string[];
   specialEquipment: string;
   cost: string;
   allergens: string[];
@@ -21,16 +21,18 @@ export type RecipeFormValues = {
   name: string;
   email: string;
   triedBy: string[];
-  sourceUrl: string;
+  feedback: string;
   reviewCount: string;
-  stars: string;
+  rating: string;
+  ratingScale: string;
 };
 
 export const RECIPE_FORM_DEFAULTS: RecipeFormValues = {
   title: "", description: "", cuisines: [], dishType: [], tags: [],
-  ingredients: [{ name: "", quantity: "", unit: "" }],
-  steps: [{ text: "" }],
-  specialProducts: "", specialEquipment: "", cost: "", allergens: [],
+  // Open a handful of rows up front so the form looks ready to fill in.
+  ingredients: Array.from({ length: 5 }, () => ({ name: "", quantity: "", unit: "" })),
+  steps: Array.from({ length: 3 }, () => ({ text: "" })),
+  specialProducts: [], specialEquipment: "", cost: "", allergens: [],
   resourceLink: "", originalCreator: "", notes: "",
-  name: "", email: "", triedBy: [], sourceUrl: "", reviewCount: "", stars: "",
+  name: "", email: "", triedBy: [], feedback: "", reviewCount: "", rating: "", ratingScale: "5",
 };

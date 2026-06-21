@@ -17,50 +17,14 @@
 
 import { inflateRawSync } from "node:zlib";
 import { CUISINES, DISH_TYPES, ALLERGENS, UNITS } from "./dishes";
+import { BRAND_HINTS, RARE_HINTS, PLANT_BASED_BRANDS, RARE_EXPENSIVE_INGREDIENTS } from "./special-products";
 
 // Cheap + fast is plenty for this; flip via env to compare.
 export const MODEL = process.env.RECIPE_EXTRACT_MODEL ?? "claude-haiku-4-5";
 
-// Editable brand list — the single biggest lever on recognizing niche plant-based
-// products (Juicy Marbles, Chunk Foods). Add a brand and it propagates to the prompt.
-export const PLANT_BASED_BRANDS = {
-  meat: [
-    "Juicy Marbles", "Chunk Foods", "Beyond Meat", "Impossible", "Gardein",
-    "MorningStar", "Tofurky", "Field Roast", "Lightlife", "Quorn", "Meati",
-    "Daring", "Abbot's Butcher", "Upton's Naturals", "No Evil Foods",
-  ],
-  dairyCheese: [
-    "Daiya", "Follow Your Heart", "Miyoko's", "Violife", "Kite Hill", "Chao",
-    "Treeline", "So Delicious", "Oatly", "Forager", "Califia Farms", "Ripple",
-    "Earth Balance", "Country Crock Plant Butter",
-  ],
-  egg: ["JUST Egg", "Simply Eggless", "Crackd"],
-  seafood: ["Good Catch", "Sophie's Kitchen", "Jinka", "Konscious", "Plant Based Seafood Co", "Oshi"],
-  bouillon: ["Better Than Bouillon", "Edward & Sons Not-Chick'n", "Massel", "Seitenbacher"],
-  specialtyStaples: [
-    "nutritional yeast", "aquafaba", "vital wheat gluten", "seitan", "TVP",
-    "tempeh", "kala namak (black salt)", "liquid smoke", "agar", "jackfruit",
-  ],
-} as const;
-
-const BRAND_HINTS =
-  `meat: ${PLANT_BASED_BRANDS.meat.join(", ")}; ` +
-  `cheese/dairy/butter: ${PLANT_BASED_BRANDS.dairyCheese.join(", ")}; ` +
-  `egg: ${PLANT_BASED_BRANDS.egg.join(", ")}; ` +
-  `seafood: ${PLANT_BASED_BRANDS.seafood.join(", ")}; ` +
-  `bouillon/broth: ${PLANT_BASED_BRANDS.bouillon.join(", ")}; ` +
-  `specialty staples: ${PLANT_BASED_BRANDS.specialtyStaples.join(", ")}`;
-
-// Rare / expensive / hard-to-find ingredients — prohibitive on cost or availability.
-export const RARE_EXPENSIVE_INGREDIENTS = [
-  "saffron", "black truffle", "white truffle", "truffle oil", "cardamom",
-  "matsutake mushroom", "morel mushroom", "porcini", "vanilla bean",
-  "fennel pollen", "sumac", "asafoetida (hing)", "Sichuan peppercorn",
-  "star anise", "pine nuts", "juniper berries", "kaffir lime leaves",
-  "fresh curry leaves", "gochugaru", "kombu", "dried shiitake", "pink peppercorn",
-] as const;
-
-const RARE_HINTS = RARE_EXPENSIVE_INGREDIENTS.join(", ");
+// Brand / rare-ingredient lists live in lib/special-products.ts (pure data, shared
+// with the client form). Re-exported for the spike runner's existing imports.
+export { PLANT_BASED_BRANDS, RARE_EXPENSIVE_INGREDIENTS };
 
 // ---------------------------------------------------------------------------
 // The tool call (strict structured output). One tool, forced via tool_choice.
@@ -176,17 +140,14 @@ export const EXTRACT_TOOL = {
         items: { type: "string" },
       },
       specialProducts: {
-        type: ["string", "null"],
+        type: "array",
         description:
-          "A readable list (comma- or newline-separated) of specialty / hard-to-source ingredients, with the " +
-          "STRICT focus being branded plant-based products. Scan every ingredient line and surface any branded " +
-          "plant-based meat/cheese/dairy/egg/seafood product BY NAME (keep the brand). Known brands to watch " +
-          `for — flag any you see, and any other branded plant-based product you recognize: ${BRAND_HINTS}. ` +
-          "ALSO flag rare / expensive / hard-to-find ingredients that are prohibitive on cost or availability " +
-          `alone (no brand needed) — e.g. ${RARE_HINTS}, and use judgment for similar premium items. ` +
-          "Include the per-item category in parentheses when useful, e.g. 'Juicy Marbles (plant-based meat), " +
-          "Miyoko's (plant-based cheese), saffron (rare/expensive spice)'. Null if the recipe uses no specialty, " +
-          "branded plant-based, or rare/expensive ingredients.",
+          "Array of specialty / hard-to-source items this recipe needs — one entry per item, brand intact. " +
+          "STRICT focus: (1) branded plant-based products by name (scan every ingredient line) and (2) rare / " +
+          "expensive / not-normally-stocked ingredients (no brand needed). " +
+          `Brands to watch for: ${BRAND_HINTS}. Rare/expensive: ${RARE_HINTS}. ` +
+          "e.g. ['Beyond Meat', 'Better Than Bouillon', 'saffron']. Empty array if the recipe uses none.",
+        items: { type: "string" },
       },
       specialEquipment: {
         type: ["string", "null"],

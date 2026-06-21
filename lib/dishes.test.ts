@@ -28,7 +28,7 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
     resourceLink: "https://example.com/r",
     notes: "verify",
     submittedBy: { name: "VA", email: "va@example.com" },
-    validation: { triedBy: ["friends", "bogus"], sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 },
+    validation: { triedBy: ["friends", "bogus"], reviewCount: 2000, rating: 8, ratingScale: 10 },
     injected: "drop",
   } as any);
 
@@ -41,7 +41,7 @@ test("buildDishData keeps only allowed fields and normalizes ingredients", () =>
     { name: "Salt", quantity: null, unit: "bogus" },
   ]);
   expect(d.cost).toBe(1.85);
-  expect(d.validation).toEqual({ triedBy: ["friends"], sourceUrl: "https://src", reviewCount: 2000, stars: 4.8 });
+  expect(d.validation).toEqual({ triedBy: ["friends"], reviewCount: 2000, rating: 8, ratingScale: 10 });
   expect((d as any).injected).toBeUndefined();
 });
 
@@ -49,7 +49,7 @@ test("buildDishData validates email, url, number ranges", () => {
   expect(() => buildDishData({ title: "x", submittedBy: { email: "nope" } } as any)).toThrow(/email/i);
   expect(() => buildDishData({ title: "x", resourceLink: "not a url" } as any)).toThrow(/url|link/i);
   expect(() => buildDishData({ title: "x", cost: -1 } as any)).toThrow(/cost/i);
-  expect(() => buildDishData({ title: "x", validation: { stars: 9 } } as any)).toThrow(/star/i);
+  expect(() => buildDishData({ title: "x", validation: { rating: 9, ratingScale: 5 } } as any)).toThrow(/rating/i);
 });
 
 test("buildDishData drops invalid triedBy but keeps the rest", () => {

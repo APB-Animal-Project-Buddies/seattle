@@ -56,7 +56,7 @@ export function buildDishData(input: any): DishData {
 
   const steps = strArray(input?.steps, MAX_STEPS, MAX_LONG); if (steps.length) d.steps = steps;
 
-  const specialProducts = str(input?.specialProducts, MAX_LONG); if (specialProducts) d.specialProducts = specialProducts;
+  const specialProducts = strArray(input?.specialProducts, 50, MAX_SHORT); if (specialProducts.length) d.specialProducts = specialProducts;
   const specialEquipment = str(input?.specialEquipment, MAX_LONG); if (specialEquipment) d.specialEquipment = specialEquipment;
   const originalCreator = str(input?.originalCreator, MAX_SHORT); if (originalCreator) d.originalCreator = originalCreator;
   const notes = str(input?.notes, MAX_LONG); if (notes) d.notes = notes;
@@ -81,17 +81,25 @@ export function buildDishData(input: any): DishData {
   const triedBy = strArray(input?.validation?.triedBy, TRIED_BY.length, 40)
     .filter((t) => (TRIED_BY as readonly string[]).includes(t));
   if (triedBy.length) v.triedBy = triedBy;
-  const sourceUrl = str(input?.validation?.sourceUrl, MAX_SHORT);
-  if (sourceUrl) { if (!URL_RE.test(sourceUrl)) throw new Error("Validation link must be a valid URL"); v.sourceUrl = sourceUrl; }
+  const feedback = str(input?.validation?.feedback, MAX_LONG); if (feedback) v.feedback = feedback;
   if (input?.validation?.reviewCount != null && input.validation.reviewCount !== "") {
     const rc = num(input.validation.reviewCount);
     if (rc === null || rc < 0 || !Number.isInteger(rc)) throw new Error("Review count must be a non-negative integer");
     v.reviewCount = rc;
   }
-  if (input?.validation?.stars != null && input.validation.stars !== "") {
-    const st = num(input.validation.stars);
-    if (st === null || st < 0 || st > 5) throw new Error("Stars must be 0-5");
-    v.stars = st;
+  // Rating on a selectable scale (out of 5 / 10 / 100). Stored with its scale so it stays meaningful.
+  let ratingScale: number | null = null;
+  if (input?.validation?.ratingScale != null && input.validation.ratingScale !== "") {
+    const rs = num(input.validation.ratingScale);
+    if (rs === null || rs <= 0) throw new Error("Rating scale must be a positive number");
+    ratingScale = rs;
+  }
+  if (input?.validation?.rating != null && input.validation.rating !== "") {
+    const scale = ratingScale ?? 5;
+    const rt = num(input.validation.rating);
+    if (rt === null || rt < 0 || rt > scale) throw new Error(`Rating must be between 0 and ${scale}`);
+    v.rating = rt;
+    v.ratingScale = scale;
   }
   if (Object.keys(v).length) d.validation = v;
 
