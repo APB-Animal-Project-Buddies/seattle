@@ -39,6 +39,7 @@ export function IngredientsSection() {
               className="w-20"
               type="number"
               step="any"
+              min="0"
               placeholder="Qty"
               aria-label="Quantity"
               {...register(`ingredients.${i}.quantity`)}
