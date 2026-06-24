@@ -293,7 +293,6 @@ function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
   if (!dish) return null;
   const palette = paletteFor(dish.cuisine);
   const isTechnique = dish.urlStatus === 'reference-technique';
-  const [showReviewForm, setShowReviewForm] = useState(false);
   return (
     <div className={"modal-backdrop" + (open ? " open" : "")} onClick={onClose}>
       <div className="modal" onClick={e => e.stopPropagation()}>
@@ -429,25 +428,15 @@ function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
               View full dish
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M7 17L17 7M9 7h8v8" /></svg>
             </a>
-            <button
-              className="primary"
-              onClick={() => setShowReviewForm(true)}
-            >
-              Create a review form
-            </button>
+            <a href={`/reviews/create?dishId=${dish._id}`}>
+              <button className="primary">
+                Create a review form
+              </button>
+            </a>
           </div>
-          {
-            showReviewForm && (
-              <ReviewFormModal
-                dish={dish}
-                onClose={() => setShowReviewForm(false)}
-                onSuccess={() => setShowReviewForm(false)}
-              />
-            )
-          }
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 
