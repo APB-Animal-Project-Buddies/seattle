@@ -1,7 +1,8 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import QRCode from "qrcode";
 
 interface DishReview {
     id: number;
@@ -86,6 +87,7 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
     const [error, setError] = useState<string | null>(null);
     const [generatedId, setGeneratedId] = useState<string | null>(null);
     const [reviewUrl, setReviewUrl] = useState<string | null>(null);
+    const qrCanvasRef = useRef<HTMLCanvasElement>(null);
 
     const handleChange = (
         e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
@@ -122,9 +124,32 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
             }
 
             const data = await res.json();
+            const url = `${window.location.origin}/reviews/${data.id}`;
+
             setGeneratedId(data.id);
-            setReviewUrl(`${window.location.origin}/reviews/${data.id}`);
+            setReviewUrl(url);
             setStatus("success");
+
+            // Generate QR code
+            setTimeout(async () => {
+                console.log("Canvas ref:", qrCanvasRef.current);
+                if (qrCanvasRef.current) {
+                    try {
+                        await QRCode.toCanvas(qrCanvasRef.current, url, {
+                            errorCorrectionLevel: "H",
+                            type: "image/png",
+                            quality: 0.95,
+                            margin: 1,
+                            width: 256,
+                        });
+                        console.log("QR code generated successfully");
+                    } catch (err) {
+                        console.error("Failed to generate QR code:", err);
+                    }
+                } else {
+                    console.error("Canvas ref is null");
+                }
+            }, 100);
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong");
             setStatus("error");
@@ -138,10 +163,18 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
                     <div style={styles.successIcon}>✓</div>
                     <h2 style={styles.successHeading}>Review link created!</h2>
                     <p style={styles.successText}>
-                        Share this link with {formData.name} to collect their feedback on {dish.dish_data?.title || dish.dish_name}.
+                        Share this link to collect their feedback on {dish.dish_data?.title || dish.dish_name}.
                     </p>
 
                     <div style={styles.urlBox}>
+                        <p style={styles.urlLabel}>QR Code:</p>
+                        <div style={styles.qrContainer}>
+                            <canvas
+                                ref={qrCanvasRef}
+                                style={styles.qrCanvas}
+                            />
+                        </div>
+
                         <p style={styles.urlLabel}>Review Link:</p>
                         <div style={styles.urlDisplay}>
                             <code style={styles.urlCode}>{reviewUrl}</code>
@@ -506,6 +539,18 @@ const styles: Record<string, React.CSSProperties> = {
         borderRadius: 8,
         padding: "1rem",
         marginBottom: "2rem",
+    },
+    qrContainer: {
+        display: "flex" as const,
+        justifyContent: "center" as const,
+        marginBottom: "1.5rem",
+        padding: "1rem",
+        background: "white",
+        borderRadius: 8,
+    },
+    qrCanvas: {
+        maxWidth: "100%",
+        height: "auto",
     },
     urlLabel: {
         fontSize: 12,
