@@ -1,8 +1,13 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState, useRef } from "react";
-import QRCode from "qrcode";
+import { Suspense, useEffect, useState } from "react";
+import { QRCodeSVG } from "qrcode.react";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import { Slider } from "@/components/ui/slider";
+import { Button } from "@/components/ui/button";
 
 interface DishReview {
     id: number;
@@ -11,7 +16,30 @@ interface DishReview {
     created_at: string;
 }
 
+const CHEF_EXPERIENCE_LEVELS = [
+    { value: "beginner", label: "Beginner (first time cooking)" },
+    { value: "homecook", label: "Home Cook (regular kitchen use)" },
+    { value: "professional", label: "Professional Chef (commercial kitchen)" },
+];
+
+function Centered({ title, body }: { title: string; body: string }) {
+    return (
+        <main className="mx-auto max-w-xl px-5 py-20 text-center">
+            <h1 className="text-2xl font-bold text-apb">{title}</h1>
+            <p className="mt-3 text-neutral-600">{body}</p>
+        </main>
+    );
+}
+
 export default function CreateReviewLinkPage() {
+    return (
+        <Suspense fallback={<Centered title="Loading…" body="Fetching the dish." />}>
+            <CreateReviewLinkContent />
+        </Suspense>
+    );
+}
+
+function CreateReviewLinkContent() {
     const searchParams = useSearchParams();
     const dishId = searchParams.get("dishId");
 
@@ -42,40 +70,21 @@ export default function CreateReviewLinkPage() {
         fetchDish();
     }, [dishId]);
 
-    if (loading) {
-        return <div style={styles.container}><p>Loading...</p></div>;
-    }
-
-    if (error) {
-        return (
-            <div style={styles.container}>
-                <div style={styles.errorBox}>
-                    <h2>Error</h2>
-                    <p>{error}</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (!dish) {
-        return (
-            <div style={styles.container}>
-                <div style={styles.errorBox}>
-                    <h2>Dish not found</h2>
-                </div>
-            </div>
-        );
-    }
+    if (loading) return <Centered title="Loading…" body="Fetching the dish." />;
+    if (error) return <Centered title="Something went wrong" body={error} />;
+    if (!dish) return <Centered title="Dish not found" body="We couldn't find that dish." />;
 
     return (
-        <div style={styles.container}>
-            <h1 style={styles.title}>Create a review link</h1>
+        <main className="mx-auto max-w-xl px-5 py-10">
+            <h1 className="text-2xl font-bold text-apb">Create a review link</h1>
             <CreateReviewLinkForm dish={dish} />
-        </div>
+        </main>
     );
 }
 
-function CreateReviewLinkForm({ dish }: { dish: any }) {
+function CreateReviewLinkForm({ dish }: { dish: DishReview }) {
+    const dishTitle = dish.dish_data?.title || dish.dish_name || "this dish";
+
     const [formData, setFormData] = useState({
         name: "",
         chefExperience: "homecook",
@@ -85,25 +94,15 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
     });
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [error, setError] = useState<string | null>(null);
-    const [generatedId, setGeneratedId] = useState<string | null>(null);
     const [reviewUrl, setReviewUrl] = useState<string | null>(null);
-    const qrCanvasRef = useRef<HTMLCanvasElement>(null);
+    const [copied, setCopied] = useState(false);
 
-    const handleChange = (
-        e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
-    ) => {
-        const { name, value } = e.target;
-        setFormData(prev => ({
-            ...prev,
-            [name]: name === "difficulty" ? Number(value) : value,
-        }));
-    };
+    const update = (patch: Partial<typeof formData>) => setFormData(prev => ({ ...prev, ...patch }));
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setStatus("submitting");
         setError(null);
-
         try {
             const res = await fetch("/api/review-instances", {
                 method: "POST",
@@ -117,121 +116,76 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
                     notes: formData.notes.trim() || null,
                 }),
             });
-
             if (!res.ok) {
                 const errorData = await res.json().catch(() => ({}));
                 throw new Error(errorData.error || "Failed to create review link");
             }
-
             const data = await res.json();
-            const url = `${window.location.origin}/reviews/${data.id}`;
-
-            setGeneratedId(data.id);
-            setReviewUrl(url);
+            setReviewUrl(`${window.location.origin}${data.path}`);
             setStatus("success");
-
-            // Generate QR code
-            setTimeout(async () => {
-                console.log("Canvas ref:", qrCanvasRef.current);
-                if (qrCanvasRef.current) {
-                    try {
-                        await QRCode.toCanvas(qrCanvasRef.current, url, {
-                            errorCorrectionLevel: "H",
-                            type: "image/png",
-                            quality: 0.95,
-                            margin: 1,
-                            width: 256,
-                        });
-                        console.log("QR code generated successfully");
-                    } catch (err) {
-                        console.error("Failed to generate QR code:", err);
-                    }
-                } else {
-                    console.error("Canvas ref is null");
-                }
-            }, 100);
         } catch (err) {
             setError(err instanceof Error ? err.message : "Something went wrong");
             setStatus("error");
         }
     };
 
-    if (status === "success" && generatedId && reviewUrl) {
+    const copy = async () => {
+        if (!reviewUrl) return;
+        try {
+            await navigator.clipboard.writeText(reviewUrl);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+        } catch {
+            /* clipboard unavailable — the URL is still selectable on screen */
+        }
+    };
+
+    if (status === "success" && reviewUrl) {
         return (
-            <div style={styles.successContainer}>
-                <div style={styles.successBox}>
-                    <div style={styles.successIcon}>✓</div>
-                    <h2 style={styles.successHeading}>Review link created!</h2>
-                    <p style={styles.successText}>
-                        Share this link to collect their feedback on {dish.dish_data?.title || dish.dish_name}.
+            <div className="mt-6 flex flex-col gap-6 rounded-[16px] border border-neutral-200 bg-white/60 p-6">
+                <div>
+                    <h2 className="text-xl font-semibold text-apb">Review link created!</h2>
+                    <p className="mt-2 text-sm text-neutral-600">
+                        Your instance of <span className="font-semibold">{dishTitle}</span> is logged. Share this
+                        link or QR code so anyone who tasted it can leave a review.
                     </p>
+                </div>
 
-                    <div style={styles.urlBox}>
-                        <p style={styles.urlLabel}>QR Code:</p>
-                        <div style={styles.qrContainer}>
-                            <canvas
-                                ref={qrCanvasRef}
-                                style={styles.qrCanvas}
-                            />
-                        </div>
+                <div className="flex justify-center rounded-[16px] border border-neutral-200 bg-white p-5">
+                    <QRCodeSVG value={reviewUrl} size={200} marginSize={2} />
+                </div>
 
-                        <p style={styles.urlLabel}>Review Link:</p>
-                        <div style={styles.urlDisplay}>
-                            <code style={styles.urlCode}>{reviewUrl}</code>
-                            <button
-                                onClick={() => {
-                                    navigator.clipboard.writeText(reviewUrl);
-                                    alert("Link copied to clipboard!");
-                                }}
-                                style={styles.copyBtn}
-                            >
-                                Copy
-                            </button>
-                        </div>
+                <div>
+                    <Label>Review link</Label>
+                    <div className="mt-2 flex items-stretch gap-2">
+                        <code className="flex flex-1 items-center break-all rounded-lg border border-neutral-300 bg-neutral-50 px-3 py-2 text-sm text-neutral-700">
+                            {reviewUrl}
+                        </code>
+                        <Button type="button" onClick={copy} className="px-4 py-2 text-sm">
+                            {copied ? "Copied!" : "Copy"}
+                        </Button>
                     </div>
+                </div>
 
-                    <div style={styles.detailsBox}>
-                        <h3 style={styles.detailsHeading}>Review Session Details</h3>
-                        <dl style={styles.detailsList}>
-                            <dt>Reviewer:</dt>
-                            <dd>{formData.name}</dd>
-
-                            <dt>Experience Level:</dt>
-                            <dd style={styles.capitalize}>{formData.chefExperience}</dd>
-
-                            {formData.eventContext && (
-                                <>
-                                    <dt>Event/Context:</dt>
-                                    <dd>{formData.eventContext}</dd>
-                                </>
-                            )}
-
-                            <dt>Initial Difficulty Rating:</dt>
-                            <dd>{formData.difficulty}/5</dd>
-
-                            {formData.notes && (
-                                <>
-                                    <dt>Prep Notes:</dt>
-                                    <dd>{formData.notes}</dd>
-                                </>
-                            )}
-                        </dl>
-                    </div>
-
-                    <button
-                        onClick={() => {
-                            setStatus("idle");
-                            setFormData({
-                                name: "",
-                                chefExperience: "homecook",
-                                eventContext: "",
-                                difficulty: 3,
-                                notes: "",
-                            });
-                        }}
-                        style={styles.createAnotherBtn}
+                <div className="flex items-center justify-between gap-3">
+                    <a
+                        href={reviewUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center rounded-[16px] border border-neutral-300 px-5 py-2.5 text-sm font-semibold text-apb transition hover:border-apb"
                     >
-                        Create another review link
+                        Open the form
+                    </a>
+                    <button
+                        type="button"
+                        className="text-sm text-neutral-500 underline hover:text-apb"
+                        onClick={() => {
+                            setReviewUrl(null);
+                            setStatus("idle");
+                            setFormData({ name: "", chefExperience: "homecook", eventContext: "", difficulty: 3, notes: "" });
+                        }}
+                    >
+                        Create another link
                     </button>
                 </div>
             </div>
@@ -239,381 +193,84 @@ function CreateReviewLinkForm({ dish }: { dish: any }) {
     }
 
     return (
-        <div style={styles.formCard}>
-            <div style={styles.dishInfo}>
-                <h3 style={styles.dishTitle}>{dish.dish_data?.title || dish.dish_name}</h3>
-                {dish.dish_data?.description && (
-                    <p style={styles.dishDesc}>{dish.dish_data.description}</p>
-                )}
+        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-6 rounded-[16px] border border-neutral-200 bg-white/60 p-6">
+            <p className="text-sm text-neutral-600">
+                Log this instance of <span className="font-semibold">{dishTitle}</span> — your details and how it
+                went. Then share the generated link &amp; QR code so people who tasted it can leave a review.
+            </p>
+
+            <div>
+                <Label htmlFor="name">Your name <span className="text-red-600">*</span></Label>
+                <Input
+                    id="name"
+                    className="mt-2"
+                    placeholder="e.g. Sarah Chen"
+                    value={formData.name}
+                    onChange={(e) => update({ name: e.target.value })}
+                    required
+                />
             </div>
 
-            <form onSubmit={handleSubmit} style={styles.form}>
-                {/* Name */}
-                <div style={styles.field}>
-                    <label style={styles.label}>
-                        Reviewer's Name <span style={styles.required}>*</span>
-                    </label>
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="e.g. Sarah Chen"
-                        value={formData.name}
-                        onChange={handleChange}
-                        required
-                        style={styles.input}
+            <div>
+                <Label htmlFor="chef">Your experience level <span className="text-red-600">*</span></Label>
+                <select
+                    id="chef"
+                    className="mt-2 w-full rounded-lg border border-neutral-300 bg-white px-3 py-2 text-sm outline-none focus:border-apb"
+                    value={formData.chefExperience}
+                    onChange={(e) => update({ chefExperience: e.target.value })}
+                >
+                    {CHEF_EXPERIENCE_LEVELS.map((level) => (
+                        <option key={level.value} value={level.value}>{level.label}</option>
+                    ))}
+                </select>
+            </div>
+
+            <div>
+                <Label htmlFor="event">Where did you make this? <span className="text-neutral-400">(optional)</span></Label>
+                <Input
+                    id="event"
+                    className="mt-2"
+                    placeholder="e.g. Family dinner, Restaurant kitchen, Pop-up event"
+                    value={formData.eventContext}
+                    onChange={(e) => update({ eventContext: e.target.value })}
+                />
+            </div>
+
+            <div>
+                <Label>How difficult was it to make? <span className="text-red-600">*</span></Label>
+                <div className="mt-3">
+                    <div className="mb-1 text-sm font-medium">Difficulty: {formData.difficulty}</div>
+                    <Slider
+                        min={1}
+                        max={5}
+                        step={1}
+                        value={[formData.difficulty]}
+                        onValueChange={(v) => update({ difficulty: v[0] })}
                     />
-                </div>
-
-                {/* Chef Experience */}
-                <div style={styles.field}>
-                    <label style={styles.label}>
-                        Reviewer's Experience Level <span style={styles.required}>*</span>
-                    </label>
-                    <select
-                        name="chefExperience"
-                        value={formData.chefExperience}
-                        onChange={handleChange}
-                        style={styles.select}
-                    >
-                        <option value="beginner">Beginner (first time cooking)</option>
-                        <option value="homecook">Home Cook (regular kitchen use)</option>
-                        <option value="professional">Professional Chef (commercial kitchen)</option>
-                    </select>
-                </div>
-
-                {/* Event Context */}
-                <div style={styles.field}>
-                    <label style={styles.label}>
-                        Where will they test this? <span style={styles.optional}>(optional)</span>
-                    </label>
-                    <input
-                        type="text"
-                        name="eventContext"
-                        placeholder="e.g. Family dinner, Restaurant kitchen, Pop-up event"
-                        value={formData.eventContext}
-                        onChange={handleChange}
-                        style={styles.input}
-                    />
-                </div>
-
-                {/* Difficulty Slider */}
-                <div style={styles.field}>
-                    <label style={styles.label}>
-                        Initial difficulty assessment <span style={styles.required}>*</span>
-                    </label>
-                    <div style={styles.difficultySliderContainer}>
-                        <input
-                            type="range"
-                            name="difficulty"
-                            min="1"
-                            max="5"
-                            step="1"
-                            value={formData.difficulty}
-                            onChange={handleChange}
-                            style={styles.difficultySlider}
-                        />
-                        <div style={styles.difficultyLabels}>
-                            <span style={styles.difficultyLabel}>1 · Very Easy</span>
-                            <span style={styles.difficultyLabel}>3 · Medium</span>
-                            <span style={styles.difficultyLabel}>5 · Very Difficult</span>
-                        </div>
-                        <div style={styles.difficultyValue}>
-                            Current: <strong>{formData.difficulty}</strong>
-                        </div>
+                    <div className="mt-1 flex justify-between text-xs text-neutral-500">
+                        <span>1 · very easy</span><span>3 · medium</span><span>5 · very difficult</span>
                     </div>
                 </div>
+            </div>
 
-                {/* Notes */}
-                <div style={styles.field}>
-                    <label style={styles.label}>
-                        Prep notes <span style={styles.optional}>(optional)</span>
-                    </label>
-                    <p style={styles.hint}>
-                        Any context for the reviewer? (e.g. "We have access to X equipment", "Budget is $Y per plate")
-                    </p>
-                    <textarea
-                        name="notes"
-                        placeholder="e.g. This is for a catering event with 50 guests. We have a sous vide machine available."
-                        value={formData.notes}
-                        onChange={handleChange}
-                        style={styles.textarea}
-                    />
-                </div>
+            <div>
+                <Label htmlFor="notes">Notes <span className="text-neutral-400">(optional)</span></Label>
+                <Textarea
+                    id="notes"
+                    className="mt-2"
+                    placeholder="How did this attempt go? Anything notable for yourself."
+                    value={formData.notes}
+                    onChange={(e) => update({ notes: e.target.value })}
+                />
+            </div>
 
-                {status === "error" && (
-                    <div style={styles.errorBox}>{error}</div>
-                )}
+            {status === "error" ? (
+                <p className="text-sm text-red-600">{error}</p>
+            ) : null}
 
-                <button
-                    type="submit"
-                    disabled={status === "submitting" || !formData.name.trim()}
-                    style={{
-                        ...styles.submitBtn,
-                        ...(status === "submitting" || !formData.name.trim() ? styles.submitBtnDisabled : {}),
-                    }}
-                >
-                    {status === "submitting" ? "Creating…" : "Create a review link"}
-                </button>
-            </form>
-        </div>
+            <Button type="submit" disabled={status === "submitting" || !formData.name.trim()}>
+                {status === "submitting" ? "Creating…" : "Generate review link"}
+            </Button>
+        </form>
     );
 }
-
-const styles: Record<string, React.CSSProperties> = {
-    container: {
-        maxWidth: 700,
-        margin: "0 auto",
-        padding: "2rem 1rem",
-        fontFamily: "system-ui, -apple-system, sans-serif",
-    },
-    title: {
-        fontSize: 28,
-        fontWeight: 600,
-        marginBottom: "2rem",
-        color: "#1a1a1a",
-    },
-    formCard: {
-        background: "white",
-        border: "1px solid #e0e0e0",
-        borderRadius: 12,
-        padding: "2rem",
-    },
-    dishInfo: {
-        marginBottom: "2rem",
-        paddingBottom: "2rem",
-        borderBottom: "1px solid #e0e0e0",
-    },
-    dishTitle: {
-        fontSize: 20,
-        fontWeight: 600,
-        margin: "0 0 0.5rem 0",
-        color: "#1a1a1a",
-    },
-    dishDesc: {
-        fontSize: 14,
-        color: "#666",
-        lineHeight: 1.6,
-        margin: 0,
-    },
-    form: {
-        display: "flex" as const,
-        flexDirection: "column" as const,
-        gap: "1.5rem",
-    },
-    field: {
-        display: "flex" as const,
-        flexDirection: "column" as const,
-        gap: "0.5rem",
-    },
-    label: {
-        fontSize: 14,
-        fontWeight: 500,
-        color: "#1a1a1a",
-    },
-    required: {
-        color: "#d85a30",
-        marginLeft: 2,
-    },
-    optional: {
-        fontSize: 12,
-        color: "#999",
-        fontWeight: 400,
-        marginLeft: 6,
-    },
-    input: {
-        padding: "10px 12px",
-        fontSize: 14,
-        border: "1px solid #ddd",
-        borderRadius: 6,
-        fontFamily: "inherit",
-        color: "#1a1a1a",
-    },
-    select: {
-        padding: "10px 12px",
-        fontSize: 14,
-        border: "1px solid #ddd",
-        borderRadius: 6,
-        fontFamily: "inherit",
-        color: "#1a1a1a",
-        background: "white",
-    },
-    difficultySliderContainer: {
-        display: "flex" as const,
-        flexDirection: "column" as const,
-        gap: "0.75rem",
-    },
-    difficultySlider: {
-        width: "100%",
-        height: 6,
-        borderRadius: 3,
-        background: "#ddd",
-        outline: "none",
-        cursor: "pointer" as const,
-    },
-    difficultyLabels: {
-        display: "flex" as const,
-        justifyContent: "space-between" as const,
-        fontSize: 12,
-        color: "#666",
-    },
-    difficultyLabel: {
-        textAlign: "center" as const,
-    },
-    difficultyValue: {
-        textAlign: "center" as const,
-        fontSize: 14,
-        color: "#1a1a1a",
-        fontWeight: 500,
-    },
-    hint: {
-        fontSize: 12,
-        color: "#666",
-        margin: "0 0 0.5rem 0",
-        fontStyle: "italic" as const,
-    },
-    textarea: {
-        padding: "10px 12px",
-        fontSize: 14,
-        border: "1px solid #ddd",
-        borderRadius: 6,
-        fontFamily: "inherit",
-        minHeight: 80,
-        color: "#1a1a1a",
-        resize: "vertical" as const,
-    },
-    submitBtn: {
-        padding: "12px 16px",
-        fontSize: 15,
-        fontWeight: 500,
-        background: "#d85a30",
-        color: "white",
-        border: "none",
-        borderRadius: 6,
-        cursor: "pointer" as const,
-        fontFamily: "inherit",
-    },
-    submitBtnDisabled: {
-        background: "#ccc",
-        cursor: "not-allowed" as const,
-    },
-    errorBox: {
-        padding: "12px",
-        background: "#fee",
-        border: "1px solid #fcc",
-        borderRadius: 6,
-        color: "#c33",
-        fontSize: 13,
-    },
-    successContainer: {
-        display: "flex" as const,
-        justifyContent: "center" as const,
-    },
-    successBox: {
-        width: "100%",
-        background: "white",
-        border: "1px solid #e0e0e0",
-        borderRadius: 12,
-        padding: "2rem",
-        textAlign: "center" as const,
-    },
-    successIcon: {
-        fontSize: 48,
-        color: "#1d9e75",
-        marginBottom: "1rem",
-    },
-    successHeading: {
-        fontSize: 24,
-        fontWeight: 600,
-        marginBottom: "0.5rem",
-        color: "#1a1a1a",
-    },
-    successText: {
-        fontSize: 15,
-        color: "#666",
-        lineHeight: 1.6,
-        marginBottom: "2rem",
-    },
-    urlBox: {
-        background: "#f5f5f3",
-        border: "1px solid #ddd",
-        borderRadius: 8,
-        padding: "1rem",
-        marginBottom: "2rem",
-    },
-    qrContainer: {
-        display: "flex" as const,
-        justifyContent: "center" as const,
-        marginBottom: "1.5rem",
-        padding: "1rem",
-        background: "white",
-        borderRadius: 8,
-    },
-    qrCanvas: {
-        maxWidth: "100%",
-        height: "auto",
-    },
-    urlLabel: {
-        fontSize: 12,
-        color: "#999",
-        textTransform: "uppercase" as const,
-        margin: "0 0 0.5rem 0",
-        fontWeight: 500,
-    },
-    urlDisplay: {
-        display: "flex" as const,
-        alignItems: "center" as const,
-        gap: "0.5rem",
-    },
-    urlCode: {
-        fontSize: 13,
-        color: "#1a1a1a",
-        wordBreak: "break-all" as const,
-        flex: 1,
-    },
-    copyBtn: {
-        padding: "6px 12px",
-        fontSize: 12,
-        background: "#d85a30",
-        color: "white",
-        border: "none",
-        borderRadius: 4,
-        cursor: "pointer" as const,
-        fontFamily: "inherit",
-        whiteSpace: "nowrap" as const,
-    },
-    detailsBox: {
-        textAlign: "left" as const,
-        background: "#fafafa",
-        border: "1px solid #e0e0e0",
-        borderRadius: 8,
-        padding: "1rem",
-        marginBottom: "2rem",
-    },
-    detailsHeading: {
-        fontSize: 14,
-        fontWeight: 600,
-        marginBottom: "1rem",
-        color: "#1a1a1a",
-    },
-    detailsList: {
-        display: "grid" as const,
-        gridTemplateColumns: "120px 1fr",
-        gap: "0.5rem 1rem",
-        margin: 0,
-        padding: 0,
-    },
-    capitalize: {
-        textTransform: "capitalize" as const,
-    },
-    createAnotherBtn: {
-        padding: "12px 16px",
-        fontSize: 15,
-        background: "white",
-        color: "#d85a30",
-        border: "1px solid #d85a30",
-        borderRadius: 6,
-        cursor: "pointer" as const,
-        fontFamily: "inherit",
-        fontWeight: 500,
-    },
-};

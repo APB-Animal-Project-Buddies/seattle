@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { graphql } from "@/lib/nhost";
 
 export async function GET(
-    req: NextRequest,
+    _req: NextRequest,
     { params }: { params: { id: string } }
 ) {
     try {
@@ -17,7 +17,7 @@ export async function GET(
       }
     `;
 
-        const result = await graphql(query, {
+        const result = await graphql<{ dishes: Array<Record<string, unknown>> }>(query, {
             useAdminSecret: true,
             variables: { id: parseInt(params.id) },
         });
@@ -29,7 +29,7 @@ export async function GET(
             );
         }
 
-        const dish = result.data.dishes[0];
+        const dish = result.data?.dishes[0];
         if (!dish) {
             return NextResponse.json(
                 { error: "Dish not found" },

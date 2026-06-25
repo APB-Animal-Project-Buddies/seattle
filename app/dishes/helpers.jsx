@@ -27,7 +27,7 @@ const PALETTES = {
 function paletteFor(cuisine) { return PALETTES[cuisine] || PALETTES.italian; }
 
 // Cuisine display metadata — slug + tag (cruelty-free phrase).
-// Counts are populated at runtime from _index.json.
+// Counts are populated at runtime from the live dishes loaded via useDishes.
 const CUISINE_META = [
   { id: 'all', name: 'All', tag: 'Cruelty-free, restaurant-grade' },
   { id: 'american', name: 'American', tag: 'No Cruelty' },

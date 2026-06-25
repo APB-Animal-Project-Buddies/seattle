@@ -99,6 +99,9 @@ export function RecipeIntakeForm() {
       <div className="rounded-[16px] border p-8 text-center">
         <h2 className="text-xl font-semibold text-apb">Thank you!</h2>
         <p className="mt-2 text-neutral-600">Your recipe was submitted.</p>
+        <a href="/dishes" className="mt-5 inline-block">
+          <Button type="button">Back to dishes</Button>
+        </a>
       </div>
     );
 

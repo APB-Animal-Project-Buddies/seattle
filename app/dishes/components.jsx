@@ -6,52 +6,26 @@
 
 import { useState, useEffect, useMemo } from "react";
 import {
-  paletteFor, PALETTES, CUISINE_META, PhotoPH, DiffDots, UrlStatusBadge,
+  CUISINE_META, DiffDots, UrlStatusBadge,
   fmtCost, pluralize, parseMenuPrice
 } from './helpers';
-import { ReviewFormModal } from './ReviewFormModal';
 
-// ---------- Hero ----------
-function Hero({ featured, stats }) {
-  const palette = featured ? paletteFor(featured.cuisine) : PALETTES.italian;
+// Default dish image: shown when a dish has no image, or when its image URL
+// fails to load (e.g. hotlink-protected sources). Lives in /public/assets.
+const DEFAULT_DISH_IMAGE = '/assets/dish-placeholder.svg';
+
+function DishPhoto({ src, alt, loading = 'lazy' }) {
   return (
-    <section className="hero">
-      <div>
-        <div className="eyebrow"><span className="dot" />Dishs · Curated for restaurant kitchens</div>
-        <h1>
-          Make your food <em className="fresh-accent">fresh</em>, <em>tasty</em>,<br />
-          <span className="leaf"></span>and <em>compassionate</em>.
-        </h1>
-        <p className="lede">
-          A working library of plant-based dishes built for the line — vetted by chefs,
-          costed for restaurants, scaled to service. Restaurant-grade, weeknight-easy.
-          <strong className="creed"> No killing, no animals hurt, no cruelty.</strong>
-        </p>
-        <div className="stats">
-          <div className="stat"><div className="num">{stats.dishes}</div><div className="lbl">Tested dishes</div></div>
-          <div className="stat"><div className="num">{stats.cuisines}</div><div className="lbl">Cuisines</div></div>
-          <div className="stat"><div className="num">${stats.avgCost.toFixed(2)}</div><div className="lbl">Avg cost / plate</div></div>
-        </div>
-      </div>
-      {featured && (
-        <div className="hero-card">
-          <div className="ph">
-            {featured.image
-              ? <img src={featured.image} alt={featured.title} loading="eager" />
-              : <PhotoPH palette={palette} dish={featured.photo} label={featured.photoLabel} />}
-            <div className="tag">Pick of the week</div>
-          </div>
-          <h3>{featured.title}</h3>
-          <div className="meta">
-            <span>{featured.cuisineName}</span>
-            <span>·</span>
-            <span>{featured.time || featured.prep || '—'}</span>
-            <span>·</span>
-            <span>{fmtCost(featured.cost)} / plate</span>
-          </div>
-        </div>
-      )}
-    </section>
+    <img
+      src={src || DEFAULT_DISH_IMAGE}
+      alt={alt || ''}
+      loading={loading}
+      onError={(e) => {
+        if (!e.currentTarget.src.endsWith(DEFAULT_DISH_IMAGE)) {
+          e.currentTarget.src = DEFAULT_DISH_IMAGE;
+        }
+      }}
+    />
   );
 }
 
@@ -152,21 +126,6 @@ function FilterChips({ activeCourse, onCourseChange, activeSourcing, onSourcingC
         </div>
       </div>
 
-      <div className="group">
-        <span className="group-label">Operations</span>
-        <div className="fchip-group">
-          {[
-            { id: 'bulk-prep', name: '🥘 Bulk-prep' },
-            { id: 'fast-service', name: '⚡ Fast-service' },
-          ].map(t => (
-            <button
-              key={t.id}
-              className={"fchip" + (activeTags.includes(t.id) ? ' on' : '')}
-              onClick={() => onTagToggle(t.id)}
-            >{t.name}</button>
-          ))}
-        </div>
-      </div>
     </>
   );
 }
@@ -241,13 +200,10 @@ function classifyDelta(delta) {
 
 // ---------- DishCard ----------
 function DishCard({ dish, saved, inMenu, onToggleSave, onAddToMenu, onOpen }) {
-  const palette = paletteFor(dish.cuisine);
   return (
     <article className="card" onClick={() => onOpen(dish)}>
       <div className="photo">
-        {dish.image
-          ? <img src={dish.image} alt={dish.title} loading="lazy" />
-          : <PhotoPH palette={palette} dish={dish.photo} label={dish.photoLabel} />}
+        <DishPhoto src={dish.image} alt={dish.title} loading="lazy" />
         {dish.badge && <div className="badge" data-tier={(dish.valueTier || '').toLowerCase().replace(/\s+/g, '-')}>{dish.badge}</div>}
         <button
           className={"save" + (saved ? ' saved' : '')}
@@ -291,7 +247,6 @@ function DishCard({ dish, saved, inMenu, onToggleSave, onAddToMenu, onOpen }) {
 // ---------- DishModal ----------
 function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
   if (!dish) return null;
-  const palette = paletteFor(dish.cuisine);
   const isTechnique = dish.urlStatus === 'reference-technique';
   return (
     <div className={"modal-backdrop" + (open ? " open" : "")} onClick={onClose}>
@@ -301,9 +256,7 @@ function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
         </button>
         <div className="left">
           <div className="ph">
-            {dish.image
-              ? <img src={dish.image} alt={dish.title} loading="eager" />
-              : <PhotoPH palette={palette} dish={dish.photo} label={dish.photoLabel} />}
+            <DishPhoto src={dish.image} alt={dish.title} loading="eager" />
           </div>
         </div>
         <div className="right">
@@ -430,7 +383,7 @@ function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
             </a>
             <a href={`/reviews/create?dishId=${dish._id}`}>
               <button className="primary">
-                Create a review form
+                Create a review link for this dish
               </button>
             </a>
           </div>
@@ -496,9 +449,7 @@ function MenuDrawer({ open, items, onClose, onChangeQty, onRemove, menuName, set
           ) : items.map(it => (
             <div key={it.id} className="row">
               <div className="thumb">
-                {it.image
-                  ? <img src={it.image} alt={it.title} loading="lazy" />
-                  : <PhotoPH palette={paletteFor(it.cuisine)} dish={it.photo} label="" />}
+                <DishPhoto src={it.image} alt={it.title} loading="lazy" />
               </div>
               <div className="info">
                 <div className="t">{it.title}</div>
@@ -778,6 +729,6 @@ function Toast({ message, show }) {
 }
 
 export {
-  Hero, SubTabs, SearchBox, FilterChips, CuisineBar, Toolbar,
+  SubTabs, SearchBox, FilterChips, CuisineBar, Toolbar,
   DishCard, DishModal, MenuDrawer, DairyTab, AlternativesTab, Toast,
 };

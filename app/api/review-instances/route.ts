@@ -1,8 +1,13 @@
 /**
  * POST /api/review-instances
- * 
- * Creates a review instance for a dish.
- * 
+ *
+ * Creates a review instance (the creator's context for who/what a review link
+ * is for) AND mints a matching short URL so the link can be shared. The
+ * review_instance row and the short_urls row share the same 6-char code, so the
+ * saved context and the shareable link are correlated by a single id.
+ *
+ * The link itself opens the existing reviewer rating form at /s/{code}.
+ *
  * Request body:
  * {
  *   dishId: number,
@@ -12,112 +17,130 @@
  *   difficulty: number (1-5),
  *   notes?: string
  * }
- * 
- * Response:
- * { id: string, dishId: number, createdAt: string }
+ *
+ * Response: { code: string, path: string }   // path = "/s/{code}"
  */
 
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { graphql } from "@/lib/nhost";
-import { nanoid } from "nanoid";
 
-export async function POST(req: NextRequest) {
-    try {
-        const body = await req.json();
+export const dynamic = "force-dynamic";
 
-        // Validate required fields
-        if (!body.dishId || typeof body.dishId !== "number") {
-            return NextResponse.json(
-                { error: "Invalid or missing dishId" },
-                { status: 400 }
-            );
-        }
+const ALPHABET = "abcdefghijklmnopqrstuvwxyz0123456789";
+const CODE_LEN = 6;
 
-        if (!body.name || !body.name.trim()) {
-            return NextResponse.json(
-                { error: "Name is required" },
-                { status: 400 }
-            );
-        }
+function randomCode(): string {
+  // Math.random is fine here: codes are uniqueness-checked, not security tokens.
+  let out = "";
+  for (let i = 0; i < CODE_LEN; i++) out += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
+  return out;
+}
 
-        if (!["beginner", "homecook", "professional"].includes(body.chefType)) {
-            return NextResponse.json(
-                { error: "Invalid chef type" },
-                { status: 400 }
-            );
-        }
+async function codeExists(code: string): Promise<boolean> {
+  const res = await graphql<{ short_urls: Array<{ short_code: string }> }>(
+    `query ($c: String!) {
+       short_urls(where: { short_code: { _eq: $c } }, limit: 1) { short_code }
+     }`,
+    { useAdminSecret: true, variables: { c: code } }
+  );
+  if (res.errors?.length) throw new Error("Lookup failed");
+  return (res.data?.short_urls?.length ?? 0) > 0;
+}
 
-        if (!body.difficulty || body.difficulty < 1 || body.difficulty > 5) {
-            return NextResponse.json(
-                { error: "Difficulty must be between 1 and 5" },
-                { status: 400 }
-            );
-        }
+async function allocateCode(): Promise<string> {
+  for (let i = 0; i < 10; i++) {
+    const c = randomCode();
+    if (!(await codeExists(c))) return c;
+  }
+  throw new Error("Could not allocate a unique code");
+}
 
-        // Generate 6-character review instance ID
-        const reviewId = nanoid(6);
+export async function POST(request: Request) {
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
+  }
 
-        // Insert into review_instance via GraphQL
-        const mutation = `
-        mutation CreateReviewInstance(
-            $id: bpchar!
-            $dishId: Int!
-            $name: String!
-            $chefType: String!
-            $eventContext: String
-            $difficulty: Int!
-            $notes: String
-        ) {
-            insert_review_instance_one(object: {
-            id: $id
-            dish_id: $dishId
-            name: $name
-            chef_type: $chefType
-            event_context: $eventContext
-            difficulty: $difficulty
-            notes: $notes
-            }) {
-            id
-            dish_id
-            timestamp
-            }
-        }
-        `;
+  const dishId = Number(body?.dishId);
+  if (!Number.isInteger(dishId) || dishId <= 0) {
+    return NextResponse.json({ error: "Invalid or missing dishId" }, { status: 400 });
+  }
+  if (!body?.name || !String(body.name).trim()) {
+    return NextResponse.json({ error: "Name is required" }, { status: 400 });
+  }
+  if (!["beginner", "homecook", "professional"].includes(body?.chefType)) {
+    return NextResponse.json({ error: "Invalid chef type" }, { status: 400 });
+  }
+  const difficulty = Number(body?.difficulty);
+  if (!Number.isInteger(difficulty) || difficulty < 1 || difficulty > 5) {
+    return NextResponse.json({ error: "Difficulty must be between 1 and 5" }, { status: 400 });
+  }
 
-        const result = await graphql(mutation, {
-            useAdminSecret: true,
-            variables: {
-                id: reviewId,
-                dishId: body.dishId,
-                name: body.name.trim(),
-                chefType: body.chefType,
-                eventContext: body.eventContext || null,
-                difficulty: Number(body.difficulty),
-                notes: body.notes || null,
-            },
-        });
-
-        if (result.errors) {
-            console.error("GraphQL errors:", result.errors);
-            return NextResponse.json(
-                { error: "Failed to create review instance" },
-                { status: 500 }
-            );
-        }
-
-        const review = result.data.insert_review_instance_one;
-
-        return NextResponse.json({
-            id: review.id,
-            dishId: review.dish_id,
-            createdAt: review.timestamp,
-            message: "Review submitted successfully",
-        });
-    } catch (error) {
-        console.error("Error creating review instance:", error);
-        return NextResponse.json(
-            { error: "Failed to create review instance" },
-            { status: 500 }
-        );
+  try {
+    // Make sure the dish exists before creating anything for it.
+    const dishRes = await graphql<{ dishes: Array<{ id: number }> }>(
+      `query ($id: Int!) { dishes(where: { id: { _eq: $id } }, limit: 1) { id } }`,
+      { useAdminSecret: true, variables: { id: dishId } }
+    );
+    if (dishRes.errors?.length) return NextResponse.json({ error: "Lookup failed" }, { status: 502 });
+    if (!dishRes.data?.dishes?.length) {
+      return NextResponse.json({ error: "Dish not found" }, { status: 404 });
     }
+
+    const code = await allocateCode();
+
+    // 1) Save the review instance (the creator's context for this link).
+    const insertInstance = await graphql<{ insert_review_instance_one: { id: string } }>(
+      `mutation (
+         $id: bpchar!, $dishId: Int!, $name: String!, $chefType: String!,
+         $eventContext: String, $difficulty: Int!, $notes: String
+       ) {
+         insert_review_instance_one(object: {
+           id: $id, dish_id: $dishId, name: $name, chef_type: $chefType,
+           event_context: $eventContext, difficulty: $difficulty, notes: $notes
+         }) { id }
+       }`,
+      {
+        useAdminSecret: true,
+        variables: {
+          id: code,
+          dishId,
+          name: String(body.name).trim(),
+          chefType: body.chefType,
+          eventContext: body.eventContext ? String(body.eventContext).trim() : null,
+          difficulty,
+          notes: body.notes ? String(body.notes).trim() : null,
+        },
+      }
+    );
+    if (insertInstance.errors?.length) {
+      return NextResponse.json(
+        { error: insertInstance.errors[0]?.message ?? "Failed to create review instance" },
+        { status: 500 }
+      );
+    }
+
+    // 2) Mint the matching short URL so /s/{code} opens the reviewer's rating form.
+    const insertUrl = await graphql<{ insert_short_urls_one: { short_code: string } }>(
+      `mutation ($code: String!, $tid: String!) {
+         insert_short_urls_one(
+           object: { short_code: $code, target_type: "dish_review", target_id: $tid }
+         ) { short_code }
+       }`,
+      { useAdminSecret: true, variables: { code, tid: String(dishId) } }
+    );
+    if (insertUrl.errors?.length) {
+      return NextResponse.json(
+        { error: insertUrl.errors[0]?.message ?? "Failed to create review link" },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ code, path: `/s/${code}` });
+  } catch {
+    // e.g. Nhost paused → empty 5xx body throws in graphql()
+    return NextResponse.json({ error: "Temporarily unavailable" }, { status: 502 });
+  }
 }

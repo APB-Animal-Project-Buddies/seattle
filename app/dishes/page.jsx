@@ -2,17 +2,12 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useDishes } from "@/app/hooks/useDishes";
-import indexData from './data/_index.js';
 import './styles.css';
 import {
-  Hero, SubTabs, SearchBox, FilterChips, CuisineBar, Toolbar,
-  DishCard, DishModal, MenuDrawer, DairyTab, AlternativesTab, Toast,
+  SearchBox, FilterChips, CuisineBar, Toolbar,
+  DishCard, DishModal, MenuDrawer, Toast,
 } from './components';
-import {
-  PALETTES, paletteFor, CUISINE_META, PhotoPH, DiffDots, UrlStatusBadge,
-  fmtCost, pluralize, parseMenuPrice
-} from './helpers'
-import { DAIRY_ICONS, DairyIcon } from './icons'
+import { CUISINE_META } from './helpers';
 
 const STORAGE_KEY = 'apb-dishes-menu-v1';
 
@@ -125,12 +120,6 @@ export default function DishesPage() {
   }, [dishes, activeCuisine, sortBy, search, courseFilter, sourcingFilter, tagFilters, dietFilters]);
 
   // ---------- Featured (Pick of the week) ----------
-  const featured = useMemo(() => {
-    if (!dishes || dishes.length === 0) return null;
-    const showstoppers = dishes.filter(r => (r.courses || []).includes('showstopper'));
-    return showstoppers[0] || dishes[0];
-  }, [dishes]);
-
   // ---------- Toasts + actions ----------
   function showToast(msg) {
     setToast({ msg, show: true });
@@ -207,31 +196,22 @@ export default function DishesPage() {
     );
   }
 
-  // Get index and cuisine metadata from window (these should be loaded separately)
-  const index = (typeof window !== 'undefined' && indexData) || null;
   const cuisineMeta = (typeof window !== 'undefined' && CUISINE_META) || [];
-
-  if (!index) {
-    return <div className="empty-state"><h3>Index data missing</h3></div>;
-  }
-
-  const stats = {
-    dishes: index.totalDishes,
-    cuisines: index.cuisines.length,
-    avgCost: index.avgCostPerPlate,
-  };
 
   const activeName = activeCuisine === 'all'
     ? 'The whole library'
     : (cuisineMeta.find(c => c.id === activeCuisine)?.name + ' kitchen');
 
-  const menuCount = menu.reduce((s, it) => s + it.qty, 0);
-
   return (
     <>
-      <Hero featured={featured} stats={stats} />
-
       <>
+        <div className="dishes-topbar">
+          <div className="eyebrow"><span className="dot" />Dish library</div>
+          <a href="/submit-dish" className="submit-dish-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
+            Submit a dish
+          </a>
+        </div>
         <div className="filter-row">
           <SearchBox value={search} onChange={setSearch} placeholder="Search dishes…" />
           {FilterChips && (
