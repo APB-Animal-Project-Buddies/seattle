@@ -1,6 +1,20 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { graphql } from "@/lib/nhost";
 import { buildDishData } from "@/lib/dishes";
+
+interface DishesQueryResult {
+  dishes: Array<{
+    id: number;
+    dish_name: string;
+    dish_data: any;
+    created_at: string;
+  }>;
+  dishes_aggregate: {
+    aggregate: {
+      count: number;
+    };
+  };
+}
 
 export const dynamic = "force-dynamic";
 const MAX_BODY_BYTES = 32 * 1024;
@@ -29,5 +43,52 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, id: res.data?.insert_dishes_one?.id });
   } catch {
     return NextResponse.json({ error: "Temporarily unavailable" }, { status: 502 });
+  }
+}
+
+export async function GET(req: NextRequest) {
+  try {
+    const url = new URL(req.url);
+    const limit = Math.min(parseInt(url.searchParams.get("limit") || "100"), 1000);
+    const offset = parseInt(url.searchParams.get("offset") || "0");
+
+    // Fetch dishes with pagination using GraphQL
+    // Pass variables in the options object, matching your POST example
+    const result = await graphql<DishesQueryResult>(
+      `
+        query GetDishes($limit: Int!, $offset: Int!) {
+          dishes(limit: $limit, offset: $offset, order_by: { created_at: desc }) {
+            id
+            dish_name
+            dish_data
+            created_at
+          }
+          dishes_aggregate {
+            aggregate {
+              count
+            }
+          }
+        }
+      `,
+      {
+        useAdminSecret: true,
+        variables: { limit, offset }
+      }
+    );
+
+    const total = result.data?.dishes_aggregate?.aggregate?.count || 0;
+
+    return NextResponse.json({
+      dishes: result.data?.dishes || [],
+      total,
+      limit,
+      offset,
+    });
+  } catch (error) {
+    console.error("Error fetching dishes:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch dishes", details: error instanceof Error ? error.message : String(error) },
+      { status: 500 }
+    );
   }
 }
