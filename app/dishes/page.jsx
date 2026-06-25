@@ -33,7 +33,10 @@ export default function DishesPage() {
   const { dishes: dishRows, loading, error } = useDishes() || { dishes: [], loading: false, error: null };
 
   // Extract dish_data from API response (API returns { id, dish_name, dish_data, created_at })
-  const dishes = dishRows.map(d => d.dish_data);
+  const dishes = dishRows.map(d => ({
+    ...d.dish_data,
+    _id: d.id,  // Add the database ID with underscore to avoid conflicts
+  }));
 
   // ---------- UI state ----------
   // Deep-link: open dish modal when URL hash is `#r=<dish-id>`

@@ -16,6 +16,7 @@
 - "!include public_project_snapshots.yaml"
 - "!include public_projects.yaml"
 - "!include public_recipes.yaml"
+- "!include public_review_instance.yaml"
 - "!include public_reviews.yaml"
 - "!include public_short_urls.yaml"
 - "!include storage_buckets.yaml"

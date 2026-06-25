@@ -24,6 +24,14 @@ const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 //    in which case the link stands in for the written-out method.
 function validateRecipe(v: RecipeFormValues): string | null {
   if (!v.ingredients.some((r) => r.name.trim())) return "Add at least one ingredient.";
+
+  // Check for negative quantities
+  const hasNegative = v.ingredients.some((r) => {
+    const qty = r.quantity?.trim();
+    return qty && Number(qty) < 0;
+  });
+  if (hasNegative) return "Ingredient quantities cannot be negative.";
+
   const hasStep = v.steps.some((s) => s.text.trim());
   const hasLink = v.resourceLink.trim().length > 0;
   if (!hasStep && !hasLink) return "Add at least one step, or paste an online recipe link instead.";
