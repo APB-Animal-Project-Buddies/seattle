@@ -1,7 +1,7 @@
 export const CUISINES = ["american","italian","mexican","indian","chinese","thai","japanese","korean","vietnamese","mediterranean","middle-eastern","french","ethiopian","other"] as const;
 export const DISH_TYPES = ["main","side","appetizer","breakfast","soup","salad","dessert","snack","drink","sauce","other"] as const;
 export const ALLERGENS = ["gluten","nuts","peanuts","soy","dairy","eggs","sesame","shellfish","fish"] as const;
-export const UNITS = ["g","kg","ml","l","tsp","tbsp","cup","oz","lb","piece","clove","can","pinch","dash","handful","bunch","sprig","to_taste","other"] as const;
+export const UNITS = ["mg","g","kg","ml","l","fl_oz","tsp","tbsp","cup","pt","qt","gallon","oz","lb","stick","mm","cm","inch","piece","clove","can","pinch","dash","splash","cube","handful","bunch","sprig","to_taste","other"] as const;
 export const TRIED_BY = ["just_me","friends","family","strangers","a_lot"] as const;
 export const TRIED_BY_LABELS: Record<(typeof TRIED_BY)[number], string> = {
   just_me: "Just me", friends: "Friends", family: "Family", strangers: "Strangers", a_lot: "A lot of people",

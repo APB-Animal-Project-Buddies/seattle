@@ -62,3 +62,9 @@ test("buildDishData keeps non-empty steps as a string array", () => {
     .toEqual(["Boil water", "Add pasta"]);
   expect("steps" in buildDishData({ title: "x", steps: ["", "   "] } as any)).toBe(false);
 });
+
+test("UNITS includes the newly added units", () => {
+  for (const u of ["mg", "fl_oz", "pt", "qt", "gallon", "stick", "mm", "cm", "inch", "splash", "cube"]) {
+    expect(UNITS as readonly string[]).toContain(u);
+  }
+});
