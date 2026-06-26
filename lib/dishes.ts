@@ -9,6 +9,7 @@ export const TRIED_BY_LABELS: Record<(typeof TRIED_BY)[number], string> = {
 export const TAGS = ["fast","easy","cheap","expensive","fancy","healthy","high-protein","comfort-food","spicy","kid-friendly","bulk-prep","low-effort"] as const;
 
 const MAX_SHORT = 200, MAX_LONG = 4000, MAX_NAME = 120, MAX_EMAIL = 254, MAX_TAGS = 25, MAX_INGREDIENTS = 100, MAX_STEPS = 60;
+const MAX_ALTS_PER_INGREDIENT = 6, MAX_ALT_LINES = 12;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const URL_RE = /^https?:\/\/[^\s]+$/i;
 
@@ -23,6 +24,18 @@ function num(v: unknown): number | null {
 function strArray(v: unknown, max: number, cap: number): string[] {
   if (!Array.isArray(v)) return [];
   return v.map((x) => str(x, cap)).filter((x): x is string => !!x).slice(0, max);
+}
+
+// One sanitized ingredient line: { id?, name, quantity, unit }. Shared by top-level
+// ingredient rows AND alternative lines, so both get identical name/quantity/unit/id
+// coercion. Returns null for a nameless row (the caller drops it).
+type IngredientLine = { id?: string; name: string; quantity: number | null; unit: string };
+function ingredientLine(r: any): IngredientLine | null {
+  const name = str(r?.name, MAX_NAME);
+  if (!name) return null;
+  const row: IngredientLine = { name, quantity: num(r?.quantity), unit: str(r?.unit, 40) ?? "" };
+  const id = str(r?.id, MAX_NAME); if (id) row.id = id;
+  return row;
 }
 
 export type DishData = Record<string, unknown>;
@@ -44,16 +57,36 @@ export function buildDishData(input: any): DishData {
   const rawIng = Array.isArray(input?.ingredients) ? input.ingredients : [];
   const ingredients = rawIng
     .map((r: any) => {
-      const name = str(r?.name, MAX_NAME);
-      if (!name) return null;
-      const row: any = { name, quantity: num(r?.quantity), unit: str(r?.unit, 40) ?? "" };
-      const id = str(r?.id, MAX_NAME); if (id) row.id = id;
+      const row: any = ingredientLine(r);
+      if (!row) return null;
 
       // Optional ingredient `section` for multi-part recipes (e.g. "Batter", "Sauce").
       // Omitted when empty so a sectionless row serializes byte-identically to the
       // legacy shape — existing dishes are unaffected (no migration needed).
       const section = str(r?.section, MAX_SHORT);
       if (section) row.section = section;
+
+      // Optional `alternatives` — substitutions for THIS ingredient. Each alternative
+      // is a group of one-or-more lines (a swap can be several ingredients, e.g.
+      // 1 egg => 1 tbsp flax + 3 tbsp water) with an optional label + free-text note.
+      // Alternatives stay NESTED on the row — never hoisted into the flat list — so the
+      // "use Y instead of X" relationship survives. Omitted when empty (backwards-compat).
+      const rawAlts = Array.isArray(r?.alternatives) ? r.alternatives : [];
+      const alternatives = rawAlts
+        .map((a: any) => {
+          const items = (Array.isArray(a?.items) ? a.items : [])
+            .map(ingredientLine)
+            .filter(Boolean)
+            .slice(0, MAX_ALT_LINES);
+          if (!items.length) return null; // drop alternatives with no usable lines
+          const alt: any = { items };
+          const label = str(a?.label, MAX_SHORT); if (label) alt.label = label;
+          const note = str(a?.note, MAX_LONG); if (note) alt.note = note;
+          return alt;
+        })
+        .filter(Boolean)
+        .slice(0, MAX_ALTS_PER_INGREDIENT);
+      if (alternatives.length) row.alternatives = alternatives;
 
       return row;
     })

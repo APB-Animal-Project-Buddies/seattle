@@ -96,7 +96,7 @@ export const EXTRACT_TOOL = {
         items: {
           type: "object",
           additionalProperties: false,
-          required: ["name", "quantity", "unit", "section", "preparation", "raw"],
+          required: ["name", "quantity", "unit", "section", "alternatives", "preparation", "raw"],
           properties: {
             name: {
               type: "string",
@@ -126,6 +126,45 @@ export const EXTRACT_TOOL = {
                 "The recipe part this ingredient belongs to, when the source splits ingredients into groups " +
                 "('For the batter:', 'Sauce:', 'Topping'). Use that exact header text. Null when the recipe is a " +
                 "single flat ingredient list with no sub-sections.",
+            },
+            alternatives: {
+              type: "array",
+              description:
+                "Substitutions the SOURCE states for this ingredient ('or use X', 'sub: Y + Z', 'gluten-free: …'). " +
+                "Transcription only — never invent a swap. Each alternative is a group of one or more replacement " +
+                "lines (a swap can be multiple ingredients, e.g. 1 egg => 1 tbsp flax + 3 tbsp water). Empty array " +
+                "when the source states no substitution for this ingredient.",
+              items: {
+                type: "object",
+                additionalProperties: false,
+                required: ["label", "note", "items"],
+                properties: {
+                  label: {
+                    type: ["string", "null"],
+                    description: "Short name for the swap ('Flax egg', 'Gluten-free'). Null if the source gives none.",
+                  },
+                  note: {
+                    type: ["string", "null"],
+                    description:
+                      "Any qualifier the source attaches to the swap ('for a firmer bite', 'if nut-free', " +
+                      "'not gluten-free'). Null if none.",
+                  },
+                  items: {
+                    type: "array",
+                    description: "One or more replacement lines, each split into name / quantity / unit like a normal ingredient.",
+                    items: {
+                      type: "object",
+                      additionalProperties: false,
+                      required: ["name", "quantity", "unit"],
+                      properties: {
+                        name: { type: "string", description: "Replacement ingredient name, prep words removed." },
+                        quantity: { type: ["number", "null"], description: "Numeric amount, same rules as a normal line. Null if none." },
+                        unit: { enum: [...UNITS, null], description: "Best-fit unit from the allowed list, same rules as a normal line." },
+                      },
+                    },
+                  },
+                },
+              },
             },
             preparation: {
               type: ["string", "null"],
@@ -196,6 +235,7 @@ export const SYSTEM_PROMPT = `You extract structured recipe data from documents 
 Most fields are faithful TRANSCRIPTION — only record what the document states, never invent a title, ingredient, step, or quantity:
 - Break the ingredient list down: one entry per ingredient, each split into a clean name, a numeric quantity, and a unit from the allowed list (this mirrors the form's name / qty / unit row).
 - If the recipe splits its ingredients into labeled parts ("For the batter:", "Sauce:"), set each ingredient's section to that header; leave section null for a single flat list.
+- If the source states a substitution for an ingredient ("or use X", "sub Y + Z", "gluten-free: …"), capture it under that ingredient's alternatives — one alternative per stated swap, each a group of one or more replacement lines (a swap can be several ingredients). Put any qualifier on the swap into the alternative's note. Never invent a substitution; empty array when none is stated.
 - Break the method down into discrete, ordered steps — split run-on instructions into separate actions.
 - Bin cuisine, dishType, and unit into the provided allowed lists; use null rather than forcing a wrong bin.
 - Only attach a brand name to an ingredient when the source explicitly states it; never infer a brand onto a generic ingredient.
