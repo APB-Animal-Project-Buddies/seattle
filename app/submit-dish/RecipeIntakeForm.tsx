@@ -160,6 +160,14 @@ export function RecipeIntakeForm() {
         <Field label="Description">
           <Textarea className="mt-2" placeholder="A short blurb — what the dish is and what makes it great" {...register("description")} />
         </Field>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Field label="Servings">
+            <Input className="mt-2" type="number" step="1" min="0" placeholder="e.g. 4" {...register("servings")} />
+          </Field>
+          <Field label="Prep time">
+            <Input className="mt-2" placeholder="e.g. 30 min" {...register("prepTime")} />
+          </Field>
+        </div>
         <Field label="Cuisine" hint="pick any that apply">
           <Controller control={control} name="cuisines" render={({ field }) => (
             <MultiSelect className="mt-2" value={field.value} onChange={field.onChange} options={CUISINES} />
@@ -196,17 +204,9 @@ export function RecipeIntakeForm() {
         <Field label="Special equipment (N/A if none)">
           <Input className="mt-2" placeholder="e.g. sous vide circulator, pressure canner, suribachi" {...register("specialEquipment")} />
         </Field>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
-          <Field label="Cost to make (1 person, $)">
-            <Input className="mt-2" type="number" step="any" placeholder="e.g. 3.50" {...register("cost")} />
-          </Field>
-          <Field label="Servings">
-            <Input className="mt-2" type="number" step="1" min="0" placeholder="e.g. 4" {...register("servings")} />
-          </Field>
-          <Field label="Prep time">
-            <Input className="mt-2" placeholder="e.g. 30 min" {...register("prepTime")} />
-          </Field>
-        </div>
+        <Field label="Cost to make (1 person, $)">
+          <Input className="mt-2" type="number" step="any" placeholder="e.g. 3.50" {...register("cost")} />
+        </Field>
         <Field label="Allergens">
           <Controller control={control} name="allergens" render={({ field }) => (
             <ChipGroup value={field.value} onChange={field.onChange} options={ALLERGENS} />
