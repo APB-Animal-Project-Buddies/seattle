@@ -373,7 +373,7 @@ function DishModal({ dish, open, onClose, onAddToMenu, inMenu }) {
           )}
 
           <div className="modal-actions">
-            <a href={dish.url || '#'} target="_blank" rel="noopener noreferrer" style={{
+            <a href={dish._id ? `/dishes/${dish._id}` : (dish.url || '#')} style={{
               padding: '12px 20px', borderRadius: 999, border: '1px solid var(--line)',
               textDecoration: 'none', color: 'var(--moss-ink)', fontWeight: 600, fontSize: 13.5,
               display: 'inline-flex', alignItems: 'center', gap: 8,
