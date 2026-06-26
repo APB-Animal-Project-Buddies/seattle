@@ -48,6 +48,13 @@ export function buildDishData(input: any): DishData {
       if (!name) return null;
       const row: any = { name, quantity: num(r?.quantity), unit: str(r?.unit, 40) ?? "" };
       const id = str(r?.id, MAX_NAME); if (id) row.id = id;
+
+      // Optional ingredient `section` for multi-part recipes (e.g. "Batter", "Sauce").
+      // Omitted when empty so a sectionless row serializes byte-identically to the
+      // legacy shape — existing dishes are unaffected (no migration needed).
+      const section = str(r?.section, MAX_SHORT);
+      if (section) row.section = section;
+
       return row;
     })
     .filter(Boolean)

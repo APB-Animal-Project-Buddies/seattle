@@ -96,7 +96,7 @@ export const EXTRACT_TOOL = {
         items: {
           type: "object",
           additionalProperties: false,
-          required: ["name", "quantity", "unit", "preparation", "raw"],
+          required: ["name", "quantity", "unit", "section", "preparation", "raw"],
           properties: {
             name: {
               type: "string",
@@ -119,6 +119,13 @@ export const EXTRACT_TOOL = {
                 "Prefer a specific listed unit over 'other' ('a handful' => 'handful', 'salt to taste' => " +
                 "quantity null + unit 'to_taste', '3 eggs' => quantity 3 + unit 'piece'). Use 'other' only for a " +
                 "genuinely unlistable unit, and null when there is simply no unit at all.",
+            },
+            section: {
+              type: ["string", "null"],
+              description:
+                "The recipe part this ingredient belongs to, when the source splits ingredients into groups " +
+                "('For the batter:', 'Sauce:', 'Topping'). Use that exact header text. Null when the recipe is a " +
+                "single flat ingredient list with no sub-sections.",
             },
             preparation: {
               type: ["string", "null"],
@@ -188,6 +195,7 @@ export const SYSTEM_PROMPT = `You extract structured recipe data from documents 
 
 Most fields are faithful TRANSCRIPTION — only record what the document states, never invent a title, ingredient, step, or quantity:
 - Break the ingredient list down: one entry per ingredient, each split into a clean name, a numeric quantity, and a unit from the allowed list (this mirrors the form's name / qty / unit row).
+- If the recipe splits its ingredients into labeled parts ("For the batter:", "Sauce:"), set each ingredient's section to that header; leave section null for a single flat list.
 - Break the method down into discrete, ordered steps — split run-on instructions into separate actions.
 - Bin cuisine, dishType, and unit into the provided allowed lists; use null rather than forcing a wrong bin.
 - Only attach a brand name to an ingredient when the source explicitly states it; never infer a brand onto a generic ingredient.

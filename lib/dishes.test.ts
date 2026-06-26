@@ -68,3 +68,23 @@ test("UNITS includes the newly added units", () => {
     expect(UNITS as readonly string[]).toContain(u);
   }
 });
+
+// ── Ingredient sections (multi-part recipes), backwards-compatible with legacy rows ──
+
+test("buildDishData backwards-compat: a legacy row with no section is unchanged", () => {
+  const d = buildDishData({ title: "x", ingredients: [{ name: "Flour", quantity: 2, unit: "cup" }] } as any);
+  expect(d.ingredients).toEqual([{ name: "Flour", quantity: 2, unit: "cup" }]);
+  expect("section" in (d.ingredients as any[])[0]).toBe(false);
+});
+
+test("buildDishData preserves section when present, omits when empty", () => {
+  const d = buildDishData({
+    title: "x",
+    ingredients: [
+      { name: "Tofu", quantity: 400, unit: "g", section: "  Main  " },
+      { name: "Salt", quantity: null, unit: "to_taste", section: "   " },
+    ],
+  } as any);
+  expect((d.ingredients as any[])[0].section).toBe("Main");
+  expect("section" in (d.ingredients as any[])[1]).toBe(false);
+});
