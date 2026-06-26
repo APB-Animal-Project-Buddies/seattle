@@ -135,6 +135,15 @@ export function RecipeIntakeForm() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        {/* Servings + prep time — at the very top */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Field label="Servings">
+            <Input className="mt-2" type="number" step="1" min="0" placeholder="e.g. 4" {...register("servings")} />
+          </Field>
+          <Field label="Prep time">
+            <Input className="mt-2" placeholder="e.g. 30 min" {...register("prepTime")} />
+          </Field>
+        </div>
         {/* Source — paste a link up top; if you do, the steps below are optional */}
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <Field label="Resource / docs link" hint="paste the original recipe — if you do, the steps below are optional">
@@ -160,14 +169,6 @@ export function RecipeIntakeForm() {
         <Field label="Description">
           <Textarea className="mt-2" placeholder="A short blurb — what the dish is and what makes it great" {...register("description")} />
         </Field>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Field label="Servings">
-            <Input className="mt-2" type="number" step="1" min="0" placeholder="e.g. 4" {...register("servings")} />
-          </Field>
-          <Field label="Prep time">
-            <Input className="mt-2" placeholder="e.g. 30 min" {...register("prepTime")} />
-          </Field>
-        </div>
         <Field label="Cuisine" hint="pick any that apply">
           <Controller control={control} name="cuisines" render={({ field }) => (
             <MultiSelect className="mt-2" value={field.value} onChange={field.onChange} options={CUISINES} />
