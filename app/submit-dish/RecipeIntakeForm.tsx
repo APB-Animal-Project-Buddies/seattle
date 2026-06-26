@@ -23,13 +23,17 @@ const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 //  - At least 1 step: required UNLESS an online recipe link is given (resourceLink),
 //    in which case the link stands in for the written-out method.
 function validateRecipe(v: RecipeFormValues): string | null {
-  if (!v.ingredients.some((r) => r.name.trim())) return "Add at least one ingredient.";
+  const rows = v.ingredientGroups.flatMap((g) => g.items);
+  if (!rows.some((r) => r.name.trim())) return "Add at least one ingredient.";
 
-  // Check for negative quantities
-  const hasNegative = v.ingredients.some((r) => {
-    const qty = r.quantity?.trim();
-    return qty && Number(qty) < 0;
-  });
+  // Check for negative quantities — across rows AND their alternative lines.
+  const isNeg = (qty?: string) => {
+    const q = qty?.trim();
+    return !!q && Number(q) < 0;
+  };
+  const hasNegative = rows.some(
+    (r) => isNeg(r.quantity) || r.alternatives.some((a) => a.items.some((x) => isNeg(x.quantity)))
+  );
   if (hasNegative) return "Ingredient quantities cannot be negative.";
 
   const hasStep = v.steps.some((s) => s.text.trim());
@@ -55,9 +59,32 @@ export function RecipeIntakeForm() {
       cuisines: v.cuisines,
       dishType: v.dishType,
       tags: v.tags,
-      ingredients: v.ingredients
-        .filter((r) => r.name.trim())
-        .map((r) => ({ id: r.id, name: r.name, quantity: numOrNull(r.quantity), unit: r.unit })),
+      // Flatten sections → flat ingredients (each row stamped with its section).
+      // Alternatives ride along NESTED on the row — never hoisted to a sibling.
+      ingredients: v.ingredientGroups.flatMap((g) =>
+        g.items
+          .filter((r) => r.name.trim())
+          .map((r) => ({
+            id: r.id,
+            name: r.name,
+            quantity: numOrNull(r.quantity),
+            unit: r.unit,
+            ...(g.section.trim() ? { section: g.section.trim() } : {}),
+            ...(r.alternatives.length
+              ? {
+                  alternatives: r.alternatives
+                    .map((a) => ({
+                      label: a.label.trim() || undefined,
+                      note: a.note.trim() || undefined,
+                      items: a.items
+                        .filter((x) => x.name.trim())
+                        .map((x) => ({ id: x.id, name: x.name, quantity: numOrNull(x.quantity), unit: x.unit })),
+                    }))
+                    .filter((a) => a.items.length),
+                }
+              : {}),
+          }))
+      ),
       steps: v.steps.map((s) => s.text.trim()).filter(Boolean),
       specialProducts: v.specialProducts,
       specialEquipment: v.specialEquipment,
