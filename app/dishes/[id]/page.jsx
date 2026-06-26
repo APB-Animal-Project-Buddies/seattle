@@ -79,21 +79,20 @@ function Ingredients({ ingredients }) {
       {groups.map((g, gi) => (
         <div key={gi}>
           {g.section ? (
-            <h3 className="mb-2 text-base font-semibold text-apb">{g.section}</h3>
+            <h3 className="mb-2 text-lg font-semibold text-apb">{g.section}</h3>
           ) : null}
-          <ul className="flex flex-col gap-2">
+          <ul className="flex flex-col gap-3">
             {g.items.map((ing, ii) => (
-              <li key={ii} className="border-b border-neutral-100 pb-2 last:border-0">
+              <li key={ii}>
                 <span className="text-sm text-neutral-800">{lineText(ing)}</span>
                 {Array.isArray(ing.alternatives) && ing.alternatives.length > 0 ? (
-                  <ul className="ml-4 mt-1.5 flex flex-col gap-1.5">
+                  <ul className="mt-1.5 flex flex-col gap-1">
                     {ing.alternatives.map((alt, ai) => (
-                      <li key={ai} className="rounded-md border-l-2 border-apb/30 bg-neutral-50 px-3 py-1.5 text-xs text-neutral-600">
-                        <span className="font-medium text-apb">
-                          {alt.label ? alt.label : "Alternative"}:
-                        </span>{" "}
+                      <li key={ai} className="text-xs text-neutral-600">
+                        <span className="font-medium text-apb">Alternative {ai + 1}:</span>{" "}
+                        {alt.label ? <span className="font-medium">{alt.label} — </span> : null}
                         {(alt.items ?? []).map((x) => lineText(x)).filter(Boolean).join(" + ")}
-                        {alt.note ? <span className="block text-neutral-500 italic">{alt.note}</span> : null}
+                        {alt.note ? <span className="block italic text-neutral-500">{alt.note}</span> : null}
                       </li>
                     ))}
                   </ul>
@@ -136,6 +135,20 @@ export default async function DishPage({ params }) {
         ) : null}
       </header>
 
+      {/* Allergen warning — prominent, at the top */}
+      {has(d.allergens) ? (
+        <div className="mt-6 rounded-[16px] border-2 border-red-300 bg-red-50 p-5">
+          <p className="text-base font-bold uppercase tracking-wide text-red-700">⚠ Contains allergens</p>
+          <div className="mt-3 flex flex-wrap gap-2.5">
+            {d.allergens.map((a) => (
+              <span key={`al-${a}`} className="inline-flex items-center rounded-full bg-red-600 px-4 py-1.5 text-sm font-semibold uppercase tracking-wide text-white">
+                {a}
+              </span>
+            ))}
+          </div>
+        </div>
+      ) : null}
+
       {/* Meta strip */}
       {(d.cost != null || d.originalCreator || d.resourceLink) ? (
         <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 rounded-[16px] border border-neutral-200 bg-white/60 px-5 py-4 text-sm">
@@ -169,11 +182,11 @@ export default async function DishPage({ params }) {
       {/* Steps */}
       {has(d.steps) ? (
         <Section title="Method">
-          <ol className="flex flex-col gap-3">
+          <ol className="flex flex-col gap-4">
             {d.steps.map((s, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-apb text-xs font-semibold text-white">{i + 1}</span>
-                <span className="text-sm leading-relaxed text-neutral-800">{s}</span>
+              <li key={i} className="flex gap-4 rounded-[12px] border border-neutral-200 bg-white/60 p-4">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-apb text-sm font-bold text-white">{i + 1}</span>
+                <span className="text-base leading-relaxed text-neutral-800">{s}</span>
               </li>
             ))}
           </ol>
@@ -191,19 +204,6 @@ export default async function DishPage({ params }) {
           {d.specialEquipment ? (
             <p className="mt-2 text-sm text-neutral-700">{d.specialEquipment}</p>
           ) : null}
-        </Section>
-      ) : null}
-
-      {/* Allergens */}
-      {has(d.allergens) ? (
-        <Section title="Allergens (contains)">
-          <div className="flex flex-wrap gap-2">
-            {d.allergens.map((a) => (
-              <span key={`al-${a}`} className="inline-flex items-center rounded-full bg-red-50 px-3 py-1 text-xs font-medium text-red-700 ring-1 ring-red-200">
-                {a}
-              </span>
-            ))}
-          </div>
         </Section>
       ) : null}
 
