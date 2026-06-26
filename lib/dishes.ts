@@ -112,6 +112,13 @@ export function buildDishData(input: any): DishData {
     d.cost = cost;
   }
 
+  if (input?.servings != null && input.servings !== "") {
+    const servings = num(input.servings);
+    if (servings === null || servings < 0) throw new Error("Servings must be a non-negative number");
+    d.servings = servings;
+  }
+  const prepTime = str(input?.prepTime, MAX_SHORT); if (prepTime) d.prepTime = prepTime;
+
   const sbName = str(input?.submittedBy?.name, MAX_NAME);
   const sbEmail = str(input?.submittedBy?.email, MAX_EMAIL);
   if (sbEmail && !EMAIL_RE.test(sbEmail)) throw new Error("Invalid email");

@@ -55,6 +55,8 @@ export const EXTRACT_TOOL = {
       "resourceLink",
       "originalCreator",
       "notes",
+      "servings",
+      "prepTime",
     ],
     properties: {
       title: {
@@ -225,6 +227,18 @@ export const EXTRACT_TOOL = {
       notes: {
         type: ["string", "null"],
         description: "Tips, substitutions, or storage notes the document includes. Null if none.",
+      },
+      servings: {
+        type: ["number", "null"],
+        description:
+          "How many servings/portions the recipe yields, as a number (e.g. 'Serves 4' => 4, " +
+          "'makes 12 muffins' => 12). For a range ('4-6') use the lower bound. Null if not stated.",
+      },
+      prepTime: {
+        type: ["string", "null"],
+        description:
+          "The time the recipe states, kept as readable text (e.g. '30 min', '1 hr 20 min', " +
+          "'45 min active + 5 hr chill'). Prefer total time if given. Null if not stated.",
       },
     },
   },
