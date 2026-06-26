@@ -3,6 +3,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { LineFields } from "./LineFields";
+import { AddButton } from "./AddButton";
 import { emptyAlternative, emptyLine, type RecipeFormValues } from "../types";
 
 /**
@@ -25,13 +26,9 @@ export function AlternativesEditor({ namePrefix }: { namePrefix: string }) {
           onRemove={() => remove(a)}
         />
       ))}
-      <button
-        type="button"
-        className="self-start text-xs font-medium text-neutral-500 hover:text-apb"
-        onClick={() => append(emptyAlternative())}
-      >
-        + alternative
-      </button>
+      <AddButton variant="subtle" className="self-start" onClick={() => append(emptyAlternative())}>
+        alternative
+      </AddButton>
     </div>
   );
 }
@@ -79,13 +76,9 @@ function AlternativeBlock({ namePrefix, onRemove }: { namePrefix: string; onRemo
       </div>
 
       <div className="mt-2 flex items-center gap-3">
-        <button
-          type="button"
-          className="text-xs font-medium text-neutral-500 hover:text-apb"
-          onClick={() => append(emptyLine())}
-        >
-          + add line
-        </button>
+        <AddButton variant="subtle" onClick={() => append(emptyLine())}>
+          add line
+        </AddButton>
       </div>
 
       <Textarea

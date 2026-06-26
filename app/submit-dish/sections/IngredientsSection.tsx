@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { LineFields } from "./LineFields";
 import { AlternativesEditor } from "./AlternativesEditor";
+import { AddButton } from "./AddButton";
 import { emptyIngredient, type RecipeFormValues } from "../types";
 
 export function IngredientsSection() {
@@ -27,13 +28,11 @@ export function IngredientsSection() {
           />
         ))}
       </div>
-      <button
-        type="button"
-        className="mt-3 text-sm font-medium text-apb"
-        onClick={() => append({ section: "", items: [emptyIngredient()] })}
-      >
-        + Add section
-      </button>
+      <div className="mt-3">
+        <AddButton variant="primary" onClick={() => append({ section: "", items: [emptyIngredient()] })}>
+          Add section
+        </AddButton>
+      </div>
     </div>
   );
 }
@@ -94,13 +93,11 @@ function SectionGroup({
         ))}
       </div>
 
-      <button
-        type="button"
-        className="mt-2 text-sm font-medium text-apb"
-        onClick={() => append(emptyIngredient())}
-      >
-        + Add ingredient
-      </button>
+      <div className="mt-3">
+        <AddButton variant="default" onClick={() => append(emptyIngredient())}>
+          Add ingredient
+        </AddButton>
+      </div>
     </div>
   );
 }

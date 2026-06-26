@@ -20,8 +20,8 @@ const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 // Submission rules — kept deliberately light:
 //  - Title: always required (enforced on the field).
 //  - At least 1 ingredient: always required — a recipe needs its ingredient list.
-//  - At least 1 step: required UNLESS an online recipe link is given (resourceLink),
-//    in which case the link stands in for the written-out method.
+//  - Steps: fully optional — a resource link (or just the ingredients) can stand
+//    in for the written-out method.
 function validateRecipe(v: RecipeFormValues): string | null {
   const rows = v.ingredientGroups.flatMap((g) => g.items);
   if (!rows.some((r) => r.name.trim())) return "Add at least one ingredient.";
@@ -36,9 +36,7 @@ function validateRecipe(v: RecipeFormValues): string | null {
   );
   if (hasNegative) return "Ingredient quantities cannot be negative.";
 
-  const hasStep = v.steps.some((s) => s.text.trim());
-  const hasLink = v.resourceLink.trim().length > 0;
-  if (!hasStep && !hasLink) return "Add at least one step, or paste an online recipe link instead.";
+  // Steps are fully optional — a recipe can be just a link, or just ingredients.
   return null;
 }
 
@@ -135,6 +133,24 @@ export function RecipeIntakeForm() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
+        {/* Source — paste a link up top; if you do, the steps below are optional */}
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+          <Field label="Resource / docs link" hint="paste the original recipe — if you do, the steps below are optional">
+            <Input className="mt-2" type="url" placeholder="https://www.noracooks.com/vegan-blueberry-muffins/" {...register("resourceLink")} />
+          </Field>
+          <Field label="Original creator">
+            <Input className="mt-2" placeholder="e.g. Nora Cooks, Vegan Richa" {...register("originalCreator")} />
+          </Field>
+        </div>
+
+        {watch("resourceLink")?.trim() && watch("originalCreator")?.trim() ? (
+          <p className="-mt-3 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-700">
+            If you&rsquo;re not the original creator, please don&rsquo;t reproduce all the recipe
+            steps here — that copies the author&rsquo;s intellectual property. Link to the original
+            above and keep the steps brief or empty.
+          </p>
+        ) : null}
+
         {/* Basics */}
         <Field label="Recipe name" required error={errors.title?.message}>
           <Input className="mt-2" placeholder="e.g. Vegan Zuppa Toscana" {...register("title", { required: "Recipe name is required" })} />
@@ -178,16 +194,8 @@ export function RecipeIntakeForm() {
         <Field label="Special equipment (N/A if none)">
           <Input className="mt-2" placeholder="e.g. sous vide circulator, pressure canner, suribachi" {...register("specialEquipment")} />
         </Field>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-          <Field label="Cost to make (1 person, $)">
-            <Input className="mt-2" type="number" step="any" placeholder="e.g. 3.50" {...register("cost")} />
-          </Field>
-          <Field label="Original creator">
-            <Input className="mt-2" placeholder="e.g. Nora Cooks, Vegan Richa" {...register("originalCreator")} />
-          </Field>
-        </div>
-        <Field label="Resource / docs link">
-          <Input className="mt-2" type="url" placeholder="https://www.noracooks.com/vegan-blueberry-muffins/" {...register("resourceLink")} />
+        <Field label="Cost to make (1 person, $)">
+          <Input className="mt-2" type="number" step="any" placeholder="e.g. 3.50" {...register("cost")} />
         </Field>
         <Field label="Allergens">
           <Controller control={control} name="allergens" render={({ field }) => (

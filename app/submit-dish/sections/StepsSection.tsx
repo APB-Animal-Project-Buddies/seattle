@@ -5,12 +5,20 @@ import { Label } from "@/components/ui/label";
 import type { RecipeFormValues } from "../types";
 
 export function StepsSection() {
-  const { control, register } = useFormContext<RecipeFormValues>();
+  const { control, register, watch } = useFormContext<RecipeFormValues>();
   const { fields, append, remove } = useFieldArray({ control, name: "steps" });
+  const hasLink = (watch("resourceLink") ?? "").trim().length > 0;
 
   return (
     <div>
-      <Label>Steps</Label>
+      <Label>
+        Steps <span className="font-normal text-neutral-400">(optional)</span>
+      </Label>
+      {hasLink ? (
+        <p className="mt-1 text-xs text-neutral-500">
+          You added a recipe link above — you can skip the steps below.
+        </p>
+      ) : null}
       <div className="mt-2 flex flex-col gap-2">
         {fields.map((f, i) => (
           <div key={f.id} className="flex items-start gap-2">
