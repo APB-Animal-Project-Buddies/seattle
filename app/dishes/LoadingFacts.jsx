@@ -13,6 +13,10 @@ const PLANT_FACTS = [
   "🐔 Choosing plants even a few times a week spares hundreds of lives a year. 🐥",
   "🌎 Plant-based eating uses a fraction of the land and water of animal farming — same plate, lighter footprint. 🌿",
   "🐟 Going plant-based helps keep our oceans full of fish, not nets. 🌊",
+  "🌍 If the world went fully plant-based, we could free up almost 75% of farmland — room to rewild and let nature breathe. 🌳",
+  "🐮 If we all committed to plant-based, we'd spare over 200 billion animals every year. Imagine that much kindness. 💚",
+  "💧 If we all went plant-based, we'd save around 50% of the water used in agriculture. Every meal is a drop that adds up. 🌊",
+  "🦠 Did you know? Up to 80% of the world's antibiotics go to farmed animals, not people — fueling drug-resistant superbugs. Going plant-based helps keep our life-saving medicines working. 💊",
   "💚 Good food, done kindly. Thanks for cooking with compassion. 🐰",
 ];
 
