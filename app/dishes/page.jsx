@@ -8,6 +8,7 @@ import {
   DishCard, DishModal, MenuDrawer, Toast,
 } from './components';
 import { CUISINE_META } from './helpers';
+import { LoadingFacts } from './LoadingFacts';
 
 const STORAGE_KEY = 'apb-dishes-menu-v1';
 
@@ -175,7 +176,7 @@ export default function DishesPage() {
 
   // ---------- Render gating ----------
   if (loading) {
-    return <div className="empty-state"><h3>Loading dishes...</h3></div>;
+    return <LoadingFacts />;
   }
 
   if (error) {
