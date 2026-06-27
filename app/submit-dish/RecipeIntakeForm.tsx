@@ -40,10 +40,11 @@ function validateRecipe(v: RecipeFormValues): string | null {
   return null;
 }
 
-export function RecipeIntakeForm() {
+export function RecipeIntakeForm({ dishId, initialValues }: { dishId?: number; initialValues?: RecipeFormValues } = {}) {
+  const isEdit = dishId != null;
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const methods = useForm<RecipeFormValues>({ defaultValues: RECIPE_FORM_DEFAULTS });
+  const methods = useForm<RecipeFormValues>({ defaultValues: initialValues ?? RECIPE_FORM_DEFAULTS });
   const { register, handleSubmit, control, watch, formState: { errors } } = methods;
 
   async function onSubmit(v: RecipeFormValues) {
@@ -103,8 +104,8 @@ export function RecipeIntakeForm() {
       },
     };
     try {
-      const res = await fetch("/api/dishes", {
-        method: "POST",
+      const res = await fetch(isEdit ? `/api/dishes/${dishId}` : "/api/dishes", {
+        method: isEdit ? "PATCH" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
       });
@@ -124,10 +125,12 @@ export function RecipeIntakeForm() {
   if (status === "done")
     return (
       <div className="rounded-[16px] border p-8 text-center">
-        <h2 className="text-xl font-semibold text-apb">Thank you!</h2>
-        <p className="mt-2 text-neutral-600">Your recipe was submitted.</p>
-        <a href="/dishes" className="mt-5 inline-block">
-          <Button type="button">Back to dishes</Button>
+        <h2 className="text-xl font-semibold text-apb">{isEdit ? "Saved!" : "Thank you!"}</h2>
+        <p className="mt-2 text-neutral-600">
+          {isEdit ? "Your changes were saved." : "Your recipe was submitted."}
+        </p>
+        <a href={isEdit ? `/dishes/${dishId}` : "/dishes"} className="mt-5 inline-block">
+          <Button type="button">{isEdit ? "View dish" : "Back to dishes"}</Button>
         </a>
       </div>
     );
@@ -267,7 +270,9 @@ export function RecipeIntakeForm() {
 
         {status === "error" ? <p className="text-sm text-red-600">{errorMsg}</p> : null}
         <Button type="submit" disabled={status === "submitting"}>
-          {status === "submitting" ? "Submitting…" : "Submit recipe"}
+          {status === "submitting"
+            ? (isEdit ? "Saving…" : "Submitting…")
+            : (isEdit ? "Save changes" : "Submit recipe")}
         </Button>
       </form>
     </FormProvider>

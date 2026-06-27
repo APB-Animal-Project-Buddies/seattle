@@ -117,9 +117,17 @@ export default async function DishPage({ params }) {
 
   return (
     <main className="mx-auto max-w-3xl px-4 py-10">
-      <Link href="/dishes" className="text-sm font-medium text-apb hover:underline">
-        ← All dishes
-      </Link>
+      <div className="flex items-center justify-between gap-3 pr-12">
+        <Link href="/dishes" className="text-sm font-medium text-apb hover:underline">
+          ← All dishes
+        </Link>
+        <Link
+          href={`/dishes/${row.id}/edit`}
+          className="rounded-lg border border-apb px-3 py-1.5 text-sm font-semibold text-apb transition hover:bg-apb hover:text-white"
+        >
+          Edit recipe
+        </Link>
+      </div>
 
       {/* Header */}
       <header className="mt-4">
