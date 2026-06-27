@@ -2,30 +2,47 @@
 import { useEffect, useState } from "react";
 
 // Motivational plant-based facts shown while dishes load — a kinder loading screen.
-// Figures: ~200 animal lives/yr from the plant-based guide; the well-known per-day
-// water / land / CO2 savings of a plant-based diet. Phrased warmly for users.
+// `w` is a relative weight: the big-picture "if we all went plant-based" facts are
+// weighted higher (3×) so they show up more often than the everyday ones.
 const PLANT_FACTS = [
-  "💧 Did you know? Going plant-based for a day can save around 1,100 gallons of water — small plates, big ripples. 🌊",
-  "🌳 Each plant-based day spares roughly 30 sq ft of forest. Let's grow something kinder together. 🌱",
-  "🐮 Going plant-based can save around 200 animal lives a year — that's over 1,000 friends in just five years. 💚",
-  "☁️ A single plant-based day can cut about 20 lbs of CO₂. Cooking dinner can help cool the planet. 🌍",
-  "🐷 Every meat-free meal is a small act of kindness. Let's make the kinder choice. 🐑",
-  "🐔 Choosing plants even a few times a week spares hundreds of lives a year. 🐥",
-  "🌎 Plant-based eating uses a fraction of the land and water of animal farming — same plate, lighter footprint. 🌿",
-  "🐟 Going plant-based helps keep our oceans full of fish, not nets. 🌊",
-  "🌍 If the world went fully plant-based, we could free up almost 75% of farmland — room to rewild and let nature breathe. 🌳",
-  "🐮 If we all committed to plant-based, we'd spare over 200 billion animals every year. Imagine that much kindness. 💚",
-  "💧 If we all went plant-based, we'd save around 50% of the water used in agriculture. Every meal is a drop that adds up. 🌊",
-  "🦠 Did you know? Up to 80% of the world's antibiotics go to farmed animals, not people — fueling drug-resistant superbugs. Going plant-based helps keep our life-saving medicines working. 💊",
-  "💚 Good food, done kindly. Thanks for cooking with compassion. 🐰",
+  { w: 3, t: "🌍 If the world went fully plant-based, we could free up almost 75% of farmland — room to rewild and let nature breathe. 🌳" },
+  { w: 3, t: "🐮 If we all committed to plant-based, we'd spare over 200 billion animals every year. Imagine that much kindness. 💚" },
+  { w: 3, t: "💧 If we all went plant-based, we'd save around 50% of the water used in agriculture. Every meal is a drop that adds up. 🌊" },
+  { w: 3, t: "🦠 Did you know? Up to 80% of the world's antibiotics go to farmed animals, not people — fueling drug-resistant superbugs. Going plant-based helps keep our life-saving medicines working. 💊" },
+  { w: 1, t: "💧 Did you know? Going plant-based for a day can save around 1,100 gallons of water — small plates, big ripples. 🌊" },
+  { w: 1, t: "🌳 Each plant-based day spares roughly 30 sq ft of forest. Let's grow something kinder together. 🌱" },
+  { w: 1, t: "🐮 Going plant-based can save around 200 animal lives a year — that's over 1,000 friends in just five years. 💚" },
+  { w: 1, t: "☁️ A single plant-based day can cut about 20 lbs of CO₂. Cooking dinner can help cool the planet. 🌍" },
+  { w: 1, t: "🐷 Every meat-free meal is a small act of kindness. Let's make the kinder choice. 🐑" },
+  { w: 1, t: "🐔 Choosing plants even a few times a week spares hundreds of lives a year. 🐥" },
+  { w: 1, t: "🌎 Plant-based eating uses a fraction of the land and water of animal farming — same plate, lighter footprint. 🌿" },
+  { w: 1, t: "🐟 Going plant-based helps keep our oceans full of fish, not nets. 🌊" },
+  { w: 1, t: "💚 Good food, done kindly. Thanks for cooking with compassion. 🐰" },
 ];
 
+const TOTAL_WEIGHT = PLANT_FACTS.reduce((s, f) => s + f.w, 0);
+
+// Weighted random index; re-rolls to avoid repeating the one currently shown.
+function pickWeighted(exclude = -1) {
+  for (let tries = 0; tries < 8; tries++) {
+    let r = Math.random() * TOTAL_WEIGHT;
+    for (let k = 0; k < PLANT_FACTS.length; k++) {
+      r -= PLANT_FACTS[k].w;
+      if (r < 0) {
+        if (k !== exclude) return k;
+        break; // landed on the current one — re-roll
+      }
+    }
+  }
+  return (exclude + 1) % PLANT_FACTS.length;
+}
+
 export function LoadingFacts() {
-  // Start at 0 for a stable first paint, then randomize + rotate on the client.
+  // Start at 0 for a stable first paint, then weighted-pick + rotate on the client.
   const [i, setI] = useState(0);
   useEffect(() => {
-    setI(Math.floor(Math.random() * PLANT_FACTS.length));
-    const t = setInterval(() => setI((p) => (p + 1) % PLANT_FACTS.length), 6000);
+    setI(pickWeighted());
+    const t = setInterval(() => setI((p) => pickWeighted(p)), 6000);
     return () => clearInterval(t);
   }, []);
 
@@ -44,7 +61,7 @@ export function LoadingFacts() {
           transition: "opacity 0.4s ease",
         }}
       >
-        {PLANT_FACTS[i]}
+        {PLANT_FACTS[i].t}
       </p>
     </div>
   );
