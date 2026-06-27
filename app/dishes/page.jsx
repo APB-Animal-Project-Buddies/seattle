@@ -90,14 +90,14 @@ export default function DishesPage() {
     if (!dishes) return [];
     const q = search.trim().toLowerCase();
     let list = dishes.filter(r => {
-      if (activeCuisine !== 'all' && r.cuisines !== activeCuisine) return false;
+      if (activeCuisine !== 'all' && !(r.cuisines || []).includes(activeCuisine)) return false;
       if (courseFilter !== 'all' && !(r.courses || []).includes(courseFilter)) return false;
       if (sourcingFilter === 'in-house' && r.sourcingTier !== 'in-house') return false;
       if (sourcingFilter === 'branded' && r.sourcingTier === 'in-house') return false;
       if (tagFilters.length > 0 && !tagFilters.every(t => (r.tags || []).includes(t))) return false;
       if (dietFilters.length > 0 && dietFilters.some(d => (r.allergens || []).includes(d))) return false;
       if (q) {
-        const hay = `${r.title} ${r.cuisineName} ${r.description || ''}`.toLowerCase();
+        const hay = `${r.title || ''} ${(r.cuisines || []).join(' ')} ${r.description || ''}`.toLowerCase();
         if (!hay.includes(q)) return false;
       }
       return true;
