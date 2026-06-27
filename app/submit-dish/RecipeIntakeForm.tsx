@@ -14,6 +14,7 @@ import { SPECIAL_PRODUCT_OPTIONS } from "@/lib/special-products";
 import { IngredientsSection } from "./sections/IngredientsSection";
 import { StepsSection } from "./sections/StepsSection";
 import { RECIPE_FORM_DEFAULTS, type RecipeFormValues } from "./types";
+import { adminHeaders } from "@/lib/admin-client";
 
 const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 
@@ -40,8 +41,11 @@ function validateRecipe(v: RecipeFormValues): string | null {
   return null;
 }
 
-export function RecipeIntakeForm({ dishId, initialValues }: { dishId?: number; initialValues?: RecipeFormValues } = {}) {
-  const isEdit = dishId != null;
+export function RecipeIntakeForm(
+  { dishId, initialValues, mode }: { dishId?: number; initialValues?: RecipeFormValues; mode?: "edit" | "propose" } = {}
+) {
+  const isPropose = mode === "propose" && dishId != null;
+  const isEdit = dishId != null && !isPropose;
   const [status, setStatus] = useState<"idle" | "submitting" | "done" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const methods = useForm<RecipeFormValues>({ defaultValues: initialValues ?? RECIPE_FORM_DEFAULTS });
@@ -103,12 +107,12 @@ export function RecipeIntakeForm({ dishId, initialValues }: { dishId?: number; i
         ratingScale: numOrNull(v.ratingScale),
       },
     };
+    // Route by mode: propose (public, pending review) / edit (admin, direct) / create.
+    const url = isPropose ? `/api/dishes/${dishId}/edits` : isEdit ? `/api/dishes/${dishId}` : "/api/dishes";
+    const method = isEdit ? "PATCH" : "POST";
+    const headers: Record<string, string> = { "Content-Type": "application/json", ...(isEdit ? adminHeaders() : {}) };
     try {
-      const res = await fetch(isEdit ? `/api/dishes/${dishId}` : "/api/dishes", {
-        method: isEdit ? "PATCH" : "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
+      const res = await fetch(url, { method, headers, body: JSON.stringify(body) });
       if (!res.ok) {
         const j = await res.json().catch(() => null);
         setErrorMsg(j?.error ?? "Something went wrong. Please try again.");
@@ -125,12 +129,18 @@ export function RecipeIntakeForm({ dishId, initialValues }: { dishId?: number; i
   if (status === "done")
     return (
       <div className="rounded-[16px] border p-8 text-center">
-        <h2 className="text-xl font-semibold text-apb">{isEdit ? "Saved!" : "Thank you!"}</h2>
+        <h2 className="text-xl font-semibold text-apb">
+          {isPropose ? "Thanks for the suggestion!" : isEdit ? "Saved!" : "Thank you!"}
+        </h2>
         <p className="mt-2 text-neutral-600">
-          {isEdit ? "Your changes were saved." : "Your recipe was submitted."}
+          {isPropose
+            ? "Your suggested edit was submitted for review. An admin will take a look soon."
+            : isEdit
+              ? "Your changes were saved."
+              : "Your recipe was submitted."}
         </p>
-        <a href={isEdit ? `/dishes/${dishId}` : "/dishes"} className="mt-5 inline-block">
-          <Button type="button">{isEdit ? "View dish" : "Back to dishes"}</Button>
+        <a href={dishId != null ? `/dishes/${dishId}` : "/dishes"} className="mt-5 inline-block">
+          <Button type="button">{dishId != null ? "Back to dish" : "Back to dishes"}</Button>
         </a>
       </div>
     );
@@ -271,8 +281,8 @@ export function RecipeIntakeForm({ dishId, initialValues }: { dishId?: number; i
         {status === "error" ? <p className="text-sm text-red-600">{errorMsg}</p> : null}
         <Button type="submit" disabled={status === "submitting"}>
           {status === "submitting"
-            ? (isEdit ? "Saving…" : "Submitting…")
-            : (isEdit ? "Save changes" : "Submit recipe")}
+            ? (isPropose ? "Submitting…" : isEdit ? "Saving…" : "Submitting…")
+            : (isPropose ? "Suggest edit" : isEdit ? "Save changes" : "Submit recipe")}
         </Button>
       </form>
     </FormProvider>

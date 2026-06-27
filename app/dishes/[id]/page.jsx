@@ -7,6 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { graphql } from "@/lib/nhost";
 import { TRIED_BY_LABELS } from "@/lib/dishes";
+import { DishActions } from "./DishActions";
 
 export const dynamic = "force-dynamic";
 
@@ -121,12 +122,7 @@ export default async function DishPage({ params }) {
         <Link href="/dishes" className="text-sm font-medium text-apb hover:underline">
           ← All dishes
         </Link>
-        <Link
-          href={`/dishes/${row.id}/edit`}
-          className="rounded-lg border border-apb px-3 py-1.5 text-sm font-semibold text-apb transition hover:bg-apb hover:text-white"
-        >
-          Edit recipe
-        </Link>
+        <DishActions dishId={row.id} />
       </div>
 
       {/* Header */}

@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { graphql } from "@/lib/nhost";
 import { buildDishData } from "@/lib/dishes";
+import { adminGuard } from "@/lib/admin";
 
 export const dynamic = "force-dynamic";
 const MAX_BODY_BYTES = 32 * 1024;
@@ -59,6 +60,10 @@ export async function PATCH(
     req: NextRequest,
     { params }: { params: { id: string } }
 ) {
+    // Direct edit is admin-only — non-admins go through propose → approve instead.
+    const guard = adminGuard(req);
+    if (guard) return guard;
+
     const id = parseInt(params.id);
     if (!Number.isInteger(id)) {
         return NextResponse.json({ error: "Invalid id" }, { status: 400 });
