@@ -174,8 +174,16 @@ export default function DishesPage() {
     setDietFilters(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
   }
 
+  // Keep the loading screen up for at least 5s so the facts are readable,
+  // even when dishes load instantly.
+  const [minTimePassed, setMinTimePassed] = useState(false);
+  useEffect(() => {
+    const t = setTimeout(() => setMinTimePassed(true), 5000);
+    return () => clearTimeout(t);
+  }, []);
+
   // ---------- Render gating ----------
-  if (loading) {
+  if (loading || !minTimePassed) {
     return <LoadingFacts />;
   }
 

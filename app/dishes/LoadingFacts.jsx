@@ -21,7 +21,7 @@ export function LoadingFacts() {
   const [i, setI] = useState(0);
   useEffect(() => {
     setI(Math.floor(Math.random() * PLANT_FACTS.length));
-    const t = setInterval(() => setI((p) => (p + 1) % PLANT_FACTS.length), 4500);
+    const t = setInterval(() => setI((p) => (p + 1) % PLANT_FACTS.length), 6000);
     return () => clearInterval(t);
   }, []);
 
