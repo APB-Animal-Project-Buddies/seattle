@@ -97,6 +97,9 @@ export async function POST(request: Request) {
     const allergens: string[] = substituted && Array.isArray(body?.allergens)
       ? body.allergens.filter((a: unknown) => typeof a === "string").map((a: string) => a.trim()).filter(Boolean).slice(0, 30)
       : [];
+    const substitutions = substituted && Array.isArray(body?.substitutions)
+      ? body.substitutions.slice(0, 50)
+      : [];
 
     const baseVars = {
       id: code,
@@ -114,14 +117,14 @@ export async function POST(request: Request) {
       graphql<{ insert_review_instance_one: { id: string } }>(
         `mutation (
            $id: bpchar!, $dishId: Int!, $name: String!, $chefType: String!,
-           $eventContext: String, $difficulty: Int!, $notes: String${withSub ? ", $substituted: Boolean!, $allergens: [String!]!" : ""}
+           $eventContext: String, $difficulty: Int!, $notes: String${withSub ? ", $substituted: Boolean!, $allergens: [String!]!, $substitutions: jsonb!" : ""}
          ) {
            insert_review_instance_one(object: {
              id: $id, dish_id: $dishId, name: $name, chef_type: $chefType,
-             event_context: $eventContext, difficulty: $difficulty, notes: $notes${withSub ? ", substituted: $substituted, allergens: $allergens" : ""}
+             event_context: $eventContext, difficulty: $difficulty, notes: $notes${withSub ? ", substituted: $substituted, allergens: $allergens, substitutions: $substitutions" : ""}
            }) { id }
          }`,
-        { useAdminSecret: true, variables: withSub ? { ...baseVars, substituted, allergens } : baseVars }
+        { useAdminSecret: true, variables: withSub ? { ...baseVars, substituted, allergens, substitutions } : baseVars }
       );
 
     let insertInstance = await doInsert(true);
