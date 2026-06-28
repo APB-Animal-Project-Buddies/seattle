@@ -44,6 +44,9 @@ export async function graphql<T = unknown>(
       ...headers,
     },
     body: JSON.stringify({ query, variables }),
+    // Never let Next's Data Cache persist GraphQL responses — it would otherwise
+    // serve a stale result (e.g. a "table not found" error cached before a migration).
+    cache: "no-store",
   });
 
   return response.json() as Promise<GraphQLResponse<T>>;
