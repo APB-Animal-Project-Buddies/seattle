@@ -16,7 +16,15 @@ import type { RecipeFormValues } from "../types";
  * registered Qty/unit inputs would be wiped. id is set on a pool pick and cleared
  * (undefined) on free-text edits, so it never desyncs.
  */
-export function LineFields({ namePrefix }: { namePrefix: string }) {
+export function LineFields({
+  namePrefix,
+  onPickAllergens,
+}: {
+  namePrefix: string;
+  // called when an ingredient is picked from the pool, with its allergens —
+  // used by top-level rows to auto-add them to the recipe's allergen list.
+  onPickAllergens?: (allergens: string[]) => void;
+}) {
   const { control, register, setValue } = useFormContext<RecipeFormValues>();
   return (
     <>
@@ -30,6 +38,7 @@ export function LineFields({ namePrefix }: { namePrefix: string }) {
               onChange={(val) => {
                 field.onChange(val.name);
                 setValue(`${namePrefix}.id` as any, val.id, { shouldDirty: true });
+                if (onPickAllergens && val.allergens?.length) onPickAllergens(val.allergens);
               }}
             />
           )}

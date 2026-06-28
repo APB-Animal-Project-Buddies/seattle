@@ -47,11 +47,20 @@ function SectionGroup({
   showSection: boolean;
   onRemoveGroup: () => void;
 }) {
-  const { control, register } = useFormContext<RecipeFormValues>();
+  const { control, register, getValues, setValue } = useFormContext<RecipeFormValues>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: `ingredientGroups.${groupIndex}.items`,
   });
+
+  // When a pool ingredient is picked, union its allergens into the recipe's
+  // allergen list (still editable by the user). Only top-level rows do this.
+  function addAllergens(allergens: string[]) {
+    if (!allergens?.length) return;
+    const cur = getValues("allergens") || [];
+    const merged = Array.from(new Set([...cur, ...allergens]));
+    if (merged.length !== cur.length) setValue("allergens", merged, { shouldDirty: true });
+  }
 
   return (
     <div className={showSection ? "rounded-[12px] border border-neutral-200 p-3" : undefined}>
@@ -78,7 +87,7 @@ function SectionGroup({
         {fields.map((f, i) => (
           <div key={f.id}>
             <div className="flex items-start gap-2">
-              <LineFields namePrefix={`ingredientGroups.${groupIndex}.items.${i}`} />
+              <LineFields namePrefix={`ingredientGroups.${groupIndex}.items.${i}`} onPickAllergens={addAllergens} />
               <button
                 type="button"
                 aria-label="Remove ingredient"

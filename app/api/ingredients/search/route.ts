@@ -8,15 +8,18 @@ export async function GET(request: Request) {
   if (q.length < 2) return NextResponse.json({ results: [] });
   if (q.length > 60) return NextResponse.json({ error: "Query too long" }, { status: 400 });
 
-  const res = await graphql<{ ingredients: Array<{ id: string; name: string; vegan: boolean | null }> }>(
-    `query Search($pat: String!) {
+  // Select `allergens` when the column exists; fall back gracefully if the
+  // ingredient-allergens migration hasn't been applied yet (so search never breaks).
+  const query = (fields: string) => `query Search($pat: String!) {
        ingredients(
          where: { _and: [ { search_text: { _ilike: $pat } }, { alias_of: { _is_null: true } } ] },
          limit: 40
-       ) { id name vegan }
-     }`,
-    { useAdminSecret: true, variables: { pat: `%${q}%` } }
-  );
+       ) { ${fields} }
+     }`;
+  const vars = { useAdminSecret: true, variables: { pat: `%${q}%` } };
+  type Row = { id: string; name: string; vegan: boolean | null; allergens?: string[] };
+  let res = await graphql<{ ingredients: Row[] }>(query("id name vegan allergens"), vars);
+  if (res.errors?.length) res = await graphql<{ ingredients: Row[] }>(query("id name vegan"), vars);
   if (res.errors?.length) return NextResponse.json({ error: "Search failed" }, { status: 502 });
 
   const rank = (n: string) => {

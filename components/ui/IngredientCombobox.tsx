@@ -2,8 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { Input } from "@/components/ui/input";
 
-type Hit = { id: string; name: string; vegan: boolean | null };
-export type IngredientValue = { id?: string; name: string };
+type Hit = { id: string; name: string; vegan: boolean | null; allergens?: string[] };
+export type IngredientValue = { id?: string; name: string; allergens?: string[] };
 
 export function IngredientCombobox({ value, onChange }: { value: IngredientValue; onChange: (v: IngredientValue) => void }) {
   const [open, setOpen] = useState(false);
@@ -35,7 +35,7 @@ export function IngredientCombobox({ value, onChange }: { value: IngredientValue
         body: JSON.stringify({ name }),
       });
       const json = await res.json();
-      if (json.ingredient?.id) onChange({ id: json.ingredient.id, name: json.ingredient.name });
+      if (json.ingredient?.id) onChange({ id: json.ingredient.id, name: json.ingredient.name, allergens: json.ingredient.allergens ?? [] });
     } catch { /* keep free-text name */ }
     setOpen(false);
   }
@@ -55,7 +55,7 @@ export function IngredientCombobox({ value, onChange }: { value: IngredientValue
           {hits.map((h) => (
             <button type="button" key={h.id}
               className="block w-full px-3 py-2 text-left text-sm hover:bg-apb-cream"
-              onMouseDown={(e) => { e.preventDefault(); onChange({ id: h.id, name: h.name }); setOpen(false); }}>
+              onMouseDown={(e) => { e.preventDefault(); onChange({ id: h.id, name: h.name, allergens: h.allergens ?? [] }); setOpen(false); }}>
               {h.name}{h.vegan === false ? <span className="ml-2 text-xs text-red-600">non-vegan</span> : null}
             </button>
           ))}
