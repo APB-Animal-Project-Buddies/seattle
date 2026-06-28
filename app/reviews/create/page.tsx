@@ -8,6 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Button } from "@/components/ui/button";
+import { ChipGroup } from "@/components/form/ChipGroup";
+import { ALLERGENS } from "@/lib/dishes";
 
 interface DishReview {
     id: number;
@@ -91,7 +93,14 @@ function CreateReviewLinkForm({ dish }: { dish: DishReview }) {
         eventContext: "",
         difficulty: 3,
         notes: "",
+        substituted: false,
+        allergens: [] as string[],
     });
+
+    // Reprompt for allergens when the cook substituted ingredients — prefill from the
+    // dish's allergens so they only adjust what their swaps changed.
+    const toggleSubstituted = (on: boolean) =>
+        update(on ? { substituted: true, allergens: (dish.dish_data?.allergens ?? []) as string[] } : { substituted: false });
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const [error, setError] = useState<string | null>(null);
     const [reviewUrl, setReviewUrl] = useState<string | null>(null);
@@ -114,6 +123,8 @@ function CreateReviewLinkForm({ dish }: { dish: DishReview }) {
                     eventContext: formData.eventContext.trim() || null,
                     difficulty: formData.difficulty,
                     notes: formData.notes.trim() || null,
+                    substituted: formData.substituted,
+                    allergens: formData.substituted ? formData.allergens : [],
                 }),
             });
             if (!res.ok) {
@@ -182,7 +193,7 @@ function CreateReviewLinkForm({ dish }: { dish: DishReview }) {
                         onClick={() => {
                             setReviewUrl(null);
                             setStatus("idle");
-                            setFormData({ name: "", chefExperience: "homecook", eventContext: "", difficulty: 3, notes: "" });
+                            setFormData({ name: "", chefExperience: "homecook", eventContext: "", difficulty: 3, notes: "", substituted: false, allergens: [] });
                         }}
                     >
                         Create another link
@@ -262,6 +273,33 @@ function CreateReviewLinkForm({ dish }: { dish: DishReview }) {
                     value={formData.notes}
                     onChange={(e) => update({ notes: e.target.value })}
                 />
+            </div>
+
+            <div>
+                <label className="flex items-center gap-2 text-sm font-semibold text-apb">
+                    <input
+                        type="checkbox"
+                        checked={formData.substituted}
+                        onChange={(e) => toggleSubstituted(e.target.checked)}
+                    />
+                    I swapped or substituted ingredients
+                </label>
+                {formData.substituted ? (
+                    <div className="mt-3 rounded-lg border border-amber-200 bg-amber-50 p-3">
+                        <Label>Allergens for your version</Label>
+                        <p className="mt-1 text-xs text-neutral-600">
+                            Substitutions can change allergens — we&rsquo;ve prefilled the recipe&rsquo;s. Adjust them to
+                            match what you actually made.
+                        </p>
+                        <div className="mt-2">
+                            <ChipGroup
+                                value={formData.allergens}
+                                onChange={(v) => update({ allergens: v })}
+                                options={ALLERGENS}
+                            />
+                        </div>
+                    </div>
+                ) : null}
             </div>
 
             {status === "error" ? (

@@ -91,30 +91,41 @@ export async function POST(request: Request) {
 
     const code = await allocateCode();
 
-    // 1) Save the review instance (the creator's context for this link).
-    const insertInstance = await graphql<{ insert_review_instance_one: { id: string } }>(
-      `mutation (
-         $id: bpchar!, $dishId: Int!, $name: String!, $chefType: String!,
-         $eventContext: String, $difficulty: Int!, $notes: String
-       ) {
-         insert_review_instance_one(object: {
-           id: $id, dish_id: $dishId, name: $name, chef_type: $chefType,
-           event_context: $eventContext, difficulty: $difficulty, notes: $notes
-         }) { id }
-       }`,
-      {
-        useAdminSecret: true,
-        variables: {
-          id: code,
-          dishId,
-          name: String(body.name).trim(),
-          chefType: body.chefType,
-          eventContext: body.eventContext ? String(body.eventContext).trim() : null,
-          difficulty,
-          notes: body.notes ? String(body.notes).trim() : null,
-        },
-      }
-    );
+    // Substitutions can change the allergen profile — capture whether the cook
+    // substituted and the allergens of their version (reprompted in the UI).
+    const substituted = body?.substituted === true;
+    const allergens: string[] = substituted && Array.isArray(body?.allergens)
+      ? body.allergens.filter((a: unknown) => typeof a === "string").map((a: string) => a.trim()).filter(Boolean).slice(0, 30)
+      : [];
+
+    const baseVars = {
+      id: code,
+      dishId,
+      name: String(body.name).trim(),
+      chefType: body.chefType,
+      eventContext: body.eventContext ? String(body.eventContext).trim() : null,
+      difficulty,
+      notes: body.notes ? String(body.notes).trim() : null,
+    };
+
+    // 1) Save the review instance. Include substituted/allergens when those columns
+    //    exist; fall back to the base insert if the migration hasn't been applied.
+    const doInsert = (withSub: boolean) =>
+      graphql<{ insert_review_instance_one: { id: string } }>(
+        `mutation (
+           $id: bpchar!, $dishId: Int!, $name: String!, $chefType: String!,
+           $eventContext: String, $difficulty: Int!, $notes: String${withSub ? ", $substituted: Boolean!, $allergens: [String!]!" : ""}
+         ) {
+           insert_review_instance_one(object: {
+             id: $id, dish_id: $dishId, name: $name, chef_type: $chefType,
+             event_context: $eventContext, difficulty: $difficulty, notes: $notes${withSub ? ", substituted: $substituted, allergens: $allergens" : ""}
+           }) { id }
+         }`,
+        { useAdminSecret: true, variables: withSub ? { ...baseVars, substituted, allergens } : baseVars }
+      );
+
+    let insertInstance = await doInsert(true);
+    if (insertInstance.errors?.length) insertInstance = await doInsert(false);
     if (insertInstance.errors?.length) {
       return NextResponse.json(
         { error: insertInstance.errors[0]?.message ?? "Failed to create review instance" },
