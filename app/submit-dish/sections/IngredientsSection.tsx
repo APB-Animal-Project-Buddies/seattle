@@ -1,4 +1,5 @@
 "use client";
+import { useState } from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -6,6 +7,27 @@ import { LineFields } from "./LineFields";
 import { AlternativesEditor } from "./AlternativesEditor";
 import { AddButton } from "./AddButton";
 import { emptyIngredient, type RecipeFormValues } from "../types";
+
+// Optional free-text note for one ingredient — revealed by a "+ note" button.
+function IngredientNote({ namePrefix }: { namePrefix: string }) {
+  const { register, getValues } = useFormContext<RecipeFormValues>();
+  const [show, setShow] = useState(() => !!getValues(`${namePrefix}.note` as any));
+  if (!show) {
+    return (
+      <AddButton variant="subtle" className="mt-1" onClick={() => setShow(true)}>
+        note
+      </AddButton>
+    );
+  }
+  return (
+    <Input
+      className="mt-1 h-8 text-xs"
+      placeholder="Note for this ingredient — e.g. finely diced, room temperature"
+      aria-label="Ingredient note"
+      {...register(`${namePrefix}.note` as any)}
+    />
+  );
+}
 
 export function IngredientsSection() {
   const { control } = useFormContext<RecipeFormValues>();
@@ -97,6 +119,7 @@ function SectionGroup({
                 ×
               </button>
             </div>
+            <IngredientNote namePrefix={`ingredientGroups.${groupIndex}.items.${i}`} />
             <AlternativesEditor namePrefix={`ingredientGroups.${groupIndex}.items.${i}`} />
           </div>
         ))}

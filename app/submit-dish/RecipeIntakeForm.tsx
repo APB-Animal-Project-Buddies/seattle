@@ -73,6 +73,7 @@ export function RecipeIntakeForm(
             quantity: numOrNull(r.quantity),
             unit: r.unit,
             ...(g.section.trim() ? { section: g.section.trim() } : {}),
+            ...(r.note?.trim() ? { note: r.note.trim() } : {}),
             ...(r.alternatives.length
               ? {
                   alternatives: r.alternatives

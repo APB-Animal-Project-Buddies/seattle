@@ -66,6 +66,10 @@ export function buildDishData(input: any): DishData {
       const section = str(r?.section, MAX_SHORT);
       if (section) row.section = section;
 
+      // Optional per-ingredient note ("finely diced", "room temperature").
+      const ingNote = str(r?.note, MAX_SHORT);
+      if (ingNote) row.note = ingNote;
+
       // Optional `alternatives` — substitutions for THIS ingredient. Each alternative
       // is a group of one-or-more lines (a swap can be several ingredients, e.g.
       // 1 egg => 1 tbsp flax + 3 tbsp water) with an optional label + free-text note.

@@ -48,7 +48,8 @@ export function normalizeStoredIngredients(raw: unknown): IngredientGroup[] {
     const alternatives: Alternative[] = Array.isArray(r?.alternatives)
       ? r.alternatives.map(toAlternative).filter((a: Alternative) => a.items.some((x) => x.name.trim()) || a.label.trim() || a.note.trim())
       : [];
-    const ingredient: Ingredient = { ...line, alternatives };
+    const note = r && typeof r.note === "string" ? r.note : "";
+    const ingredient: Ingredient = { ...line, note, alternatives };
 
     let g = bySection.get(section);
     if (!g) {

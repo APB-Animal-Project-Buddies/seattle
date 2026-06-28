@@ -86,6 +86,7 @@ function Ingredients({ ingredients }) {
             {g.items.map((ing, ii) => (
               <li key={ii}>
                 <span className="text-sm text-neutral-800">{lineText(ing)}</span>
+                {ing.note ? <span className="ml-2 text-xs italic text-neutral-500">— {ing.note}</span> : null}
                 {Array.isArray(ing.alternatives) && ing.alternatives.length > 0 ? (
                   <ul className="mt-1.5 flex flex-col gap-1">
                     {ing.alternatives.map((alt, ai) => (

@@ -9,8 +9,9 @@ export type IngredientLine = { id?: string; name: string; quantity: string; unit
 // and a free-text note ("roast first", "not gluten-free").
 export type Alternative = { label: string; note: string; items: IngredientLine[] };
 
-// A top-level ingredient adds its nested alternatives.
-export type Ingredient = IngredientLine & { alternatives: Alternative[] };
+// A top-level ingredient adds an optional free-text note ("finely diced", "room
+// temperature") and its nested alternatives.
+export type Ingredient = IngredientLine & { note: string; alternatives: Alternative[] };
 
 // The form nests rows under named sections for editing. On submit this flattens
 // to the stored flat `ingredients` array (each row stamped with its section);
@@ -47,7 +48,7 @@ export type RecipeFormValues = {
 
 // Factory helpers so empty rows/alternatives are created consistently.
 export const emptyLine = (): IngredientLine => ({ name: "", quantity: "", unit: "" });
-export const emptyIngredient = (): Ingredient => ({ name: "", quantity: "", unit: "", alternatives: [] });
+export const emptyIngredient = (): Ingredient => ({ name: "", quantity: "", unit: "", note: "", alternatives: [] });
 export const emptyAlternative = (): Alternative => ({ label: "", note: "", items: [emptyLine()] });
 
 export const RECIPE_FORM_DEFAULTS: RecipeFormValues = {
