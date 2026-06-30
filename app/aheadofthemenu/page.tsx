@@ -58,6 +58,20 @@ export default function AheadOfTheMenu() {
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
               </span>
             </a>
+
+            <a className="aotm-card" href="/aheadofthemenu/top-alternatives">
+              <span className="aotm-card-num" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-6.7-4.35-9.33-8.06C.9 10.27 1.4 6.6 4.2 5.2c1.97-.98 4.04-.3 5.3 1.05L12 8.7l2.5-2.45c1.26-1.35 3.33-2.03 5.3-1.05 2.8 1.4 3.3 5.07 1.53 7.74C18.7 16.65 12 21 12 21Z" /></svg>
+              </span>
+              <span className="aotm-card-body">
+                <span className="who">For all</span>
+                <span className="what">Favorite Products</span>
+                <span className="desc">Our top-rated plant-based swaps, vetted by blind taste tests.</span>
+              </span>
+              <span className="aotm-card-arrow" aria-hidden="true">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+              </span>
+            </a>
           </nav>
         </div>
 
