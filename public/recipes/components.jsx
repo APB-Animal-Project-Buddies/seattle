@@ -13,17 +13,16 @@ function Hero({ featured, stats }) {
         <div className="eyebrow"><span className="dot"/>Recipes · Curated for restaurant kitchens</div>
         <h1>
           Make your food <em className="fresh-accent">fresh</em>, <em>tasty</em>,<br />
-          <span className="leaf"></span>and <em>compassionate</em>.
+          <span className="leaf"></span>and <em className="ufg">unforgettable</em>.
         </h1>
         <p className="lede">
-          A working library of plant-based dishes built for the line — vetted by chefs,
-          costed for restaurants, scaled to service. Restaurant-grade, weeknight-easy.
-          <strong className="creed"> No killing, no animals hurt, no cruelty.</strong>
+          Creative, compassionate, and tastier food choices — a working library of
+          plant-based dishes built for the line, vetted by chefs and scaled to service.
+          Restaurant-grade, weeknight-easy.
         </p>
         <div className="stats">
           <div className="stat"><div className="num">{stats.recipes}</div><div className="lbl">Tested recipes</div></div>
           <div className="stat"><div className="num">{stats.cuisines}</div><div className="lbl">Cuisines</div></div>
-          <div className="stat"><div className="num">${stats.avgCost.toFixed(2)}</div><div className="lbl">Avg cost / plate</div></div>
         </div>
       </div>
       {featured && (
@@ -56,11 +55,11 @@ function SubTabs({ active, recipeCount }) {
   return (
     <div className="sub-tabs">
       <a
-        href="/menus"
+        href="/aheadofthemenu/menus"
         className={"sub-tab" + (active === 'menus' ? ' on' : '')}
       >Menus <span className="ct">generator</span></a>
       <a
-        href="/recipes"
+        href="/aheadofthemenu/recipes"
         className={"sub-tab" + (active === 'recipes' ? ' on' : '')}
       >Recipes <span className="ct">{recipeCount ?? 135}</span></a>
     </div>
@@ -579,7 +578,7 @@ function CategoryCard({ cat, parityText, index }) {
   const isApb = !!cat.apbCurated;
   // "Developing but still tasty" if same-or-better < 40 (or no data + no
   // tasty award). APB-curated cards CAN also be weak — they stack the
-  // Kinder World Loves badge with the Developing one (e.g. Best Steaks).
+  // Ahead of the Menu Loves badge with the Developing one (e.g. Best Steaks).
   const isWeak = (cat.sameOrBetterPct != null && cat.sameOrBetterPct < 40)
     || (cat.sameOrBetterPct == null && !cat.tastyAward && !cat.tasteParity && !winnerParity);
   const winnerTasty = !isWeak && winner && (winner.tastyAward || cat.tastyAward);
@@ -607,7 +606,7 @@ function CategoryCard({ cat, parityText, index }) {
           <div className="winner-label">&#127942; 1st place</div>
           <div className="winner-brand">{winner.brand}</div>
           <div className="winner-badges">
-            {isApb && <span className="badge apb">&#129505; Kinder World Loves</span>}
+            {isApb && <span className="badge apb">&#129505; Ahead of the Menu Loves</span>}
             {winnerParity && <span className="badge loved">&#129505; {parityText}</span>}
             {!isApb && winnerTasty && !winnerParity && <span className="badge tasty">&#9733; Top performer</span>}
             {isWeak && !winnerParity && <span className="badge developing">Developing but still tasty</span>}

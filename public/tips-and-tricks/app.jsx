@@ -242,7 +242,7 @@ function App() {
       <section className="tips-hero">
         <div className="eyebrow"><span className="dot"/>Tips · Restaurant deployment guidance</div>
         <h1>
-          Run a vegan kitchen that <em>pays the rent</em>.
+          Run a plant-based kitchen that <em>pays the rent</em>.
         </h1>
         <p className="lede">
           Where to put the high-margin items, where to lead with branded faux-meat, how to source it,

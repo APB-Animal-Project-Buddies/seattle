@@ -567,7 +567,7 @@ function CategoryCard({ cat, parityText, index }) {
           <div className="winner-label">&#127942; 1st place</div>
           <div className="winner-brand">{winner.brand}</div>
           <div className="winner-badges">
-            {isApb && <span className="badge apb">&#129505; Kinder World Loves</span>}
+            {isApb && <span className="badge apb">&#129505; Ahead of the Menu Loves</span>}
             {winnerParity && <span className="badge loved">&#129505; {parityText}</span>}
             {!isApb && winnerTasty && !winnerParity && <span className="badge tasty">&#9733; Top performer</span>}
             {isWeak && !winnerParity && <span className="badge developing">Developing but still tasty</span>}

@@ -69,7 +69,7 @@ function App() {
           >TASTY Awards from Nectar</a>
           {' '}— independent blind sensory testing of plant-based meat (2025)
           and dairy (2026) that involved over <strong>2,000+ tasters</strong>!
-          Psst… we've layered in our own Kinder World picks for premium cuts
+          Psst… we've layered in our own Ahead of the Menu picks for premium cuts
           the study didn't cover.
         </p>
 

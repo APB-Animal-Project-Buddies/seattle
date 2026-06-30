@@ -270,11 +270,11 @@ function SubTabs({ active, recipeCount }) {
   return (
     <div className="sub-tabs">
       <a
-        href="/menus"
+        href="/aheadofthemenu/menus"
         className={"sub-tab" + (active === 'menus' ? ' on' : '')}
       >Menus <span className="ct">generator</span></a>
       <a
-        href="/recipes"
+        href="/aheadofthemenu/recipes"
         className={"sub-tab" + (active === 'recipes' ? ' on' : '')}
       >Recipes <span className="ct">{recipeCount ?? 135}</span></a>
     </div>
@@ -287,22 +287,15 @@ function MenusHero() {
   const totalCuisines = (idx.cuisines || []).length || 17;
   const avgCost = idx.avgCostPerPlate || 0;
   return (
-    <section className="hero">
+    <section className="hero menus-hero">
       <div>
         <div className="eyebrow"><span className="dot"/>Menus · Composed for restaurant kitchens</div>
         <h1>
-          Make your food <em className="fresh-accent">fresh</em>, <em>tasty</em>,<br />
-          <span className="leaf"></span>and <em>compassionate</em>.
+          Try generating a <em>sample menu</em> from our <em>recipes</em>.
         </h1>
-        <p className="lede">
-          A working library of plant-based dishes built for the line — vetted by chefs,
-          costed for restaurants, scaled to service. Restaurant-grade, weeknight-easy.
-          <strong className="creed"> No killing, no animals hurt, no cruelty.</strong>
-        </p>
         <div className="stats">
           <div className="stat"><div className="num">{totalRecipes}</div><div className="lbl">Tested recipes</div></div>
           <div className="stat"><div className="num">{totalCuisines}</div><div className="lbl">Cuisines</div></div>
-          <div className="stat"><div className="num">${avgCost.toFixed(2)}</div><div className="lbl">Avg cost / plate</div></div>
         </div>
       </div>
     </section>
@@ -611,7 +604,7 @@ function App() {
       {history.length > 0 && <History items={history} activeId={menu?.id} onPick={handlePickHistory} />}
       <Tips />
       <footer className="foot" style={{ marginTop: 0 }}>
-        Animal Project Buddies · Sample menus are starting points — tune cost, courses, and dishes to your kitchen
+        Animal Project Buddies · Sample menus are starting points — tune courses and dishes to your kitchen
       </footer>
     </>
   );
