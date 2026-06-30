@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { useDishes } from "@/app/hooks/useDishes";
 import './styles.css';
 import {
@@ -8,7 +8,8 @@ import {
   DishCard, DishModal, MenuDrawer, Toast,
 } from './components';
 import { CUISINE_META } from './helpers';
-import { LoadingFacts } from './LoadingFacts';
+import { LoadingFacts, PLANT_FACTS, pickWeighted, TipCard } from './LoadingFacts';
+import { toast as sonnerToast } from 'sonner';
 
 const STORAGE_KEY = 'apb-dishes-menu-v1';
 
@@ -174,13 +175,39 @@ export default function DishesPage() {
     setDietFilters(prev => prev.includes(d) ? prev.filter(x => x !== d) : [...prev, d]);
   }
 
-  // Keep the loading screen up for at least 5s so the facts are readable,
-  // even when dishes load instantly.
+  // Keep the loading screen up for at least 2s so the branded screen doesn't
+  // flash, even when dishes load instantly.
   const [minTimePassed, setMinTimePassed] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setMinTimePassed(true), 5000);
+    const t = setTimeout(() => setMinTimePassed(true), 2000);
     return () => clearTimeout(t);
   }, []);
+
+  // Single rotating tip toast (sonner, root <Toaster/>): a random tip is picked
+  // on mount, shown during loading, kept — updated in place, so it never re-pops —
+  // into the loaded page, then dismissed 5s after load.
+  const tipIdx = useRef(null);
+  const tipActive = loading || !minTimePassed;
+  useEffect(() => {
+    const id = "aotm-tip";
+    if (tipIdx.current === null) tipIdx.current = pickWeighted();
+    const show = () =>
+      sonnerToast.custom(() => <TipCard text={PLANT_FACTS[tipIdx.current].t} />, {
+        id,
+        duration: Infinity,
+        unstyled: true,
+      });
+    show();
+    if (tipActive) {
+      const rot = setInterval(() => {
+        tipIdx.current = pickWeighted(tipIdx.current);
+        show();
+      }, 8000);
+      return () => clearInterval(rot);
+    }
+    const done = setTimeout(() => sonnerToast.dismiss(id), 5000);
+    return () => clearTimeout(done);
+  }, [tipActive]);
 
   // ---------- Render gating ----------
   if (loading || !minTimePassed) {

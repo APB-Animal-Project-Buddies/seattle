@@ -8,9 +8,9 @@
   --cream: oklch(0.96 0.015 85);
   --cream-warm: oklch(0.93 0.025 80);
   --paper: oklch(0.99 0.01 85);
-  --terracotta: oklch(0.62 0.14 45);
+  --terracotta: #ff6b35;            /* Ahead of the Menu accent */
   --mustard: oklch(0.78 0.13 85);
-  --plum: oklch(0.45 0.10 15);
+  --plum: #b4421f;                  /* secondary accent → burnt orange */
   --line: oklch(0.32 0.06 145 / 0.18);
   --line-soft: oklch(0.32 0.06 145 / 0.08);
 

@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Toaster } from "sonner";
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body suppressHydrationWarning>
         <a
-          href="/dishes"
+          href="/aheadofthemenu"
           aria-label="Home"
           title="Home"
           className="fixed right-4 top-4 z-50 flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-white/90 text-apb shadow-sm backdrop-blur transition hover:bg-apb hover:text-white"
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </svg>
         </a>
         {children}
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
