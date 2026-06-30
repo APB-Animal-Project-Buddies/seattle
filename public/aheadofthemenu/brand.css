@@ -181,3 +181,29 @@
 }
 .hero.menus-hero h1 br,
 .hero.menus-hero h1 .leaf { display: none; }
+
+/* mobile: the 17 cuisine pills wrap into ~5 rows and dominate the generator.
+   Collapse them to a single horizontally-scrollable row instead. */
+@media (max-width: 640px) {
+  /* let the grid/flex chain shrink below the pills' content width so the
+     pill row can scroll inside its track instead of overflowing the page */
+  .generator .gen-stack,
+  .generator .gen-row { min-width: 0; }
+  .generator .pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 6px;
+    padding: 2px 4px 6px;
+    margin: 0 -4px;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 22px), transparent 100%);
+            mask-image: linear-gradient(90deg, transparent 0, #000 12px, #000 calc(100% - 22px), transparent 100%);
+  }
+  .generator .pills::-webkit-scrollbar { display: none; }
+  .generator .pill {
+    flex: 0 0 auto;
+    padding: 7px 12px;
+    font-size: 12.5px;
+  }
+}
