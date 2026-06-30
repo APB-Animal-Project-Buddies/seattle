@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
 
 interface RegisterRequest {
     email: string;
@@ -9,41 +10,35 @@ interface RegisterRequest {
 }
 
 interface RegisterResponse {
-    session?: {
-        accessToken: string;
-        refreshToken: string;
-        user: {
-            id: string;
-            email: string;
-        };
+    user?: {
+        id: string;
+        email: string;
     };
     error?: string;
+}
+
+// Hash password using bcrypt-like approach (simple for demo)
+function hashPassword(password: string): string {
+    // In production, use bcrypt package
+    // For now, use a simple hash - NOT SECURE FOR PRODUCTION
+    return crypto.createHash("sha256").update(password).digest("hex");
 }
 
 export async function POST(
     request: NextRequest
 ): Promise<NextResponse<RegisterResponse>> {
     try {
-        // Get Nhost credentials from environment variables
-        const NHOST_AUTH_URL = process.env.NEXT_PUBLIC_NHOST_AUTH_URL;
         const NHOST_GRAPHQL_URL = process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL;
+        const NHOST_ADMIN_SECRET = process.env.NHOST_ADMIN_SECRET;
 
-        if (!NHOST_AUTH_URL) {
+        if (!NHOST_GRAPHQL_URL || !NHOST_ADMIN_SECRET) {
             return NextResponse.json(
-                { error: "NHOST_AUTH_URL is not configured" },
-                { status: 500 }
-            );
-        }
-
-        if (!NHOST_GRAPHQL_URL) {
-            return NextResponse.json(
-                { error: "NHOST_GRAPHQL_URL is not configured" },
+                { error: "Nhost configuration missing" },
                 { status: 500 }
             );
         }
 
         const body: RegisterRequest = await request.json();
-
         const { email, password, metadata } = body;
 
         // Validation
@@ -61,99 +56,123 @@ export async function POST(
             );
         }
 
-        // Step 1: Register user with Nhost Auth
-        const registerRes = await fetch(`${NHOST_AUTH_URL}/v1/auth/register`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                email,
-                password,
-            }),
-        });
-
-        if (!registerRes.ok) {
-            const errorData = await registerRes.json().catch(() => ({}));
-            console.error("Nhost registration error:", {
-                status: registerRes.status,
-                statusText: registerRes.statusText,
-                url: `${NHOST_AUTH_URL}/v1/auth/register`,
-                response: errorData,
-            });
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             return NextResponse.json(
-                {
-                    error:
-                        errorData.message ||
-                        errorData.error ||
-                        "Registration failed",
-                },
-                { status: registerRes.status }
+                { error: "Please enter a valid email address" },
+                { status: 400 }
             );
         }
 
-        const registerData = await registerRes.json();
-        const userId = registerData.user?.id;
-        const session = registerData.session;
+        // Check if user already exists
+        const checkQuery = `
+      query CheckUserExists($email: citext!) {
+        users(where: { email: { _eq: $email } }) {
+          id
+        }
+      }
+    `;
 
-        if (!userId) {
+        const checkRes = await fetch(NHOST_GRAPHQL_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-hasura-admin-secret": NHOST_ADMIN_SECRET,
+            },
+            body: JSON.stringify({
+                query: checkQuery,
+                variables: { email },
+            }),
+        });
+
+        const checkText = await checkRes.text();
+
+        let checkData;
+        try {
+            checkData = JSON.parse(checkText);
+        } catch (e) {
+            return NextResponse.json(
+                { error: "GraphQL returned invalid JSON" },
+                { status: 500 }
+            );
+        }
+
+        if (checkData.data?.users?.length > 0) {
+            return NextResponse.json(
+                { error: "User with this email already exists" },
+                { status: 400 }
+            );
+        }
+
+        // Create user
+        const createQuery = `
+      mutation CreateUser(
+        $id: uuid!
+        $email: citext!
+        $passwordHash: String!
+        $metadata: jsonb
+      ) {
+        insertUsers(
+          objects: [{
+            id: $id
+            email: $email
+            passwordHash: $passwordHash
+            metadata: $metadata
+            locale: "en"
+          }]
+        ) {
+          returning {
+            id
+            email
+            metadata
+          }
+        }
+      }
+    `;
+
+        const userId = crypto.randomUUID();
+        const passwordHash = hashPassword(password);
+
+        const createRes = await fetch(NHOST_GRAPHQL_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-hasura-admin-secret": NHOST_ADMIN_SECRET,
+            },
+            body: JSON.stringify({
+                query: createQuery,
+                variables: {
+                    id: userId,
+                    email,
+                    passwordHash,
+                    metadata: metadata || null,
+                },
+            }),
+        });
+
+        const createData = await createRes.json();
+
+        if (createData.errors) {
+            console.error("GraphQL errors:", createData.errors);
+            return NextResponse.json(
+                { error: createData.errors[0]?.message || "Failed to create user" },
+                { status: 400 }
+            );
+        }
+
+        const user = createData.data?.insertUsers?.returning?.[0];
+
+        if (!user) {
             return NextResponse.json(
                 { error: "Failed to create user account" },
                 { status: 500 }
             );
         }
 
-        // Step 2: Update user metadata with zip code (if provided)
-        if (metadata?.zip_code) {
-            const updateMetadataQuery = `
-        mutation UpdateUserMetadata($userId: uuid!, $metadata: jsonb!) {
-          updateUser(
-            pk_columns: { id: $userId }
-            _set: { metadata: $metadata }
-          ) {
-            id
-            metadata
-          }
-        }
-      `;
-
-            const metadataRes = await fetch(NHOST_GRAPHQL_URL!, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    // Use admin secret if available, or user's access token
-                    ...(process.env.NHOST_ADMIN_SECRET && {
-                        "x-hasura-admin-secret": process.env.NHOST_ADMIN_SECRET,
-                    }),
-                },
-                body: JSON.stringify({
-                    query: updateMetadataQuery,
-                    variables: {
-                        userId,
-                        metadata: {
-                            zip_code: metadata.zip_code,
-                        },
-                    },
-                }),
-            });
-
-            const metadataData = await metadataRes.json();
-
-            if (metadataData.errors) {
-                console.error("Failed to update metadata:", metadataData.errors);
-                // Don't fail the registration if metadata update fails
-            }
-        }
-
         return NextResponse.json(
             {
-                session: {
-                    accessToken: session.accessToken,
-                    refreshToken: session.refreshToken,
-                    user: {
-                        id: userId,
-                        email,
-                    },
+                user: {
+                    id: user.id,
+                    email: user.email,
                 },
             },
             { status: 201 }

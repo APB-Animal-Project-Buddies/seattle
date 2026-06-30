@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
 
 interface LoginRequest {
     email: string;
@@ -18,22 +19,25 @@ interface LoginResponse {
     error?: string;
 }
 
+function hashPassword(password: string): string {
+    return crypto.createHash("sha256").update(password).digest("hex");
+}
+
 export async function POST(
     request: NextRequest
 ): Promise<NextResponse<LoginResponse>> {
     try {
-        // Get Nhost credentials from environment variables
-        const NHOST_AUTH_URL = process.env.NEXT_PUBLIC_NHOST_AUTH_URL;
+        const NHOST_GRAPHQL_URL = process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL;
+        const NHOST_ADMIN_SECRET = process.env.NHOST_ADMIN_SECRET;
 
-        if (!NHOST_AUTH_URL) {
+        if (!NHOST_GRAPHQL_URL || !NHOST_ADMIN_SECRET) {
             return NextResponse.json(
-                { error: "NHOST_AUTH_URL is not configured" },
+                { error: "Nhost configuration missing" },
                 { status: 500 }
             );
         }
 
         const body: LoginRequest = await request.json();
-
         const { email, password } = body;
 
         // Validation
@@ -51,49 +55,104 @@ export async function POST(
             );
         }
 
-        // Call Nhost Auth login endpoint
-        const loginRes = await fetch(`${NHOST_AUTH_URL}/v1/auth/signin/email-password`, {
+        // Query user by email
+        const userQuery = `
+      query GetUser($email: citext!) {
+        users(where: { email: { _eq: $email } }) {
+          id
+          email
+          passwordHash
+          metadata
+        }
+      }
+    `;
+
+        const userRes = await fetch(NHOST_GRAPHQL_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "x-hasura-admin-secret": NHOST_ADMIN_SECRET,
             },
             body: JSON.stringify({
-                email,
-                password,
+                query: userQuery,
+                variables: { email },
             }),
         });
 
-        if (!loginRes.ok) {
-            const errorData = await loginRes.json().catch(() => ({}));
-            return NextResponse.json(
-                {
-                    error:
-                        errorData.message ||
-                        errorData.error ||
-                        "Invalid email or password",
-                },
-                { status: loginRes.status }
-            );
-        }
+        const userData = await userRes.json();
 
-        const loginData = await loginRes.json();
-
-        if (!loginData.session) {
+        if (userData.errors) {
             return NextResponse.json(
-                { error: "Failed to create session" },
+                { error: "Database error" },
                 { status: 500 }
             );
         }
 
+        const user = userData.data?.users?.[0];
+
+        if (!user) {
+            return NextResponse.json(
+                { error: "Invalid email or password" },
+                { status: 401 }
+            );
+        }
+
+        // Verify password
+        const passwordHash = hashPassword(password);
+
+        if (passwordHash !== user.passwordHash) {
+            return NextResponse.json(
+                { error: "Invalid email or password" },
+                { status: 401 }
+            );
+        }
+
+        // Generate tokens
+        const accessToken = crypto.randomBytes(32).toString("hex");
+        const refreshToken = crypto.randomBytes(32).toString("hex");
+
+        // Store refresh token in database
+        const storeTokenQuery = `
+      mutation StoreRefreshToken($userId: uuid!, $refreshToken: String!) {
+        insertAuthRefreshTokens(
+          objects: [{
+            userId: $userId
+            refreshToken: $refreshToken
+            type: "pat"
+            expiresAt: "2099-12-31T23:59:59Z"
+          }]
+        ) {
+          returning {
+            refreshToken
+          }
+        }
+      }
+    `;
+
+        await fetch(NHOST_GRAPHQL_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "x-hasura-admin-secret": NHOST_ADMIN_SECRET,
+            },
+            body: JSON.stringify({
+                query: storeTokenQuery,
+                variables: {
+                    userId: user.id,
+                    refreshToken,
+                },
+            }),
+        });
+
         return NextResponse.json(
             {
                 session: {
-                    accessToken: loginData.session.accessToken,
-                    refreshToken: loginData.session.refreshToken,
+                    accessToken,
+                    refreshToken,
                     user: {
-                        id: loginData.user.id,
-                        email: loginData.user.email,
-                        metadata: loginData.user.metadata,
+                        id: user.id,
+                        email: user.email,
+                        metadata: user.metadata,
                     },
                 },
             },

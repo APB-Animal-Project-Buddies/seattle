@@ -72,7 +72,7 @@ export default function LoginPage() {
 
       setStatus("success");
       setTimeout(() => {
-        router.push("/dashboard");
+        router.push("/dishes");
       }, 1000);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");

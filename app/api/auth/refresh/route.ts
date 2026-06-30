@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import crypto from "crypto";
 
 interface RefreshRequest {
     refreshToken: string;
@@ -13,17 +14,17 @@ export async function POST(
     request: NextRequest
 ): Promise<NextResponse<RefreshResponse>> {
     try {
-        const NHOST_AUTH_URL = process.env.NEXT_PUBLIC_NHOST_AUTH_URL;
+        const NHOST_GRAPHQL_URL = process.env.NEXT_PUBLIC_NHOST_GRAPHQL_URL;
+        const NHOST_ADMIN_SECRET = process.env.NHOST_ADMIN_SECRET;
 
-        if (!NHOST_AUTH_URL) {
+        if (!NHOST_GRAPHQL_URL || !NHOST_ADMIN_SECRET) {
             return NextResponse.json(
-                { error: "NHOST_AUTH_URL is not configured" },
+                { error: "Nhost configuration missing" },
                 { status: 500 }
             );
         }
 
         const body: RefreshRequest = await request.json();
-
         const { refreshToken } = body;
 
         if (!refreshToken) {
@@ -33,35 +34,60 @@ export async function POST(
             );
         }
 
-        // Call Nhost token endpoint
-        const tokenRes = await fetch(`${NHOST_AUTH_URL}/v1/auth/token`, {
+        // Query refresh token
+        const tokenQuery = `
+      query GetRefreshToken($refreshToken: String!) {
+        authRefreshTokens(where: { refreshToken: { _eq: $refreshToken } }) {
+          userId
+          expiresAt
+        }
+      }
+    `;
+
+        const tokenRes = await fetch(NHOST_GRAPHQL_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "x-hasura-admin-secret": NHOST_ADMIN_SECRET,
             },
             body: JSON.stringify({
-                refreshToken,
+                query: tokenQuery,
+                variables: { refreshToken },
             }),
         });
 
-        if (!tokenRes.ok) {
-            const errorData = await tokenRes.json().catch(() => ({}));
+        const tokenData = await tokenRes.json();
+
+        if (tokenData.errors) {
             return NextResponse.json(
-                {
-                    error:
-                        errorData.message ||
-                        errorData.error ||
-                        "Token refresh failed",
-                },
-                { status: tokenRes.status }
+                { error: "Invalid refresh token" },
+                { status: 401 }
             );
         }
 
-        const tokenData = await tokenRes.json();
+        const storedToken = tokenData.data?.authRefreshTokens?.[0];
+
+        if (!storedToken) {
+            return NextResponse.json(
+                { error: "Invalid refresh token" },
+                { status: 401 }
+            );
+        }
+
+        // Check if token is expired
+        if (new Date(storedToken.expiresAt) < new Date()) {
+            return NextResponse.json(
+                { error: "Refresh token expired" },
+                { status: 401 }
+            );
+        }
+
+        // Generate new access token
+        const newAccessToken = crypto.randomBytes(32).toString("hex");
 
         return NextResponse.json(
             {
-                accessToken: tokenData.accessToken,
+                accessToken: newAccessToken,
             },
             { status: 200 }
         );
