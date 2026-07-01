@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useAuth, authErrorMessage } from "@/components/AuthProvider";
 
 interface LoginData {
   email: string;
@@ -11,6 +12,7 @@ interface LoginData {
 
 export default function LoginPage() {
   const router = useRouter();
+  const { signIn } = useAuth();
   const [formData, setFormData] = useState<LoginData>({
     email: "",
     password: "",
@@ -48,35 +50,14 @@ export default function LoginPage() {
     }
 
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-        }),
-      });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || "Login failed");
-      }
-
-      const data = await res.json();
-
-      // Store token in localStorage or cookie
-      if (data.session?.accessToken) {
-        localStorage.setItem("auth_token", data.session.accessToken);
-        localStorage.setItem("refresh_token", data.session.refreshToken || "");
-        localStorage.setItem("user_id", data.session.user?.id || "");
-      }
+      await signIn(formData.email, formData.password);
 
       setStatus("success");
       setTimeout(() => {
         router.push("/dishes");
       }, 1000);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(authErrorMessage(err));
       setStatus("error");
     }
   };

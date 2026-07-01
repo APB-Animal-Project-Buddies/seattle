@@ -2,22 +2,39 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useAuth, authErrorMessage } from "@/components/AuthProvider";
+import {
+  ROLE_OPTIONS,
+  USER_TYPE_LABELS,
+  type Role,
+  type UserType,
+} from "@/lib/nhost/roles";
 
 interface RegistrationData {
   email: string;
   password: string;
   confirmPassword: string;
   zipCode: string;
-  userType: "individual" | "restaurant";
+  role: Role;
 }
 
+// Roles grouped by user type, preserving ROLE_OPTIONS order, for the picker.
+const ROLE_GROUPS = (Object.keys(USER_TYPE_LABELS) as UserType[]).map(
+  (userType) => ({
+    userType,
+    label: USER_TYPE_LABELS[userType],
+    options: ROLE_OPTIONS.filter((o) => o.userType === userType),
+  })
+);
+
 export default function RegisterPage() {
+  const { signUp } = useAuth();
   const [formData, setFormData] = useState<RegistrationData>({
     email: "",
     password: "",
     confirmPassword: "",
     zipCode: "",
-    userType: "individual",
+    role: "homecook",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -64,38 +81,25 @@ export default function RegisterPage() {
     }
 
     try {
-      const res = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          metadata: {
-            zip_code: formData.zipCode || null,
-            user_type: formData.userType,
-          },
-        }),
+      const { needsVerification } = await signUp({
+        email: formData.email,
+        password: formData.password,
+        role: formData.role,
+        zipCode: formData.zipCode || undefined,
       });
-
-      if (!res.ok) {
-        const errorData = await res.json().catch(() => ({}));
-        throw new Error(errorData.error || "Registration failed");
-      }
-
-      const data = await res.json();
 
       setStatus("success");
 
-      // Store user info for authenticated requests
-      if (data.user?.id) {
-        localStorage.setItem("user_id", data.user.id);
+      // If the Nhost project doesn't require email verification, a session is
+      // already active — send them straight in. Otherwise the success screen
+      // tells them to verify their email.
+      if (!needsVerification) {
+        setTimeout(() => {
+          window.location.href = "/dishes";
+        }, 1500);
       }
-
-      setTimeout(() => {
-        window.location.href = "/login";
-      }, 1500);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+      setError(authErrorMessage(err));
       setStatus("error");
     }
   };
@@ -104,10 +108,16 @@ export default function RegisterPage() {
     return (
       <div style={styles.container}>
         <div style={styles.successBox}>
-          <div style={styles.successIcon}>✓</div>
-          <h2 style={styles.successHeading}>Account created!</h2>
+          <div style={styles.successIcon}>✉</div>
+          <h2 style={styles.successHeading}>Check your email</h2>
           <p style={styles.successText}>
-            Redirecting to login page...
+            We sent a verification link to <strong>{formData.email}</strong>.
+            Click it to activate your account, then sign in.
+          </p>
+          <p style={styles.successText}>
+            <Link href="/login" style={styles.link}>
+              Go to sign in
+            </Link>
           </p>
         </div>
       </div>
@@ -181,35 +191,31 @@ export default function RegisterPage() {
           {/* Divider */}
           <div style={styles.divider} />
 
-          {/* User Type */}
+          {/* Role */}
           <div style={styles.field}>
             <label style={styles.label}>
               I am signing up as... <span style={styles.required}>*</span>
             </label>
-            <div style={styles.radioGroup}>
-              <label style={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="userType"
-                  value="individual"
-                  checked={formData.userType === "individual"}
-                  onChange={handleChange}
-                  style={styles.radioInput}
-                />
-                Individual
-              </label>
-              <label style={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="userType"
-                  value="restaurant"
-                  checked={formData.userType === "restaurant"}
-                  onChange={handleChange}
-                  style={styles.radioInput}
-                />
-                Restaurant
-              </label>
-            </div>
+            {ROLE_GROUPS.map((group) => (
+              <div key={group.userType} style={styles.roleGroup}>
+                <span style={styles.roleGroupLabel}>{group.label}</span>
+                <div style={styles.radioGroup}>
+                  {group.options.map((opt) => (
+                    <label key={opt.role} style={styles.radioLabel}>
+                      <input
+                        type="radio"
+                        name="role"
+                        value={opt.role}
+                        checked={formData.role === opt.role}
+                        onChange={handleChange}
+                        style={styles.radioInput}
+                      />
+                      {opt.label}
+                    </label>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Zip Code */}
@@ -336,10 +342,24 @@ const styles: Record<string, React.CSSProperties> = {
     background: "#e0e0e0",
     margin: "0.5rem 0",
   },
+  roleGroup: {
+    display: "flex" as const,
+    flexDirection: "column" as const,
+    gap: "0.5rem",
+    marginTop: "0.25rem",
+  },
+  roleGroupLabel: {
+    fontSize: 12,
+    fontWeight: 600,
+    textTransform: "uppercase" as const,
+    letterSpacing: "0.04em",
+    color: "#999",
+  },
   radioGroup: {
     display: "flex" as const,
     flexDirection: "column" as const,
     gap: "0.75rem",
+    paddingLeft: "0.25rem",
   },
   radioLabel: {
     display: "flex" as const,

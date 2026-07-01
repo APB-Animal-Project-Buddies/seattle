@@ -14,6 +14,7 @@ import { SPECIAL_PRODUCT_OPTIONS } from "@/lib/special-products";
 import { IngredientsSection } from "./sections/IngredientsSection";
 import { StepsSection } from "./sections/StepsSection";
 import { RECIPE_FORM_DEFAULTS, type RecipeFormValues } from "./types";
+import { useAuth } from "@/components/AuthProvider";
 
 const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 
@@ -43,6 +44,7 @@ export function RecipeIntakeForm() {
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const methods = useForm<RecipeFormValues>({ defaultValues: RECIPE_FORM_DEFAULTS });
   const { register, handleSubmit, control, watch, formState: { errors } } = methods;
+  const { userId } = useAuth();
 
   async function onSubmit(v: RecipeFormValues) {
     const problem = validateRecipe(v);
@@ -76,10 +78,7 @@ export function RecipeIntakeForm() {
       },
     };
     try {
-      // Get user_id from localStorage using auth utility
-      const { getUserId } = await import("@/lib/auth-utils");
-      const userId = getUserId();
-
+      // Attribute the dish to the signed-in Nhost user, if any.
       const headers: Record<string, string> = { "Content-Type": "application/json" };
       if (userId) {
         headers["X-User-Id"] = userId;
