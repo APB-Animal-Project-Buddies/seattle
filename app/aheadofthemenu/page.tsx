@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./aotm.css";
 
 export const metadata: Metadata = {
@@ -16,8 +17,13 @@ export default function AheadOfTheMenu() {
             <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z" />
             <path d="M2 21c0-3 1.85-5.36 5.08-6" />
           </svg>
-          Ahead of the Menu
+          <span className="aotm-brand-text">Ahead of the Menu</span>
         </span>
+
+        <nav className="aotm-auth" aria-label="Account">
+          <Link className="aotm-auth-login" href="/aheadofthemenu/login">Log in</Link>
+          <Link className="aotm-auth-signup" href="/aheadofthemenu/register">Sign up</Link>
+        </nav>
       </header>
 
       <section className="aotm-hero">

@@ -37,7 +37,21 @@ version = '0.43.2'
 mode = 'disabled'
 
 [auth.redirections]
-clientUrl = 'http://localhost:3000'
+# Default redirect for email actions (verification, etc.). Our /verify handler
+# reads the refreshToken from the URL and establishes the session.
+clientUrl = 'http://localhost:3000/aheadofthemenu/verify'
+# redirectTo values passed by the app must match one of these (else Nhost
+# returns `redirectTo-not-allowed`). Both dev ports covered; add prod URLs later.
+allowedUrls = [
+  'http://localhost:3000',
+  'http://localhost:3000/aheadofthemenu',
+  'http://localhost:3000/aheadofthemenu/verify',
+  'http://localhost:3000/aheadofthemenu/reset-password',
+  'http://localhost:3111',
+  'http://localhost:3111/aheadofthemenu',
+  'http://localhost:3111/aheadofthemenu/verify',
+  'http://localhost:3111/aheadofthemenu/reset-password',
+]
 
 [auth.signUp]
 enabled = true

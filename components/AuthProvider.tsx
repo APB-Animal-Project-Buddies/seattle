@@ -48,9 +48,20 @@ interface AuthContextValue {
    */
   signUp: (params: SignUpParams) => Promise<{ needsVerification: boolean }>;
   signOut: () => Promise<void>;
+  /** Re-sends the verification email for an address that hasn't verified yet. */
+  resendVerification: (email: string) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextValue | null>(null);
+
+/** True when the SDK error is Nhost's "email not verified yet" rejection. */
+export function isUnverifiedError(err: unknown): boolean {
+  if (err instanceof FetchError) {
+    const body = err.body as { error?: string } | undefined;
+    return body?.error === "unverified-user";
+  }
+  return false;
+}
 
 /** Pulls a human-readable message out of whatever the SDK threw. */
 export function authErrorMessage(err: unknown): string {
@@ -68,6 +79,12 @@ function metaString(
 ): string | null {
   const value = metadata?.[key];
   return typeof value === "string" ? value : null;
+}
+
+/** Where Nhost should redirect after the user clicks the email verification link. */
+function verifyRedirectUrl(): string | undefined {
+  if (typeof window === "undefined") return undefined;
+  return `${window.location.origin}/aheadofthemenu/verify`;
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
@@ -99,6 +116,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         email,
         password,
         options: {
+          redirectTo: verifyRedirectUrl(),
           metadata: {
             user_type: userTypeForRole(role),
             role,
@@ -115,6 +133,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     },
     []
   );
+
+  const resendVerification = useCallback(async (email: string) => {
+    const nhost = getNhost();
+    await nhost.auth.sendVerificationEmail({
+      email,
+      options: { redirectTo: verifyRedirectUrl() },
+    });
+  }, []);
 
   const signOut = useCallback(async () => {
     const nhost = getNhost();
@@ -141,6 +167,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     signIn,
     signUp,
     signOut,
+    resendVerification,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
