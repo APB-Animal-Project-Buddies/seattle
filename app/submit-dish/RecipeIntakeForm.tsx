@@ -76,9 +76,18 @@ export function RecipeIntakeForm() {
       },
     };
     try {
+      // Get user_id from localStorage using auth utility
+      const { getUserId } = await import("@/lib/auth-utils");
+      const userId = getUserId();
+
+      const headers: Record<string, string> = { "Content-Type": "application/json" };
+      if (userId) {
+        headers["X-User-Id"] = userId;
+      }
+
       const res = await fetch("/api/dishes", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers,
         body: JSON.stringify(body),
       });
       if (!res.ok) {

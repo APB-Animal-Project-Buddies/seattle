@@ -8,6 +8,7 @@ interface RegistrationData {
   password: string;
   confirmPassword: string;
   zipCode: string;
+  userType: "individual" | "restaurant";
 }
 
 export default function RegisterPage() {
@@ -16,6 +17,7 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
     zipCode: "",
+    userType: "individual",
   });
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState<string | null>(null);
@@ -70,6 +72,7 @@ export default function RegisterPage() {
           password: formData.password,
           metadata: {
             zip_code: formData.zipCode || null,
+            user_type: formData.userType,
           },
         }),
       });
@@ -79,7 +82,15 @@ export default function RegisterPage() {
         throw new Error(errorData.error || "Registration failed");
       }
 
+      const data = await res.json();
+
       setStatus("success");
+
+      // Store user info for authenticated requests
+      if (data.user?.id) {
+        localStorage.setItem("user_id", data.user.id);
+      }
+
       setTimeout(() => {
         window.location.href = "/login";
       }, 1500);
@@ -169,6 +180,37 @@ export default function RegisterPage() {
 
           {/* Divider */}
           <div style={styles.divider} />
+
+          {/* User Type */}
+          <div style={styles.field}>
+            <label style={styles.label}>
+              I am signing up as... <span style={styles.required}>*</span>
+            </label>
+            <div style={styles.radioGroup}>
+              <label style={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="userType"
+                  value="individual"
+                  checked={formData.userType === "individual"}
+                  onChange={handleChange}
+                  style={styles.radioInput}
+                />
+                Individual
+              </label>
+              <label style={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="userType"
+                  value="restaurant"
+                  checked={formData.userType === "restaurant"}
+                  onChange={handleChange}
+                  style={styles.radioInput}
+                />
+                Restaurant
+              </label>
+            </div>
+          </div>
 
           {/* Zip Code */}
           <div style={styles.field}>
@@ -293,6 +335,23 @@ const styles: Record<string, React.CSSProperties> = {
     height: 1,
     background: "#e0e0e0",
     margin: "0.5rem 0",
+  },
+  radioGroup: {
+    display: "flex" as const,
+    flexDirection: "column" as const,
+    gap: "0.75rem",
+  },
+  radioLabel: {
+    display: "flex" as const,
+    alignItems: "center" as const,
+    gap: "0.5rem",
+    fontSize: 14,
+    color: "#1a1a1a",
+    cursor: "pointer" as const,
+  },
+  radioInput: {
+    cursor: "pointer" as const,
+    accentColor: "#d85a30",
   },
   errorBox: {
     padding: "12px",

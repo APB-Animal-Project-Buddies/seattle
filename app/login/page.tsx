@@ -68,6 +68,7 @@ export default function LoginPage() {
       if (data.session?.accessToken) {
         localStorage.setItem("auth_token", data.session.accessToken);
         localStorage.setItem("refresh_token", data.session.refreshToken || "");
+        localStorage.setItem("user_id", data.session.user?.id || "");
       }
 
       setStatus("success");

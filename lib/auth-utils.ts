@@ -31,12 +31,27 @@ export function getTokens(): AuthTokens | null {
 }
 
 /**
+ * Get user ID from localStorage
+ */
+export function getUserId(): string | null {
+    return localStorage.getItem("user_id");
+}
+
+/**
+ * Store user ID in localStorage
+ */
+export function setUserId(userId: string): void {
+    localStorage.setItem("user_id", userId);
+}
+
+/**
  * Clear all auth data from localStorage
  */
 export function clearAuth(): void {
     localStorage.removeItem("auth_token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem("auth_user");
+    localStorage.removeItem("user_id");
 }
 
 /**
