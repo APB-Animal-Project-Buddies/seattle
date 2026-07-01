@@ -19,7 +19,7 @@ interface DishesQueryResult {
 export const dynamic = "force-dynamic";
 const MAX_BODY_BYTES = 32 * 1024;
 
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   const raw = await request.text();
   if (raw.length > MAX_BODY_BYTES) return NextResponse.json({ error: "Payload too large" }, { status: 413 });
   let body: any;
@@ -28,6 +28,12 @@ export async function POST(request: Request) {
   let dishData;
   try { dishData = buildDishData(body ?? {}); }
   catch (e) { return NextResponse.json({ error: (e as Error).message }, { status: 400 }); }
+
+  // Get user ID from request headers (frontend sends it via X-User-Id)
+  const userId = request.headers.get("x-user-id");
+  if (userId) {
+    dishData.user_id = userId;
+  }
 
   try {
     const res = await graphql<{ insert_dishes_one: { id: number } }>(

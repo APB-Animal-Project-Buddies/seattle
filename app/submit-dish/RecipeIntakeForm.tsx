@@ -15,6 +15,7 @@ import { IngredientsSection } from "./sections/IngredientsSection";
 import { StepsSection } from "./sections/StepsSection";
 import { RECIPE_FORM_DEFAULTS, type RecipeFormValues } from "./types";
 import { adminHeaders } from "@/lib/admin-client";
+import { useAuth } from "@/components/AuthProvider";
 
 const numOrNull = (s: string) => (s.trim() === "" ? null : Number(s));
 
@@ -50,6 +51,7 @@ export function RecipeIntakeForm(
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const methods = useForm<RecipeFormValues>({ defaultValues: initialValues ?? RECIPE_FORM_DEFAULTS });
   const { register, handleSubmit, control, watch, formState: { errors } } = methods;
+  const { userId } = useAuth();
 
   async function onSubmit(v: RecipeFormValues) {
     const problem = validateRecipe(v);
@@ -111,7 +113,12 @@ export function RecipeIntakeForm(
     // Route by mode: propose (public, pending review) / edit (admin, direct) / create.
     const url = isPropose ? `/api/dishes/${dishId}/edits` : isEdit ? `/api/dishes/${dishId}` : "/api/dishes";
     const method = isEdit ? "PATCH" : "POST";
-    const headers: Record<string, string> = { "Content-Type": "application/json", ...(isEdit ? adminHeaders() : {}) };
+    // Attribute the dish to the signed-in Nhost user, if any.
+    const headers: Record<string, string> = {
+      "Content-Type": "application/json",
+      ...(isEdit ? adminHeaders() : {}),
+      ...(userId ? { "X-User-Id": userId } : {}),
+    };
     try {
       const res = await fetch(url, { method, headers, body: JSON.stringify(body) });
       if (!res.ok) {
