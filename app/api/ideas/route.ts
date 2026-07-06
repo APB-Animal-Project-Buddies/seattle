@@ -78,8 +78,14 @@ export async function POST(request: Request) {
       sort_order: index,
     }));
 
+  const received = body.length;
+  const skipped = received - ideas.length;
+
   if (ideas.length === 0) {
-    return NextResponse.json({ error: "No valid ideas to sync (refusing empty payload)" }, { status: 400 });
+    return NextResponse.json(
+      { error: "No valid ideas to sync (refusing empty payload)", received, skipped },
+      { status: 400 }
+    );
   }
 
   // Atomic delete + insert in a single GraphQL request
@@ -99,8 +105,13 @@ export async function POST(request: Request) {
   );
 
   if (result.errors && result.errors.length > 0) {
-    return NextResponse.json({ error: result.errors[0]?.message }, { status: 500 });
+    return NextResponse.json({ error: result.errors[0]?.message, received, skipped }, { status: 500 });
   }
 
-  return NextResponse.json({ synced: result.data?.insert_ideas?.affected_rows ?? 0 });
+  return NextResponse.json({
+    ok: true,
+    received,
+    synced: result.data?.insert_ideas?.affected_rows ?? 0,
+    skipped,
+  });
 }
