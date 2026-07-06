@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Animal Project Buddies Seattle - A community of innovators working on diverse projects to advance animal welfare through technology and social movements."
+      content="Animal Project Buddies - A community of innovators working on diverse projects to advance animal welfare through technology and social movements."
     />
 
     <!-- Open Graph -->
     <meta property="og:url" content="https://animalprojectbuddies.com" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Animal Project Buddies Seattle" />
+    <meta property="og:title" content="Animal Project Buddies" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:description" content="A community of innovators working on diverse projects to advance animal welfare through technology and social movements." />
     <meta property="og:image" content="https://animalprojectbuddies.com/assets/og_image.jpg" />
@@ -20,10 +20,10 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Animal Project Buddies Seattle" />
+    <meta name="twitter:title" content="Animal Project Buddies" />
     <meta name="twitter:description" content="A community of innovators working on diverse projects to advance animal welfare through technology and social movements." />
     <meta name="twitter:image" content="https://animalprojectbuddies.com/assets/og_image.jpg" />
-    <title>Animal Project Buddies Seattle</title>
+    <title>Animal Project Buddies</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -37,7 +37,7 @@
     <!-- Navigation -->
     <nav class="site-nav">
       <div class="nav-inner">
-        <a href="/" class="nav-logo">APB Seattle</a>
+        <a href="/" class="nav-logo">Animal Project Buddies</a>
         <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
           <span class="nav-toggle-bar"></span>
           <span class="nav-toggle-bar"></span>
@@ -48,7 +48,6 @@
           <li><a href="/open-ideas">Open Ideas</a></li>
           <li><a href="/start-a-chapter">Start a Chapter</a></li>
           <li><a href="/job-boards">Job Boards</a></li>
-          <li><a href="/reverse-lookup">Reverse Lookup</a></li>
           <li><a href="#join" class="nav-cta">Join Us</a></li>
         </ul>
       </div>
@@ -60,10 +59,11 @@
         <div class="container">
             <h1 class="hero-title">Animal Project Buddies</h1>
             <p class="hero-subtitle">
-                <span class="location-badge">
+                <a href="#chapters" class="location-badge">
                     <span class="globe-icon">🌍</span>
-                    The Seattle Chapter
-                </span>
+                    Chapters in Seattle &amp; Portland
+                    <span class="meeting-tag">Click to find our meeting!</span>
+                </a>
             </p>
             <p class="hero-description">A community of friends working to advance animal welfare through technology, outreach, and social change.</p>
             <a href="#join" class="cta-button">Join Our Community</a>
@@ -129,24 +129,30 @@
       </div>
     </section>
 
-    <!-- Meetings Section -->
-    <section class="meetings">
+    <!-- Chapters Section -->
+    <section class="meetings" id="chapters">
       <div class="container">
-        <h2>Join Our Meetings</h2>
-        <div class="meeting-info">
-          <a href="https://grassroots.to/events/203c44d3-5580-4f96-9d16-3f899d60f25e" target="_blank" rel="noopener">
-            <div class="meeting-detail">
-              <span class="meeting-icon">📅</span>
-              <div>
-                <h3>Every Other Wednesday</h3>
-                <p>6:30 PM Pacific Time</p>
-                <p class="meeting-location">@ Pi Vegan Pizzeria, 5301 Roosevelt Way NE, Seattle, WA 98105</p>
-              </div>
-            </div>
+        <h2>Our Chapters</h2>
+        <div class="chapters-grid">
+          <a class="chapter-card" href="https://grassroots.to/events/203c44d3-5580-4f96-9d16-3f899d60f25e" target="_blank" rel="noopener">
+            <span class="chapter-tag">Click here for our meetup!</span>
+            <span class="chapter-card-icon">🌲</span>
+            <h3>Seattle</h3>
+            <p>Every other Wednesday, 6:30 PM Pacific</p>
+            <p class="chapter-card-location">@ Pi Vegan Pizzeria, 5301 Roosevelt Way NE</p>
           </a>
+          <div class="chapter-card">
+            <span class="chapter-card-icon">🌹</span>
+            <h3>Portland</h3>
+            <p>Our newest chapter</p>
+            <p class="chapter-card-location">Join our Discord for meeting details</p>
+          </div>
+        </div>
+        <div class="meeting-info">
           <p class="meeting-description">
             Connect with fellow entrepreneurs, share ideas, collaborate on
             projects, and build the future of animal advocacy together.
+            Don't see your city? <a href="/start-a-chapter">Start a chapter</a>!
           </p>
         </div>
       </div>
@@ -174,7 +180,7 @@
     <footer>
       <div class="container">
         <p>
-          &copy; 2025 Animal Project Buddies Seattle. Building a better
+          &copy; 2025 Animal Project Buddies. Building a better
           future for all animals.
         </p>
         <p class="contact-email">
@@ -279,7 +285,7 @@
           carousel.innerHTML = sorted.map(project => {
             const icon = projectIcons[project.project_handle] || '🌱';
             const name = project.project_name || formatProjectName(project.project_handle);
-            const description = project.project_description || 'An APB Seattle initiative.';
+            const description = project.project_description || 'An Animal Project Buddies initiative.';
             const website = project.project_website;
 
             const content = `
