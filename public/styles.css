@@ -1028,6 +1028,17 @@ a.location-badge:hover {
     box-shadow: var(--shadow-lg);
 }
 
+.chapter-card:focus,
+.location-badge:focus {
+    outline: none;
+}
+
+.chapter-card:focus-visible,
+.location-badge:focus-visible {
+    outline: 3px solid var(--accent-light);
+    outline-offset: 3px;
+}
+
 .chapter-card-icon {
     font-size: 3.5rem;
     display: block;
