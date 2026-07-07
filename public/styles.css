@@ -1079,6 +1079,23 @@ a.location-badge:hover {
     animation: chapterTagBob 2.5s ease-in-out infinite;
 }
 
+.chapter-card--soon {
+    border-style: dashed;
+    border-color: rgba(255, 107, 53, 0.25);
+    background: rgba(255, 107, 53, 0.03);
+}
+
+.chapter-card--soon .chapter-card-icon,
+.chapter-card--soon h3 {
+    opacity: 0.85;
+}
+
+.chapter-tag--soon {
+    background: #8a8a8a;
+    animation: none;
+    transform: translateX(-50%) rotate(-3deg);
+}
+
 @keyframes chapterTagBob {
     0%, 100% {
         transform: translateX(-50%) rotate(-3deg) translateY(0);
