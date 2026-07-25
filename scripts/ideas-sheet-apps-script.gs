@@ -1,3 +1,11 @@
+// Apps Script for the open ideas sheet — adds an "APB Tools" menu that pushes the
+// sheet's rows to POST /api/ideas.
+//
+// This is a COPY for version control; the live copy lives in the ideas spreadsheet
+// (Extensions -> Apps Script). Editing this file changes nothing on its own — paste
+// it into the sheet again. See scripts/projects-sheet-apps-script.gs for the
+// equivalent script on the projects sheet.
+//
 // SETUP INSTRUCTIONS:
 // 1. Open your Google Sheet → Extensions → Apps Script
 // 2. Paste this entire script, replacing any existing code
