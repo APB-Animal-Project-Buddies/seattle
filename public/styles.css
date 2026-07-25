@@ -672,6 +672,253 @@ a.location-badge:hover {
     opacity: 0.7;
 }
 
+/* Cards open the project modal on click */
+.project-card[data-handle] {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card[data-handle]:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+/* Clamp the blurb so every card is the same height — the full text is in the modal */
+.project-card-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.project-card-more {
+    display: inline-block;
+    /* Pin to the bottom so the link lines up across cards of unequal text length */
+    margin-top: auto;
+    padding-top: 18px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-color);
+    letter-spacing: 0.02em;
+}
+
+.project-card[data-handle]:hover .project-card-more::after,
+.project-card[data-handle]:focus-visible .project-card-more::after {
+    transform: translateX(4px);
+}
+
+.project-card-more::after {
+    content: ' →';
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Project Modal */
+body.modal-open {
+    overflow: hidden;
+}
+
+/* The modal hides empty fields with the [hidden] attribute, but an explicit
+   `display` on a rule below would override the UA's `[hidden] { display: none }`
+   — e.g. a "Visit site" button with no href for a project that has no website. */
+.project-modal [hidden] {
+    display: none;
+}
+
+.project-modal {
+    position: fixed;
+    inset: 0;
+    /* Above the fixed nav (z-index: 1000), which would otherwise sit on the backdrop */
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.project-modal[hidden] {
+    display: none;
+}
+
+.project-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 37, 21, 0.55);
+    backdrop-filter: blur(4px);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.project-modal.is-open .project-modal-backdrop {
+    opacity: 1;
+}
+
+.project-modal-dialog {
+    position: relative;
+    /* Sized to the content — the caps only kick in for the longest write-ups,
+       so most projects show in full without an inner scrollbar */
+    width: min(780px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--bg-white);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 48px 44px 44px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+    transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-modal.is-open .project-modal-dialog {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.project-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: transparent;
+    color: #777;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.project-modal-close:hover {
+    background: var(--bg-light);
+    color: var(--text-dark);
+}
+
+.project-modal-close:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.project-modal-icon {
+    font-size: 3.5rem;
+    margin-bottom: 16px;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.project-modal-title {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 16px;
+}
+
+.project-modal-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.project-chip {
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--bg-light);
+    border: 1px solid rgba(30, 77, 43, 0.12);
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.project-modal-people {
+    font-size: 0.95rem;
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.project-modal-description {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: #444;
+    text-align: left;
+    white-space: pre-line;
+}
+
+.project-modal-impact {
+    margin-top: 28px;
+    padding: 20px 24px;
+    border-radius: var(--border-radius);
+    background: var(--bg-cream);
+    border-left: 4px solid var(--accent-color);
+    text-align: left;
+}
+
+.project-modal-impact h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+}
+
+.project-modal-impact p {
+    font-size: 0.98rem;
+    line-height: 1.65;
+    color: #444;
+    white-space: pre-line;
+}
+
+.project-modal-link {
+    display: inline-block;
+    margin-top: 32px;
+    padding: 14px 34px;
+    border-radius: 999px;
+    background: var(--primary-color);
+    color: var(--text-light);
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-modal-link:hover {
+    background: var(--primary-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.project-modal-link:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 3px;
+}
+
+@media (max-width: 768px) {
+    .project-modal {
+        padding: 16px;
+    }
+
+    .project-modal-dialog {
+        padding: 40px 24px 32px;
+        max-height: 92vh;
+    }
+
+    .project-modal-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-modal-backdrop,
+    .project-modal-dialog,
+    .project-card-more::after {
+        transition: none;
+    }
+}
+
 /* Ideas Teaser Section (landing page) */
 .ideas-teaser {
     padding: 100px 20px;

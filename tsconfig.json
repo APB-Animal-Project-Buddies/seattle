@@ -16,5 +16,16 @@
     "paths": { "@/*": ["./*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "nhost", "functions", "recipes", "scripts"]
+  "exclude": [
+    "node_modules",
+    "nhost",
+    "functions",
+    "recipes",
+    "scripts",
+    // Backend submodule: only scripts/lib is imported by the app (the projects sync
+    // core). The rest is Nhost config, email templates and Bun CLIs that this
+    // tsconfig's target can't compile and doesn't need to.
+    "backend_migrations/nhost",
+    "backend_migrations/scripts/sync-projects-from-sheet.ts"
+  ]
 }

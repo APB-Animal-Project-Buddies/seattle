@@ -197,6 +197,34 @@
       </div>
     </footer>
 
+    <!-- Project detail modal (populated on card click) -->
+    <div class="project-modal" id="project-modal" hidden>
+      <div class="project-modal-backdrop" data-close-modal></div>
+      <div
+        class="project-modal-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-modal-title"
+      >
+        <button class="project-modal-close" type="button" aria-label="Close" data-close-modal>
+          &times;
+        </button>
+        <div class="project-modal-icon" id="project-modal-icon" aria-hidden="true"></div>
+        <h3 class="project-modal-title" id="project-modal-title"></h3>
+        <div class="project-modal-chips" id="project-modal-chips"></div>
+        <p class="project-modal-people" id="project-modal-people"></p>
+        <p class="project-modal-description" id="project-modal-description"></p>
+        <div class="project-modal-impact" id="project-modal-impact"></div>
+        <a
+          class="project-modal-link"
+          id="project-modal-link"
+          target="_blank"
+          rel="noopener"
+          >Visit site &rarr;</a
+        >
+      </div>
+    </div>
+
     <script>
       // Nav toggle
       document.querySelector('.nav-toggle').addEventListener('click', function() {
@@ -236,7 +264,28 @@
         'coffee-buddy': '☕',
         'just-another-day-at-work': '🏢',
         'the-chicken-coup': '🐓',
+        'grassroots': '🌾',
+        'ahead-of-the-menu': '🍽️',
+        'time-for-impact': '⏳',
+        'the-hatchery-fund': '🥚',
+        'sanctuary-sim': '🎮',
+        'we-the-free-seattle': '📣',
+        'stickering-seattle': '🏷️',
+        'rate-my-shopping-cart': '🛒',
       };
+
+      // Project data is authored in a Google Sheet and synced to the database, so it
+      // is not trusted markup — always escape before interpolating.
+      const HTML_ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+      function escapeHtml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (char) => HTML_ESCAPES[char]);
+      }
+
+      // Handle -> full project record, for the detail modal.
+      const projectsByHandle = new Map();
+
+      // Set by initCarousel so the modal can stop the drift while it's open.
+      let carouselControls = null;
 
       // Fallback: convert handle to display name (e.g., "chicken-nor-egg" -> "Chicken Nor Egg")
       function formatProjectName(handle) {
@@ -249,7 +298,6 @@
       // Preferred display order — these appear first in the carousel
       const preferredOrder = [
         'ahimsa-in-action',
-        'feeding-progress',
         'clean-meat-alliance',
         'the-chicken-coup',
         'chicken-nor-egg',
@@ -289,28 +337,30 @@
             return 0;
           });
 
-          // Render project cards
+          // Render project cards. The description is clamped to three lines by CSS so
+          // every card is the same height; the full record lives in the modal.
+          projectsByHandle.clear();
           carousel.innerHTML = sorted.map(project => {
+            projectsByHandle.set(project.project_handle, project);
+
             const icon = projectIcons[project.project_handle] || '🌱';
             const name = project.project_name || formatProjectName(project.project_handle);
             const description = project.project_description || 'An Animal Project Buddies initiative.';
-            const website = project.project_website;
 
-            const content = `
-              <div class="project-icon">${icon}</div>
-              <h3>${name}</h3>
-              <p>${description}</p>
+            return `
+              <div
+                class="project-card"
+                data-handle="${escapeHtml(project.project_handle)}"
+                role="button"
+                tabindex="0"
+                aria-haspopup="dialog"
+              >
+                <div class="project-icon">${icon}</div>
+                <h3>${escapeHtml(name)}</h3>
+                <p class="project-card-description">${escapeHtml(description)}</p>
+                <span class="project-card-more">Read more</span>
+              </div>
             `;
-
-            if (website) {
-              return `
-                <div class="project-card">
-                  <a href="${website}" target="_blank" rel="noopener">${content}</a>
-                </div>
-              `;
-            }
-
-            return `<div class="project-card">${content}</div>`;
           }).join('');
 
           // Initialize carousel after projects are loaded
@@ -330,6 +380,172 @@
 
       // Load projects on page load
       loadProjects();
+
+      // --- Project detail modal ---
+      const modal = document.getElementById('project-modal');
+      const modalDialog = modal.querySelector('.project-modal-dialog');
+      const modalClose = modal.querySelector('.project-modal-close');
+      const modalIcon = document.getElementById('project-modal-icon');
+      const modalTitle = document.getElementById('project-modal-title');
+      const modalChips = document.getElementById('project-modal-chips');
+      const modalPeople = document.getElementById('project-modal-people');
+      const modalDescription = document.getElementById('project-modal-description');
+      const modalImpact = document.getElementById('project-modal-impact');
+      const modalLink = document.getElementById('project-modal-link');
+
+      let modalOpener = null;
+      let modalHideTimer = null;
+
+      // The URL comes from the projects sheet — only render http(s).
+      function safeUrl(value) {
+        if (!value) return null;
+        try {
+          const url = new URL(value, window.location.origin);
+          return url.protocol === 'http:' || url.protocol === 'https:' ? url.href : null;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function setText(element, value) {
+        element.textContent = value || '';
+        element.hidden = !value;
+      }
+
+      function openProjectModal(handle, opener) {
+        const project = projectsByHandle.get(handle);
+        if (!project) return;
+
+        clearTimeout(modalHideTimer);
+        modalOpener = opener || null;
+
+        modalIcon.textContent = projectIcons[handle] || '🌱';
+        modalTitle.textContent = project.project_name || formatProjectName(handle);
+
+        // Status and category are free text in the sheet; category often holds a
+        // comma-separated list ("Money Raising, Tool") — one chip per value.
+        const chips = [project.status, project.main_category]
+          .filter(Boolean)
+          .flatMap(value => value.split(',').map(part => part.trim()))
+          .filter(Boolean);
+        modalChips.innerHTML = chips
+          .map(chip => `<span class="project-chip">${escapeHtml(chip)}</span>`)
+          .join('');
+        modalChips.hidden = chips.length === 0;
+
+        setText(modalPeople, [
+          project.owner ? 'Led by ' + project.owner : null,
+          project.other_members ? 'with ' + project.other_members : null,
+        ].filter(Boolean).join(' '));
+
+        setText(modalDescription, project.project_description || 'An Animal Project Buddies initiative.');
+
+        modalImpact.hidden = !project.impact;
+        if (project.impact) {
+          modalImpact.innerHTML = '<h4>Impact so far</h4><p></p>';
+          modalImpact.querySelector('p').textContent = project.impact;
+        }
+
+        const website = safeUrl(project.project_website);
+        modalLink.hidden = !website;
+        if (website) modalLink.href = website;
+        else modalLink.removeAttribute('href');
+
+        modal.hidden = false;
+        document.body.classList.add('modal-open');
+        if (carouselControls) carouselControls.pause();
+        requestAnimationFrame(() => modal.classList.add('is-open'));
+        modalClose.focus();
+      }
+
+      function closeProjectModal() {
+        if (modal.hidden) return;
+
+        modal.classList.remove('is-open');
+        document.body.classList.remove('modal-open');
+
+        modalHideTimer = setTimeout(() => {
+          modal.hidden = true;
+          // Only now is the dialog out of the way, so :hover reports the carousel
+          // correctly and the drift stays paused if the cursor is still on a card.
+          if (carouselControls) carouselControls.resume();
+        }, 200);
+
+        if (modalOpener && document.contains(modalOpener)) modalOpener.focus();
+        modalOpener = null;
+      }
+
+      modal.addEventListener('click', (event) => {
+        if (event.target.closest('[data-close-modal]')) closeProjectModal();
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (modal.hidden) return;
+
+        if (event.key === 'Escape') {
+          closeProjectModal();
+          return;
+        }
+
+        if (event.key !== 'Tab') return;
+
+        // Keep focus inside the dialog while it's open.
+        const focusable = Array.from(modalDialog.querySelectorAll('button, a[href]'))
+          .filter(element => !element.hidden);
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      });
+
+      // Cards are cloned for the infinite loop, so the handler is delegated on the
+      // container. A drag across the carousel must not count as a card tap.
+      const carouselContainerEl = document.querySelector('.carousel-container');
+      let pointerDown = false;
+      let pointerStartX = 0;
+      let pointerStartY = 0;
+      let pointerDragged = false;
+
+      carouselContainerEl.addEventListener('pointerdown', (event) => {
+        pointerDown = true;
+        pointerDragged = false;
+        pointerStartX = event.clientX;
+        pointerStartY = event.clientY;
+      });
+
+      carouselContainerEl.addEventListener('pointermove', (event) => {
+        if (!pointerDown) return;
+        if (Math.abs(event.clientX - pointerStartX) > 6 || Math.abs(event.clientY - pointerStartY) > 6) {
+          pointerDragged = true;
+        }
+      });
+
+      carouselContainerEl.addEventListener('pointerup', () => { pointerDown = false; });
+      carouselContainerEl.addEventListener('pointercancel', () => {
+        pointerDown = false;
+        pointerDragged = true;
+      });
+
+      carouselContainerEl.addEventListener('click', (event) => {
+        if (pointerDragged) return;
+        const card = event.target.closest('.project-card');
+        if (card && card.dataset.handle) openProjectModal(card.dataset.handle, card);
+      });
+
+      carouselContainerEl.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        const card = event.target.closest('.project-card');
+        if (!card || !card.dataset.handle) return;
+        event.preventDefault();
+        openProjectModal(card.dataset.handle, card);
+      });
 
       // Project Carousel - Infinite loop with gentle continuous scroll
       function initCarousel() {
@@ -448,9 +664,20 @@
 
         function resumeDrift() {
           hovered = false;
+          // Don't drift behind an open modal (mouseleave fires as the pointer moves onto it)
+          if (document.body.classList.contains("modal-open")) return;
           // Only resume drift if no slide is in progress
           if (slideTarget === null) autoScrolling = true;
         }
+
+        // Let the project modal freeze the carousel while it's open. Resuming defers to
+        // hover, so closing the modal doesn't restart the drift under the user's cursor.
+        carouselControls = {
+          pause: pauseDrift,
+          resume: () => {
+            if (!carouselContainer.matches(":hover")) resumeDrift();
+          },
+        };
 
         // Pause on hover
         carouselContainer.addEventListener("mouseenter", pauseDrift);
