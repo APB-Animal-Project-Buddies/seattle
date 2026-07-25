@@ -16,16 +16,8 @@
     "paths": { "@/*": ["./*"] }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": [
-    "node_modules",
-    "nhost",
-    "functions",
-    "recipes",
-    "scripts",
-    // Backend submodule: only scripts/lib is imported by the app (the projects sync
-    // core). The rest is Nhost config, email templates and Bun CLIs that this
-    // tsconfig's target can't compile and doesn't need to.
-    "backend_migrations/nhost",
-    "backend_migrations/scripts/sync-projects-from-sheet.ts"
-  ]
+  // backend_migrations is a PRIVATE submodule and this repo is public, so Vercel
+  // can't clone it during a build. Nothing under app/ or lib/ may import from it —
+  // the projects sheet sync runs as an Nhost function in that repo instead.
+  "exclude": ["node_modules", "nhost", "functions", "recipes", "scripts", "backend_migrations"]
 }
