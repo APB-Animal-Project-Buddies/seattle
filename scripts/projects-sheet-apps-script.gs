@@ -29,6 +29,48 @@ function syncProjectsToProd() {
   runProjectSync(false);
 }
 
+/**
+ * POSTs to `url`, re-sending the request ourselves on a redirect.
+ *
+ * UrlFetchApp's own redirect following is unsafe for this: crossing the bare
+ * domain -> www 308 it can drop the x-api-key header, or downgrade the POST to a
+ * GET, which the endpoint answers with 405. So redirects are handled here, with
+ * the method and headers reattached on every hop.
+ */
+function postFollowingRedirects(url, apiKey) {
+  var options = {
+    method: 'post',
+    headers: { 'x-api-key': apiKey },
+    followRedirects: false,
+    muteHttpExceptions: true,
+  };
+
+  var requestedUrl = url;
+  var current = url;
+
+  for (var hop = 0; hop < 4; hop++) {
+    var response = UrlFetchApp.fetch(current, options);
+    var code = response.getResponseCode();
+    if (code < 300 || code >= 400) {
+      return { response: response, requestedUrl: requestedUrl, finalUrl: current };
+    }
+
+    var headers = response.getAllHeaders();
+    var location = headers.Location || headers.location;
+    if (!location) {
+      return { response: response, requestedUrl: requestedUrl, finalUrl: current };
+    }
+
+    // Location may be relative — resolve it against the current origin.
+    current =
+      location.indexOf('http') === 0
+        ? location
+        : current.replace(/^(https?:\/\/[^\/]+).*$/, '$1') + location;
+  }
+
+  throw new Error('Too many redirects starting from ' + requestedUrl);
+}
+
 function runProjectSync(dryRun) {
   var ui = SpreadsheetApp.getUi();
   var props = PropertiesService.getScriptProperties();
@@ -43,20 +85,30 @@ function runProjectSync(dryRun) {
   // Flush pending edits so the CSV export the server reads is current.
   SpreadsheetApp.flush();
 
-  var response;
+  var result_;
   try {
-    response = UrlFetchApp.fetch(syncUrl + (dryRun ? '?dryRun=1' : ''), {
-      method: 'post',
-      headers: { 'x-api-key': apiKey },
-      muteHttpExceptions: true,
-    });
+    result_ = postFollowingRedirects(syncUrl + (dryRun ? '?dryRun=1' : ''), apiKey);
   } catch (error) {
     ui.alert('Sync failed', String(error), ui.ButtonSet.OK);
     return;
   }
 
+  var response = result_.response;
   var code = response.getResponseCode();
   var body = response.getContentText();
+
+  // If we had to redirect, the stored SYNC_URL is wrong. It still worked, because we
+  // re-sent the POST ourselves, but say so — left alone it's a latent failure.
+  if (result_.finalUrl !== result_.requestedUrl) {
+    ui.alert(
+      'Update SYNC_URL',
+      'SYNC_URL redirected, so the request was re-sent to:\n\n' +
+        result_.finalUrl.split('?')[0] +
+        '\n\nUpdate the SYNC_URL script property to that address ' +
+        '(Project Settings -> Script Properties). The sync still ran.',
+      ui.ButtonSet.OK
+    );
+  }
   var result;
   try {
     result = JSON.parse(body);
