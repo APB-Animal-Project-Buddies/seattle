@@ -1,17 +1,48 @@
+// SETUP INSTRUCTIONS:
+// 1. Open the projects sheet -> Extensions -> Apps Script (open it from the sheet, so
+//    the script is bound to it — a standalone project won't get the menu)
+// 2. Paste this entire script, replacing any existing code
+// 3. Replace YOUR_API_KEY_HERE below with the value of PROJECTS_SYNC_API_KEY from the
+//    apb-seattle environment
+// 4. Save, then reload the spreadsheet — an "APB" menu appears next to Help
+// 5. The first run asks for authorization (the script makes an external request)
+//
+// There is no "Deploy" step: an onOpen menu only needs a save and a reload.
+//
+// This is a COPY for version control — the live copy lives in the spreadsheet, and
+// nothing syncs the two. Full docs are in apb-seattle/README.md.
+//
+// Put the real key in the SHEET's copy only. This repository is public, so the copy
+// here must keep the placeholder — committing the key would publish it.
+//
+// The key below is scoped: it only allows triggering this sheet -> database sync,
+// which is idempotent. Never put the Hasura admin secret here — anyone who can edit
+// the sheet can read this script.
+
+// Configuration — set your API key. Leave a value as its YOUR_..._HERE placeholder to
+// fall back to the Script Property of the same name (Project Settings -> Script
+// Properties), which is how this script was previously configured.
+//
+// NOTE: use the canonical "www" host. The bare domain 308-redirects to www, and
+// following that redirect can downgrade the POST to a GET (HTTP 405). This script
+// re-sends the request itself to survive that, but the correct host avoids the hop.
+var SYNC_URL = 'https://www.animalprojectbuddies.com/api/projects/sync';
+var API_KEY = 'YOUR_API_KEY_HERE'; // Replace with actual key
+
 /**
- * Apps Script for the APB projects sheet — adds an "APB" menu that pushes the
- * sheet into the production `projects` table.
- *
- * This is a COPY for version control. The live copy lives in the spreadsheet:
- *   Extensions -> Apps Script. Paste this in, then set the two Script Properties
- *   below (Project Settings -> Script Properties). Setup steps are in
- *   backend_migrations/README.md.
- *
- * Script Properties (NOT hardcoded — anyone who can edit the sheet can read them,
- * so this holds only the scoped sync key, never the Hasura admin secret):
- *   SYNC_URL  https://<your-apb-seattle-domain>/api/projects/sync
- *   API_KEY   value of PROJECTS_SYNC_API_KEY in the apb-seattle environment
+ * Returns the effective config, preferring the constants above and falling back to
+ * Script Properties for any value left at its placeholder.
  */
+function getSyncConfig() {
+  var props = PropertiesService.getScriptProperties();
+  var isSet = function (value) {
+    return value && value.indexOf('YOUR_') !== 0;
+  };
+  return {
+    syncUrl: isSet(SYNC_URL) ? SYNC_URL : props.getProperty('SYNC_URL'),
+    apiKey: isSet(API_KEY) ? API_KEY : props.getProperty('API_KEY'),
+  };
+}
 
 function onOpen() {
   SpreadsheetApp.getUi()
@@ -73,12 +104,16 @@ function postFollowingRedirects(url, apiKey) {
 
 function runProjectSync(dryRun) {
   var ui = SpreadsheetApp.getUi();
-  var props = PropertiesService.getScriptProperties();
-  var syncUrl = props.getProperty('SYNC_URL');
-  var apiKey = props.getProperty('API_KEY');
+  var config = getSyncConfig();
+  var syncUrl = config.syncUrl;
+  var apiKey = config.apiKey;
 
   if (!syncUrl || !apiKey) {
-    ui.alert('Setup needed', 'Set SYNC_URL and API_KEY in Project Settings -> Script Properties.', ui.ButtonSet.OK);
+    ui.alert(
+      'Setup needed',
+      'Set SYNC_URL and API_KEY at the top of the script (or as Script Properties of the same name).',
+      ui.ButtonSet.OK
+    );
     return;
   }
 
@@ -104,8 +139,8 @@ function runProjectSync(dryRun) {
       'Update SYNC_URL',
       'SYNC_URL redirected, so the request was re-sent to:\n\n' +
         result_.finalUrl.split('?')[0] +
-        '\n\nUpdate the SYNC_URL script property to that address ' +
-        '(Project Settings -> Script Properties). The sync still ran.',
+        '\n\nUpdate SYNC_URL at the top of the script to that address. ' +
+        'The sync still ran.',
       ui.ButtonSet.OK
     );
   }

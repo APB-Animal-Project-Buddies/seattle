@@ -193,16 +193,20 @@ Setup, once:
    variables, then redeploy
 3. Sheet → **Extensions → Apps Script** (it must be opened from the sheet, so the script
    is bound to it)
-4. Paste `scripts/projects-sheet-apps-script.gs` over `Code.gs`, save. There is no
-   "Deploy" step — `onOpen` menus just need a save and a reload
-5. **Project Settings → Script Properties**:
-   - `SYNC_URL` — `https://www.animalprojectbuddies.com/api/projects/sync`
-   - `API_KEY` — the key from step 1
-6. Reload the spreadsheet; an **APB** menu appears. The first run asks for authorisation
+4. Paste `scripts/projects-sheet-apps-script.gs` over `Code.gs`
+5. Set `API_KEY` at the top of the script to the key from step 1. `SYNC_URL` is already
+   set to the production endpoint
+6. Save. There is no "Deploy" step — `onOpen` menus just need a save and a reload
+7. Reload the spreadsheet; an **APB** menu appears. The first run asks for authorisation
 
-Use the **`www`** host in `SYNC_URL`. The bare domain 308-redirects, and `UrlFetchApp`
-can drop the `x-api-key` header or downgrade the POST to a GET when following it — the
-same trap documented in `scripts/ideas-sheet-apps-script.gs`.
+Either constant can be left at its `YOUR_..._HERE` placeholder to fall back to a Script
+Property of the same name, for setups configured that way.
+
+Keep the **`www`** host in `SYNC_URL`. The bare domain 308-redirects, and `UrlFetchApp`
+drops the POST method when following it (the endpoint answers a GET with 405) — the same
+trap documented in `scripts/ideas-sheet-apps-script.gs`. The script re-sends the request
+itself across redirects so this can't fail silently, and tells you to fix `SYNC_URL` when
+it happens.
 
 The menu has **Preview sync** (reports, writes nothing) and **Sync projects to prod**.
 Both show what was inserted, updated (and which fields), unchanged, and any projects in
